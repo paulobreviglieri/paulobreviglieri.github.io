@@ -1,0 +1,1682 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.8.0">
+
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+  
+  
+    
+  
+  <meta name="description" content="">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://pcbreviglieri.github.io/recommending-music-artists/">
+
+  
+
+
+  
+  
+  
+  <meta name="theme-color" content="#000080">
+  
+
+  
+  
+  
+  <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/atom-one-light.min.css" crossorigin="anonymous" title="hl-light">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/atom-one-light.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.css" integrity="sha256-SHMGCYmST46SoyGgo4YR/9AlK1vf3ff84Aq9yK4hdqM=" crossorigin="anonymous">
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.1.2/lazysizes.min.js" integrity="sha256-Md1qLToewPeKjfAHU1zyPwOutccPAm5tahnaw7Osw0A=" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+    
+      
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oxygen:300light,400,700bold%7COxygen+Mono&display=swap">
+    
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.css">
+
+  
+
+
+
+
+  
+
+
+  
+  
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/images/icon_hue0b5dbdcd29e15f3bb2c3e480ec18a0b_14701_32x32_fill_lanczos_center_2.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hue0b5dbdcd29e15f3bb2c3e480ec18a0b_14701_192x192_fill_lanczos_center_2.png">
+
+  <link rel="canonical" href="https://pcbreviglieri.github.io/recommending-music-artists/">
+
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="twitter:site" content="@pcbreviglieri">
+  <meta property="twitter:creator" content="@pcbreviglieri">
+  
+  <meta property="og:site_name" content="Paulo Breviglieri">
+  <meta property="og:url" content="https://pcbreviglieri.github.io/recommending-music-artists/">
+  <meta property="og:title" content="Recommending Music Artists with Boltzmann Machines | Paulo Breviglieri">
+  <meta property="og:description" content=""><meta property="og:image" content="https://pcbreviglieri.github.io/images/icon_hue0b5dbdcd29e15f3bb2c3e480ec18a0b_14701_512x512_fill_lanczos_center_2.png">
+  <meta property="twitter:image" content="https://pcbreviglieri.github.io/images/icon_hue0b5dbdcd29e15f3bb2c3e480ec18a0b_14701_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2020-01-01T00:00:00&#43;00:00">
+    
+    <meta property="article:modified_time" content="2020-01-01T00:00:00&#43;00:00">
+  
+
+  
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  <title>Recommending Music Artists with Boltzmann Machines | Paulo Breviglieri</title>
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#navbar-main" class=" ">
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">Paulo Breviglieri</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">Paulo Breviglieri</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-end" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/portfolio"><span>Portfolio</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/about"><span>About</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+
+  
+<span class="js-widget-page d-none"></span>
+
+
+
+
+
+  
+  
+  
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+
+  
+
+  <section id="section-00-social-icons" class="home-section wg-blank   " style="padding: 0 0 0 0;" >
+    <div class="container">
+      
+
+
+<div class="row">
+  
+    <div class="col-lg-12">
+      
+      
+      <div class="container-social">
+    <div class="fab fa-linkedin" style="color: #2867b2;" onclick="window.open('https://linkedin.com/in/pcbreviglieri')"></div>
+    <div class="fab fa-twitter-square" style="color: #1da1f2;" onclick="window.open('https://twitter.com/pcbreviglieri')"></div>
+    <div class="fab fa-github-square" style="color: #333333;" onclick="window.open('https://github.com/pcbreviglieri')"></div>
+    <div class="fab fa-stack-overflow" style="color: #f48024;" onclick="window.open('https://stackoverflow.com/story/pcbreviglieri')"></div>
+    <div class="fab fa-telegram-plane" style="color: #0088cc;" onclick="window.open('https://t.me/pcbreviglieri')"></div>
+    <div class="fas fa-envelope-square" style="color: #dd0000;" onclick="window.open('mailto:info@paulobreviglieri.com')"></div>
+</div>
+
+    </div>
+  
+</div>
+
+    </div>
+  </section>
+
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+
+  
+
+  <section id="section-foreword" class="home-section wg-blank   " style="padding: 0 0 0 0;" >
+    <div class="container">
+      
+
+
+<div class="row">
+  
+    <div class="col-lg-12">
+      
+      
+      <h1 style="text-align: center; font-size: 30px; color: #ff3000;">Recommending Music Artists with Boltzmann Machines</h1>
+<p>June 15, 2020 - By Paulo Breviglieri</p>
+<h1>Foreword</h1>
+<p>This study describes how a simple <b>Boltzmann machine</b> can assist with <b>music artist recommendations</b> based on artist popularity records collected by <b>last.fm</b>, a UK-based music website and app that supplies recommendations based on detailed user profiles constructed from 'scrobbles' - tracks listened to from diverse music streaming apps, like Spotify and SoundHound, and internet radio stations.</p>
+<p>The case study described herein has an educational nuance and aims at highlighting how a simple <b>unsupervised learning</b> solution addresses a specific problem. Actual commercial recommendation platforms are incredibly more powerful, sophisticated, comprehensive and rely on more advanced artificial intelligence technologies. Positioning the Boltzmann machine developed here as an alternative for a real world implementation is definitely not an intent of this exercise.</p>
+<p>The author also highlights specific singularities of this work not usually found in traditional machine learning exercises:</p>
+<ul>
+    <li>Instead of being built upon existing machine learning frameworks, the Boltzmann machine is <b>hard coded as a Python class</b>;</li>
+    <li>In addition to the traditional performance assessment based on accuracy and loss metrics, a <b>subjective test</b> is performed at the end to verify the appropriateness of actual music artist recommendations delivered by the Boltzmann machine to two specific users with different music gender preferences.</li>
+</ul>
+<p>Section 1 includes a summarized, brief mathematical description of Boltzmann machines, not intented to be exhaustive and comprehensive at all. Readers interested only in the practical implementation may skip it.</p>
+<p>The latest code release may be found in the author's <a href="https://github.com/pcbreviglieri" target="_blank">GitHub</a> repository. Logic enhancement and code forking are welcome and encouraged by the author, provided that this work is properly referenced. Thank you.</p>
+
+    </div>
+  
+</div>
+
+    </div>
+  </section>
+
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+
+  
+
+  <section id="section-01-introduction" class="home-section wg-blank   " style="padding: 0 0 0 0;" >
+    <div class="container">
+      
+
+
+<div class="row">
+  
+    <div class="col-lg-12">
+      
+      
+      <h1>1. Introduction</h1>
+<h2>1.1. Unsupervised learning</h2>
+<p style="text-align: justify">Unlike supervised learning, where machines are typically fed with pairs of known inputs and corresponding outputs to direct the learning and self-adaptation processes, in unsupervised learning machines are supplied with unlabeled responses and are expected to learn probability distributions from inference, with minimum or no human guidance. As a result, unsupervised learning machines have distinct architectures and functional principles. Traditional concepts found in supervised learning, like feedforwarding and input / output layers, are not applicable - or have different interpretations - in unsupervised learning.</p>
+<h2>1.2. Boltzmann machines</h2>
+<p style="text-align: justify">Botzmann machines are unsupervised learning neural networks pertaining to a family of solutions not as wide and popularly explored as others: <b>energy based models</b>. Put simply, in energy based models the system under analysis will always self-adapt to changes in its constituent elements in pursuit of the lowest possible overall compounded energy state. This concept is central in several fields of Physics, from thermodynamycs to quantum mechanics.</p>
+<p style="text-align: justify">A traditional Boltzmann machine comprises a finite set of neurons interconnected with each other.</p>
+<p style="text-align: justify">Neurons- or <b>nodes</b> - are in turn subdivided into two specific sets: <b>visible</b> and <b>hidden</b>, as described in the picture below.</p>
+<div class='row'>
+    <img class="imageboxcentered" style="width: 50%; margin-bottom: 15px;" src='/recommending-music-artists/images/bm.png' alt=''>
+</div>
+<p style="text-align: justify">In an analogy with the human body, the author likes to think of <b>visible nodes</b> as the neural terminations we have in our eyes, nose, tongue and skin to capture external stimulus such as images, sounds, smells, tastes and sensations like heat, cold and pain. Accordingly, <b>hidden nodes</b> might be interpreted as the set of neurons in our brains responsible to process the information received from the neural terminations and take action - always aiming at self-adapting and conducting the organism to the most appropriate state - the 'lowest energy' state - for a given set of external circumstances.</p>
+<p style="text-align: justify">A pictorial example: if the neurons located in the optic nerves on and behind our eyes' retina (the 'visible nodes') experience a sudden increase in external light intensity, this information is quickly delivered to the neurons located in the brain's occipital lobe (the 'hidden nodes') who, in turn, process this information and 'instruct' the eye muscles to constrict pupils, so that the amount of light  reaching the retina is reduced and retina cells are preserved. The overall organism optical network is thus taken to a new optimal 'state' that will last until the environment perceived by the visible nodes change again.</p>
+<p style="text-align: justify">In a Boltzmann machine, all nodes are connected to each other. However, the adoption of such architecture in practical implementations demands higher processing and memory assigment capabilities, reason why a simplified version of Boltzmann machines - so called <b>Restricted Boltzmann Machines</b> (RBMs) - gained traction and became widely used. In RBMs, connections between visible nodes and hidden nodes are maintained, while connections among visible nodes and connections among hidden nodes are eliminated, as illustrated below.</p>
+<div class='row'>
+    <img class="imageboxcentered" style="width: 50%; margin-bottom: 15px;" src='/recommending-music-artists/images/rbm.png' alt=''>
+</div>
+<p style="text-align: justify">The relationship between visible and hidden nodes is governed by the weights of the corresponding connections. In addition, biases are assigned to both hidden ('a') and visible ('b') nodes.</p>
+<div class='row'>
+    <img class="imageboxcentered" style="width: 50%; margin-bottom: 15px;" src='/recommending-music-artists/images/rbm-weights-biases.png' alt=''>
+</div>
+<p style="text-align: justify">As energy based models in which the objective will always be to self-adapt pursuing the lowest scalar energy state possible, RBMs are governed by one fundamental equation describing the total 'energy' of the network in terms of the values ('states') of visible (v) and hidden (h) nodes along with weights (w) and biases (a, b), all expressed as tensors:</p>
+<p>$$\large E(v,h) = - \sum \limits _{i} a_{i} v_{i} - \sum \limits _{j} b_{j} h_{j} - \sum \limits _{i,j} v_{i} h_{j} w_{ij}$$</p>
+<p style="text-align: justify">Over training, the RBM weights and biases will be adjusted in order to minimize the overall network energy.</p>
+<p style="text-align: justify">Another relevant aspects of RBMs is their nature: RBMs are probabilistic models. Remember that at any moment the RBM will be in a particular state given by the values stored in visible and hidden nodes (neurons), linked by weights and biases. The model will operate based on the probability that a certain state of v and h can be observed. In mathematical terms, such probability will be governed by a joint  distribution - the Boltzmann Distribution, after which this type of learning machines is named:</p>
+<p>$$\large p(v,h) = \frac{1}{Z} e^{-E(v,h)}$$</p>
+<p style="text-align: center">where Z, the 'partition function', is given by:</p>
+<p>$$\large Z = \sum \limits _{v,h}  e^{-E(v,h)}$$</p>
+<p style="text-align: justify"> In Physics, the Boltzmann distribution furnishes the probability of a particle being observed in a given state with energy E. In a RBM, we are interested in the probability to observe a state of v and h based on the overall model energy. As the calculation of the joint Boltzmann probability would be complex in networks with a large numbers of combinations of visible and hidden node values (v and h), the analysis focuses instead on the calculation of the conditional probabilities of hidden nodes being in a particular state <b>given</b> the state of the visible nodes, denoted as <b>p(h|v)</b>, and also the conditional probabilities of visible nodes being in a particular state <b>given</b> the state of the hidden nodes, denoted as <b>p(v|h)</b>:</p>
+<p>$$\large p (h | v) = \prod  \limits _{i} {p (h _{i} | v)}$$</p>
+<p>$$\large p (v | h) = \prod  \limits _{i} {p (v _{i} | h)}$$</p>
+<p style="text-align: justify">In RBMs the values assigned to neurons (node) are <b>binary</b>. In other words, in RBMs we deal with 'activated' and 'non activated' states for both visible and hidden nodes.</p>
+<p style="text-align: justify">This fact allows us to derive the conditional probabilities above for the cases of hidden nodes assuming a value equal to 1 (given visible nodes at certain states) and also the conditional probabilities for the cases of visible nodes assuming a value equal to 1 (given hidden nodes at certain states). After applying the Bayes rule to conditional probabilities, we obtain:</p>
+<p>$$\large p (h_{j}=1 | v) = \frac {1}{1 + e^{(- (b_{j} + W_{j} v_{i}))}} = \sigma (b_{j} + \sum \limits _{i} v_{i} w_{ij})$$</p>
+<p>$$\large p (v_{i}=1 | h) = \frac {1}{1 + e^{(- (a_{i} + W_{i} h_{j}))}} = \sigma (a_{i} + \sum \limits _{j} h_{j} w_{ij})$$</p>
+<p style="text-align: justify">where $\large \sigma$ is our well known sigmoid function!</p>
+<h2>1.3. Training Boltzmann machines</h2>
+<p style="text-align: justify">RBMs are trained in a very unique, two-step approach.  Details may be found in "<em><b>A fast learning algorithm for deep belief nets</b></em>" (G.E. Hinton, S. Osindero, Department of Computer Science, University of Toronto, YW. Teh, Department of Computer Science, National University of Singapore), in which Dr. Hinton and his co-authors describe the use of 'complementary priors' to "derive a fast, greedy algorithm that can learn deep, directed belief networks".</p>
+<h3>1.3.1. Gibbs sampling</h3>
+<p style="text-align: justify">This is an interactive process comprising the following steps, as pictured below:</p>
+<ul>
+    <li style="text-align: justify">An input tensor $\large v_{0}$ containing binary constituent elements (1's and 0's) of a given observation is fed into visible nodes;</li>
+    <li style="text-align: justify">The activation of hidden nodes, given this input tensor, is predicted via $\large p(h|v_{0})$</li>
+    <li style="text-align: justify">A new activation of visible nodes, given the previous activation of hidden nodes, is predicted via $\large p(v|h)$</li>
+    <li style="text-align: justify">The two last steps are repeated k times until a last activation of visible nodes $\large v_{k}$ is predicted.</li>
+</ul>
+<div class='row'>
+    <img class="imageboxcentered" style="width: 50%; margin-bottom: 15px;" src='/recommending-music-artists/images/rbm-contrastive-divergence.png' alt=''>
+</div>
+<h3>1.3.2. Contrastive divergence</h3>
+<p style="text-align: justify">Updating weights (and biases) is the primary objective of any neural network training program.</p>
+<p style="text-align: justify">In the case of RBMs, the weight tensor is updated through a method called Contrastive Divergence. In a summarized fashion, the activation probabilities of hidden node tensors $\large h_{0}$ and $\large h_{k}$ are calculated from visible node tensors $\large v_{0}$ and $\large v_{k}$. The difference between the <b>outer products</b> of such activation probabilities with input tensors $\large v_{0}$ and $\large v_{k}$ will lead to an updated version of the weight tensor:</p>
+<p>$$\large \Delta W = v_{0} \otimes {p (h_{0} | v_{0})} - v_{k} \otimes {p (h_{k} | v_{k})}$$</p>
+<p style="text-align: justify">At last, a new set of updated weights at step 'm' can be estimated with gradient ascent:</p>
+<p>$$\large W_{m} = W_{m-1} + \Delta W$$</p>
+
+    </div>
+  
+</div>
+
+    </div>
+  </section>
+
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+
+  
+
+  <section id="section-02-objectives" class="home-section wg-blank   " style="padding: 0 0 0 0;" >
+    <div class="container">
+      
+
+
+<div class="row">
+  
+    <div class="col-lg-12">
+      
+      
+      <h1>2. Objectives of this deep learning exercise</h1>
+<p>The primary goal of this work is educational, as is the norm in most of the author's studies.</p>
+<p>A Restricted Boltzmann Machine (RBM) is used to provide music artist recommendations to a particular individual based on:</p>
+<ul>
+    <li>Music artist popularity records generated by a multitude of platform users and maintained by last.fm;</li>
+    <li>The set of preferred artists enjoyed by one specific individual.</li>
+</ul>
+<p>In other words, the machine will identify the subset of music artists appreciated by a particular user (artists A, B, C and D, for example) and offer a second subset of music artists this particular user might be interested in (artists W, X, Y and Z), based on his/her preferences.</p>
+<p>Specific expertise will be developed in this exercise, including: </p>
+<ul>
+    <li>The construction of a RBM in the form of a Python class that will be later instantiated;</li>
+    <li>The generation of predictions for two specific users, with different musical preferences, in addition to the crude (and cold) performance assessment procedures based on the quantification of error metrics;</li>
+    <li>The use of PyTorch as the deep learning framework of choice.</li>
+</ul>
+<p>A special note on the framework selection. Comparing competitive machine learning frameworks is <b>NOT</b> an objective herein. Instead, the goal is to highlight that similar frameworks may serve the same purpose regardless of their popularity. PyTorch was adopted in this particular case simply because it offered the author a straightforward coding path that might as well be delivered by other frameworks. No performance assessment guided this selection.</p>
+<h2>2.1. Experimenting an alternative approach with Boltzmann machines</h2>
+<p>As discussed in Section 1.2, Boltzmann machines are probabilistic models. Ideally, visible and hidden nodes would be dynamically activated (1) or not (0), representing an immense multitude of different machine states.</p>
+<p>However, the last.fm dataset contains total numbers of scrobbles generated per user, per music artist - a direct measure of artist popularity we intend to explore with the RBM. Furthermore, the dataset includes:</p>
+<ul>
+    <li>Both heavy users, who have generated dozens, even hundreds of thousands of 'scrobbles' for selected artists, and light users, who produced few 'scrobbles' for few artists. The model must ideally not allow that heavy user preferences overshadow those of light users;</li>
+    <li>For every user, the number of scrobbles per artist may vary from one to thousands. The model shall ideally not allow high scrobble counts per user to drastically overshadow low scrobble counts per user.</li>
+</ul>
+<p>Having said that, instead of feeding the model with simple binary inputs, which would correspond to a set of 'scrobbled' and 'not scrobbled' music artists for a given user, the machine will be supplied with scaled inputs ranging from 0 to 1 for each 'scrobbled' music artist, on a per user basis. For a given user, a scaled number of scrobbles of a given artist close to '0' means that a small number of scrobbles was generated - the user briefly checked on that artist but the return rate was none or very small, a sign of low 'popularity' of that artist for that user. Inversely, a scaled number of scrobbles of a given artist, for a given user, close to '1' means that a large number of scrobbles was collected - the user listened to that artist several times with a high return rate, an indication of high 'popularity' of that artist for that user.</p>
+<p>The traditional approach (i.e. assigning 1 to 'scrobbled' artists and '0' to 'not scrobbled' artists) would not bring to the analysis how popular a given artist is for a given user. An artist with 1 scrobble would be given the same weight as an artist with, let's say, 1,000 scrobbles. Let's see how the machine performs under these assumptions.</p>
+<p>The selected approach is portrayed below.</p>
+<div class='row'>
+    <img class="imageboxcentered" style="width: 45%; margin-bottom: 15px;" src='/recommending-music-artists/images/rbm-feeding.png' alt=''>
+</div>
+
+    </div>
+  
+</div>
+
+    </div>
+  </section>
+
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+
+  
+
+  <section id="section-03-the-dataset" class="home-section wg-blank   " style="padding: 0 0 0 0;" >
+    <div class="container">
+      
+
+
+<div class="row">
+  
+    <div class="col-lg-12">
+      
+      
+      <h1>3. The dataset</h1>
+<p>The dataset utilized in this deep learning exercise is a summarized, sanitized subset of the one released at <b>The 2nd International Workshop on Information Heterogeneity and Fusion in Recommender Systems</b> (HetRec 2011), currently hosted at the GroupLens website (<a href="https://grouplens.org/datasets/hetrec-2011/">here</a>).</p>
+<p>Sanitization included: (a) artist name mispelling correction and standardization; (b) reassignment of artists referenced with two or more artist id's; (c) removal of artists listed as 'unknown' or through their website addresses.</p>
+<p>The original dataset contains a larger number of files, including tag-related information, in addition to users, artists and scrobble counts. last.fm was contacted by the author and asked for some recent version of this content, in similar format, with no return until June 15th, 2020.</p>
+<p>Two dataset files were selected and preprocessed for use in this work:</p>
+<ol>
+    <li>'<b>lastfm_user_scrobbles.csv</b>' contains 92,792 scrobble counts ('scrobbles') for 17,493 artists ('artist_id') generated by 1,892 users ('user_id');</li>
+    <li>'<b>lastfm_artist_list.csv</b>' contains the list of 17,493 artists, referenced by an unique id code ('artist_id'), the same used in the first file.</li>
+</ol>
+<div class="boxborder">
+<pre><code class="language-python">scrobbles = pd.read_csv('/home/pb/Development/Projects/Jupyter/Music Artist Recommendations/lastfm_user_scrobbles.csv', header = 0)
+scrobbles.head()
+</code></pre>
+</div>
+<table style="width: 40%; margin-top: 0.5em;">
+    <tbody class="codeoutput">
+        <tr style="width: 50%;">
+            <td style="width: 10%; text-align: center; border: 0;""></td>
+            <td style="width: 30%; text-align: center; border: 0;"">user_id</td>
+            <td style="width: 30%; text-align: center; border: 0;"">artist_id</td>
+            <td style="width: 30%; text-align: center; border: 0;"">scrobbles</td>
+        </tr>
+        <tr style="width: 50%;">
+            <td style="width: 10%; text-align: center; border: 0;"">0</td>
+            <td style="width: 30%; text-align: center; border: 0;"">1</td>
+            <td style="width: 30%; text-align: center; border: 0;"">4562</td>
+            <td style="width: 30%; text-align: center; border: 0;"">13883</td>
+        </tr>
+        <tr style="width: 50%;">
+            <td style="width: 10%; text-align: center; border: 0;"">1</td>
+            <td style="width: 30%; text-align: center; border: 0;"">1</td>
+            <td style="width: 30%; text-align: center; border: 0;"">10191</td>
+            <td style="width: 30%; text-align: center; border: 0;"">11690</td>
+        </tr>
+        <tr style="width: 50%;">
+            <td style="width: 10%; text-align: center; border: 0;"">2</td>
+            <td style="width: 30%; text-align: center; border: 0;"">1</td>
+            <td style="width: 30%; text-align: center; border: 0;"">494</td>
+            <td style="width: 30%; text-align: center; border: 0;"">11351</td>
+        </tr>
+        <tr style="width: 50%;">
+            <td style="width: 10%; text-align: center; border: 0;"">3</td>
+            <td style="width: 30%; text-align: center; border: 0;"">1</td>
+            <td style="width: 30%; text-align: center; border: 0;"">6673</td>
+            <td style="width: 30%; text-align: center; border: 0;"">10300</td>
+        </tr>
+        <tr style="width: 50%;">
+            <td style="width: 10%; text-align: center; border: 0;"">4</td>
+            <td style="width: 30%; text-align: center; border: 0;"">1</td>
+            <td style="width: 30%; text-align: center; border: 0;"">8402</td>
+            <td style="width: 30%; text-align: center; border: 0;"">8983</td>
+        </tr>
+    </tbody>
+</table>
+<p>As anticipated in Section 2.1, scrobble counts are scaled on a per user basis with the code below. As some null values may be produced in the case of users who have generated only one scrobble for a given artist (maximum and minimum are the same, leading to a division by zero), the final scaled number of scrobbles of 0.5 is assigned to those users.</p>
+<div class="boxborder">
+<pre><code class="language-python">scrobbles['scrobbles'] = scrobbles.groupby('user_id')[['scrobbles']].apply(lambda x: (x-x.min())/(x.max()-x.min()))
+scrobbles['scrobbles'] = scrobbles['scrobbles'].fillna(0.5)
+scrobbles.head()
+</code></pre>
+</div>
+<table style="width: 40%; margin-top: 0.5em;">
+    <tbody class="codeoutput">
+        <tr style="width: 50%;">
+            <td style="width: 10%; text-align: center; border: 0;""></td>
+            <td style="width: 30%; text-align: center; border: 0;"">user_id</td>
+            <td style="width: 30%; text-align: center; border: 0;"">artist_id</td>
+            <td style="width: 30%; text-align: center; border: 0;"">scrobbles</td>
+        </tr>
+        <tr style="width: 50%;">
+            <td style="width: 10%; text-align: center; border: 0;"">0</td>
+            <td style="width: 30%; text-align: center; border: 0;"">1</td>
+            <td style="width: 30%; text-align: center; border: 0;"">4562</td>
+            <td style="width: 30%; text-align: center; border: 0;"">1.000000</td>
+        </tr>
+        <tr style="width: 50%;">
+            <td style="width: 10%; text-align: center; border: 0;"">1</td>
+            <td style="width: 30%; text-align: center; border: 0;"">1</td>
+            <td style="width: 30%; text-align: center; border: 0;"">10191</td>
+            <td style="width: 30%; text-align: center; border: 0;"">0.825509</td>
+        </tr>
+        <tr style="width: 50%;">
+            <td style="width: 10%; text-align: center; border: 0;"">2</td>
+            <td style="width: 30%; text-align: center; border: 0;"">1</td>
+            <td style="width: 30%; text-align: center; border: 0;"">494</td>
+            <td style="width: 30%; text-align: center; border: 0;"">0.798536</td>
+        </tr>
+        <tr style="width: 50%;">
+            <td style="width: 10%; text-align: center; border: 0;"">3</td>
+            <td style="width: 30%; text-align: center; border: 0;"">1</td>
+            <td style="width: 30%; text-align: center; border: 0;"">6673</td>
+            <td style="width: 30%; text-align: center; border: 0;"">0.714911</td>
+        </tr>
+        <tr style="width: 50%;">
+            <td style="width: 10%; text-align: center; border: 0;"">4</td>
+            <td style="width: 30%; text-align: center; border: 0;"">1</td>
+            <td style="width: 30%; text-align: center; border: 0;"">8402</td>
+            <td style="width: 30%; text-align: center; border: 0;"">0.610121</td>
+        </tr>
+    </tbody>
+</table>
+
+    </div>
+  
+</div>
+
+    </div>
+  </section>
+
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+
+  
+
+  <section id="section-04-initial-setup" class="home-section wg-blank   " style="padding: 0 0 0 0;" >
+    <div class="container">
+      
+
+
+<div class="row">
+  
+    <div class="col-lg-12">
+      
+      
+      <h1>4. Initial setup</h1>
+<h2>4.1. Importing required libraries</h2>
+<p>Along with traditional libraries imported for tensor manipulation and mathematical operations, <a href="https://pytorch.org/">PyTorch</a> is used in this exercise.</p>
+<div class="boxborder">
+<pre><code class="language-python">import numpy as np
+import pandas as pd
+import torch
+from datetime import datetime
+
+start_time = datetime.now()
+</code></pre>
+</div>
+<h2>4.2. Hard coding a Boltzmann Machine</h2>
+<p>The creation of machine learning models usually relies on the instantiation of predefined classes provided by frameworks such as PyTorch and Keras. In other words, a 'model' is coded in Python or R as an object - an instance of predefined classes. This allows for the use of the class implicit features and methods, making the coder's task much simpler and the final code itself cleaner and shorter.</p>
+<p>As anticipated in Section 2, a different approach is proposed here. A Python class named 'RestrictedBoltzmannMachine' will be developed and further instantiated for the creation of a RBM model.</p>
+<p>The 'RestrictedBoltzmannMachine' class comprises the following elements:</p>
+<ol>
+    <li>An initialization module where the inherent tensors for weights and biases are defined;</li>
+    <li>Two methods (used internally by other methods) devoted to Gibbs sampling as described in Section 1.3.1; </li>
+    <li>One method devoted to the model training where, over several epochs and for several batches:</li>
+    <ul>
+        <li>Contrastive divergence is executed in 10 rounds ;</li>
+        <li>Weight (W) and biases (a and b) tensors are updated; </li>
+        <li>Losses are calculated;</li>
+    </ul>
+    <li>One method devoted to the model testing where test observations are fed into the RBM and compounded loss metrics calculated;</li>
+    <li>One method devoted to predicting recommendations for one particular observation (last.fm user);</li>
+</ol>
+<p>Please refer to docstrings for information on the machine structure and functionality.</p>
+<div class="boxborder">
+<pre><code class="language-python">class RestrictedBoltzmannMachine():
+    &quot;&quot;&quot;
+    Python implementation of a Restricted Boltzmann Machine (RBM) with 'c_nh' hidden nodes and 'c_nv' visible nodes.
+    &quot;&quot;&quot;
+    def __init__(self, c_nv, c_nh):
+        &quot;&quot;&quot;
+        RBM initialization module where three tensors are defined:
+        W - Weight tensor
+        a - Visible node bias tensor
+        b - Hidden node bias tensor
+        a and b are created as two-dimensional tensors to accommodate batches of observations over training.
+        &quot;&quot;&quot;
+        self.W = torch.randn(c_nh, c_nv)
+        self.a = torch.randn(1, c_nh)
+        self.b = torch.randn(1, c_nv)
+
+        
+    def sample_h(self, c_vx):
+        &quot;&quot;&quot;
+        Method devoted to Gibbs sampling probabilities of hidden nodes given visible nodes - p (h|v)
+        c_vx - Input visible node tensor
+        &quot;&quot;&quot;
+        c_w_vx = torch.mm(c_vx, self.W.t())
+        c_activation = c_w_vx + self.a.expand_as(c_w_vx)
+        c_p_h_given_v = torch.sigmoid(c_activation)
+        return c_p_h_given_v, torch.bernoulli(c_p_h_given_v)
+
+    
+    def sample_v(self, c_hx):
+        &quot;&quot;&quot;
+        Method devoted to Gibbs sampling probabilities of visible nodes given hidden nodes - p (v|h)
+        c_hx - Input hidden node tensor
+        &quot;&quot;&quot;
+        c_w_hx = torch.mm(c_hx, self.W)
+        c_activation = c_w_hx + self.b.expand_as(c_w_hx)
+        c_p_v_given_h = torch.sigmoid(c_activation)
+        return c_p_v_given_h, torch.bernoulli(c_p_v_given_h)
+
+    
+    def train(self, c_nr_observations, c_nr_epoch, c_batch_size, c_train_tensor, c_metric):
+        &quot;&quot;&quot;
+        Method through which constrative divergence-based training is performed.
+        c_nr_observations - Number of observations used for training
+        c_nr_epoch - Number of training epochs
+        c_batch_size - Batch size
+        c_train_tensor - Tensor containing training observations
+        c_metric - Training performance metric of choice ('MAbsE' for Mean Absolute Error, 'RMSE' for Root Mean Square Error)
+        &quot;&quot;&quot;
+        print('Training...')
+        for c_epoch in range(1, c_nr_epoch + 1):
+            c_start_time = datetime.now()
+            print(f'Epoch {str(c_epoch)} of {str(c_nr_epoch)} ', end='')
+            c_train_loss = 0
+            c_s = 0.
+            for c_id_user in range(0, c_nr_observations - c_batch_size, c_batch_size):
+                c_v0 = c_train_tensor[c_id_user:c_id_user+c_batch_size]
+                c_vk = c_train_tensor[c_id_user:c_id_user+c_batch_size]
+                c_ph0,_ = self.sample_h(c_v0)
+                for c_k in range(10):
+                    _,c_hk = self.sample_h(c_vk)
+                    _,c_vk = self.sample_v(c_hk)
+                    c_vk[c_v0&amp;lt;0] = c_v0[c_v0&amp;lt;0]
+                c_phk,_ = self.sample_h(c_vk)
+                self.W += (torch.mm(c_v0.t(), c_ph0) - torch.mm(c_vk.t(), c_phk)).t()
+                self.b += torch.sum((c_v0 - c_vk), 0)
+                self.a += torch.sum((c_ph0 - c_phk), 0)
+                if c_metric == 'MAbsE':
+                    c_train_loss += torch.mean(torch.abs(c_v0[c_v0&gt;=0] - c_vk[c_v0&gt;=0]))
+                elif c_metric == 'RMSE':
+                    c_train_loss += np.sqrt(torch.mean((c_v0[c_v0&gt;=0] - c_vk[c_v0&gt;=0])**2))
+                c_s += 1.
+            c_end_time = datetime.now()
+            c_time_elapsed = c_end_time - c_start_time
+            c_time_elapsed = c_time_elapsed.total_seconds()
+            print(f'- Loss ({c_metric}): {c_train_loss/c_s:.8f} ({c_time_elapsed:.2f} seconds)')
+
+
+    def test(self, c_nr_observations, c_train_tensor, c_test_tensor, c_metric):
+        &quot;&quot;&quot;
+        Method through which testing is performed.
+        c_nr_observations - Number of observations used for testing
+        c_train_tensor - Tensor containing training observations
+        c_test_tensor - Tensor containing testing observations
+        c_metric - Training performance metric of choice ('MAbsE' for Mean Absolute Error, 'RMSE' for Root Mean Square Error)
+        &quot;&quot;&quot;
+        print('Testing...')
+        c_test_loss = 0
+        c_s = 0.
+        for c_id_user in range(c_nr_observations):
+            c_v = c_train_tensor[c_id_user:c_id_user+1]
+            c_vt = c_test_tensor[c_id_user:c_id_user+1]
+            if len(c_vt[c_vt&gt;=0]) &gt; 0:
+                _,c_h = self.sample_h(c_v)
+                _,c_v = self.sample_v(c_h)
+                if c_metric == 'MAbsE':
+                    c_test_loss += torch.mean(torch.abs(c_vt[c_vt&gt;=0] - c_v[c_vt&gt;=0]))
+                elif c_metric == 'RMSE':
+                    c_test_loss += np.sqrt(torch.mean((c_vt[c_vt&gt;=0] - c_v[c_vt&gt;=0])**2))
+                c_s += 1.
+        print(f'Test loss ({c_metric}): {c_test_loss/c_s:.8f}')
+        
+        
+    def predict(self, c_visible_nodes):
+        &quot;&quot;&quot;
+        Method through which predictions for one specific observation are derived.
+        c_visible_nodes - Tensor containing one particular observation (set of values for each visible node) 
+        &quot;&quot;&quot;
+        c_h_v,_ = self.sample_h(c_visible_nodes)
+        c_v_h,_ = self.sample_v(c_h_v)
+        return c_v_h
+</code></pre>
+</div>
+<h2>4.3. Creating purposed functions</h2>
+<p>Two specific customized functions address specific needs:</p>
+<ul>
+    <li>'<b><em>convert</em></b>' essentially takes the original last.fm dataset table and produces a tensor where rows will correspond to specific platform users, columns will correspond to individual artists and the cell contents will contain the number of hits a particular artist received from a particular user;</li>
+    <li>'<b><em>preferred_recommended</em></b>' will initially identify and print the top 'x' artists most reverenced by a specific user and, subsequently, print the top 'x' music artists most recommended to this particular user, excluding those who may be already included in the reverenced list (i.e. new recommendations only).</li>
+</ul>
+<div class="boxborder">
+<pre><code class="language-python">def convert(f_data, f_nr_observations, f_nr_entities):
+        &quot;&quot;&quot;
+        Generates (from a numpy array) a list of lists containing the number of hits per user (rows), per entity (columns).
+        Each of the constituent lists will correspond to an observation / user (row).
+        Each observation list will contain the number of hits (columns), one for each hit entity
+        f_data - Input table (numpy array)
+        f_nr_observations - Number of observations
+        f_nr_entities - Number of entities hit in each observation
+        &quot;&quot;&quot;
+        f_converted_data = []
+        for f_id_user in range(1, f_nr_observations + 1):
+            f_id_entity = f_data[:,1][f_data[:,0] == f_id_user].astype(int)
+            f_id_hits = f_data[:,2][f_data[:,0] == f_id_user]
+            f_hits = np.zeros(f_nr_entities)
+            f_hits[f_id_entity - 1] = f_id_hits
+            f_converted_data.append(list(f_hits))
+        return f_converted_data
+</code></pre>
+</div>
+<div class="boxborder">
+<pre><code class="language-python">def preferred_recommended(f_artist_list, f_train_set, f_test_set, f_model, f_user_id, f_top=10):
+        &quot;&quot;&quot;
+        Generates music artist recommendations for a particular platform user. 
+        f_artist_list - List of artists and corresponding IDs
+        f_train_set - Tensor containing training observations
+        f_test_set - Tensor containing testing observations
+        f_model - A RBM machine learning model previously instantiated
+        f_user_id - The user for which preferred artists will be assessed and recommendations will be provided
+        f_top - Number of most preferred and most recommended music artists for user 'f_user_id'
+        &quot;&quot;&quot;
+        if f_user_id &amp;lt; 1515:
+            f_user_sample = f_train_set[f_user_id - 1:f_user_id]
+        else:
+            f_user_sample = f_test_set[f_user_id - 1:f_user_id]
+        f_prediction = f_model.predict(f_user_sample).numpy()
+        f_user_sample = f_user_sample.numpy()
+        f_user_sample = pd.Series(f_user_sample[0])
+        f_user_sample = f_user_sample.sort_values(ascending=False)
+        f_user_sample = f_user_sample.iloc[:f_top]
+        f_fan_list = f_user_sample.index.values.tolist()
+        print(f'\nUser {f_user_id} is a fan of...\n')
+        for f_artist_id in f_fan_list:
+            print(f_artist_list[f_artist_list.artist_id == f_artist_id + 1].iloc[0][1])
+        f_prediction = pd.Series(f_prediction[0])
+        f_prediction = f_prediction.sort_values(ascending=False)
+        f_prediction_list = f_prediction.index.values.tolist()
+        print(f'\nUser {f_user_id} may be interested in...\n')
+        f_nb_recommendations = 0
+        f_i = 0
+        while f_nb_recommendations &amp;lt; f_top:
+            f_pred_artist = f_prediction_list[f_i]
+            if f_pred_artist not in f_fan_list:
+                print(f_artist_list[f_artist_list.artist_id == f_pred_artist + 1].iloc[0][1])
+                f_nb_recommendations += 1
+            f_i += 1
+</code></pre>
+</div>
+
+    </div>
+  
+</div>
+
+    </div>
+  </section>
+
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+
+  
+
+  <section id="section-05-generating-tensors" class="home-section wg-blank   " style="padding: 0 0 0 0;" >
+    <div class="container">
+      
+
+
+<div class="row">
+  
+    <div class="col-lg-12">
+      
+      
+      <h1>5. Generating 'user versus ratings' tensors for training and testing</h1>
+<p>The scrobbles dataset is originally sorted based on ascending user ids. As generating recommendations for specific users is the ultimate objective of this exercise, it is necessary to maintain user scrobbles grouped. In addition, as roughly 20% of user scrobbles wil be segregated in a test set:</p>
+<ul>
+    <li>The training set will include the first 74,254 scrobbles, corresponding to users with 'user_id' ranging from 1 to 1,514;</li>
+    <li>The test set will include the remaining 18,538 scrobbles, corresponding to users with 'user_id' ranging from 1,515 to 1,892.</li>
+</ul>
+<p>A more sophisticated approach, with a random selection of user groups for the training and test sets, as well as a dynamic segregation of training users allowing for some cross-validation training, would add additional complexity and were not considered in this first release.</p>
+<div class="boxborder">
+<pre><code class="language-python">training_size = 74254
+training_set = scrobbles.iloc[:training_size, :]  # Until userID = 1514
+test_set = scrobbles.iloc[training_size:, :]      # Starting at userID = 1515
+
+training_set = training_set.values
+test_set = test_set.values
+
+training_set.shape, test_set.shape
+</code></pre>
+</div>
+<p class="codeoutput">(74254, 3), (18538, 3))</p>
+<div class="boxborder">
+<pre><code class="language-python">nr_users = int(max(max(training_set[:,0]), max(test_set[:,0])))
+nr_artists = int(max(max(training_set[:,1]), max(test_set[:,1])))
+
+nr_users, nr_artists
+</code></pre>
+</div>
+<p class="codeoutput">(1892, 17493)</p>
+<p>At this point, both training and test sets are subsets of the original dataset, converted into numpy arrays. However, the model will be fed with a rearranged version of these tables, in which users will correspond to rows, artists to columns and the content of each cell will include the number of scrobbles generated by each user, for each artist.</p>
+<div class="boxborder">
+<pre><code class="language-python">training_set = convert(training_set, nr_users, nr_artists)
+test_set = convert(test_set, nr_users, nr_artists)
+</code></pre>
+</div>
+<p>At last, both sets are converted into PyTorch float tensors:</p>
+<div class="boxborder">
+<pre><code class="language-python">training_set = torch.FloatTensor(training_set)
+test_set = torch.FloatTensor(test_set)
+</code></pre>
+</div>
+
+    </div>
+  
+</div>
+
+    </div>
+  </section>
+
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+
+  
+
+  <section id="section-06-deep-learning" class="home-section wg-blank   " style="padding: 0 0 0 0;" >
+    <div class="container">
+      
+
+
+<div class="row">
+  
+    <div class="col-lg-12">
+      
+      
+      <h1>6. Deep Learning</h1>
+<h2>6.1. Creating the RBM as an instance of a Python object</h2>
+<p>The RBM is defined as having:</p>
+<ul>
+    <li>a number of visible nodes corresponding to the number of music artists (1,793) - one visible node per artist;</li>
+    <li>a number of hidden nodes arbitrarily defined and tuned;</li>
+</ul>
+<p>Comments on hyperparameter selection, tuning and implications are provided in Section 5.</p>
+<div class="boxborder">
+<pre><code class="language-python">nv = len(training_set[0])
+nh = 100
+batch_size = 1
+epoch = 50
+metric = 'MAbsE'
+
+model = RestrictedBoltzmannMachine(nv, nh)
+</code></pre>
+</div>
+<h2>6.2. Training & testing the RBM</h2>
+<div class="boxborder">
+<pre><code class="language-python">model.train(nr_users, epoch, batch_size, training_set, metric)
+model.test(nr_users, training_set, test_set, metric)
+</code></pre>
+</div>
+<p class="codeoutput">Training...<br/>
+Epoch 1 of 50 - Loss (MAbsE): 0.00223006 (62.52 seconds)<br/>
+Epoch 2 of 50 - Loss (MAbsE): 0.00063980 (70.48 seconds)<br/>
+...<br/>
+Epoch 49 of 50 - Loss (MAbsE): 0.00053761 (56.29 seconds)<br/>
+Epoch 50 of 50 - Loss (MAbsE): 0.00053674 (62.81 seconds)<br/>
+Testing...<br/>
+Test loss (MAbsE): 0.00022517</p>
+<h2>6.3. Providing recommendations</h2>
+<p>In addition to the traditional error metric-based performance assessment, it is of absolute importance to test the model through the generation of real recommendations for specific users. In order to do it wisely, two different users with evidently different music preferences were identified in the test set:</p>
+<ul>
+    <li>user_id # 1515 seems to be a fan of pop music and female muses in particular;</li>
+    <li>user_id # 1789 seems to prefer progressive and heavy metal rock artists.</li>
+</ul>
+<p>Recommendations are generated for both. The code below lists the 10 most 'scrobbled' music artists for each of these users, followed by the 10 most recommended artists in each case. Results are discussed in Section 5.</p>
+<div class="boxborder">
+<pre><code class="language-python">artist_list = pd.read_csv('/home/pb/Development/Projects/Jupyter/Music Artist Recommendations/lastfm_artist_list.csv', header = 0)
+</code></pre>
+</div>
+<div class='row'>
+    <img class="imageboxcentered" style="width: 60%" src='/recommending-music-artists/images/user-1-preferences.png' alt=''>
+</div>
+<div class="boxborder">
+<pre><code class="language-python">preferred_recommended(artist_list, training_set, test_set, model, 1515, 10)
+</code></pre>
+</div>
+<p class="codeoutput">User 1515 is a fan of...<br/>
+Glee Cast<br/>
+Britney Spears<br/>
+Lady Gaga<br/>
+Christina Aguilera<br/>
+Fresno<br/>
+Beyonce<br/>
+Nx Zero<br/>
+Avril Lavigne<br/>
+Katy Perry<br/>
+Rihanna<br/>
+User 1515 may be interested in...<br/>
+Demi Lovato<br/>
+Elvis Presley<br/>
+P!Nk<br/>
+Ashlee Simpson<br/>
+Alexander Rybak<br/>
+Taylor Swift<br/>
+The Kooks<br/>
+Hilary Duff<br/>
+Anahi<br/>
+Miley Cyrus</p>
+<div class='row'>
+    <img class="imageboxcentered" style="width: 60%" src='/recommending-music-artists/images/user-2-preferences.png' alt=''>
+</div>
+<div class="boxborder">
+<pre><code class="language-python">preferred_recommended(artist_list, training_set, test_set, model, 1789, 10)
+</code></pre>
+</div>
+<p class="codeoutput">User 1789 is a fan of...<br/>
+Iron Maiden<br/>
+Megadeth<br/>
+Tuatha De Danann<br/>
+Slayer<br/>
+Korpiklaani<br/>
+Led Zeppelin<br/>
+Ac/Dc<br/>
+Ozzy Osbourne<br/>
+Matanza<br/>
+Avenged Sevenfold<br/>
+User 1789 may be interested in...<br/>
+Guns N' Roses<br/>
+The Rolling Stones<br/>
+Testament<br/>
+Arch Enemy<br/>
+Queen<br/>
+Motörhead<br/>
+Deep Purple<br/>
+Whitesnake<br/>
+Blackfield<br/>
+Meshuggah</p>
+
+    </div>
+  
+</div>
+
+    </div>
+  </section>
+
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+
+  
+
+  <section id="section-07-discussion-and-final-remarks" class="home-section wg-blank   " style="padding: 0 0 0 0;" >
+    <div class="container">
+      
+
+
+<div class="row">
+  
+    <div class="col-lg-12">
+      
+      
+      <h1>7. Discussion and final remarks</h1>
+<p>The Restricted Boltzmann Machine developed in this unsupervised learning exercise performed quite well from both the objective, error metric-based and the subjective, recommendation quality-based perspectives.</p>
+<p>Some initial considerations on hyperparameters:</p>
+<ul>
+    <li>Model variations with varied numbers of hidden nodes (25, 50, 100, 200, 500) were tested. Results were satisfactory (i.e. stable minimum losses and recommendations aligned with user profiles) with a minimum of 100 hidden nodes. No significant improvement was verified with larger numbers of hidden nodes;</li>
+    <li>The model accommodates observation batching for training. However, it has been noted over several simulation rounds that more accurate recommendations were obtained at the end with a batch size of 1;</li>
+    <li>Error metrics (Mean Absolute Error, or 'MAbsE') stabilize after 30 to 40 training epochs. A final number of 50 training epochs proved sufficient and was considered in the final release. </li>
+</ul>
+<p>Recommendations for the selected users were pretty much aligned with their most evident preferences. It shall though be noted that:</p>
+<ul>
+    <li>The lists of preferred and recommended artists displayed include only the top 10 in each case. However, these lists are long for some users, case in which artists not displayed, but present in the preferred artist list, certainly have a weight on final recommendations;</li>
+    <li>The scrobble count scaling strategy described in Sections 2.1 and 4 proved effective. Simulations were performed without it, and although error metrics converged as expected, the final recommendations were very much biased with a clear predominance of only the most popular artists in the artist universe.</li>
+</ul>
+<div class="boxborder">
+<pre><code class="language-python">end_time = datetime.now()
+print('\nStart time', start_time)
+print('End time', end_time)
+print('Time elapsed', end_time - start_time)
+</code></pre>
+</div>
+
+    </div>
+  
+</div>
+
+    </div>
+  </section>
+
+
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js" integrity="sha512-7t8APmYpzEsZP7CYoA7RfMPV9Bb+PJHa9x2WiUnDXZx3XHveuyWUtvNOexhkierl5flZ3tr92dP1mMS+SGlD+A==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/python.min.js"></script>
+        
+      
+
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.js" integrity="sha256-EErZamuLefUnbMBQbsEqu1USa+btR2oIlCpBJbyD4/g=" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+    
+    <script>const isSiteThemeDark = false;</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"No results found","placeholder":"Search...","results":"results found"};
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks",
+        'slides' : "Slides"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.3b2b658c61ebd725bd5fc606c89fe44c.js"></script>
+
+    
+
+
+
+
+
+
+  
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+  <p class="powered-by">
+    
+      <a href="/privacy/">Privacy Policy</a>
+    
+    
+       &middot; 
+      <a href="/terms/">Terms of Service</a>
+    
+  </p>
+  
+
+  <p class="powered-by">
+    © 2020 Paulo Breviglieri - All rights reserved
+  </p>
+
+</footer>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
