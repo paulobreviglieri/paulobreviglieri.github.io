@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Paulo Breviglieri</title>
-    <link>https://pcbreviglieri.github.io/</link>
-      <atom:link href="https://pcbreviglieri.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://paulobreviglieri.com/</link>
+      <atom:link href="https://paulobreviglieri.com/index.xml" rel="self" type="application/rss+xml" />
     <description>Paulo Breviglieri</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020 Paulo Breviglieri - All rights reserved</copyright>
     <image>
-      <url>https://pcbreviglieri.github.io/images/icon_hue0b5dbdcd29e15f3bb2c3e480ec18a0b_14701_512x512_fill_lanczos_center_2.png</url>
+      <url>https://paulobreviglieri.com/images/icon_hue0b5dbdcd29e15f3bb2c3e480ec18a0b_14701_512x512_fill_lanczos_center_2.png</url>
       <title>Paulo Breviglieri</title>
-      <link>https://pcbreviglieri.github.io/</link>
+      <link>https://paulobreviglieri.com/</link>
     </image>
     
     <item>
       <title>Privacy Policy</title>
-      <link>https://pcbreviglieri.github.io/privacy/</link>
+      <link>https://paulobreviglieri.com/privacy/</link>
       <pubDate>Wed, 01 Apr 2020 00:00:00 +0100</pubDate>
-      <guid>https://pcbreviglieri.github.io/privacy/</guid>
+      <guid>https://paulobreviglieri.com/privacy/</guid>
       <description>&lt;p&gt;Your privacy is of utmost importance. It is Paulo Breviglieri&amp;rsquo;s policy to respect your privacy regarding any information that may be collected from you across &lt;a href=&#34;https://paulobreviglieri.com&#34;&gt;paulobreviglieri.com&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Personal information may be requested only when truly demanded to provide a service to you. It is collected by fair and lawful means, with your knowledge and consent. You will be explicitly notified when and why information from you is collected, and how it will be used.&lt;/p&gt;
 &lt;p&gt;Collected information will be retained only for as long as necessary to provide you with your requested service. Stored data will be protected within commercially acceptable means to prevent loss and theft, as well as unauthorized access, disclosure, copying, use or modification.&lt;/p&gt;
@@ -30,9 +30,9 @@
     
     <item>
       <title>Terms of Service</title>
-      <link>https://pcbreviglieri.github.io/terms/</link>
+      <link>https://paulobreviglieri.com/terms/</link>
       <pubDate>Wed, 01 Apr 2020 00:00:00 +0100</pubDate>
-      <guid>https://pcbreviglieri.github.io/terms/</guid>
+      <guid>https://paulobreviglieri.com/terms/</guid>
       <description>&lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;Terms&lt;br/&gt;
@@ -72,65 +72,65 @@ These terms and conditions are governed by and construed in accordance with the 
     
     <item>
       <title>About</title>
-      <link>https://pcbreviglieri.github.io/about/</link>
+      <link>https://paulobreviglieri.com/about/</link>
       <pubDate>Wed, 01 Jan 2020 00:00:00 +0000</pubDate>
-      <guid>https://pcbreviglieri.github.io/about/</guid>
+      <guid>https://paulobreviglieri.com/about/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Advanced Regressions Enabling Enhanced House Price Predictions</title>
-      <link>https://pcbreviglieri.github.io/house-pricing/</link>
+      <link>https://paulobreviglieri.com/house-pricing/</link>
       <pubDate>Wed, 01 Jan 2020 00:00:00 +0000</pubDate>
-      <guid>https://pcbreviglieri.github.io/house-pricing/</guid>
+      <guid>https://paulobreviglieri.com/house-pricing/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Cropland Mapping with Random Forests and Neural Networks</title>
-      <link>https://pcbreviglieri.github.io/cropland-mapping/</link>
+      <link>https://paulobreviglieri.com/cropland-mapping/</link>
       <pubDate>Wed, 01 Jan 2020 00:00:00 +0000</pubDate>
-      <guid>https://pcbreviglieri.github.io/cropland-mapping/</guid>
+      <guid>https://paulobreviglieri.com/cropland-mapping/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Detecting Pneumonia with Convolutional Neural Networks</title>
-      <link>https://pcbreviglieri.github.io/detecting-pneumonia/</link>
+      <link>https://paulobreviglieri.com/detecting-pneumonia/</link>
       <pubDate>Wed, 01 Jan 2020 00:00:00 +0000</pubDate>
-      <guid>https://pcbreviglieri.github.io/detecting-pneumonia/</guid>
+      <guid>https://paulobreviglieri.com/detecting-pneumonia/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Portfolio</title>
-      <link>https://pcbreviglieri.github.io/portfolio/</link>
+      <link>https://paulobreviglieri.com/portfolio/</link>
       <pubDate>Wed, 01 Jan 2020 00:00:00 +0000</pubDate>
-      <guid>https://pcbreviglieri.github.io/portfolio/</guid>
+      <guid>https://paulobreviglieri.com/portfolio/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Recommending Music Artists with Boltzmann Machines</title>
-      <link>https://pcbreviglieri.github.io/recommending-music-artists/</link>
+      <link>https://paulobreviglieri.com/recommending-music-artists/</link>
       <pubDate>Wed, 01 Jan 2020 00:00:00 +0000</pubDate>
-      <guid>https://pcbreviglieri.github.io/recommending-music-artists/</guid>
+      <guid>https://paulobreviglieri.com/recommending-music-artists/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Smart Grid Stability with Deep Learning</title>
-      <link>https://pcbreviglieri.github.io/smart-grid-stability/</link>
+      <link>https://paulobreviglieri.com/smart-grid-stability/</link>
       <pubDate>Wed, 01 Jan 2020 00:00:00 +0000</pubDate>
-      <guid>https://pcbreviglieri.github.io/smart-grid-stability/</guid>
+      <guid>https://paulobreviglieri.com/smart-grid-stability/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Home</title>
-      <link>https://pcbreviglieri.github.io/home/</link>
+      <link>https://paulobreviglieri.com/home/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://pcbreviglieri.github.io/home/</guid>
+      <guid>https://paulobreviglieri.com/home/</guid>
       <description></description>
     </item>
     

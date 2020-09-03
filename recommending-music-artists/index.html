@@ -29,7 +29,7 @@
   <meta name="description" content="">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://pcbreviglieri.github.io/recommending-music-artists/">
+  <link rel="alternate" hreflang="en-us" href="https://paulobreviglieri.com/recommending-music-artists/">
 
   
 
@@ -228,7 +228,7 @@
   <link rel="icon" type="image/png" href="/images/icon_hue0b5dbdcd29e15f3bb2c3e480ec18a0b_14701_32x32_fill_lanczos_center_2.png">
   <link rel="apple-touch-icon" type="image/png" href="/images/icon_hue0b5dbdcd29e15f3bb2c3e480ec18a0b_14701_192x192_fill_lanczos_center_2.png">
 
-  <link rel="canonical" href="https://pcbreviglieri.github.io/recommending-music-artists/">
+  <link rel="canonical" href="https://paulobreviglieri.com/recommending-music-artists/">
 
   
   
@@ -247,10 +247,10 @@
   <meta property="twitter:creator" content="@pcbreviglieri">
   
   <meta property="og:site_name" content="Paulo Breviglieri">
-  <meta property="og:url" content="https://pcbreviglieri.github.io/recommending-music-artists/">
+  <meta property="og:url" content="https://paulobreviglieri.com/recommending-music-artists/">
   <meta property="og:title" content="Recommending Music Artists with Boltzmann Machines | Paulo Breviglieri">
-  <meta property="og:description" content=""><meta property="og:image" content="https://pcbreviglieri.github.io/images/icon_hue0b5dbdcd29e15f3bb2c3e480ec18a0b_14701_512x512_fill_lanczos_center_2.png">
-  <meta property="twitter:image" content="https://pcbreviglieri.github.io/images/icon_hue0b5dbdcd29e15f3bb2c3e480ec18a0b_14701_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
+  <meta property="og:description" content=""><meta property="og:image" content="https://paulobreviglieri.com/images/icon_hue0b5dbdcd29e15f3bb2c3e480ec18a0b_14701_512x512_fill_lanczos_center_2.png">
+  <meta property="twitter:image" content="https://paulobreviglieri.com/images/icon_hue0b5dbdcd29e15f3bb2c3e480ec18a0b_14701_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
   
     
       <meta property="article:published_time" content="2020-01-01T00:00:00&#43;00:00">
@@ -823,10 +823,9 @@
     <li>'<b>lastfm_artist_list.csv</b>' contains the list of 17,493 artists, referenced by an unique id code ('artist_id'), the same used in the first file.</li>
 </ol>
 <div class="boxborder">
-<pre><code class="language-python">scrobbles = pd.read_csv('/home/pb/Development/Projects/Jupyter/Music Artist Recommendations/lastfm_user_scrobbles.csv', header = 0)
-scrobbles.head()
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">scrobbles <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_csv(<span style="color:#e6db74">&#39;/home/pb/Development/Projects/Jupyter/Music Artist Recommendations/lastfm_user_scrobbles.csv&#39;</span>, header <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>)
+scrobbles<span style="color:#f92672">.</span>head()
+</code></pre></div></div>
 <table style="width: 40%; margin-top: 0.5em;">
     <tbody class="codeoutput">
         <tr style="width: 50%;">
@@ -869,11 +868,10 @@ scrobbles.head()
 </table>
 <p>As anticipated in Section 2.1, scrobble counts are scaled on a per user basis with the code below. As some null values may be produced in the case of users who have generated only one scrobble for a given artist (maximum and minimum are the same, leading to a division by zero), the final scaled number of scrobbles of 0.5 is assigned to those users.</p>
 <div class="boxborder">
-<pre><code class="language-python">scrobbles['scrobbles'] = scrobbles.groupby('user_id')[['scrobbles']].apply(lambda x: (x-x.min())/(x.max()-x.min()))
-scrobbles['scrobbles'] = scrobbles['scrobbles'].fillna(0.5)
-scrobbles.head()
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">scrobbles[<span style="color:#e6db74">&#39;scrobbles&#39;</span>] <span style="color:#f92672">=</span> scrobbles<span style="color:#f92672">.</span>groupby(<span style="color:#e6db74">&#39;user_id&#39;</span>)[[<span style="color:#e6db74">&#39;scrobbles&#39;</span>]]<span style="color:#f92672">.</span>apply(<span style="color:#66d9ef">lambda</span> x: (x<span style="color:#f92672">-</span>x<span style="color:#f92672">.</span>min())<span style="color:#f92672">/</span>(x<span style="color:#f92672">.</span>max()<span style="color:#f92672">-</span>x<span style="color:#f92672">.</span>min()))
+scrobbles[<span style="color:#e6db74">&#39;scrobbles&#39;</span>] <span style="color:#f92672">=</span> scrobbles[<span style="color:#e6db74">&#39;scrobbles&#39;</span>]<span style="color:#f92672">.</span>fillna(<span style="color:#ae81ff">0.5</span>)
+scrobbles<span style="color:#f92672">.</span>head()
+</code></pre></div></div>
 <table style="width: 40%; margin-top: 0.5em;">
     <tbody class="codeoutput">
         <tr style="width: 50%;">
@@ -974,14 +972,13 @@ scrobbles.head()
 <h2>4.1. Importing required libraries</h2>
 <p>Along with traditional libraries imported for tensor manipulation and mathematical operations, <a href="https://pytorch.org/">PyTorch</a> is used in this exercise.</p>
 <div class="boxborder">
-<pre><code class="language-python">import numpy as np
-import pandas as pd
-import torch
-from datetime import datetime
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
+<span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
+<span style="color:#f92672">import</span> torch
+<span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
 
-start_time = datetime.now()
-</code></pre>
-</div>
+start_time <span style="color:#f92672">=</span> datetime<span style="color:#f92672">.</span>now()
+</code></pre></div></div>
 <h2>4.2. Hard coding a Boltzmann Machine</h2>
 <p>The creation of machine learning models usually relies on the instantiation of predefined classes provided by frameworks such as PyTorch and Keras. In other words, a 'model' is coded in Python or R as an object - an instance of predefined classes. This allows for the use of the class implicit features and methods, making the coder's task much simpler and the final code itself cleaner and shorter.</p>
 <p>As anticipated in Section 2, a different approach is proposed here. A Python class named 'RestrictedBoltzmannMachine' will be developed and further instantiated for the creation of a RBM model.</p>
@@ -1000,118 +997,117 @@ start_time = datetime.now()
 </ol>
 <p>Please refer to docstrings for information on the machine structure and functionality.</p>
 <div class="boxborder">
-<pre><code class="language-python">class RestrictedBoltzmannMachine():
-    &quot;&quot;&quot;
-    Python implementation of a Restricted Boltzmann Machine (RBM) with 'c_nh' hidden nodes and 'c_nv' visible nodes.
-    &quot;&quot;&quot;
-    def __init__(self, c_nv, c_nh):
-        &quot;&quot;&quot;
-        RBM initialization module where three tensors are defined:
-        W - Weight tensor
-        a - Visible node bias tensor
-        b - Hidden node bias tensor
-        a and b are created as two-dimensional tensors to accommodate batches of observations over training.
-        &quot;&quot;&quot;
-        self.W = torch.randn(c_nh, c_nv)
-        self.a = torch.randn(1, c_nh)
-        self.b = torch.randn(1, c_nv)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RestrictedBoltzmannMachine</span>():
+    <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">    Python implementation of a Restricted Boltzmann Machine (RBM) with &#39;c_nh&#39; hidden nodes and &#39;c_nv&#39; visible nodes.
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+    <span style="color:#66d9ef">def</span> __init__(self, c_nv, c_nh):
+        <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">        RBM initialization module where three tensors are defined:
+</span><span style="color:#e6db74">        W - Weight tensor
+</span><span style="color:#e6db74">        a - Visible node bias tensor
+</span><span style="color:#e6db74">        b - Hidden node bias tensor
+</span><span style="color:#e6db74">        a and b are created as two-dimensional tensors to accommodate batches of observations over training.
+</span><span style="color:#e6db74">        &#34;&#34;&#34;</span>
+        self<span style="color:#f92672">.</span>W <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>randn(c_nh, c_nv)
+        self<span style="color:#f92672">.</span>a <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>randn(<span style="color:#ae81ff">1</span>, c_nh)
+        self<span style="color:#f92672">.</span>b <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>randn(<span style="color:#ae81ff">1</span>, c_nv)
 
         
-    def sample_h(self, c_vx):
-        &quot;&quot;&quot;
-        Method devoted to Gibbs sampling probabilities of hidden nodes given visible nodes - p (h|v)
-        c_vx - Input visible node tensor
-        &quot;&quot;&quot;
-        c_w_vx = torch.mm(c_vx, self.W.t())
-        c_activation = c_w_vx + self.a.expand_as(c_w_vx)
-        c_p_h_given_v = torch.sigmoid(c_activation)
-        return c_p_h_given_v, torch.bernoulli(c_p_h_given_v)
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">sample_h</span>(self, c_vx):
+        <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">        Method devoted to Gibbs sampling probabilities of hidden nodes given visible nodes - p (h|v)
+</span><span style="color:#e6db74">        c_vx - Input visible node tensor
+</span><span style="color:#e6db74">        &#34;&#34;&#34;</span>
+        c_w_vx <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>mm(c_vx, self<span style="color:#f92672">.</span>W<span style="color:#f92672">.</span>t())
+        c_activation <span style="color:#f92672">=</span> c_w_vx <span style="color:#f92672">+</span> self<span style="color:#f92672">.</span>a<span style="color:#f92672">.</span>expand_as(c_w_vx)
+        c_p_h_given_v <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>sigmoid(c_activation)
+        <span style="color:#66d9ef">return</span> c_p_h_given_v, torch<span style="color:#f92672">.</span>bernoulli(c_p_h_given_v)
 
     
-    def sample_v(self, c_hx):
-        &quot;&quot;&quot;
-        Method devoted to Gibbs sampling probabilities of visible nodes given hidden nodes - p (v|h)
-        c_hx - Input hidden node tensor
-        &quot;&quot;&quot;
-        c_w_hx = torch.mm(c_hx, self.W)
-        c_activation = c_w_hx + self.b.expand_as(c_w_hx)
-        c_p_v_given_h = torch.sigmoid(c_activation)
-        return c_p_v_given_h, torch.bernoulli(c_p_v_given_h)
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">sample_v</span>(self, c_hx):
+        <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">        Method devoted to Gibbs sampling probabilities of visible nodes given hidden nodes - p (v|h)
+</span><span style="color:#e6db74">        c_hx - Input hidden node tensor
+</span><span style="color:#e6db74">        &#34;&#34;&#34;</span>
+        c_w_hx <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>mm(c_hx, self<span style="color:#f92672">.</span>W)
+        c_activation <span style="color:#f92672">=</span> c_w_hx <span style="color:#f92672">+</span> self<span style="color:#f92672">.</span>b<span style="color:#f92672">.</span>expand_as(c_w_hx)
+        c_p_v_given_h <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>sigmoid(c_activation)
+        <span style="color:#66d9ef">return</span> c_p_v_given_h, torch<span style="color:#f92672">.</span>bernoulli(c_p_v_given_h)
 
     
-    def train(self, c_nr_observations, c_nr_epoch, c_batch_size, c_train_tensor, c_metric):
-        &quot;&quot;&quot;
-        Method through which constrative divergence-based training is performed.
-        c_nr_observations - Number of observations used for training
-        c_nr_epoch - Number of training epochs
-        c_batch_size - Batch size
-        c_train_tensor - Tensor containing training observations
-        c_metric - Training performance metric of choice ('MAbsE' for Mean Absolute Error, 'RMSE' for Root Mean Square Error)
-        &quot;&quot;&quot;
-        print('Training...')
-        for c_epoch in range(1, c_nr_epoch + 1):
-            c_start_time = datetime.now()
-            print(f'Epoch {str(c_epoch)} of {str(c_nr_epoch)} ', end='')
-            c_train_loss = 0
-            c_s = 0.
-            for c_id_user in range(0, c_nr_observations - c_batch_size, c_batch_size):
-                c_v0 = c_train_tensor[c_id_user:c_id_user+c_batch_size]
-                c_vk = c_train_tensor[c_id_user:c_id_user+c_batch_size]
-                c_ph0,_ = self.sample_h(c_v0)
-                for c_k in range(10):
-                    _,c_hk = self.sample_h(c_vk)
-                    _,c_vk = self.sample_v(c_hk)
-                    c_vk[c_v0&amp;lt;0] = c_v0[c_v0&amp;lt;0]
-                c_phk,_ = self.sample_h(c_vk)
-                self.W += (torch.mm(c_v0.t(), c_ph0) - torch.mm(c_vk.t(), c_phk)).t()
-                self.b += torch.sum((c_v0 - c_vk), 0)
-                self.a += torch.sum((c_ph0 - c_phk), 0)
-                if c_metric == 'MAbsE':
-                    c_train_loss += torch.mean(torch.abs(c_v0[c_v0&gt;=0] - c_vk[c_v0&gt;=0]))
-                elif c_metric == 'RMSE':
-                    c_train_loss += np.sqrt(torch.mean((c_v0[c_v0&gt;=0] - c_vk[c_v0&gt;=0])**2))
-                c_s += 1.
-            c_end_time = datetime.now()
-            c_time_elapsed = c_end_time - c_start_time
-            c_time_elapsed = c_time_elapsed.total_seconds()
-            print(f'- Loss ({c_metric}): {c_train_loss/c_s:.8f} ({c_time_elapsed:.2f} seconds)')
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">train</span>(self, c_nr_observations, c_nr_epoch, c_batch_size, c_train_tensor, c_metric):
+        <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">        Method through which constrative divergence-based training is performed.
+</span><span style="color:#e6db74">        c_nr_observations - Number of observations used for training
+</span><span style="color:#e6db74">        c_nr_epoch - Number of training epochs
+</span><span style="color:#e6db74">        c_batch_size - Batch size
+</span><span style="color:#e6db74">        c_train_tensor - Tensor containing training observations
+</span><span style="color:#e6db74">        c_metric - Training performance metric of choice (&#39;MAbsE&#39; for Mean Absolute Error, &#39;RMSE&#39; for Root Mean Square Error)
+</span><span style="color:#e6db74">        &#34;&#34;&#34;</span>
+        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Training...&#39;</span>)
+        <span style="color:#66d9ef">for</span> c_epoch <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>, c_nr_epoch <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>):
+            c_start_time <span style="color:#f92672">=</span> datetime<span style="color:#f92672">.</span>now()
+            <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;Epoch {str(c_epoch)} of {str(c_nr_epoch)} &#39;</span>, end<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;&#39;</span>)
+            c_train_loss <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+            c_s <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.</span>
+            <span style="color:#66d9ef">for</span> c_id_user <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>, c_nr_observations <span style="color:#f92672">-</span> c_batch_size, c_batch_size):
+                c_v0 <span style="color:#f92672">=</span> c_train_tensor[c_id_user:c_id_user<span style="color:#f92672">+</span>c_batch_size]
+                c_vk <span style="color:#f92672">=</span> c_train_tensor[c_id_user:c_id_user<span style="color:#f92672">+</span>c_batch_size]
+                c_ph0,_ <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>sample_h(c_v0)
+                <span style="color:#66d9ef">for</span> c_k <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">10</span>):
+                    _,c_hk <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>sample_h(c_vk)
+                    _,c_vk <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>sample_v(c_hk)
+                    c_vk[c_v0<span style="color:#f92672">&amp;</span>lt;<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> c_v0[c_v0<span style="color:#f92672">&amp;</span>lt;<span style="color:#ae81ff">0</span>]
+                c_phk,_ <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>sample_h(c_vk)
+                self<span style="color:#f92672">.</span>W <span style="color:#f92672">+=</span> (torch<span style="color:#f92672">.</span>mm(c_v0<span style="color:#f92672">.</span>t(), c_ph0) <span style="color:#f92672">-</span> torch<span style="color:#f92672">.</span>mm(c_vk<span style="color:#f92672">.</span>t(), c_phk))<span style="color:#f92672">.</span>t()
+                self<span style="color:#f92672">.</span>b <span style="color:#f92672">+=</span> torch<span style="color:#f92672">.</span>sum((c_v0 <span style="color:#f92672">-</span> c_vk), <span style="color:#ae81ff">0</span>)
+                self<span style="color:#f92672">.</span>a <span style="color:#f92672">+=</span> torch<span style="color:#f92672">.</span>sum((c_ph0 <span style="color:#f92672">-</span> c_phk), <span style="color:#ae81ff">0</span>)
+                <span style="color:#66d9ef">if</span> c_metric <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;MAbsE&#39;</span>:
+                    c_train_loss <span style="color:#f92672">+=</span> torch<span style="color:#f92672">.</span>mean(torch<span style="color:#f92672">.</span>abs(c_v0[c_v0<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">0</span>] <span style="color:#f92672">-</span> c_vk[c_v0<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">0</span>]))
+                <span style="color:#66d9ef">elif</span> c_metric <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;RMSE&#39;</span>:
+                    c_train_loss <span style="color:#f92672">+=</span> np<span style="color:#f92672">.</span>sqrt(torch<span style="color:#f92672">.</span>mean((c_v0[c_v0<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">0</span>] <span style="color:#f92672">-</span> c_vk[c_v0<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">0</span>])<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>))
+                c_s <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1.</span>
+            c_end_time <span style="color:#f92672">=</span> datetime<span style="color:#f92672">.</span>now()
+            c_time_elapsed <span style="color:#f92672">=</span> c_end_time <span style="color:#f92672">-</span> c_start_time
+            c_time_elapsed <span style="color:#f92672">=</span> c_time_elapsed<span style="color:#f92672">.</span>total_seconds()
+            <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;- Loss ({c_metric}): {c_train_loss/c_s:.8f} ({c_time_elapsed:.2f} seconds)&#39;</span>)
 
 
-    def test(self, c_nr_observations, c_train_tensor, c_test_tensor, c_metric):
-        &quot;&quot;&quot;
-        Method through which testing is performed.
-        c_nr_observations - Number of observations used for testing
-        c_train_tensor - Tensor containing training observations
-        c_test_tensor - Tensor containing testing observations
-        c_metric - Training performance metric of choice ('MAbsE' for Mean Absolute Error, 'RMSE' for Root Mean Square Error)
-        &quot;&quot;&quot;
-        print('Testing...')
-        c_test_loss = 0
-        c_s = 0.
-        for c_id_user in range(c_nr_observations):
-            c_v = c_train_tensor[c_id_user:c_id_user+1]
-            c_vt = c_test_tensor[c_id_user:c_id_user+1]
-            if len(c_vt[c_vt&gt;=0]) &gt; 0:
-                _,c_h = self.sample_h(c_v)
-                _,c_v = self.sample_v(c_h)
-                if c_metric == 'MAbsE':
-                    c_test_loss += torch.mean(torch.abs(c_vt[c_vt&gt;=0] - c_v[c_vt&gt;=0]))
-                elif c_metric == 'RMSE':
-                    c_test_loss += np.sqrt(torch.mean((c_vt[c_vt&gt;=0] - c_v[c_vt&gt;=0])**2))
-                c_s += 1.
-        print(f'Test loss ({c_metric}): {c_test_loss/c_s:.8f}')
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test</span>(self, c_nr_observations, c_train_tensor, c_test_tensor, c_metric):
+        <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">        Method through which testing is performed.
+</span><span style="color:#e6db74">        c_nr_observations - Number of observations used for testing
+</span><span style="color:#e6db74">        c_train_tensor - Tensor containing training observations
+</span><span style="color:#e6db74">        c_test_tensor - Tensor containing testing observations
+</span><span style="color:#e6db74">        c_metric - Training performance metric of choice (&#39;MAbsE&#39; for Mean Absolute Error, &#39;RMSE&#39; for Root Mean Square Error)
+</span><span style="color:#e6db74">        &#34;&#34;&#34;</span>
+        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Testing...&#39;</span>)
+        c_test_loss <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+        c_s <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.</span>
+        <span style="color:#66d9ef">for</span> c_id_user <span style="color:#f92672">in</span> range(c_nr_observations):
+            c_v <span style="color:#f92672">=</span> c_train_tensor[c_id_user:c_id_user<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]
+            c_vt <span style="color:#f92672">=</span> c_test_tensor[c_id_user:c_id_user<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]
+            <span style="color:#66d9ef">if</span> len(c_vt[c_vt<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">0</span>]) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>:
+                _,c_h <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>sample_h(c_v)
+                _,c_v <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>sample_v(c_h)
+                <span style="color:#66d9ef">if</span> c_metric <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;MAbsE&#39;</span>:
+                    c_test_loss <span style="color:#f92672">+=</span> torch<span style="color:#f92672">.</span>mean(torch<span style="color:#f92672">.</span>abs(c_vt[c_vt<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">0</span>] <span style="color:#f92672">-</span> c_v[c_vt<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">0</span>]))
+                <span style="color:#66d9ef">elif</span> c_metric <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;RMSE&#39;</span>:
+                    c_test_loss <span style="color:#f92672">+=</span> np<span style="color:#f92672">.</span>sqrt(torch<span style="color:#f92672">.</span>mean((c_vt[c_vt<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">0</span>] <span style="color:#f92672">-</span> c_v[c_vt<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">0</span>])<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>))
+                c_s <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1.</span>
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;Test loss ({c_metric}): {c_test_loss/c_s:.8f}&#39;</span>)
         
         
-    def predict(self, c_visible_nodes):
-        &quot;&quot;&quot;
-        Method through which predictions for one specific observation are derived.
-        c_visible_nodes - Tensor containing one particular observation (set of values for each visible node) 
-        &quot;&quot;&quot;
-        c_h_v,_ = self.sample_h(c_visible_nodes)
-        c_v_h,_ = self.sample_v(c_h_v)
-        return c_v_h
-</code></pre>
-</div>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">predict</span>(self, c_visible_nodes):
+        <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">        Method through which predictions for one specific observation are derived.
+</span><span style="color:#e6db74">        c_visible_nodes - Tensor containing one particular observation (set of values for each visible node) 
+</span><span style="color:#e6db74">        &#34;&#34;&#34;</span>
+        c_h_v,_ <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>sample_h(c_visible_nodes)
+        c_v_h,_ <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>sample_v(c_h_v)
+        <span style="color:#66d9ef">return</span> c_v_h
+</code></pre></div></div>
 <h2>4.3. Creating purposed functions</h2>
 <p>Two specific customized functions address specific needs:</p>
 <ul>
@@ -1119,63 +1115,61 @@ start_time = datetime.now()
     <li>'<b><em>preferred_recommended</em></b>' will initially identify and print the top 'x' artists most reverenced by a specific user and, subsequently, print the top 'x' music artists most recommended to this particular user, excluding those who may be already included in the reverenced list (i.e. new recommendations only).</li>
 </ul>
 <div class="boxborder">
-<pre><code class="language-python">def convert(f_data, f_nr_observations, f_nr_entities):
-        &quot;&quot;&quot;
-        Generates (from a numpy array) a list of lists containing the number of hits per user (rows), per entity (columns).
-        Each of the constituent lists will correspond to an observation / user (row).
-        Each observation list will contain the number of hits (columns), one for each hit entity
-        f_data - Input table (numpy array)
-        f_nr_observations - Number of observations
-        f_nr_entities - Number of entities hit in each observation
-        &quot;&quot;&quot;
-        f_converted_data = []
-        for f_id_user in range(1, f_nr_observations + 1):
-            f_id_entity = f_data[:,1][f_data[:,0] == f_id_user].astype(int)
-            f_id_hits = f_data[:,2][f_data[:,0] == f_id_user]
-            f_hits = np.zeros(f_nr_entities)
-            f_hits[f_id_entity - 1] = f_id_hits
-            f_converted_data.append(list(f_hits))
-        return f_converted_data
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">convert</span>(f_data, f_nr_observations, f_nr_entities):
+        <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">        Generates (from a numpy array) a list of lists containing the number of hits per user (rows), per entity (columns).
+</span><span style="color:#e6db74">        Each of the constituent lists will correspond to an observation / user (row).
+</span><span style="color:#e6db74">        Each observation list will contain the number of hits (columns), one for each hit entity
+</span><span style="color:#e6db74">        f_data - Input table (numpy array)
+</span><span style="color:#e6db74">        f_nr_observations - Number of observations
+</span><span style="color:#e6db74">        f_nr_entities - Number of entities hit in each observation
+</span><span style="color:#e6db74">        &#34;&#34;&#34;</span>
+        f_converted_data <span style="color:#f92672">=</span> []
+        <span style="color:#66d9ef">for</span> f_id_user <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>, f_nr_observations <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>):
+            f_id_entity <span style="color:#f92672">=</span> f_data[:,<span style="color:#ae81ff">1</span>][f_data[:,<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span> f_id_user]<span style="color:#f92672">.</span>astype(int)
+            f_id_hits <span style="color:#f92672">=</span> f_data[:,<span style="color:#ae81ff">2</span>][f_data[:,<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span> f_id_user]
+            f_hits <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>zeros(f_nr_entities)
+            f_hits[f_id_entity <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> f_id_hits
+            f_converted_data<span style="color:#f92672">.</span>append(list(f_hits))
+        <span style="color:#66d9ef">return</span> f_converted_data
+</code></pre></div></div>
 <div class="boxborder">
-<pre><code class="language-python">def preferred_recommended(f_artist_list, f_train_set, f_test_set, f_model, f_user_id, f_top=10):
-        &quot;&quot;&quot;
-        Generates music artist recommendations for a particular platform user. 
-        f_artist_list - List of artists and corresponding IDs
-        f_train_set - Tensor containing training observations
-        f_test_set - Tensor containing testing observations
-        f_model - A RBM machine learning model previously instantiated
-        f_user_id - The user for which preferred artists will be assessed and recommendations will be provided
-        f_top - Number of most preferred and most recommended music artists for user 'f_user_id'
-        &quot;&quot;&quot;
-        if f_user_id &amp;lt; 1515:
-            f_user_sample = f_train_set[f_user_id - 1:f_user_id]
-        else:
-            f_user_sample = f_test_set[f_user_id - 1:f_user_id]
-        f_prediction = f_model.predict(f_user_sample).numpy()
-        f_user_sample = f_user_sample.numpy()
-        f_user_sample = pd.Series(f_user_sample[0])
-        f_user_sample = f_user_sample.sort_values(ascending=False)
-        f_user_sample = f_user_sample.iloc[:f_top]
-        f_fan_list = f_user_sample.index.values.tolist()
-        print(f'\nUser {f_user_id} is a fan of...\n')
-        for f_artist_id in f_fan_list:
-            print(f_artist_list[f_artist_list.artist_id == f_artist_id + 1].iloc[0][1])
-        f_prediction = pd.Series(f_prediction[0])
-        f_prediction = f_prediction.sort_values(ascending=False)
-        f_prediction_list = f_prediction.index.values.tolist()
-        print(f'\nUser {f_user_id} may be interested in...\n')
-        f_nb_recommendations = 0
-        f_i = 0
-        while f_nb_recommendations &amp;lt; f_top:
-            f_pred_artist = f_prediction_list[f_i]
-            if f_pred_artist not in f_fan_list:
-                print(f_artist_list[f_artist_list.artist_id == f_pred_artist + 1].iloc[0][1])
-                f_nb_recommendations += 1
-            f_i += 1
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">preferred_recommended</span>(f_artist_list, f_train_set, f_test_set, f_model, f_user_id, f_top<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>):
+        <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">        Generates music artist recommendations for a particular platform user. 
+</span><span style="color:#e6db74">        f_artist_list - List of artists and corresponding IDs
+</span><span style="color:#e6db74">        f_train_set - Tensor containing training observations
+</span><span style="color:#e6db74">        f_test_set - Tensor containing testing observations
+</span><span style="color:#e6db74">        f_model - A RBM machine learning model previously instantiated
+</span><span style="color:#e6db74">        f_user_id - The user for which preferred artists will be assessed and recommendations will be provided
+</span><span style="color:#e6db74">        f_top - Number of most preferred and most recommended music artists for user &#39;f_user_id&#39;
+</span><span style="color:#e6db74">        &#34;&#34;&#34;</span>
+        <span style="color:#66d9ef">if</span> f_user_id <span style="color:#f92672">&amp;</span>lt; <span style="color:#ae81ff">1515</span>:
+            f_user_sample <span style="color:#f92672">=</span> f_train_set[f_user_id <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>:f_user_id]
+        <span style="color:#66d9ef">else</span>:
+            f_user_sample <span style="color:#f92672">=</span> f_test_set[f_user_id <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>:f_user_id]
+        f_prediction <span style="color:#f92672">=</span> f_model<span style="color:#f92672">.</span>predict(f_user_sample)<span style="color:#f92672">.</span>numpy()
+        f_user_sample <span style="color:#f92672">=</span> f_user_sample<span style="color:#f92672">.</span>numpy()
+        f_user_sample <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>Series(f_user_sample[<span style="color:#ae81ff">0</span>])
+        f_user_sample <span style="color:#f92672">=</span> f_user_sample<span style="color:#f92672">.</span>sort_values(ascending<span style="color:#f92672">=</span>False)
+        f_user_sample <span style="color:#f92672">=</span> f_user_sample<span style="color:#f92672">.</span>iloc[:f_top]
+        f_fan_list <span style="color:#f92672">=</span> f_user_sample<span style="color:#f92672">.</span>index<span style="color:#f92672">.</span>values<span style="color:#f92672">.</span>tolist()
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">User {f_user_id} is a fan of...</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
+        <span style="color:#66d9ef">for</span> f_artist_id <span style="color:#f92672">in</span> f_fan_list:
+            <span style="color:#66d9ef">print</span>(f_artist_list[f_artist_list<span style="color:#f92672">.</span>artist_id <span style="color:#f92672">==</span> f_artist_id <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>iloc[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">1</span>])
+        f_prediction <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>Series(f_prediction[<span style="color:#ae81ff">0</span>])
+        f_prediction <span style="color:#f92672">=</span> f_prediction<span style="color:#f92672">.</span>sort_values(ascending<span style="color:#f92672">=</span>False)
+        f_prediction_list <span style="color:#f92672">=</span> f_prediction<span style="color:#f92672">.</span>index<span style="color:#f92672">.</span>values<span style="color:#f92672">.</span>tolist()
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">User {f_user_id} may be interested in...</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
+        f_nb_recommendations <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+        f_i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+        <span style="color:#66d9ef">while</span> f_nb_recommendations <span style="color:#f92672">&amp;</span>lt; f_top:
+            f_pred_artist <span style="color:#f92672">=</span> f_prediction_list[f_i]
+            <span style="color:#66d9ef">if</span> f_pred_artist <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> f_fan_list:
+                <span style="color:#66d9ef">print</span>(f_artist_list[f_artist_list<span style="color:#f92672">.</span>artist_id <span style="color:#f92672">==</span> f_pred_artist <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>iloc[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">1</span>])
+                f_nb_recommendations <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+            f_i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</code></pre></div></div>
 
     </div>
   
@@ -1240,37 +1234,33 @@ start_time = datetime.now()
 </ul>
 <p>A more sophisticated approach, with a random selection of user groups for the training and test sets, as well as a dynamic segregation of training users allowing for some cross-validation training, would add additional complexity and were not considered in this first release.</p>
 <div class="boxborder">
-<pre><code class="language-python">training_size = 74254
-training_set = scrobbles.iloc[:training_size, :]  # Until userID = 1514
-test_set = scrobbles.iloc[training_size:, :]      # Starting at userID = 1515
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">training_size <span style="color:#f92672">=</span> <span style="color:#ae81ff">74254</span>
+training_set <span style="color:#f92672">=</span> scrobbles<span style="color:#f92672">.</span>iloc[:training_size, :]  <span style="color:#75715e"># Until userID = 1514</span>
+test_set <span style="color:#f92672">=</span> scrobbles<span style="color:#f92672">.</span>iloc[training_size:, :]      <span style="color:#75715e"># Starting at userID = 1515</span>
 
-training_set = training_set.values
-test_set = test_set.values
+training_set <span style="color:#f92672">=</span> training_set<span style="color:#f92672">.</span>values
+test_set <span style="color:#f92672">=</span> test_set<span style="color:#f92672">.</span>values
 
-training_set.shape, test_set.shape
-</code></pre>
-</div>
+training_set<span style="color:#f92672">.</span>shape, test_set<span style="color:#f92672">.</span>shape
+</code></pre></div></div>
 <p class="codeoutput">(74254, 3), (18538, 3))</p>
 <div class="boxborder">
-<pre><code class="language-python">nr_users = int(max(max(training_set[:,0]), max(test_set[:,0])))
-nr_artists = int(max(max(training_set[:,1]), max(test_set[:,1])))
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">nr_users <span style="color:#f92672">=</span> int(max(max(training_set[:,<span style="color:#ae81ff">0</span>]), max(test_set[:,<span style="color:#ae81ff">0</span>])))
+nr_artists <span style="color:#f92672">=</span> int(max(max(training_set[:,<span style="color:#ae81ff">1</span>]), max(test_set[:,<span style="color:#ae81ff">1</span>])))
 
 nr_users, nr_artists
-</code></pre>
-</div>
+</code></pre></div></div>
 <p class="codeoutput">(1892, 17493)</p>
 <p>At this point, both training and test sets are subsets of the original dataset, converted into numpy arrays. However, the model will be fed with a rearranged version of these tables, in which users will correspond to rows, artists to columns and the content of each cell will include the number of scrobbles generated by each user, for each artist.</p>
 <div class="boxborder">
-<pre><code class="language-python">training_set = convert(training_set, nr_users, nr_artists)
-test_set = convert(test_set, nr_users, nr_artists)
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">training_set <span style="color:#f92672">=</span> convert(training_set, nr_users, nr_artists)
+test_set <span style="color:#f92672">=</span> convert(test_set, nr_users, nr_artists)
+</code></pre></div></div>
 <p>At last, both sets are converted into PyTorch float tensors:</p>
 <div class="boxborder">
-<pre><code class="language-python">training_set = torch.FloatTensor(training_set)
-test_set = torch.FloatTensor(test_set)
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">training_set <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>FloatTensor(training_set)
+test_set <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>FloatTensor(test_set)
+</code></pre></div></div>
 
     </div>
   
@@ -1336,21 +1326,19 @@ test_set = torch.FloatTensor(test_set)
 </ul>
 <p>Comments on hyperparameter selection, tuning and implications are provided in Section 5.</p>
 <div class="boxborder">
-<pre><code class="language-python">nv = len(training_set[0])
-nh = 100
-batch_size = 1
-epoch = 50
-metric = 'MAbsE'
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">nv <span style="color:#f92672">=</span> len(training_set[<span style="color:#ae81ff">0</span>])
+nh <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>
+batch_size <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+epoch <span style="color:#f92672">=</span> <span style="color:#ae81ff">50</span>
+metric <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;MAbsE&#39;</span>
 
-model = RestrictedBoltzmannMachine(nv, nh)
-</code></pre>
-</div>
+model <span style="color:#f92672">=</span> RestrictedBoltzmannMachine(nv, nh)
+</code></pre></div></div>
 <h2>6.2. Training & testing the RBM</h2>
 <div class="boxborder">
-<pre><code class="language-python">model.train(nr_users, epoch, batch_size, training_set, metric)
-model.test(nr_users, training_set, test_set, metric)
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">model<span style="color:#f92672">.</span>train(nr_users, epoch, batch_size, training_set, metric)
+model<span style="color:#f92672">.</span>test(nr_users, training_set, test_set, metric)
+</code></pre></div></div>
 <p class="codeoutput">Training...<br/>
 Epoch 1 of 50 - Loss (MAbsE): 0.00223006 (62.52 seconds)<br/>
 Epoch 2 of 50 - Loss (MAbsE): 0.00063980 (70.48 seconds)<br/>
@@ -1367,16 +1355,14 @@ Test loss (MAbsE): 0.00022517</p>
 </ul>
 <p>Recommendations are generated for both. The code below lists the 10 most 'scrobbled' music artists for each of these users, followed by the 10 most recommended artists in each case. Results are discussed in Section 5.</p>
 <div class="boxborder">
-<pre><code class="language-python">artist_list = pd.read_csv('/home/pb/Development/Projects/Jupyter/Music Artist Recommendations/lastfm_artist_list.csv', header = 0)
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">artist_list <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_csv(<span style="color:#e6db74">&#39;/home/pb/Development/Projects/Jupyter/Music Artist Recommendations/lastfm_artist_list.csv&#39;</span>, header <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>)
+</code></pre></div></div>
 <div class='row'>
     <img class="imageboxcentered" style="width: 60%" src='/recommending-music-artists/images/user-1-preferences.png' alt=''>
 </div>
 <div class="boxborder">
-<pre><code class="language-python">preferred_recommended(artist_list, training_set, test_set, model, 1515, 10)
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">preferred_recommended(artist_list, training_set, test_set, model, <span style="color:#ae81ff">1515</span>, <span style="color:#ae81ff">10</span>)
+</code></pre></div></div>
 <p class="codeoutput">User 1515 is a fan of...<br/>
 Glee Cast<br/>
 Britney Spears<br/>
@@ -1403,9 +1389,8 @@ Miley Cyrus</p>
     <img class="imageboxcentered" style="width: 60%" src='/recommending-music-artists/images/user-2-preferences.png' alt=''>
 </div>
 <div class="boxborder">
-<pre><code class="language-python">preferred_recommended(artist_list, training_set, test_set, model, 1789, 10)
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">preferred_recommended(artist_list, training_set, test_set, model, <span style="color:#ae81ff">1789</span>, <span style="color:#ae81ff">10</span>)
+</code></pre></div></div>
 <p class="codeoutput">User 1789 is a fan of...<br/>
 Iron Maiden<br/>
 Megadeth<br/>
@@ -1498,12 +1483,11 @@ Meshuggah</p>
     <li>The scrobble count scaling strategy described in Sections 2.1 and 4 proved effective. Simulations were performed without it, and although error metrics converged as expected, the final recommendations were very much biased with a clear predominance of only the most popular artists in the artist universe.</li>
 </ul>
 <div class="boxborder">
-<pre><code class="language-python">end_time = datetime.now()
-print('\nStart time', start_time)
-print('End time', end_time)
-print('Time elapsed', end_time - start_time)
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">end_time <span style="color:#f92672">=</span> datetime<span style="color:#f92672">.</span>now()
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Start time&#39;</span>, start_time)
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;End time&#39;</span>, end_time)
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Time elapsed&#39;</span>, end_time <span style="color:#f92672">-</span> start_time)
+</code></pre></div></div>
 
     </div>
   

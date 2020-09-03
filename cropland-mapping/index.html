@@ -29,7 +29,7 @@
   <meta name="description" content="">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://pcbreviglieri.github.io/cropland-mapping/">
+  <link rel="alternate" hreflang="en-us" href="https://paulobreviglieri.com/cropland-mapping/">
 
   
 
@@ -228,7 +228,7 @@
   <link rel="icon" type="image/png" href="/images/icon_hue0b5dbdcd29e15f3bb2c3e480ec18a0b_14701_32x32_fill_lanczos_center_2.png">
   <link rel="apple-touch-icon" type="image/png" href="/images/icon_hue0b5dbdcd29e15f3bb2c3e480ec18a0b_14701_192x192_fill_lanczos_center_2.png">
 
-  <link rel="canonical" href="https://pcbreviglieri.github.io/cropland-mapping/">
+  <link rel="canonical" href="https://paulobreviglieri.com/cropland-mapping/">
 
   
   
@@ -247,10 +247,10 @@
   <meta property="twitter:creator" content="@pcbreviglieri">
   
   <meta property="og:site_name" content="Paulo Breviglieri">
-  <meta property="og:url" content="https://pcbreviglieri.github.io/cropland-mapping/">
+  <meta property="og:url" content="https://paulobreviglieri.com/cropland-mapping/">
   <meta property="og:title" content="Cropland Mapping with Random Forests and Neural Networks | Paulo Breviglieri">
-  <meta property="og:description" content=""><meta property="og:image" content="https://pcbreviglieri.github.io/images/icon_hue0b5dbdcd29e15f3bb2c3e480ec18a0b_14701_512x512_fill_lanczos_center_2.png">
-  <meta property="twitter:image" content="https://pcbreviglieri.github.io/images/icon_hue0b5dbdcd29e15f3bb2c3e480ec18a0b_14701_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
+  <meta property="og:description" content=""><meta property="og:image" content="https://paulobreviglieri.com/images/icon_hue0b5dbdcd29e15f3bb2c3e480ec18a0b_14701_512x512_fill_lanczos_center_2.png">
+  <meta property="twitter:image" content="https://paulobreviglieri.com/images/icon_hue0b5dbdcd29e15f3bb2c3e480ec18a0b_14701_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
   
     
       <meta property="article:published_time" content="2020-01-01T00:00:00&#43;00:00">
@@ -840,110 +840,106 @@
 <h2>4.1. Importing required libraries</h2>
 <p>Along with traditional libraries imported for tensor manipulation, mathematical operations and graphics development, specific scikit-learn modules (<a href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html">StandardScaler</a> for dataset scaling, <a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.accuracy_score.html">accuracy_score</a>, <a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_score.html">precision_score</a>, <a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.recall_score.html">recall_score</a> and <a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_recall_fscore_support.html">precision_recall_fscore_support</a> as performance metric estimators) were selected. The random forest is implemented with and instantiation of scikit-learn's <a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html">RandomForestClassifier</a> class. The artificial neural network (ANN) is implemented instantiating a Keras <a href="https://keras.io/api/models/sequential/">Sequential</a> model including <a href="https://keras.io/api/layers/core_layers/dense/">Dense</a> and <a href="https://keras.io/api/layers/regularization_layers/dropout/">Dropout</a> layers. <a href="https://keras.io/api/optimizers/adam/">Adam</a> has been elected as the optimization function of choice for this multiclass classification exercise.</p>
 <div class="boxborder">
-<pre><code class="language-python">import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-from datetime import datetime
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
+<span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
+<span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#f92672">as</span> plt
+<span style="color:#f92672">import</span> seaborn <span style="color:#f92672">as</span> sns
+<span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
 
-from sklearn.preprocessing import StandardScaler
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score, precision_score, recall_score, precision_recall_fscore_support
+<span style="color:#f92672">from</span> sklearn.preprocessing <span style="color:#f92672">import</span> StandardScaler
+<span style="color:#f92672">from</span> sklearn.ensemble <span style="color:#f92672">import</span> RandomForestClassifier
+<span style="color:#f92672">from</span> sklearn.metrics <span style="color:#f92672">import</span> accuracy_score, precision_score, recall_score, precision_recall_fscore_support
 
-from keras.models import Sequential
-from keras.layers import Dense, Dropout
-from keras.optimizers import Adam
+<span style="color:#f92672">from</span> keras.models <span style="color:#f92672">import</span> Sequential
+<span style="color:#f92672">from</span> keras.layers <span style="color:#f92672">import</span> Dense, Dropout
+<span style="color:#f92672">from</span> keras.optimizers <span style="color:#f92672">import</span> Adam
 
-import warnings
-</code></pre>
-</div>
+<span style="color:#f92672">import</span> warnings
+</code></pre></div></div>
 <div class="boxborder">
-<pre><code class="language-python">warnings.filterwarnings('ignore')
-sns.set()
-start_time = datetime.now()
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">warnings<span style="color:#f92672">.</span>filterwarnings(<span style="color:#e6db74">&#39;ignore&#39;</span>)
+sns<span style="color:#f92672">.</span>set()
+start_time <span style="color:#f92672">=</span> datetime<span style="color:#f92672">.</span>now()
+</code></pre></div></div>
 <h2>4.2. Customized functions</h2>
 <p>Custom functions were developed to assist with graphical analysis of specific dataset elements (features or observations) and mapping correlation. Please refer to the respective docstrings for further insight. All function variable names, by coding principle, start with the "f_" string, allowing for containerized processing within the function execution environment, not affecting or interacting with global variables.</p>
 <div class="boxborder">
-<pre><code class="language-python">def assessment(f_data, f_y_feature, f_x_feature, f_index=-1):
-    &quot;&quot;&quot;
-    Develops and displays a histogram and a scatter plot for a dependent / independent variable pair from
-    a dataframe and, optionally, highlights a specific observation on the plot in a different color (red).
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">assessment</span>(f_data, f_y_feature, f_x_feature, f_index<span style="color:#f92672">=-</span><span style="color:#ae81ff">1</span>):
+    <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">    Develops and displays a histogram and a scatter plot for a dependent / independent variable pair from
+</span><span style="color:#e6db74">    a dataframe and, optionally, highlights a specific observation on the plot in a different color (red).
+</span><span style="color:#e6db74">    
+</span><span style="color:#e6db74">    Also optionally, if an independent feature is not informed, the scatterplot is not displayed.
+</span><span style="color:#e6db74">    
+</span><span style="color:#e6db74">    Keyword arguments:
+</span><span style="color:#e6db74">    
+</span><span style="color:#e6db74">    f_data      Tensor containing the dependent / independent variable pair.
+</span><span style="color:#e6db74">                Pandas dataframe
+</span><span style="color:#e6db74">    f_y_feature Dependent variable designation.
+</span><span style="color:#e6db74">                String
+</span><span style="color:#e6db74">    f_x_feature Independent variable designation.
+</span><span style="color:#e6db74">                String
+</span><span style="color:#e6db74">    f_index     If greater or equal to zero, the observation denoted by f_index will be plotted in red.
+</span><span style="color:#e6db74">                Integer
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+    <span style="color:#66d9ef">for</span> f_row <span style="color:#f92672">in</span> f_data:
+        <span style="color:#66d9ef">if</span> f_index <span style="color:#f92672">&amp;</span>gt;<span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>:
+            f_color <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>where(f_data[f_row]<span style="color:#f92672">.</span>index <span style="color:#f92672">==</span> f_index,<span style="color:#e6db74">&#39;r&#39;</span>,<span style="color:#e6db74">&#39;g&#39;</span>)
+            f_hue <span style="color:#f92672">=</span> None
+        <span style="color:#66d9ef">else</span>:
+            f_color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;b&#39;</span>
+            f_hue <span style="color:#f92672">=</span> None
     
-    Also optionally, if an independent feature is not informed, the scatterplot is not displayed.
+    f_fig, f_a <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">16</span>,<span style="color:#ae81ff">4</span>))
     
-    Keyword arguments:
+    f_chart1 <span style="color:#f92672">=</span> sns<span style="color:#f92672">.</span>distplot(f_data[f_x_feature], ax<span style="color:#f92672">=</span>f_a[<span style="color:#ae81ff">0</span>], kde<span style="color:#f92672">=</span>False, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;orangered&#39;</span>)
+    f_chart1<span style="color:#f92672">.</span>set_xlabel(f_x_feature,fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
     
-    f_data      Tensor containing the dependent / independent variable pair.
-                Pandas dataframe
-    f_y_feature Dependent variable designation.
-                String
-    f_x_feature Independent variable designation.
-                String
-    f_index     If greater or equal to zero, the observation denoted by f_index will be plotted in red.
-                Integer
-    &quot;&quot;&quot;
-    for f_row in f_data:
-        if f_index &amp;gt;= 0:
-            f_color = np.where(f_data[f_row].index == f_index,'r','g')
-            f_hue = None
-        else:
-            f_color = 'b'
-            f_hue = None
-    
-    f_fig, f_a = plt.subplots(1, 2, figsize=(16,4))
-    
-    f_chart1 = sns.distplot(f_data[f_x_feature], ax=f_a[0], kde=False, color='orangered')
-    f_chart1.set_xlabel(f_x_feature,fontsize=10)
-    
-    if f_index &amp;gt;= 0:
-        f_chart2 = plt.scatter(f_data[f_x_feature], f_data[f_y_feature], c=f_color, edgecolors='w')
-        f_chart2 = plt.xlabel(f_x_feature, fontsize=10)
-        f_chart2 = plt.ylabel(f_y_feature, fontsize=10)
-    else:
-        f_chart2 = sns.scatterplot(x=f_x_feature, y=f_y_feature, data=f_data, hue=f_hue, legend=False)
-        f_chart2.set_xlabel(f_x_feature,fontsize=10)
-        f_chart2.set_ylabel(f_y_feature,fontsize=10)
+    <span style="color:#66d9ef">if</span> f_index <span style="color:#f92672">&amp;</span>gt;<span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>:
+        f_chart2 <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>scatter(f_data[f_x_feature], f_data[f_y_feature], c<span style="color:#f92672">=</span>f_color, edgecolors<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;w&#39;</span>)
+        f_chart2 <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>xlabel(f_x_feature, fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
+        f_chart2 <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>ylabel(f_y_feature, fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
+    <span style="color:#66d9ef">else</span>:
+        f_chart2 <span style="color:#f92672">=</span> sns<span style="color:#f92672">.</span>scatterplot(x<span style="color:#f92672">=</span>f_x_feature, y<span style="color:#f92672">=</span>f_y_feature, data<span style="color:#f92672">=</span>f_data, hue<span style="color:#f92672">=</span>f_hue, legend<span style="color:#f92672">=</span>False)
+        f_chart2<span style="color:#f92672">.</span>set_xlabel(f_x_feature,fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
+        f_chart2<span style="color:#f92672">.</span>set_ylabel(f_y_feature,fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
 
-    plt.show()
+    plt<span style="color:#f92672">.</span>show()
 
 
-def correlation_map(f_data, f_feature, f_number):
-    &quot;&quot;&quot;
-    Develops and displays a heatmap plot referenced to a primary feature of a dataframe, highlighting
-    the correlation among the 'n' mostly correlated features of the dataframe.
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">correlation_map</span>(f_data, f_feature, f_number):
+    <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">    Develops and displays a heatmap plot referenced to a primary feature of a dataframe, highlighting
+</span><span style="color:#e6db74">    the correlation among the &#39;n&#39; mostly correlated features of the dataframe.
+</span><span style="color:#e6db74">    
+</span><span style="color:#e6db74">    Keyword arguments:
+</span><span style="color:#e6db74">    
+</span><span style="color:#e6db74">    f_data      Tensor containing all relevant features, including the primary.
+</span><span style="color:#e6db74">                Pandas dataframe
+</span><span style="color:#e6db74">    f_feature   The primary feature.
+</span><span style="color:#e6db74">                String
+</span><span style="color:#e6db74">    f_number    The number of features most correlated to the primary feature.
+</span><span style="color:#e6db74">                Integer
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+    f_most_correlated <span style="color:#f92672">=</span> f_data<span style="color:#f92672">.</span>corr()<span style="color:#f92672">.</span>nlargest(f_number,f_feature)[f_feature]<span style="color:#f92672">.</span>index
+    f_correlation <span style="color:#f92672">=</span> f_data[f_most_correlated]<span style="color:#f92672">.</span>corr()
     
-    Keyword arguments:
+    f_mask <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>zeros_like(f_correlation)
+    f_mask[np<span style="color:#f92672">.</span>triu_indices_from(f_mask)] <span style="color:#f92672">=</span> True
     
-    f_data      Tensor containing all relevant features, including the primary.
-                Pandas dataframe
-    f_feature   The primary feature.
-                String
-    f_number    The number of features most correlated to the primary feature.
-                Integer
-    &quot;&quot;&quot;
-    f_most_correlated = f_data.corr().nlargest(f_number,f_feature)[f_feature].index
-    f_correlation = f_data[f_most_correlated].corr()
-    
-    f_mask = np.zeros_like(f_correlation)
-    f_mask[np.triu_indices_from(f_mask)] = True
-    
-    with sns.axes_style(&quot;white&quot;):
-        f_fig, f_ax = plt.subplots(figsize=(40, 20))
-        f_map = sns.heatmap(f_correlation, mask=f_mask, vmin=-1, vmax=1, square=True,
-                            center=0, cmap=&quot;RdYlBu&quot;)
-    plt.show()
-</code></pre>
-</div>
+    <span style="color:#66d9ef">with</span> sns<span style="color:#f92672">.</span>axes_style(<span style="color:#e6db74">&#34;white&#34;</span>):
+        f_fig, f_ax <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">40</span>, <span style="color:#ae81ff">20</span>))
+        f_map <span style="color:#f92672">=</span> sns<span style="color:#f92672">.</span>heatmap(f_correlation, mask<span style="color:#f92672">=</span>f_mask, vmin<span style="color:#f92672">=-</span><span style="color:#ae81ff">1</span>, vmax<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, square<span style="color:#f92672">=</span>True,
+                            center<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, cmap<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;RdYlBu&#34;</span>)
+    plt<span style="color:#f92672">.</span>show()
+</code></pre></div></div>
 <h2>4.3. Importing the dataset</h2>
 <p>The dataset containing 325,834 observations is imported and shuffled.</p>
 <div class="boxborder">
-<pre><code class="language-python"># Importing the dataset
-dataset = pd.read_csv('/cropland-mapping/WinnipegDataset.txt')
-dataset = dataset.sample(frac=1)
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># Importing the dataset</span>
+dataset <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_csv(<span style="color:#e6db74">&#39;/cropland-mapping/WinnipegDataset.txt&#39;</span>)
+dataset <span style="color:#f92672">=</span> dataset<span style="color:#f92672">.</span>sample(frac<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+</code></pre></div></div>
 
     </div>
   
@@ -1003,9 +999,8 @@ dataset = dataset.sample(frac=1)
       <h1>5. Exploratory data analysis and preprocessing</h1>
 <p>A glimpse at the dataset structure confirms observation shuffling.</p>
 <div class="boxborder">
-<pre><code class="language-python">dataset.head()
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">dataset<span style="color:#f92672">.</span>head()
+</code></pre></div></div>
 <table style="width: 70%; margin-top: 0.5em;">
     <tbody class="codeoutput">
         <tr style="width: 50%;">
@@ -1066,12 +1061,11 @@ dataset = dataset.sample(frac=1)
 </table>
 <p>In addition, the analysis of unique labels shows a somehow balanced distribution (class share percentages mapped and charted below), with the exception of '<b>broadleaf</b>' and '<b>pea</b>'. Watchful eyes will be on these two classes along the exercise.</p>
 <div class="boxborder">
-<pre><code class="language-python">class_share = pd.Series(100 * dataset.label.value_counts(normalize=True)).sort_index()
-print('Class share\n')
-for i in range(0,7):
-    print(f'Class {class_share.index[i]}: {class_share.iloc[i]:.2f} %')
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">class_share <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>Series(<span style="color:#ae81ff">100</span> <span style="color:#f92672">*</span> dataset<span style="color:#f92672">.</span>label<span style="color:#f92672">.</span>value_counts(normalize<span style="color:#f92672">=</span>True))<span style="color:#f92672">.</span>sort_index()
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Class share</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">7</span>):
+    <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;Class {class_share.index[i]}: {class_share.iloc[i]:.2f} %&#39;</span>)
+</code></pre></div></div>
 <p class="codeoutput">Class share<br/>
 Class 1: 12.02 %<br/>
 Class 2: 1.10 %<br/>
@@ -1081,13 +1075,12 @@ Class 5: 14.46 %<br/>
 Class 6: 26.11 %<br/>
 Class 7: 0.35 %</p>
 <div class="boxborder">
-<pre><code class="language-python">fig, ax = plt.subplots(figsize=(8,5))
-sns.barplot(ax=ax, x = class_share.index, y = class_share, palette='Greens_d')
-plt.title('Cropland Class Share', fontsize=18)
-plt.xlabel('Cropland Class', fontsize=14)
-plt.ylabel('Share (%)', fontsize=14)
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fig, ax <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">5</span>))
+sns<span style="color:#f92672">.</span>barplot(ax<span style="color:#f92672">=</span>ax, x <span style="color:#f92672">=</span> class_share<span style="color:#f92672">.</span>index, y <span style="color:#f92672">=</span> class_share, palette<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Greens_d&#39;</span>)
+plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;Cropland Class Share&#39;</span>, fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">18</span>)
+plt<span style="color:#f92672">.</span>xlabel(<span style="color:#e6db74">&#39;Cropland Class&#39;</span>, fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">14</span>)
+plt<span style="color:#f92672">.</span>ylabel(<span style="color:#e6db74">&#39;Share (%)&#39;</span>, fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">14</span>)
+</code></pre></div></div>
 <div class='row'>
     <img class="imageboxcentered" style="width: 40%; margin-bottom: 15px;" src='/cropland-mapping/images/cropland-class.png' alt=''>
 </div>
@@ -1095,28 +1088,26 @@ plt.ylabel('Share (%)', fontsize=14)
 <p>The correlation between each feature and the dependent variable, as well as the correlation among features (intercorrelation), provide elements to tackle potential undesired colinearity.</p>
 <p>The code below assists in identifying and sorting high feature intercorrelation cases based on the corresponding correlation coefficients (in descending order). A threshold of 0.95 has been arbitrarily defined for filtering highly intercorrelated features.</p>
 <div class="boxborder">
-<pre><code class="language-python">highly_correlated_feature_pairs = []
-highly_correlated_features_to_drop = []
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">highly_correlated_feature_pairs <span style="color:#f92672">=</span> []
+highly_correlated_features_to_drop <span style="color:#f92672">=</span> []
 
-correlation_matrix = dataset.corr().abs()
-upper_matrix = correlation_matrix.where(np.triu(np.ones(correlation_matrix.shape), k=1).astype(np.bool))
-for row in range(upper_matrix.shape[0]):
-    for column in range(upper_matrix.shape[1]):
-        if upper_matrix.iloc[row, column] &amp;gt; 0.95:
-            highly_correlated_feature_pairs.append([row, column, upper_matrix.iloc[row, column]])
+correlation_matrix <span style="color:#f92672">=</span> dataset<span style="color:#f92672">.</span>corr()<span style="color:#f92672">.</span>abs()
+upper_matrix <span style="color:#f92672">=</span> correlation_matrix<span style="color:#f92672">.</span>where(np<span style="color:#f92672">.</span>triu(np<span style="color:#f92672">.</span>ones(correlation_matrix<span style="color:#f92672">.</span>shape), k<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>astype(np<span style="color:#f92672">.</span>bool))
+<span style="color:#66d9ef">for</span> row <span style="color:#f92672">in</span> range(upper_matrix<span style="color:#f92672">.</span>shape[<span style="color:#ae81ff">0</span>]):
+    <span style="color:#66d9ef">for</span> column <span style="color:#f92672">in</span> range(upper_matrix<span style="color:#f92672">.</span>shape[<span style="color:#ae81ff">1</span>]):
+        <span style="color:#66d9ef">if</span> upper_matrix<span style="color:#f92672">.</span>iloc[row, column] <span style="color:#f92672">&amp;</span>gt; <span style="color:#ae81ff">0.95</span>:
+            highly_correlated_feature_pairs<span style="color:#f92672">.</span>append([row, column, upper_matrix<span style="color:#f92672">.</span>iloc[row, column]])
             
-print(f'Number of highly intercorrelated feature pairs: {len(highly_correlated_feature_pairs)}')
-</code></pre>
-</div>
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;Number of highly intercorrelated feature pairs: {len(highly_correlated_feature_pairs)}&#39;</span>)
+</code></pre></div></div>
 <p class="codeoutput">Number of highly intercorrelated feature pairs: 117</p>
 <p>As the articles cited in foreword anticipate in deep detail, there is indeed a set of features strongly intercorrelated.</p>
 <p>For information only, the 10 most intercorrelated feature pairs are identified below along with their corresponding correlation coefficients. Readers must note that <b>six pairs of features</b> (!) are perfectly correlated (coefficient equals 1). This problem must always be addressed in data preprocessing.</p>
 <div class="boxborder">
-<pre><code class="language-python">highly_correlated_feature_pairs = pd.DataFrame(highly_correlated_feature_pairs).sort_values(by=[2], ascending=False)
-highly_correlated_feature_pairs.columns = ['feature_1', 'feature_2', 'correl']
-highly_correlated_feature_pairs.head(10)
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">highly_correlated_feature_pairs <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame(highly_correlated_feature_pairs)<span style="color:#f92672">.</span>sort_values(by<span style="color:#f92672">=</span>[<span style="color:#ae81ff">2</span>], ascending<span style="color:#f92672">=</span>False)
+highly_correlated_feature_pairs<span style="color:#f92672">.</span>columns <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;feature_1&#39;</span>, <span style="color:#e6db74">&#39;feature_2&#39;</span>, <span style="color:#e6db74">&#39;correl&#39;</span>]
+highly_correlated_feature_pairs<span style="color:#f92672">.</span>head(<span style="color:#ae81ff">10</span>)
+</code></pre></div></div>
 <table style="width: 40%; margin-top: 0.5em;">
     <tbody class="codeoutput">
         <tr>
@@ -1189,34 +1180,30 @@ highly_correlated_feature_pairs.head(10)
 </table>
 <p>Features to be dropped are pinned on a correlation map and removed from the dataset.</p>
 <div class="boxborder">
-<pre><code class="language-python">highly_correlated_features_to_drop = [column for column in upper_matrix.columns if any(upper_matrix[column] &amp;gt; 0.95)]
-dataset = dataset.drop(dataset[highly_correlated_features_to_drop], axis=1)
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">highly_correlated_features_to_drop <span style="color:#f92672">=</span> [column <span style="color:#66d9ef">for</span> column <span style="color:#f92672">in</span> upper_matrix<span style="color:#f92672">.</span>columns <span style="color:#66d9ef">if</span> any(upper_matrix[column] <span style="color:#f92672">&amp;</span>gt; <span style="color:#ae81ff">0.95</span>)]
+dataset <span style="color:#f92672">=</span> dataset<span style="color:#f92672">.</span>drop(dataset[highly_correlated_features_to_drop], axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+</code></pre></div></div>
 <div class="boxborder">
-<pre><code class="language-python">nr_features = dataset.shape[1] - 1
-print(f'Optimized number of features: {nr_features}')
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">nr_features <span style="color:#f92672">=</span> dataset<span style="color:#f92672">.</span>shape[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;Optimized number of features: {nr_features}&#39;</span>)
+</code></pre></div></div>
 <p class="codeoutput">Optimized number of features: 102</p>
 <p>After dropping, the number of features was substantially reduced from 174 down to 102 (a 41.4 % decrease). Such dimensionality optimization not only assists in mitigating colinearity but also allows for the creation of streamlined machines and faster learning with lower processing and memory requirements.</p>
 <p>A final correlation map including the dependent variable ('label') and the remaining feature set is charted below.</p>
 <div class="boxborder">
-<pre><code class="language-python">correlation_map(dataset, 'label', nr_features)
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">correlation_map(dataset, <span style="color:#e6db74">&#39;label&#39;</span>, nr_features)
+</code></pre></div></div>
 <div class='row'>
     <img class="imageboxcentered" style="width: 90%; margin-bottom: 15px;" src='/cropland-mapping/images/correlation-map.png' alt=''>
 </div>
 <h2>5.2. Feature assessment</h2>
 <p>Invoking the 'assessment' custom function allows for plotting feature distribution patterns and their relationship with the 'label' dependent variable. This is done for the 10 features most correlated with the dependent variable 'label', just to provide a first glimpse of data behavior:</p>
 <div class="boxborder">
-<pre><code class="language-python">most_correlated_features = dataset.corr().nlargest(10,'label')['label'].index
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">most_correlated_features <span style="color:#f92672">=</span> dataset<span style="color:#f92672">.</span>corr()<span style="color:#f92672">.</span>nlargest(<span style="color:#ae81ff">10</span>,<span style="color:#e6db74">&#39;label&#39;</span>)[<span style="color:#e6db74">&#39;label&#39;</span>]<span style="color:#f92672">.</span>index
 
-for column in most_correlated_features:
-    assessment(dataset, 'label', column, -1)
-</code></pre>
-</div>
+<span style="color:#66d9ef">for</span> column <span style="color:#f92672">in</span> most_correlated_features:
+    assessment(dataset, <span style="color:#e6db74">&#39;label&#39;</span>, column, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+</code></pre></div></div>
 <div class='row'>
     <img class="imageboxcentered" style="width: 70%; margin-bottom: 15px;" src='/cropland-mapping/images/assessment-01.png' alt=''>
 </div>
@@ -1263,26 +1250,24 @@ for column in most_correlated_features:
 </ul>
 <p>The unique features tensor and the two label tensors are subsequently split into training and testing sets. The training set will host 80% of observations, while the testing set will accommodate the remaining 20%. Such proportions were arbitrarily chosen by the author.</p>
 <div class="boxborder">
-<pre><code class="language-python">X = dataset.iloc[:, 1:]
-y = dataset.iloc[:, 0:1]
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">X <span style="color:#f92672">=</span> dataset<span style="color:#f92672">.</span>iloc[:, <span style="color:#ae81ff">1</span>:]
+y <span style="color:#f92672">=</span> dataset<span style="color:#f92672">.</span>iloc[:, <span style="color:#ae81ff">0</span>:<span style="color:#ae81ff">1</span>]
 
-train_size = round(0.8 * len(X))
+train_size <span style="color:#f92672">=</span> round(<span style="color:#ae81ff">0.8</span> <span style="color:#f92672">*</span> len(X))
 
-X_train = X.iloc[:train_size, :].values
-y_train = y.iloc[:train_size]
+X_train <span style="color:#f92672">=</span> X<span style="color:#f92672">.</span>iloc[:train_size, :]<span style="color:#f92672">.</span>values
+y_train <span style="color:#f92672">=</span> y<span style="color:#f92672">.</span>iloc[:train_size]
 
-X_test = X.iloc[train_size:, :].values
-y_test = y.iloc[train_size:]
-</code></pre>
-</div>
+X_test <span style="color:#f92672">=</span> X<span style="color:#f92672">.</span>iloc[train_size:, :]<span style="color:#f92672">.</span>values
+y_test <span style="color:#f92672">=</span> y<span style="color:#f92672">.</span>iloc[train_size:]
+</code></pre></div></div>
 <p>In preparation for testing at the end of this exercise, mapping class counts in the set of testing labels is important:</p>
 <div class="boxborder">
-<pre><code class="language-python">class_count = pd.Series(y_test.label.value_counts()).sort_index()
-print('Class count - Test labels\n')
-for i in range(0,7):
-    print(f'Class {class_count.index[i]}: {class_count.iloc[i]}')
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">class_count <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>Series(y_test<span style="color:#f92672">.</span>label<span style="color:#f92672">.</span>value_counts())<span style="color:#f92672">.</span>sort_index()
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Class count - Test labels</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">7</span>):
+    <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;Class {class_count.index[i]}: {class_count.iloc[i]}&#39;</span>)
+</code></pre></div></div>
 <p class="codeoutput">Class count - Test labels<br/>
 Class 1: 7917<br/>
 Class 2: 712<br/>
@@ -1293,22 +1278,20 @@ Class 6: 16958<br/>
 Class 7: 248</p>
 <p>Finally, label tensors (numpy arrays) are created for each separate exercise (random forest and neural network).</p>
 <div class="boxborder">
-<pre><code class="language-python">y_train_rf = y_train.label.values
-y_test_rf = y_test.label.values
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">y_train_rf <span style="color:#f92672">=</span> y_train<span style="color:#f92672">.</span>label<span style="color:#f92672">.</span>values
+y_test_rf <span style="color:#f92672">=</span> y_test<span style="color:#f92672">.</span>label<span style="color:#f92672">.</span>values
 
-y_train_ann = pd.get_dummies(y_train.label).values
-y_test_ann = pd.get_dummies(y_test.label).values
-</code></pre>
-</div>
+y_train_ann <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>get_dummies(y_train<span style="color:#f92672">.</span>label)<span style="color:#f92672">.</span>values
+y_test_ann <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>get_dummies(y_test<span style="color:#f92672">.</span>label)<span style="color:#f92672">.</span>values
+</code></pre></div></div>
 <h2>5.4. Feature scaling</h2>
 <p>Scaling is performed on the training feature set only and applied to both training and testing feature sets (with the 'fit_transform' and 'transform' methods, respectively).</p>
 <div class="boxborder">
-<pre><code class="language-python"># Scaling
-scaler = StandardScaler()
-X_train = scaler.fit_transform(X_train)
-X_test = scaler.transform(X_test)
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># Scaling</span>
+scaler <span style="color:#f92672">=</span> StandardScaler()
+X_train <span style="color:#f92672">=</span> scaler<span style="color:#f92672">.</span>fit_transform(X_train)
+X_test <span style="color:#f92672">=</span> scaler<span style="color:#f92672">.</span>transform(X_test)
+</code></pre></div></div>
 
     </div>
   
@@ -1382,23 +1365,20 @@ X_test = scaler.transform(X_test)
 <p>The classifier will be instantiated with n_estimators = 100 (i.e. the forest will comprise 100 decision trees) and n_jobs = 4 (allowing for the use of 4 processing cores).</p>
 <p>The author selected a number of trees relatively close to the final number of features (102) for a first shot. However, a more robust optimization of relevant hyperparameters is recommended, e.g. through the use of <b>validation curves</b>. Readers are welcome to experiment.</p>
 <div class="boxborder">
-<pre><code class="language-python">random_forest_classifier = RandomForestClassifier(n_estimators=100, n_jobs=4)
-random_forest_classifier.fit(X_train, y_train_rf)
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">random_forest_classifier <span style="color:#f92672">=</span> RandomForestClassifier(n_estimators<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>, n_jobs<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>)
+random_forest_classifier<span style="color:#f92672">.</span>fit(X_train, y_train_rf)
+</code></pre></div></div>
 <p class="codeoutput">RandomForestClassifier(n_jobs=4)</p>
 <h3>6.1.3. Predictions</h3>
 <p>After fitting the model to the training set, predictions are generated for the testing set. As a reminder, predictions for each observation will be scalars ranging from 1 to 7, referring to one particular crop class:</p>
 <div class="boxborder">
-<pre><code class="language-python">y_pred_rf = random_forest_classifier.predict(X_test)
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">y_pred_rf <span style="color:#f92672">=</span> random_forest_classifier<span style="color:#f92672">.</span>predict(X_test)
+</code></pre></div></div>
 <p>For information only (a first sanity check), the first prediction in the 'y_pred_rf' array matches the actual class for the corresponding test set observation hosted in the 'y_test_rf' array. So far, so good...</p>
 <div class="boxborder">
-<pre><code class="language-python">print(f'Predicted class: {y_pred_rf[0]}')
-print(f'Actual class: {y_test_rf[0]}')
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;Predicted class: {y_pred_rf[0]}&#39;</span>)
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;Actual class: {y_test_rf[0]}&#39;</span>)
+</code></pre></div></div>
 <p class="codeoutput">Predicted class: 4<br/>
 Actual class: 4</p>
 <h2>6.2. Part II - Deep Learning (Artificial Neural Network)</h2>
@@ -1415,77 +1395,72 @@ Actual class: 4</p>
     <img class="imageboxcentered" style="width: 55%;" src='/cropland-mapping/images/ann-cropland.png' alt=''>
 </div>
 <div class="boxborder">
-<pre><code class="language-python"># ANN
-ann_classifier = Sequential()
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># ANN</span>
+ann_classifier <span style="color:#f92672">=</span> Sequential()
 
-# Input layer and first dense layer
-ann_classifier.add(Dense(units = 204, kernel_initializer = 'uniform', activation = 'relu', input_dim = 102))
-ann_classifier.add(Dropout(0.1))
+<span style="color:#75715e"># Input layer and first dense layer</span>
+ann_classifier<span style="color:#f92672">.</span>add(Dense(units <span style="color:#f92672">=</span> <span style="color:#ae81ff">204</span>, kernel_initializer <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;uniform&#39;</span>, activation <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;relu&#39;</span>, input_dim <span style="color:#f92672">=</span> <span style="color:#ae81ff">102</span>))
+ann_classifier<span style="color:#f92672">.</span>add(Dropout(<span style="color:#ae81ff">0.1</span>))
 
-# Second dense layer
-ann_classifier.add(Dense(units = 204, kernel_initializer = 'uniform', activation = 'relu'))
-ann_classifier.add(Dropout(0.1))
+<span style="color:#75715e"># Second dense layer</span>
+ann_classifier<span style="color:#f92672">.</span>add(Dense(units <span style="color:#f92672">=</span> <span style="color:#ae81ff">204</span>, kernel_initializer <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;uniform&#39;</span>, activation <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;relu&#39;</span>))
+ann_classifier<span style="color:#f92672">.</span>add(Dropout(<span style="color:#ae81ff">0.1</span>))
 
-# Third dense layer
-ann_classifier.add(Dense(units = 102, kernel_initializer = 'uniform', activation = 'relu'))
-ann_classifier.add(Dropout(0.1))
+<span style="color:#75715e"># Third dense layer</span>
+ann_classifier<span style="color:#f92672">.</span>add(Dense(units <span style="color:#f92672">=</span> <span style="color:#ae81ff">102</span>, kernel_initializer <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;uniform&#39;</span>, activation <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;relu&#39;</span>))
+ann_classifier<span style="color:#f92672">.</span>add(Dropout(<span style="color:#ae81ff">0.1</span>))
 
-# Output layer
-ann_classifier.add(Dense(units = 7, kernel_initializer = 'uniform', activation = 'softmax'))
+<span style="color:#75715e"># Output layer</span>
+ann_classifier<span style="color:#f92672">.</span>add(Dense(units <span style="color:#f92672">=</span> <span style="color:#ae81ff">7</span>, kernel_initializer <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;uniform&#39;</span>, activation <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;softmax&#39;</span>))
 
-# Model compilation
+<span style="color:#75715e"># Model compilation</span>
 
-optim = Adam(learning_rate=0.0005)
+optim <span style="color:#f92672">=</span> Adam(learning_rate<span style="color:#f92672">=</span><span style="color:#ae81ff">0.0005</span>)
 
-ann_classifier.compile(optimizer = optim, loss = 'categorical_crossentropy', metrics = ['accuracy'])
-</code></pre>
-</div>
+ann_classifier<span style="color:#f92672">.</span>compile(optimizer <span style="color:#f92672">=</span> optim, loss <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;categorical_crossentropy&#39;</span>, metrics <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;accuracy&#39;</span>])
+</code></pre></div></div>
 <h3>6.2.2. Model fitting</h3>
 <p>As the number of observations is huge, no cross-validation mechanism will be implemented <em>a priori</em>, another decision subject to later revision, if necessary.</p>
 <div class="boxborder">
-<pre><code class="language-python">ann_train_history = ann_classifier.fit(X_train, y_train_ann, batch_size = 64, epochs = 100, verbose=0)
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">ann_train_history <span style="color:#f92672">=</span> ann_classifier<span style="color:#f92672">.</span>fit(X_train, y_train_ann, batch_size <span style="color:#f92672">=</span> <span style="color:#ae81ff">64</span>, epochs <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>, verbose<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
+</code></pre></div></div>
 <p>Training accuracy and loss per training epoch are charted below.</p>
 <p>As we are dealing with hundreds of thousands of observations, it is not unusual to see a neural network model converging fast. In this case, batches contain 64 observations. In every epoch the model will be exposed to more than 5,000 different batches. Few epochs may suffice to lead to high accuracy, low loss levels already in the beggining of the training session.</p>
 <p>In this exercise 100 epochs were scheduled, as the author was interested in investigating potential overfitting. In a final implementation, a shorter training might be considered.</p>
 <div class="boxborder">
-<pre><code class="language-python">fig, ax1 = plt.subplots(figsize=(8,6))
-sns.set_style(&quot;darkgrid&quot;)
-ax2 = ax1.twinx()
-ax1.plot(ann_train_history.history['accuracy'], color='blue')
-ax2.plot(ann_train_history.history['loss'], color='red')
-ax1.set_xlabel('Epochs')
-ax1.set_ylabel('Accuracy')
-ax1.tick_params(axis='y', colors='blue')
-ax2.set_ylabel('Loss')
-ax2.tick_params(axis='y', colors='red')
-ax2.grid(False)
-plt.show()
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fig, ax1 <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">6</span>))
+sns<span style="color:#f92672">.</span>set_style(<span style="color:#e6db74">&#34;darkgrid&#34;</span>)
+ax2 <span style="color:#f92672">=</span> ax1<span style="color:#f92672">.</span>twinx()
+ax1<span style="color:#f92672">.</span>plot(ann_train_history<span style="color:#f92672">.</span>history[<span style="color:#e6db74">&#39;accuracy&#39;</span>], color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;blue&#39;</span>)
+ax2<span style="color:#f92672">.</span>plot(ann_train_history<span style="color:#f92672">.</span>history[<span style="color:#e6db74">&#39;loss&#39;</span>], color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;red&#39;</span>)
+ax1<span style="color:#f92672">.</span>set_xlabel(<span style="color:#e6db74">&#39;Epochs&#39;</span>)
+ax1<span style="color:#f92672">.</span>set_ylabel(<span style="color:#e6db74">&#39;Accuracy&#39;</span>)
+ax1<span style="color:#f92672">.</span>tick_params(axis<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;y&#39;</span>, colors<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;blue&#39;</span>)
+ax2<span style="color:#f92672">.</span>set_ylabel(<span style="color:#e6db74">&#39;Loss&#39;</span>)
+ax2<span style="color:#f92672">.</span>tick_params(axis<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;y&#39;</span>, colors<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;red&#39;</span>)
+ax2<span style="color:#f92672">.</span>grid(False)
+plt<span style="color:#f92672">.</span>show()
+</code></pre></div></div>
 <div class='row'>
     <img class="imageboxcentered" style="width: 45%;" src='/cropland-mapping/images/ann-fitting.png' alt=''>
 </div>
 <h3>6.2.3. Predictions</h3>
 <p>After fitting the model to the training set, predictions are generated for the testing set. As a reminder, each prediction will correspond to an array with seven elements, each of them referring to one particular crop class. The final array is '<b>binarized</b>': the array element with the highest value will be converted to '1' while all other array elements will be converted to '0'.</p>
 <div class="boxborder">
-<pre><code class="language-python">y_pred_ann = ann_classifier.predict(X_test)
-for i in range(len(y_pred_ann)):
-    for j in range(7):
-        if y_pred_ann[i][j] == y_pred_ann[i].max():
-            y_pred_ann[i][j] = 1
-        else:
-            y_pred_ann[i][j] = 0
-y_pred_ann = y_pred_ann.astype(int)
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">y_pred_ann <span style="color:#f92672">=</span> ann_classifier<span style="color:#f92672">.</span>predict(X_test)
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(y_pred_ann)):
+    <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">7</span>):
+        <span style="color:#66d9ef">if</span> y_pred_ann[i][j] <span style="color:#f92672">==</span> y_pred_ann[i]<span style="color:#f92672">.</span>max():
+            y_pred_ann[i][j] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">else</span>:
+            y_pred_ann[i][j] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+y_pred_ann <span style="color:#f92672">=</span> y_pred_ann<span style="color:#f92672">.</span>astype(int)
+</code></pre></div></div>
 <p>A new sanity check reveals that the first prediction in the 'y_pred_ann' tensor matches the array generated for the first test set label - the class has been correctly predicted for this particular observation with our neural network.</p>
 <div class="boxborder">
-<pre><code class="language-python">print(f'Predicted: {y_pred_ann[0]}')
-print(f'Actual: {y_test_ann[0]}')
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;Predicted: {y_pred_ann[0]}&#39;</span>)
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;Actual: {y_test_ann[0]}&#39;</span>)
+</code></pre></div></div>
 <p class="codeoutput">Predicted: [0 0 0 1 0 0 0]<br/>
 Actual: [0 0 0 1 0 0 0]</p>
 
@@ -1554,25 +1529,24 @@ Actual: [0 0 0 1 0 0 0]</p>
 <p>The outstanding results achieved in each case are discussed in detail in Section 8.</p>
 <h2>7.1. Random Forest</h2>
 <div class="boxborder">
-<pre><code class="language-python">rf_cm = np.zeros((7,7))
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">rf_cm <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>zeros((<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">7</span>))
 
-rf_pred_correct = 0
-rf_pred_incorrect = 0
-for i in range(len(y_test)):
-    rf_index_test = y_test_rf[i] - 1
-    rf_index_pred = y_pred_rf[i] - 1
-    rf_cm[rf_index_test][rf_index_pred] += 1
-    if rf_index_test == rf_index_pred:
-        rf_pred_correct += 1
-    else:
-        rf_pred_incorrect += 1
+rf_pred_correct <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+rf_pred_incorrect <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(y_test)):
+    rf_index_test <span style="color:#f92672">=</span> y_test_rf[i] <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>
+    rf_index_pred <span style="color:#f92672">=</span> y_pred_rf[i] <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>
+    rf_cm[rf_index_test][rf_index_pred] <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+    <span style="color:#66d9ef">if</span> rf_index_test <span style="color:#f92672">==</span> rf_index_pred:
+        rf_pred_correct <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+    <span style="color:#66d9ef">else</span>:
+        rf_pred_incorrect <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
 
-rf_cmatrix = pd.DataFrame(rf_cm.astype(int),
-                          index = ['Corn', 'Pea', 'Canola', 'Soy', 'Oat', 'Wheat', 'Broadleaf'],
-                          columns = ['Corn', 'Pea', 'Canola', 'Soy', 'Oat', 'Wheat', 'Broadleaf'])
+rf_cmatrix <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame(rf_cm<span style="color:#f92672">.</span>astype(int),
+                          index <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;Corn&#39;</span>, <span style="color:#e6db74">&#39;Pea&#39;</span>, <span style="color:#e6db74">&#39;Canola&#39;</span>, <span style="color:#e6db74">&#39;Soy&#39;</span>, <span style="color:#e6db74">&#39;Oat&#39;</span>, <span style="color:#e6db74">&#39;Wheat&#39;</span>, <span style="color:#e6db74">&#39;Broadleaf&#39;</span>],
+                          columns <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;Corn&#39;</span>, <span style="color:#e6db74">&#39;Pea&#39;</span>, <span style="color:#e6db74">&#39;Canola&#39;</span>, <span style="color:#e6db74">&#39;Soy&#39;</span>, <span style="color:#e6db74">&#39;Oat&#39;</span>, <span style="color:#e6db74">&#39;Wheat&#39;</span>, <span style="color:#e6db74">&#39;Broadleaf&#39;</span>])
 rf_cmatrix
-</code></pre>
-</div>
+</code></pre></div></div>
 <table style="width: 80%; margin-top: 0.5em;">
     <tbody class="codeoutput">
         <tr>
@@ -1658,25 +1632,23 @@ rf_cmatrix
     </tbody>
 </table>
 <div class="boxborder">
-<pre><code class="language-python">rf_accuracy = accuracy_score(y_test_rf, y_pred_rf)
-rf_precision, rf_recall, rf_f_score, rf_support = precision_recall_fscore_support(y_test_rf, y_pred_rf, average='macro')
-print(f'Accuracy: {rf_accuracy * 100:.2f} %')
-print(f'Precision: {rf_precision * 100:.2f} %')
-print(f'Recall: {rf_recall * 100:.2f} %')
-print(f'F-Score: {rf_f_score * 100:.2f} %')
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">rf_accuracy <span style="color:#f92672">=</span> accuracy_score(y_test_rf, y_pred_rf)
+rf_precision, rf_recall, rf_f_score, rf_support <span style="color:#f92672">=</span> precision_recall_fscore_support(y_test_rf, y_pred_rf, average<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;macro&#39;</span>)
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;Accuracy: {rf_accuracy * 100:.2f} %&#39;</span>)
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;Precision: {rf_precision * 100:.2f} %&#39;</span>)
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;Recall: {rf_recall * 100:.2f} %&#39;</span>)
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;F-Score: {rf_f_score * 100:.2f} %&#39;</span>)
+</code></pre></div></div>
 <p class="codeoutput">Accuracy: 99.59 %<br/>
 Precision: 99.22 %<br/>
 Recall: 99.32 %<br/>
 F-Score: 99.27 %</p>
 <div class="boxborder">
-<pre><code class="language-python">print('Accuracy per class\n')
-for i in range(len(rf_cmatrix)):
-    class_accuracy = rf_cmatrix.iloc[i,i] / rf_cmatrix.sum(axis=0)[i]
-    print(f'{rf_cmatrix.columns[i]}: {class_accuracy*100:.2f} %')
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Accuracy per class</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(rf_cmatrix)):
+    class_accuracy <span style="color:#f92672">=</span> rf_cmatrix<span style="color:#f92672">.</span>iloc[i,i] <span style="color:#f92672">/</span> rf_cmatrix<span style="color:#f92672">.</span>sum(axis<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)[i]
+    <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;{rf_cmatrix.columns[i]}: {class_accuracy*100:.2f} %&#39;</span>)
+</code></pre></div></div>
 <p class="codeoutput">Accuracy per class<br/>
 Corn: 99.77 %<br/>
 Pea: 99.72 %<br/>
@@ -1687,26 +1659,25 @@ Wheat: 99.48 %<br/>
 Broadleaf: 96.80 %</p>
 <h2>7.2. Deep Learning (Artificial Neural Network)</h2>
 <div class="boxborder">
-<pre><code class="language-python">ann_cm = np.zeros((7,7))
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">ann_cm <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>zeros((<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">7</span>))
 
-ann_pred_correct = 0
-ann_pred_incorrect = 0
-for i in range(len(y_test_ann)):
-    if y_pred_ann[i].sum() &amp;gt; 0:
-        ann_index_test = np.where(y_test_ann[i] == 1)[0][0]
-        ann_index_pred = np.where(y_pred_ann[i] == 1)[0][0]
-        ann_cm[ann_index_test][ann_index_pred] += 1
-        if ann_index_test == ann_index_pred:
-            ann_pred_correct += 1
-        else:
-            ann_pred_incorrect += 1
+ann_pred_correct <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+ann_pred_incorrect <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(y_test_ann)):
+    <span style="color:#66d9ef">if</span> y_pred_ann[i]<span style="color:#f92672">.</span>sum() <span style="color:#f92672">&amp;</span>gt; <span style="color:#ae81ff">0</span>:
+        ann_index_test <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>where(y_test_ann[i] <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>)[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>]
+        ann_index_pred <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>where(y_pred_ann[i] <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>)[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>]
+        ann_cm[ann_index_test][ann_index_pred] <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">if</span> ann_index_test <span style="color:#f92672">==</span> ann_index_pred:
+            ann_pred_correct <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">else</span>:
+            ann_pred_incorrect <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
 
-ann_cmatrix = pd.DataFrame(ann_cm.astype(int),
-                           index = ['Corn', 'Pea', 'Canola', 'Soy', 'Oat', 'Wheat', 'Broadleaf'],
-                           columns = ['Corn', 'Pea', 'Canola', 'Soy', 'Oat', 'Wheat', 'Broadleaf'])
+ann_cmatrix <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame(ann_cm<span style="color:#f92672">.</span>astype(int),
+                           index <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;Corn&#39;</span>, <span style="color:#e6db74">&#39;Pea&#39;</span>, <span style="color:#e6db74">&#39;Canola&#39;</span>, <span style="color:#e6db74">&#39;Soy&#39;</span>, <span style="color:#e6db74">&#39;Oat&#39;</span>, <span style="color:#e6db74">&#39;Wheat&#39;</span>, <span style="color:#e6db74">&#39;Broadleaf&#39;</span>],
+                           columns <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;Corn&#39;</span>, <span style="color:#e6db74">&#39;Pea&#39;</span>, <span style="color:#e6db74">&#39;Canola&#39;</span>, <span style="color:#e6db74">&#39;Soy&#39;</span>, <span style="color:#e6db74">&#39;Oat&#39;</span>, <span style="color:#e6db74">&#39;Wheat&#39;</span>, <span style="color:#e6db74">&#39;Broadleaf&#39;</span>])
 ann_cmatrix
-</code></pre>
-</div>
+</code></pre></div></div>
 <table style="width: 80%; margin-top: 0.5em;">
     <tbody class="codeoutput">
         <tr>
@@ -1792,25 +1763,23 @@ ann_cmatrix
     </tbody>
 </table>
 <div class="boxborder">
-<pre><code class="language-python">ann_accuracy = accuracy_score(y_test_ann, y_pred_ann)
-ann_precision, ann_recall, ann_f_score, ann_support = precision_recall_fscore_support(y_test_ann, y_pred_ann, average='macro')
-print(f'Accuracy: {ann_accuracy * 100:.2f} %')
-print(f'Precision: {ann_precision * 100:.2f} %')
-print(f'Recall: {ann_recall * 100:.2f} %')
-print(f'F-Score: {ann_f_score * 100:.2f} %')
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">ann_accuracy <span style="color:#f92672">=</span> accuracy_score(y_test_ann, y_pred_ann)
+ann_precision, ann_recall, ann_f_score, ann_support <span style="color:#f92672">=</span> precision_recall_fscore_support(y_test_ann, y_pred_ann, average<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;macro&#39;</span>)
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;Accuracy: {ann_accuracy * 100:.2f} %&#39;</span>)
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;Precision: {ann_precision * 100:.2f} %&#39;</span>)
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;Recall: {ann_recall * 100:.2f} %&#39;</span>)
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;F-Score: {ann_f_score * 100:.2f} %&#39;</span>)
+</code></pre></div></div>
 <p class="codeoutput">Accuracy: 99.85 %<br/>
 Precision: 99.56 %<br/>
 Recall: 99.77 %<br/>
 F-Score: 99.67 %</p>
 <div class="boxborder">
-<pre><code class="language-python">print('Accuracy per class\n')
-for i in range(len(ann_cmatrix)):
-    class_accuracy = ann_cmatrix.iloc[i,i] / ann_cmatrix.sum(axis=0)[i]
-    print(f'{ann_cmatrix.columns[i]}: {class_accuracy*100:.2f} %')
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Accuracy per class</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(ann_cmatrix)):
+    class_accuracy <span style="color:#f92672">=</span> ann_cmatrix<span style="color:#f92672">.</span>iloc[i,i] <span style="color:#f92672">/</span> ann_cmatrix<span style="color:#f92672">.</span>sum(axis<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)[i]
+    <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;{ann_cmatrix.columns[i]}: {class_accuracy*100:.2f} %&#39;</span>)
+</code></pre></div></div>
 <p class="codeoutput">Accuracy per class<br/>
 Corn: 99.95 %<br/>
 Pea: 100.00 %<br/>
@@ -1891,12 +1860,11 @@ Broadleaf: 97.62 %</p>
     </ul>
 </ol>
 <div class="boxborder">
-<pre><code class="language-python">end_time = datetime.now()
-print('\nStart time', start_time)
-print('End time', end_time)
-print('Time elapsed', end_time - start_time)
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">end_time <span style="color:#f92672">=</span> datetime<span style="color:#f92672">.</span>now()
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Start time&#39;</span>, start_time)
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;End time&#39;</span>, end_time)
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Time elapsed&#39;</span>, end_time <span style="color:#f92672">-</span> start_time)
+</code></pre></div></div>
 
     </div>
   

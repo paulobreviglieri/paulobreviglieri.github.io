@@ -29,7 +29,7 @@
   <meta name="description" content="">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://pcbreviglieri.github.io/house-pricing/">
+  <link rel="alternate" hreflang="en-us" href="https://paulobreviglieri.com/house-pricing/">
 
   
 
@@ -228,7 +228,7 @@
   <link rel="icon" type="image/png" href="/images/icon_hue0b5dbdcd29e15f3bb2c3e480ec18a0b_14701_32x32_fill_lanczos_center_2.png">
   <link rel="apple-touch-icon" type="image/png" href="/images/icon_hue0b5dbdcd29e15f3bb2c3e480ec18a0b_14701_192x192_fill_lanczos_center_2.png">
 
-  <link rel="canonical" href="https://pcbreviglieri.github.io/house-pricing/">
+  <link rel="canonical" href="https://paulobreviglieri.com/house-pricing/">
 
   
   
@@ -247,10 +247,10 @@
   <meta property="twitter:creator" content="@pcbreviglieri">
   
   <meta property="og:site_name" content="Paulo Breviglieri">
-  <meta property="og:url" content="https://pcbreviglieri.github.io/house-pricing/">
+  <meta property="og:url" content="https://paulobreviglieri.com/house-pricing/">
   <meta property="og:title" content="Advanced Regressions Enabling Enhanced House Price Predictions | Paulo Breviglieri">
-  <meta property="og:description" content=""><meta property="og:image" content="https://pcbreviglieri.github.io/images/icon_hue0b5dbdcd29e15f3bb2c3e480ec18a0b_14701_512x512_fill_lanczos_center_2.png">
-  <meta property="twitter:image" content="https://pcbreviglieri.github.io/images/icon_hue0b5dbdcd29e15f3bb2c3e480ec18a0b_14701_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
+  <meta property="og:description" content=""><meta property="og:image" content="https://paulobreviglieri.com/images/icon_hue0b5dbdcd29e15f3bb2c3e480ec18a0b_14701_512x512_fill_lanczos_center_2.png">
+  <meta property="twitter:image" content="https://paulobreviglieri.com/images/icon_hue0b5dbdcd29e15f3bb2c3e480ec18a0b_14701_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
   
     
       <meta property="article:published_time" content="2020-01-01T00:00:00&#43;00:00">
@@ -618,170 +618,165 @@
 <h2>2.1. Importing required libraries</h2>
 <p style="text-align: justify">Along with traditional libraries imported for tensor manipulation, mathematical operations and graphics development, specific machine learning modules are used in this exercise: regressors (<a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.ElasticNet.html" target="_blank">ElasticNet</a>, <a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LassoCV.html" target="_blank">LassoCV</a>, <a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.RidgeCV.html" target="_blank">RidgeCV</a>, <a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingRegressor.html" target="_blank">GradientBoostingRegressor</a>, <a href="https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html" target="_blank">SVR</a>, <a href="https://xgboost.readthedocs.io/en/latest/#" target="_blank">XGBoost</a>, <a href="http://rasbt.github.io/mlxtend/user_guide/regressor/StackingCVRegressor/" target="_blank">StackingCVRegressor</a>), cross validation engines, a scaler and metrics methods. Comments on the choice of regressors are provided in Section 4.</p>
 <div class="boxborder">
-<pre><code class="language-python">import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
-from datetime import datetime
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
+<span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
+<span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#f92672">as</span> plt
+<span style="color:#f92672">import</span> seaborn <span style="color:#f92672">as</span> sns
+<span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
 
-from scipy.stats import skew
-from scipy.special import boxcox1p
-from scipy.stats import boxcox_normmax
+<span style="color:#f92672">from</span> scipy.stats <span style="color:#f92672">import</span> skew
+<span style="color:#f92672">from</span> scipy.special <span style="color:#f92672">import</span> boxcox1p
+<span style="color:#f92672">from</span> scipy.stats <span style="color:#f92672">import</span> boxcox_normmax
 
-from sklearn.linear_model import ElasticNetCV, LassoCV, RidgeCV
-from sklearn.ensemble import GradientBoostingRegressor
-from sklearn.svm import SVR
-from sklearn.pipeline import make_pipeline
-from sklearn.preprocessing import RobustScaler
-from sklearn.model_selection import KFold, cross_val_score
-from sklearn.metrics import mean_squared_error, mean_squared_log_error, mean_absolute_error
-from mlxtend.regressor import StackingCVRegressor
-from xgboost import XGBRegressor
+<span style="color:#f92672">from</span> sklearn.linear_model <span style="color:#f92672">import</span> ElasticNetCV, LassoCV, RidgeCV
+<span style="color:#f92672">from</span> sklearn.ensemble <span style="color:#f92672">import</span> GradientBoostingRegressor
+<span style="color:#f92672">from</span> sklearn.svm <span style="color:#f92672">import</span> SVR
+<span style="color:#f92672">from</span> sklearn.pipeline <span style="color:#f92672">import</span> make_pipeline
+<span style="color:#f92672">from</span> sklearn.preprocessing <span style="color:#f92672">import</span> RobustScaler
+<span style="color:#f92672">from</span> sklearn.model_selection <span style="color:#f92672">import</span> KFold, cross_val_score
+<span style="color:#f92672">from</span> sklearn.metrics <span style="color:#f92672">import</span> mean_squared_error, mean_squared_log_error, mean_absolute_error
+<span style="color:#f92672">from</span> mlxtend.regressor <span style="color:#f92672">import</span> StackingCVRegressor
+<span style="color:#f92672">from</span> xgboost <span style="color:#f92672">import</span> XGBRegressor
 
-import warnings
-</code></pre>
-</div>
+<span style="color:#f92672">import</span> warnings
+</code></pre></div></div>
 <h2>2.2. Customized functions</h2>
 <p style="text-align: justify">Functions were developed to assist with graphical analysis of specific dataset elements (features or observations) and with cross-validation scoring of regression strategies. Please refer to the respective docstrings below for details. Note that all function variable names, by coding principle, start with the "f_" string, allowing for containerized processing within the function execution environment, not affecting global variables.</p>
 <div class="boxborder">
-<pre><code class="language-python">def assessment(f_data, f_y_feature, f_x_feature, f_index=-1):
-    &quot;&quot;&quot;
-    Develops and displays a histogram and a scatter plot for a dependent / independent variable pair from
-    a dataframe and, optionally, highlights a specific observation on the plot in a different color (red).
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">assessment</span>(f_data, f_y_feature, f_x_feature, f_index<span style="color:#f92672">=-</span><span style="color:#ae81ff">1</span>):
+    <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">    Develops and displays a histogram and a scatter plot for a dependent / independent variable pair from
+</span><span style="color:#e6db74">    a dataframe and, optionally, highlights a specific observation on the plot in a different color (red).
+</span><span style="color:#e6db74">    
+</span><span style="color:#e6db74">    Also optionally, if an independent feature is not informed, the scatterplot is not displayed.
+</span><span style="color:#e6db74">    
+</span><span style="color:#e6db74">    Keyword arguments:
+</span><span style="color:#e6db74">    
+</span><span style="color:#e6db74">    f_data      Tensor containing the dependent / independent variable pair.
+</span><span style="color:#e6db74">                Pandas dataframe
+</span><span style="color:#e6db74">    f_y_feature Dependent variable designation.
+</span><span style="color:#e6db74">                String
+</span><span style="color:#e6db74">    f_x_feature Independent variable designation.
+</span><span style="color:#e6db74">                String
+</span><span style="color:#e6db74">    f_index     If greater or equal to zero, the observation denoted by f_index will be plotted in red.
+</span><span style="color:#e6db74">                Integer
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+    <span style="color:#66d9ef">for</span> f_row <span style="color:#f92672">in</span> f_data:
+        <span style="color:#66d9ef">if</span> f_index <span style="color:#f92672">&amp;</span>gt;<span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>:
+            f_color <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>where(f_data[f_row]<span style="color:#f92672">.</span>index <span style="color:#f92672">==</span> f_index,<span style="color:#e6db74">&#39;r&#39;</span>,<span style="color:#e6db74">&#39;g&#39;</span>)
+            f_hue <span style="color:#f92672">=</span> None
+        <span style="color:#66d9ef">else</span>:
+            f_color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;b&#39;</span>
+            f_hue <span style="color:#f92672">=</span> None
     
-    Also optionally, if an independent feature is not informed, the scatterplot is not displayed.
+    f_fig, f_a <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">16</span>,<span style="color:#ae81ff">4</span>))
     
-    Keyword arguments:
+    f_chart1 <span style="color:#f92672">=</span> sns<span style="color:#f92672">.</span>distplot(f_data[f_x_feature], ax<span style="color:#f92672">=</span>f_a[<span style="color:#ae81ff">0</span>], kde<span style="color:#f92672">=</span>False, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;r&#39;</span>)
+    f_chart1<span style="color:#f92672">.</span>set_xlabel(f_x_feature,fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
     
-    f_data      Tensor containing the dependent / independent variable pair.
-                Pandas dataframe
-    f_y_feature Dependent variable designation.
-                String
-    f_x_feature Independent variable designation.
-                String
-    f_index     If greater or equal to zero, the observation denoted by f_index will be plotted in red.
-                Integer
-    &quot;&quot;&quot;
-    for f_row in f_data:
-        if f_index &amp;gt;= 0:
-            f_color = np.where(f_data[f_row].index == f_index,'r','g')
-            f_hue = None
-        else:
-            f_color = 'b'
-            f_hue = None
-    
-    f_fig, f_a = plt.subplots(1, 2, figsize=(16,4))
-    
-    f_chart1 = sns.distplot(f_data[f_x_feature], ax=f_a[0], kde=False, color='r')
-    f_chart1.set_xlabel(f_x_feature,fontsize=10)
-    
-    if f_index &amp;gt;= 0:
-        f_chart2 = plt.scatter(f_data[f_x_feature], f_data[f_y_feature], c=f_color, edgecolors='w')
-        f_chart2 = plt.xlabel(f_x_feature, fontsize=10)
-        f_chart2 = plt.ylabel(f_y_feature, fontsize=10)
-    else:
-        f_chart2 = sns.scatterplot(x=f_x_feature, y=f_y_feature, data=f_data, hue=f_hue, legend=False)
-        f_chart2.set_xlabel(f_x_feature,fontsize=10)
-        f_chart2.set_ylabel(f_y_feature,fontsize=10)
+    <span style="color:#66d9ef">if</span> f_index <span style="color:#f92672">&amp;</span>gt;<span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>:
+        f_chart2 <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>scatter(f_data[f_x_feature], f_data[f_y_feature], c<span style="color:#f92672">=</span>f_color, edgecolors<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;w&#39;</span>)
+        f_chart2 <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>xlabel(f_x_feature, fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
+        f_chart2 <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>ylabel(f_y_feature, fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
+    <span style="color:#66d9ef">else</span>:
+        f_chart2 <span style="color:#f92672">=</span> sns<span style="color:#f92672">.</span>scatterplot(x<span style="color:#f92672">=</span>f_x_feature, y<span style="color:#f92672">=</span>f_y_feature, data<span style="color:#f92672">=</span>f_data, hue<span style="color:#f92672">=</span>f_hue, legend<span style="color:#f92672">=</span>False)
+        f_chart2<span style="color:#f92672">.</span>set_xlabel(f_x_feature,fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
+        f_chart2<span style="color:#f92672">.</span>set_ylabel(f_y_feature,fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
 
-    plt.show()
+    plt<span style="color:#f92672">.</span>show()
 
 
-def correlation_map(f_data, f_feature, f_number):
-    &quot;&quot;&quot;
-    Develops and displays a heatmap plot referenced to a primary feature of a dataframe, highlighting
-    the correlation among the 'n' mostly correlated features of the dataframe.
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">correlation_map</span>(f_data, f_feature, f_number):
+    <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">    Develops and displays a heatmap plot referenced to a primary feature of a dataframe, highlighting
+</span><span style="color:#e6db74">    the correlation among the &#39;n&#39; mostly correlated features of the dataframe.
+</span><span style="color:#e6db74">    
+</span><span style="color:#e6db74">    Keyword arguments:
+</span><span style="color:#e6db74">    
+</span><span style="color:#e6db74">    f_data      Tensor containing all relevant features, including the primary.
+</span><span style="color:#e6db74">                Pandas dataframe
+</span><span style="color:#e6db74">    f_feature   The primary feature.
+</span><span style="color:#e6db74">                String
+</span><span style="color:#e6db74">    f_number    The number of features most correlated to the primary feature.
+</span><span style="color:#e6db74">                Integer
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+    f_most_correlated <span style="color:#f92672">=</span> f_data<span style="color:#f92672">.</span>corr()<span style="color:#f92672">.</span>nlargest(f_number,f_feature)[f_feature]<span style="color:#f92672">.</span>index
+    f_correlation <span style="color:#f92672">=</span> f_data[f_most_correlated]<span style="color:#f92672">.</span>corr()
     
-    Keyword arguments:
-    
-    f_data      Tensor containing all relevant features, including the primary.
-                Pandas dataframe
-    f_feature   The primary feature.
-                String
-    f_number    The number of features most correlated to the primary feature.
-                Integer
-    &quot;&quot;&quot;
-    f_most_correlated = f_data.corr().nlargest(f_number,f_feature)[f_feature].index
-    f_correlation = f_data[f_most_correlated].corr()
-    
-    f_mask = np.zeros_like(f_correlation)
-    f_mask[np.triu_indices_from(f_mask)] = True
-    with sns.axes_style(&quot;white&quot;):
-        f_fig, f_ax = plt.subplots(figsize=(12, 10))
-        f_ax = sns.heatmap(f_correlation, mask=f_mask, vmin=0, vmax=1, square=True,
-                           annot=True, annot_kws={&quot;size&quot;: 10}, cmap=&quot;BuPu&quot;)
+    f_mask <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>zeros_like(f_correlation)
+    f_mask[np<span style="color:#f92672">.</span>triu_indices_from(f_mask)] <span style="color:#f92672">=</span> True
+    <span style="color:#66d9ef">with</span> sns<span style="color:#f92672">.</span>axes_style(<span style="color:#e6db74">&#34;white&#34;</span>):
+        f_fig, f_ax <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">10</span>))
+        f_ax <span style="color:#f92672">=</span> sns<span style="color:#f92672">.</span>heatmap(f_correlation, mask<span style="color:#f92672">=</span>f_mask, vmin<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, vmax<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, square<span style="color:#f92672">=</span>True,
+                           annot<span style="color:#f92672">=</span>True, annot_kws<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;size&#34;</span>: <span style="color:#ae81ff">10</span>}, cmap<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;BuPu&#34;</span>)
 
-    plt.show()
+    plt<span style="color:#f92672">.</span>show()
     
     
-def xval_rmse_scoring(f_model, f_X, f_y, f_cv):
-    &quot;&quot;&quot;
-    Returns a machine learning model cross-validated score based on the Root Mean Squared Error (RMSE) metric.
-
-    Keyword arguments:
-
-    f_model     Machine learning model.
-                Object instance
-    f_X_        Tensor containing features for modeling.
-                Pandas dataframe
-    f_y         Tensor containing targets for modeling.
-                Pandas series
-    f_cv        Cross-validation splitting strategy.
-                Please refer to scikit-learn's model_selection cross_val_score for further information.
-    &quot;&quot;&quot;
-    return np.sqrt(-cross_val_score(f_model, f_X, f_y,
-                                    scoring='neg_mean_squared_error',
-                                    cv=f_cv))
-</code></pre>
-</div>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">xval_rmse_scoring</span>(f_model, f_X, f_y, f_cv):
+    <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">    Returns a machine learning model cross-validated score based on the Root Mean Squared Error (RMSE) metric.
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">    Keyword arguments:
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">    f_model     Machine learning model.
+</span><span style="color:#e6db74">                Object instance
+</span><span style="color:#e6db74">    f_X_        Tensor containing features for modeling.
+</span><span style="color:#e6db74">                Pandas dataframe
+</span><span style="color:#e6db74">    f_y         Tensor containing targets for modeling.
+</span><span style="color:#e6db74">                Pandas series
+</span><span style="color:#e6db74">    f_cv        Cross-validation splitting strategy.
+</span><span style="color:#e6db74">                Please refer to scikit-learn&#39;s model_selection cross_val_score for further information.
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+    <span style="color:#66d9ef">return</span> np<span style="color:#f92672">.</span>sqrt(<span style="color:#f92672">-</span>cross_val_score(f_model, f_X, f_y,
+                                    scoring<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;neg_mean_squared_error&#39;</span>,
+                                    cv<span style="color:#f92672">=</span>f_cv))
+</code></pre></div></div>
 <h2>2.3. Importing required datasets into dataframes</h2>
 <p style="text-align: justify">Variables starting with numbers are renamed properly for further calling as dataframe elements. The original 'Id' feature is dropped and incorporated as index for observations.</p>
 <div class="boxborder">
-<pre><code class="language-python">warnings.filterwarnings('ignore')
-sns.set()
-start_time = datetime.now()
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">warnings<span style="color:#f92672">.</span>filterwarnings(<span style="color:#e6db74">&#39;ignore&#39;</span>)
+sns<span style="color:#f92672">.</span>set()
+start_time <span style="color:#f92672">=</span> datetime<span style="color:#f92672">.</span>now()
 
-train = pd.read_csv('train.csv')
-test = pd.read_csv('test.csv')
+train <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_csv(<span style="color:#e6db74">&#39;train.csv&#39;</span>)
+test <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_csv(<span style="color:#e6db74">&#39;test.csv&#39;</span>)
 
-train.rename(columns={&quot;1stFlrSF&quot;: &quot;FstFlSF&quot;, &quot;2ndFlrSF&quot;: &quot;SecFlSF&quot;, &quot;3SsnPorch&quot;: &quot;ThreeSPorch&quot;}, inplace=True)
-test.rename(columns={&quot;1stFlrSF&quot;: &quot;FstFlSF&quot;, &quot;2ndFlrSF&quot;: &quot;SecFlSF&quot;, &quot;3SsnPorch&quot;: &quot;ThreeSPorch&quot;}, inplace=True)
+train<span style="color:#f92672">.</span>rename(columns<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;1stFlrSF&#34;</span>: <span style="color:#e6db74">&#34;FstFlSF&#34;</span>, <span style="color:#e6db74">&#34;2ndFlrSF&#34;</span>: <span style="color:#e6db74">&#34;SecFlSF&#34;</span>, <span style="color:#e6db74">&#34;3SsnPorch&#34;</span>: <span style="color:#e6db74">&#34;ThreeSPorch&#34;</span>}, inplace<span style="color:#f92672">=</span>True)
+test<span style="color:#f92672">.</span>rename(columns<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;1stFlrSF&#34;</span>: <span style="color:#e6db74">&#34;FstFlSF&#34;</span>, <span style="color:#e6db74">&#34;2ndFlrSF&#34;</span>: <span style="color:#e6db74">&#34;SecFlSF&#34;</span>, <span style="color:#e6db74">&#34;3SsnPorch&#34;</span>: <span style="color:#e6db74">&#34;ThreeSPorch&#34;</span>}, inplace<span style="color:#f92672">=</span>True)
 
-train.drop(['Id'], axis=1, inplace=True)
-test.drop(['Id'], axis=1, inplace=True)
+train<span style="color:#f92672">.</span>drop([<span style="color:#e6db74">&#39;Id&#39;</span>], axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, inplace<span style="color:#f92672">=</span>True)
+test<span style="color:#f92672">.</span>drop([<span style="color:#e6db74">&#39;Id&#39;</span>], axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, inplace<span style="color:#f92672">=</span>True)
 
-train_features = train.iloc[:, :-1]
-train_targets = train.iloc[:, -1]
-test_features = test
-</code></pre>
-</div>
+train_features <span style="color:#f92672">=</span> train<span style="color:#f92672">.</span>iloc[:, :<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+train_targets <span style="color:#f92672">=</span> train<span style="color:#f92672">.</span>iloc[:, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+test_features <span style="color:#f92672">=</span> test
+</code></pre></div></div>
 <h2>2.4. Redefinition of specific feature types (numerical vs categorical)</h2>
 <p style="text-align: justify">Specific numerical features ('MSSubClass', 'MoSold' and 'YrSold') have a discrete nature. Transforming their numerical values into strings enables further treatment as categorical features along the code.</p>
 <div class="boxborder">
-<pre><code class="language-python">train_features['MSSubClass'] = train_features['MSSubClass'].astype(str)
-train_features['MoSold'] = train_features['MoSold'].astype(str)
-train_features['YrSold'] = train_features['YrSold'].astype(str)
-test_features['MSSubClass'] = test_features['MSSubClass'].astype(str)
-test_features['MoSold'] = test_features['MoSold'].astype(str)
-test_features['YrSold'] = test_features['YrSold'].astype(str)
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">train_features[<span style="color:#e6db74">&#39;MSSubClass&#39;</span>] <span style="color:#f92672">=</span> train_features[<span style="color:#e6db74">&#39;MSSubClass&#39;</span>]<span style="color:#f92672">.</span>astype(str)
+train_features[<span style="color:#e6db74">&#39;MoSold&#39;</span>] <span style="color:#f92672">=</span> train_features[<span style="color:#e6db74">&#39;MoSold&#39;</span>]<span style="color:#f92672">.</span>astype(str)
+train_features[<span style="color:#e6db74">&#39;YrSold&#39;</span>] <span style="color:#f92672">=</span> train_features[<span style="color:#e6db74">&#39;YrSold&#39;</span>]<span style="color:#f92672">.</span>astype(str)
+test_features[<span style="color:#e6db74">&#39;MSSubClass&#39;</span>] <span style="color:#f92672">=</span> test_features[<span style="color:#e6db74">&#39;MSSubClass&#39;</span>]<span style="color:#f92672">.</span>astype(str)
+test_features[<span style="color:#e6db74">&#39;MoSold&#39;</span>] <span style="color:#f92672">=</span> test_features[<span style="color:#e6db74">&#39;MoSold&#39;</span>]<span style="color:#f92672">.</span>astype(str)
+test_features[<span style="color:#e6db74">&#39;YrSold&#39;</span>] <span style="color:#f92672">=</span> test_features[<span style="color:#e6db74">&#39;YrSold&#39;</span>]<span style="color:#f92672">.</span>astype(str)
+</code></pre></div></div>
 <h2>2.5. Segregation of numerical and categorical features</h2>
 <p style="text-align: justify">Numerical and categorical features are identified and segregated into two speficic lists. Later, the whole train and test dataframes have their features reordered (numerical followed by categorical).</p>
 <div class="boxborder">
-<pre><code class="language-python">features_numerical = []
-features_categorical = []
-for column in train_features.columns:
-    if train_features[column].dtype in ['int16', 'int32', 'int64', 'float16', 'float32', 'float64']:
-        features_numerical.append(column)
-    elif train_features[column].dtype == object:
-        features_categorical.append(column)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">features_numerical <span style="color:#f92672">=</span> []
+features_categorical <span style="color:#f92672">=</span> []
+<span style="color:#66d9ef">for</span> column <span style="color:#f92672">in</span> train_features<span style="color:#f92672">.</span>columns:
+    <span style="color:#66d9ef">if</span> train_features[column]<span style="color:#f92672">.</span>dtype <span style="color:#f92672">in</span> [<span style="color:#e6db74">&#39;int16&#39;</span>, <span style="color:#e6db74">&#39;int32&#39;</span>, <span style="color:#e6db74">&#39;int64&#39;</span>, <span style="color:#e6db74">&#39;float16&#39;</span>, <span style="color:#e6db74">&#39;float32&#39;</span>, <span style="color:#e6db74">&#39;float64&#39;</span>]:
+        features_numerical<span style="color:#f92672">.</span>append(column)
+    <span style="color:#66d9ef">elif</span> train_features[column]<span style="color:#f92672">.</span>dtype <span style="color:#f92672">==</span> object:
+        features_categorical<span style="color:#f92672">.</span>append(column)
 
-new_order = features_numerical + features_categorical
-train_features = train_features[new_order]
-test_features = test_features[new_order]
-</code></pre>
-</div>
+new_order <span style="color:#f92672">=</span> features_numerical <span style="color:#f92672">+</span> features_categorical
+train_features <span style="color:#f92672">=</span> train_features[new_order]
+test_features <span style="color:#f92672">=</span> test_features[new_order]
+</code></pre></div></div>
 
     </div>
   
@@ -861,21 +856,19 @@ test_features = test_features[new_order]
 <h2>3.2. Concatenating train and test features</h2>
 <p>As features may be transformed, deleted or created along the data preprocessing phase, stacking train and test set features on top of each other facilitates such operations. Note that the training targets have been previously segregated in the 'train_targets' series, are not included in 'train_test_features' and therefore will not be manipulated at this point.</p>
 <div class="boxborder">
-<pre><code class="language-python">train_test_features = pd.concat([train_features, test_features], axis=0)
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">train_test_features <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>concat([train_features, test_features], axis<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
+</code></pre></div></div>
 <h2>3.3. Numerical features</h2>
 <h3>3.3.1. Missing Values</h3>
 <p>Numerical features with missing values are identified. Their names are included in a specific list and displayed.</p>
 <div class="boxborder">
-<pre><code class="language-python">missing_numerical = []
-for feature in features_numerical:
-    if train_test_features.count()[feature] &lt; train_test_features.shape[0]:
-        missing_numerical.append(feature)
-print(f'\nNumerical features with missing values before treatment: {len(missing_numerical)}\n')
-print(missing_numerical)
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">missing_numerical <span style="color:#f92672">=</span> []
+<span style="color:#66d9ef">for</span> feature <span style="color:#f92672">in</span> features_numerical:
+    <span style="color:#66d9ef">if</span> train_test_features<span style="color:#f92672">.</span>count()[feature] <span style="color:#f92672">&lt;</span> train_test_features<span style="color:#f92672">.</span>shape[<span style="color:#ae81ff">0</span>]:
+        missing_numerical<span style="color:#f92672">.</span>append(feature)
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Numerical features with missing values before treatment: {len(missing_numerical)}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
+<span style="color:#66d9ef">print</span>(missing_numerical)
+</code></pre></div></div>
 <p class="codeoutput">Numerical features with missing values before treatment: 11<br />
 ['LotFrontage', 'MasVnrArea', 'BsmtFinSF1', 'BsmtFinSF2', 'BsmtUnfSF', 'TotalBsmtSF', 'BsmtFullBath', 'BsmtHalfBath', 'GarageYrBlt', 'GarageCars', 'GarageArea']</p>
 <p>Replacement strategy:</p>
@@ -887,25 +880,24 @@ print(missing_numerical)
     <li>GarageYrBlt, GarageArea, GarageCars - Nulls correpond to cases where the property does not have a garage. Replaced with zeros.</li>
 </ol>
 <div class="boxborder">
-<pre><code class="language-python">train_test_features['LotFrontage'] = train_test_features.groupby('Neighborhood')['LotFrontage'].transform(lambda x: x.fillna(x.median()))
-train_test_features['MasVnrArea'] = train_test_features['MasVnrArea'].fillna(0)
-train_test_features['BsmtFinSF1'] = train_test_features['BsmtFinSF1'].fillna(0)
-train_test_features['BsmtFinSF2'] = train_test_features['BsmtFinSF2'].fillna(0)
-train_test_features['BsmtUnfSF'] = train_test_features['BsmtUnfSF'].fillna(0)
-train_test_features['TotalBsmtSF'] = train_test_features['TotalBsmtSF'].fillna(0)
-train_test_features['BsmtFullBath'] = train_test_features['BsmtFullBath'].fillna(0)
-train_test_features['BsmtHalfBath'] = train_test_features['BsmtHalfBath'].fillna(0)
-train_test_features['GarageYrBlt'] = train_test_features['GarageYrBlt'].fillna(0)
-train_test_features['GarageArea'] = train_test_features['GarageArea'].fillna(0)
-train_test_features['GarageCars'] = train_test_features['GarageCars'].fillna(0)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">train_test_features[<span style="color:#e6db74">&#39;LotFrontage&#39;</span>] <span style="color:#f92672">=</span> train_test_features<span style="color:#f92672">.</span>groupby(<span style="color:#e6db74">&#39;Neighborhood&#39;</span>)[<span style="color:#e6db74">&#39;LotFrontage&#39;</span>]<span style="color:#f92672">.</span>transform(<span style="color:#66d9ef">lambda</span> x: x<span style="color:#f92672">.</span>fillna(x<span style="color:#f92672">.</span>median()))
+train_test_features[<span style="color:#e6db74">&#39;MasVnrArea&#39;</span>] <span style="color:#f92672">=</span> train_test_features[<span style="color:#e6db74">&#39;MasVnrArea&#39;</span>]<span style="color:#f92672">.</span>fillna(<span style="color:#ae81ff">0</span>)
+train_test_features[<span style="color:#e6db74">&#39;BsmtFinSF1&#39;</span>] <span style="color:#f92672">=</span> train_test_features[<span style="color:#e6db74">&#39;BsmtFinSF1&#39;</span>]<span style="color:#f92672">.</span>fillna(<span style="color:#ae81ff">0</span>)
+train_test_features[<span style="color:#e6db74">&#39;BsmtFinSF2&#39;</span>] <span style="color:#f92672">=</span> train_test_features[<span style="color:#e6db74">&#39;BsmtFinSF2&#39;</span>]<span style="color:#f92672">.</span>fillna(<span style="color:#ae81ff">0</span>)
+train_test_features[<span style="color:#e6db74">&#39;BsmtUnfSF&#39;</span>] <span style="color:#f92672">=</span> train_test_features[<span style="color:#e6db74">&#39;BsmtUnfSF&#39;</span>]<span style="color:#f92672">.</span>fillna(<span style="color:#ae81ff">0</span>)
+train_test_features[<span style="color:#e6db74">&#39;TotalBsmtSF&#39;</span>] <span style="color:#f92672">=</span> train_test_features[<span style="color:#e6db74">&#39;TotalBsmtSF&#39;</span>]<span style="color:#f92672">.</span>fillna(<span style="color:#ae81ff">0</span>)
+train_test_features[<span style="color:#e6db74">&#39;BsmtFullBath&#39;</span>] <span style="color:#f92672">=</span> train_test_features[<span style="color:#e6db74">&#39;BsmtFullBath&#39;</span>]<span style="color:#f92672">.</span>fillna(<span style="color:#ae81ff">0</span>)
+train_test_features[<span style="color:#e6db74">&#39;BsmtHalfBath&#39;</span>] <span style="color:#f92672">=</span> train_test_features[<span style="color:#e6db74">&#39;BsmtHalfBath&#39;</span>]<span style="color:#f92672">.</span>fillna(<span style="color:#ae81ff">0</span>)
+train_test_features[<span style="color:#e6db74">&#39;GarageYrBlt&#39;</span>] <span style="color:#f92672">=</span> train_test_features[<span style="color:#e6db74">&#39;GarageYrBlt&#39;</span>]<span style="color:#f92672">.</span>fillna(<span style="color:#ae81ff">0</span>)
+train_test_features[<span style="color:#e6db74">&#39;GarageArea&#39;</span>] <span style="color:#f92672">=</span> train_test_features[<span style="color:#e6db74">&#39;GarageArea&#39;</span>]<span style="color:#f92672">.</span>fillna(<span style="color:#ae81ff">0</span>)
+train_test_features[<span style="color:#e6db74">&#39;GarageCars&#39;</span>] <span style="color:#f92672">=</span> train_test_features[<span style="color:#e6db74">&#39;GarageCars&#39;</span>]<span style="color:#f92672">.</span>fillna(<span style="color:#ae81ff">0</span>)
 
-missing_numerical.clear()
-for feature in features_numerical:
-    if train_test_features.count()[feature] &amp;lt; train_test_features.shape[0]:
-        missing_numerical.append(feature)
-print(f'\nNumerical features with missing values after treatment: {len(missing_numerical)}')
-</code></pre>
-</div>
+missing_numerical<span style="color:#f92672">.</span>clear()
+<span style="color:#66d9ef">for</span> feature <span style="color:#f92672">in</span> features_numerical:
+    <span style="color:#66d9ef">if</span> train_test_features<span style="color:#f92672">.</span>count()[feature] <span style="color:#f92672">&amp;</span>lt; train_test_features<span style="color:#f92672">.</span>shape[<span style="color:#ae81ff">0</span>]:
+        missing_numerical<span style="color:#f92672">.</span>append(feature)
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Numerical features with missing values after treatment: {len(missing_numerical)}&#39;</span>)
+</code></pre></div></div>
 <p class="codeoutput">Numerical features with missing values after treatment: 0</p>
 <h3>3.3.2. Creation of new features from numerical features</h3>
 <p>Whenever possible, additional features related to key aspects of the problem under analysis may be created to reinforce the weight of such aspects in the regression. In the current case (real estate pricing), features associated with land area, built area, number of rooms, overall property quality and age are of supreme relevance.</p>
@@ -919,33 +911,30 @@ print(f'\nNumerical features with missing values after treatment: {len(missing_n
     <li>Average lot depth, derived from lot area and lot frontage (rectangular lot shape assumed).</li>
 </ul>
 <div class="boxborder">
-<pre><code class="language-python">train_test_features['YearsSinceBuilt'] = train_test_features['YrSold'].astype(int) - train_test_features['YearBuilt']
-train_test_features['YearsSinceRemod'] = train_test_features['YrSold'].astype(int) - train_test_features['YearRemodAdd']
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">train_test_features[<span style="color:#e6db74">&#39;YearsSinceBuilt&#39;</span>] <span style="color:#f92672">=</span> train_test_features[<span style="color:#e6db74">&#39;YrSold&#39;</span>]<span style="color:#f92672">.</span>astype(int) <span style="color:#f92672">-</span> train_test_features[<span style="color:#e6db74">&#39;YearBuilt&#39;</span>]
+train_test_features[<span style="color:#e6db74">&#39;YearsSinceRemod&#39;</span>] <span style="color:#f92672">=</span> train_test_features[<span style="color:#e6db74">&#39;YrSold&#39;</span>]<span style="color:#f92672">.</span>astype(int) <span style="color:#f92672">-</span> train_test_features[<span style="color:#e6db74">&#39;YearRemodAdd&#39;</span>]
 
-train_test_features['TotalWalledArea'] = train_test_features['TotalBsmtSF'] + train_test_features['GrLivArea']
-train_test_features['TotalPorchArea'] = train_test_features['OpenPorchSF'] + train_test_features['ThreeSPorch'] + train_test_features['EnclosedPorch'] + train_test_features['ScreenPorch'] + train_test_features['WoodDeckSF']
-train_test_features['TotalOccupiedArea'] = train_test_features['TotalWalledArea'] + train_test_features['TotalPorchArea']
+train_test_features[<span style="color:#e6db74">&#39;TotalWalledArea&#39;</span>] <span style="color:#f92672">=</span> train_test_features[<span style="color:#e6db74">&#39;TotalBsmtSF&#39;</span>] <span style="color:#f92672">+</span> train_test_features[<span style="color:#e6db74">&#39;GrLivArea&#39;</span>]
+train_test_features[<span style="color:#e6db74">&#39;TotalPorchArea&#39;</span>] <span style="color:#f92672">=</span> train_test_features[<span style="color:#e6db74">&#39;OpenPorchSF&#39;</span>] <span style="color:#f92672">+</span> train_test_features[<span style="color:#e6db74">&#39;ThreeSPorch&#39;</span>] <span style="color:#f92672">+</span> train_test_features[<span style="color:#e6db74">&#39;EnclosedPorch&#39;</span>] <span style="color:#f92672">+</span> train_test_features[<span style="color:#e6db74">&#39;ScreenPorch&#39;</span>] <span style="color:#f92672">+</span> train_test_features[<span style="color:#e6db74">&#39;WoodDeckSF&#39;</span>]
+train_test_features[<span style="color:#e6db74">&#39;TotalOccupiedArea&#39;</span>] <span style="color:#f92672">=</span> train_test_features[<span style="color:#e6db74">&#39;TotalWalledArea&#39;</span>] <span style="color:#f92672">+</span> train_test_features[<span style="color:#e6db74">&#39;TotalPorchArea&#39;</span>]
 
-train_test_features['OtherRooms'] = train_test_features['TotRmsAbvGrd'] - train_test_features['BedroomAbvGr'] - train_test_features['KitchenAbvGr']
-train_test_features['TotalBathrooms'] = train_test_features['FullBath'] + (0.5 * train_test_features['HalfBath']) + train_test_features['BsmtFullBath'] + (0.5 * train_test_features['BsmtHalfBath'])
+train_test_features[<span style="color:#e6db74">&#39;OtherRooms&#39;</span>] <span style="color:#f92672">=</span> train_test_features[<span style="color:#e6db74">&#39;TotRmsAbvGrd&#39;</span>] <span style="color:#f92672">-</span> train_test_features[<span style="color:#e6db74">&#39;BedroomAbvGr&#39;</span>] <span style="color:#f92672">-</span> train_test_features[<span style="color:#e6db74">&#39;KitchenAbvGr&#39;</span>]
+train_test_features[<span style="color:#e6db74">&#39;TotalBathrooms&#39;</span>] <span style="color:#f92672">=</span> train_test_features[<span style="color:#e6db74">&#39;FullBath&#39;</span>] <span style="color:#f92672">+</span> (<span style="color:#ae81ff">0.5</span> <span style="color:#f92672">*</span> train_test_features[<span style="color:#e6db74">&#39;HalfBath&#39;</span>]) <span style="color:#f92672">+</span> train_test_features[<span style="color:#e6db74">&#39;BsmtFullBath&#39;</span>] <span style="color:#f92672">+</span> (<span style="color:#ae81ff">0.5</span> <span style="color:#f92672">*</span> train_test_features[<span style="color:#e6db74">&#39;BsmtHalfBath&#39;</span>])
 
-train_test_features['LotDepth'] = train_test_features['LotArea'] / train_test_features['LotFrontage']
-</code></pre>
-</div>
+train_test_features[<span style="color:#e6db74">&#39;LotDepth&#39;</span>] <span style="color:#f92672">=</span> train_test_features[<span style="color:#e6db74">&#39;LotArea&#39;</span>] <span style="color:#f92672">/</span> train_test_features[<span style="color:#e6db74">&#39;LotFrontage&#39;</span>]
+</code></pre></div></div>
 <h3>3.3.3. Feature profiling</h3>
 <p>Skewness may be interpreted as the extent to which a variable distribution differs from a normal distribution. Skewed variables (features) must be identified and normalized during preprocessing. Usually a variable (feature) is considered 'skewed' when its skew factor exceeds 0.5. Identification is performed with the help of scipy's methods 'skew', 'boxcox1p' and 'boxcox_normmax'.</p>
 <div class="boxborder">
-<pre><code class="language-python">skew_values = train_test_features[features_numerical].apply(lambda x: skew(x))
-high_skew = skew_values[skew_values &gt; 0.5]
-skew_indices = high_skew.index
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">skew_values <span style="color:#f92672">=</span> train_test_features[features_numerical]<span style="color:#f92672">.</span>apply(<span style="color:#66d9ef">lambda</span> x: skew(x))
+high_skew <span style="color:#f92672">=</span> skew_values[skew_values <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0.5</span>]
+skew_indices <span style="color:#f92672">=</span> high_skew<span style="color:#f92672">.</span>index
+</code></pre></div></div>
 <p>Visualization of distribution and correlation with the dependent variable BEFORE normalization (only 3 most skewed variables displayed with pictures):</p>
 <div class="boxborder">
-<pre><code class="language-python">for index in skew_indices:
-    assessment(pd.concat([train_test_features.iloc[:len(train_targets), :], train_targets], axis=1), 'SalePrice', index, -1)
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">for</span> index <span style="color:#f92672">in</span> skew_indices:
+    assessment(pd<span style="color:#f92672">.</span>concat([train_test_features<span style="color:#f92672">.</span>iloc[:len(train_targets), :], train_targets], axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>), <span style="color:#e6db74">&#39;SalePrice&#39;</span>, index, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+</code></pre></div></div>
 <div class='row'>
     <img class="imageboxcentered" src='/house-pricing/images/before_01.png' alt=''>
 </div>
@@ -956,16 +945,14 @@ skew_indices = high_skew.index
     <img class="imageboxcentered" src='/house-pricing/images/before_03.png' alt=''>
 </div>
 <div class="boxborder">
-<pre><code class="language-python">for index in skew_indices:
-    train_test_features[index] = boxcox1p(train_test_features[index], boxcox_normmax(train_test_features[index] + 1))
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">for</span> index <span style="color:#f92672">in</span> skew_indices:
+    train_test_features[index] <span style="color:#f92672">=</span> boxcox1p(train_test_features[index], boxcox_normmax(train_test_features[index] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>))
+</code></pre></div></div>
 <p>Visualization of distribution and correlation with the dependent variable AFTER normalization</p>
 <div class="boxborder">
-<pre><code class="language-python">for index in skew_indices:
-    assessment(pd.concat([train_test_features.iloc[:len(train_targets), :], train_targets], axis=1), 'SalePrice', index, -1)
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">for</span> index <span style="color:#f92672">in</span> skew_indices:
+    assessment(pd<span style="color:#f92672">.</span>concat([train_test_features<span style="color:#f92672">.</span>iloc[:len(train_targets), :], train_targets], axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>), <span style="color:#e6db74">&#39;SalePrice&#39;</span>, index, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+</code></pre></div></div>
 <div class='row'>
     <img class="imageboxcentered" src='/house-pricing/images/after_01.png' alt=''>
 </div>
@@ -980,31 +967,29 @@ skew_indices = high_skew.index
 <p>Specific numerical features with one predominant value across all observations are barely correlated to the dependent value (sales prices) and therefore their prediction value is irrelevant. The accumulation of features with predominant values (zeros or ones in particular) may lead to sparse datasets and deteriorated regressions.</p>
 <p>Numerical features with one predominant value present in more than 99.5% of all observations (train and test sets combined) are identified and dropped. </p>
 <div class="boxborder">
-<pre><code class="language-python">numerical_features_to_be_dropped = []
-for feature in features_numerical:
-    predominant_value_count = train_test_features[feature].value_counts().max()
-    if predominant_value_count / train_test_features.shape[0] &amp;gt; 0.995:
-        numerical_features_to_be_dropped.append(feature)
-print(f'\nNumerical features to be dropped: {numerical_features_to_be_dropped}')
-train_test_features = train_test_features.drop(numerical_features_to_be_dropped, axis=1)
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">numerical_features_to_be_dropped <span style="color:#f92672">=</span> []
+<span style="color:#66d9ef">for</span> feature <span style="color:#f92672">in</span> features_numerical:
+    predominant_value_count <span style="color:#f92672">=</span> train_test_features[feature]<span style="color:#f92672">.</span>value_counts()<span style="color:#f92672">.</span>max()
+    <span style="color:#66d9ef">if</span> predominant_value_count <span style="color:#f92672">/</span> train_test_features<span style="color:#f92672">.</span>shape[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&amp;</span>gt; <span style="color:#ae81ff">0.995</span>:
+        numerical_features_to_be_dropped<span style="color:#f92672">.</span>append(feature)
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Numerical features to be dropped: {numerical_features_to_be_dropped}&#39;</span>)
+train_test_features <span style="color:#f92672">=</span> train_test_features<span style="color:#f92672">.</span>drop(numerical_features_to_be_dropped, axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+</code></pre></div></div>
 <p class="codeoutput">Numerical features to be dropped: ['PoolArea']</p>
 <h3>3.3.5. Correlation</h3>
 <p>Once all numerical features have been preprocessed, it is important to verify the correlation between each numerical feature and the dependent variable, as well as correlation among numerical features leading to undesired colinearity. The heatmap below provides an overview of correlation between the dependent variable ('SalePrice') and the top 15 features mostly correlated with it, as well as correlation among them.</p>
 <div class="boxborder">
-<pre><code class="language-python">features_numerical = []
-for column in train_features.columns:
-    if train_features[column].dtype in ['int16', 'int32', 'int64', 'float16', 'float32', 'float64']:
-        features_numerical.append(column)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">features_numerical <span style="color:#f92672">=</span> []
+<span style="color:#66d9ef">for</span> column <span style="color:#f92672">in</span> train_features<span style="color:#f92672">.</span>columns:
+    <span style="color:#66d9ef">if</span> train_features[column]<span style="color:#f92672">.</span>dtype <span style="color:#f92672">in</span> [<span style="color:#e6db74">&#39;int16&#39;</span>, <span style="color:#e6db74">&#39;int32&#39;</span>, <span style="color:#e6db74">&#39;int64&#39;</span>, <span style="color:#e6db74">&#39;float16&#39;</span>, <span style="color:#e6db74">&#39;float32&#39;</span>, <span style="color:#e6db74">&#39;float64&#39;</span>]:
+        features_numerical<span style="color:#f92672">.</span>append(column)
 
-updated_train_set = pd.concat([train_test_features.iloc[:len(train_targets), :], train_targets], axis=1)
+updated_train_set <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>concat([train_test_features<span style="color:#f92672">.</span>iloc[:len(train_targets), :], train_targets], axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
 
-correlation_map(updated_train_set, 'SalePrice', 15)
-</code></pre>
-</div>
+correlation_map(updated_train_set, <span style="color:#e6db74">&#39;SalePrice&#39;</span>, <span style="color:#ae81ff">15</span>)
+</code></pre></div></div>
 <div class='row'>
-    <img class="imageboxcentered" style="width: 70%;" src='/house-pricing/images/correl.png' alt=''>
+    <img class="imageboxcentered" src='/house-pricing/images/correl.png' alt=''>
 </div>
 <p>Not surprisingly, as anticipated, features related to quality, area, number of living units and age show up as the most correlated with sale prices. This reinforces the need to devote extra attention to them.</p>
 <p>Additionally, the heatmap also highlights specific correlations among pairs of features. This is the case of GarageArea and GarageCars - the rationale behind them is obvious, as larger garages accommodate a higher number of vehicles. The data scientist must therefore keep an eye on them and consider dropping one of the pair elements if signs of colinearity show up.</p>
@@ -1012,14 +997,13 @@ correlation_map(updated_train_set, 'SalePrice', 15)
 <h3>3.4.1. Missing values</h3>
 <p>Categorical features with missing values are identified. Their names are included in a specific list and displayed.</p>
 <div class="boxborder">
-<pre><code class="language-python">missing_categorical = []
-for feature in features_categorical:
-    if train_test_features.count()[feature] &amp;lt; train_test_features.shape[0]:
-        missing_categorical.append(feature)
-print(f'\nCategorical features with missing values before treatment: {len(missing_categorical)}\n')
-print(missing_categorical)
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">missing_categorical <span style="color:#f92672">=</span> []
+<span style="color:#66d9ef">for</span> feature <span style="color:#f92672">in</span> features_categorical:
+    <span style="color:#66d9ef">if</span> train_test_features<span style="color:#f92672">.</span>count()[feature] <span style="color:#f92672">&amp;</span>lt; train_test_features<span style="color:#f92672">.</span>shape[<span style="color:#ae81ff">0</span>]:
+        missing_categorical<span style="color:#f92672">.</span>append(feature)
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Categorical features with missing values before treatment: {len(missing_categorical)}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
+<span style="color:#66d9ef">print</span>(missing_categorical)
+</code></pre></div></div>
 <p class="codeoutput">Categorical features with missing values before treatment: 23
 ['MSZoning', 'Alley', 'Utilities', 'Exterior1st', 'Exterior2nd', 'MasVnrType', 'BsmtQual', 'BsmtCond', 'BsmtExposure', 'BsmtFinType1', 'BsmtFinType2', 'Electrical', 'KitchenQual', 'Functional', 'FireplaceQu', 'GarageType', 'GarageFinish', 'GarageQual', 'GarageCond', 'PoolQC', 'Fence', 'MiscFeature', 'SaleType']</p>
 <p>Replacement strategy:</p>
@@ -1029,74 +1013,71 @@ print(missing_categorical)
     <li>All other occurrences - Nulls replaced with 'None'.</li>
 </ol>
 <div class="boxborder">
-<pre><code class="language-python">train_test_features['MSZoning'] = train_test_features.groupby('MSSubClass')['MSZoning'].transform(lambda x: x.fillna(x.mode()[0]))
-train_test_features['Alley'] = train_test_features['Alley'].fillna('None')
-train_test_features['Utilities'] = train_test_features['Utilities'].fillna('None')
-train_test_features['Exterior1st'] = train_test_features['Exterior1st'].fillna(train_test_features['Exterior1st'].mode()[0])
-train_test_features['Exterior2nd'] = train_test_features['Exterior2nd'].fillna(train_test_features['Exterior2nd'].mode()[0])
-train_test_features['MasVnrType'] = train_test_features['MasVnrType'].fillna('None')
-train_test_features['BsmtQual'] = train_test_features['BsmtQual'].fillna('None')
-train_test_features['BsmtCond'] = train_test_features['BsmtCond'].fillna('None')
-train_test_features['BsmtExposure'] = train_test_features['BsmtExposure'].fillna('None')
-train_test_features['BsmtFinType1'] = train_test_features['BsmtFinType1'].fillna('None')
-train_test_features['BsmtFinType2'] = train_test_features['BsmtFinType2'].fillna('None')
-train_test_features['Electrical'] = train_test_features['Electrical'].fillna(train_test_features['Electrical'].mode()[0])
-train_test_features['KitchenQual'] = train_test_features['KitchenQual'].fillna(train_test_features['KitchenQual'].mode()[0])
-train_test_features['Functional'] = train_test_features['Functional'].fillna(train_test_features['Functional'].mode()[0])
-train_test_features['FireplaceQu'] = train_test_features['FireplaceQu'].fillna('None')
-train_test_features['GarageType'] = train_test_features['GarageType'].fillna('None')
-train_test_features['GarageFinish'] = train_test_features['GarageFinish'].fillna('None')
-train_test_features['GarageQual'] = train_test_features['GarageQual'].fillna('None')
-train_test_features['GarageCond'] = train_test_features['GarageCond'].fillna('None')
-train_test_features['PoolQC'] = train_test_features['PoolQC'].fillna('None')
-train_test_features['Fence'] = train_test_features['Fence'].fillna('None')
-train_test_features['MiscFeature'] = train_test_features['MiscFeature'].fillna('None')
-train_test_features['SaleType'] = train_test_features['SaleType'].fillna(train_test_features['SaleType'].mode()[0])
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">train_test_features[<span style="color:#e6db74">&#39;MSZoning&#39;</span>] <span style="color:#f92672">=</span> train_test_features<span style="color:#f92672">.</span>groupby(<span style="color:#e6db74">&#39;MSSubClass&#39;</span>)[<span style="color:#e6db74">&#39;MSZoning&#39;</span>]<span style="color:#f92672">.</span>transform(<span style="color:#66d9ef">lambda</span> x: x<span style="color:#f92672">.</span>fillna(x<span style="color:#f92672">.</span>mode()[<span style="color:#ae81ff">0</span>]))
+train_test_features[<span style="color:#e6db74">&#39;Alley&#39;</span>] <span style="color:#f92672">=</span> train_test_features[<span style="color:#e6db74">&#39;Alley&#39;</span>]<span style="color:#f92672">.</span>fillna(<span style="color:#e6db74">&#39;None&#39;</span>)
+train_test_features[<span style="color:#e6db74">&#39;Utilities&#39;</span>] <span style="color:#f92672">=</span> train_test_features[<span style="color:#e6db74">&#39;Utilities&#39;</span>]<span style="color:#f92672">.</span>fillna(<span style="color:#e6db74">&#39;None&#39;</span>)
+train_test_features[<span style="color:#e6db74">&#39;Exterior1st&#39;</span>] <span style="color:#f92672">=</span> train_test_features[<span style="color:#e6db74">&#39;Exterior1st&#39;</span>]<span style="color:#f92672">.</span>fillna(train_test_features[<span style="color:#e6db74">&#39;Exterior1st&#39;</span>]<span style="color:#f92672">.</span>mode()[<span style="color:#ae81ff">0</span>])
+train_test_features[<span style="color:#e6db74">&#39;Exterior2nd&#39;</span>] <span style="color:#f92672">=</span> train_test_features[<span style="color:#e6db74">&#39;Exterior2nd&#39;</span>]<span style="color:#f92672">.</span>fillna(train_test_features[<span style="color:#e6db74">&#39;Exterior2nd&#39;</span>]<span style="color:#f92672">.</span>mode()[<span style="color:#ae81ff">0</span>])
+train_test_features[<span style="color:#e6db74">&#39;MasVnrType&#39;</span>] <span style="color:#f92672">=</span> train_test_features[<span style="color:#e6db74">&#39;MasVnrType&#39;</span>]<span style="color:#f92672">.</span>fillna(<span style="color:#e6db74">&#39;None&#39;</span>)
+train_test_features[<span style="color:#e6db74">&#39;BsmtQual&#39;</span>] <span style="color:#f92672">=</span> train_test_features[<span style="color:#e6db74">&#39;BsmtQual&#39;</span>]<span style="color:#f92672">.</span>fillna(<span style="color:#e6db74">&#39;None&#39;</span>)
+train_test_features[<span style="color:#e6db74">&#39;BsmtCond&#39;</span>] <span style="color:#f92672">=</span> train_test_features[<span style="color:#e6db74">&#39;BsmtCond&#39;</span>]<span style="color:#f92672">.</span>fillna(<span style="color:#e6db74">&#39;None&#39;</span>)
+train_test_features[<span style="color:#e6db74">&#39;BsmtExposure&#39;</span>] <span style="color:#f92672">=</span> train_test_features[<span style="color:#e6db74">&#39;BsmtExposure&#39;</span>]<span style="color:#f92672">.</span>fillna(<span style="color:#e6db74">&#39;None&#39;</span>)
+train_test_features[<span style="color:#e6db74">&#39;BsmtFinType1&#39;</span>] <span style="color:#f92672">=</span> train_test_features[<span style="color:#e6db74">&#39;BsmtFinType1&#39;</span>]<span style="color:#f92672">.</span>fillna(<span style="color:#e6db74">&#39;None&#39;</span>)
+train_test_features[<span style="color:#e6db74">&#39;BsmtFinType2&#39;</span>] <span style="color:#f92672">=</span> train_test_features[<span style="color:#e6db74">&#39;BsmtFinType2&#39;</span>]<span style="color:#f92672">.</span>fillna(<span style="color:#e6db74">&#39;None&#39;</span>)
+train_test_features[<span style="color:#e6db74">&#39;Electrical&#39;</span>] <span style="color:#f92672">=</span> train_test_features[<span style="color:#e6db74">&#39;Electrical&#39;</span>]<span style="color:#f92672">.</span>fillna(train_test_features[<span style="color:#e6db74">&#39;Electrical&#39;</span>]<span style="color:#f92672">.</span>mode()[<span style="color:#ae81ff">0</span>])
+train_test_features[<span style="color:#e6db74">&#39;KitchenQual&#39;</span>] <span style="color:#f92672">=</span> train_test_features[<span style="color:#e6db74">&#39;KitchenQual&#39;</span>]<span style="color:#f92672">.</span>fillna(train_test_features[<span style="color:#e6db74">&#39;KitchenQual&#39;</span>]<span style="color:#f92672">.</span>mode()[<span style="color:#ae81ff">0</span>])
+train_test_features[<span style="color:#e6db74">&#39;Functional&#39;</span>] <span style="color:#f92672">=</span> train_test_features[<span style="color:#e6db74">&#39;Functional&#39;</span>]<span style="color:#f92672">.</span>fillna(train_test_features[<span style="color:#e6db74">&#39;Functional&#39;</span>]<span style="color:#f92672">.</span>mode()[<span style="color:#ae81ff">0</span>])
+train_test_features[<span style="color:#e6db74">&#39;FireplaceQu&#39;</span>] <span style="color:#f92672">=</span> train_test_features[<span style="color:#e6db74">&#39;FireplaceQu&#39;</span>]<span style="color:#f92672">.</span>fillna(<span style="color:#e6db74">&#39;None&#39;</span>)
+train_test_features[<span style="color:#e6db74">&#39;GarageType&#39;</span>] <span style="color:#f92672">=</span> train_test_features[<span style="color:#e6db74">&#39;GarageType&#39;</span>]<span style="color:#f92672">.</span>fillna(<span style="color:#e6db74">&#39;None&#39;</span>)
+train_test_features[<span style="color:#e6db74">&#39;GarageFinish&#39;</span>] <span style="color:#f92672">=</span> train_test_features[<span style="color:#e6db74">&#39;GarageFinish&#39;</span>]<span style="color:#f92672">.</span>fillna(<span style="color:#e6db74">&#39;None&#39;</span>)
+train_test_features[<span style="color:#e6db74">&#39;GarageQual&#39;</span>] <span style="color:#f92672">=</span> train_test_features[<span style="color:#e6db74">&#39;GarageQual&#39;</span>]<span style="color:#f92672">.</span>fillna(<span style="color:#e6db74">&#39;None&#39;</span>)
+train_test_features[<span style="color:#e6db74">&#39;GarageCond&#39;</span>] <span style="color:#f92672">=</span> train_test_features[<span style="color:#e6db74">&#39;GarageCond&#39;</span>]<span style="color:#f92672">.</span>fillna(<span style="color:#e6db74">&#39;None&#39;</span>)
+train_test_features[<span style="color:#e6db74">&#39;PoolQC&#39;</span>] <span style="color:#f92672">=</span> train_test_features[<span style="color:#e6db74">&#39;PoolQC&#39;</span>]<span style="color:#f92672">.</span>fillna(<span style="color:#e6db74">&#39;None&#39;</span>)
+train_test_features[<span style="color:#e6db74">&#39;Fence&#39;</span>] <span style="color:#f92672">=</span> train_test_features[<span style="color:#e6db74">&#39;Fence&#39;</span>]<span style="color:#f92672">.</span>fillna(<span style="color:#e6db74">&#39;None&#39;</span>)
+train_test_features[<span style="color:#e6db74">&#39;MiscFeature&#39;</span>] <span style="color:#f92672">=</span> train_test_features[<span style="color:#e6db74">&#39;MiscFeature&#39;</span>]<span style="color:#f92672">.</span>fillna(<span style="color:#e6db74">&#39;None&#39;</span>)
+train_test_features[<span style="color:#e6db74">&#39;SaleType&#39;</span>] <span style="color:#f92672">=</span> train_test_features[<span style="color:#e6db74">&#39;SaleType&#39;</span>]<span style="color:#f92672">.</span>fillna(train_test_features[<span style="color:#e6db74">&#39;SaleType&#39;</span>]<span style="color:#f92672">.</span>mode()[<span style="color:#ae81ff">0</span>])
 
-missing_categorical.clear()
-for feature in features_categorical:
-    if train_test_features.count()[feature] &amp;lt; train_test_features.shape[0]:
-        missing_categorical.append(feature)
-print(f'\nCategorical features with missing values after treatment: {len(missing_categorical)}')
-</code></pre>
-</div>
+missing_categorical<span style="color:#f92672">.</span>clear()
+<span style="color:#66d9ef">for</span> feature <span style="color:#f92672">in</span> features_categorical:
+    <span style="color:#66d9ef">if</span> train_test_features<span style="color:#f92672">.</span>count()[feature] <span style="color:#f92672">&amp;</span>lt; train_test_features<span style="color:#f92672">.</span>shape[<span style="color:#ae81ff">0</span>]:
+        missing_categorical<span style="color:#f92672">.</span>append(feature)
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Categorical features with missing values after treatment: {len(missing_categorical)}&#39;</span>)
+</code></pre></div></div>
 <h3>3.4.2. Identifying and dropping categorical features with predominant values</h3>
 <p>Specific categorical features with one predominant value across all observations are barely correlated to the dependent value (sale prices) and therefore their prediction value is irrelevant. The accumulation of features with predominant values (zeros or ones in particular) may lead to sparse datasets and poorer regressions.</p>
 <p>Categorical features with one predominant value present in more than 99.5% of all observations (train and test set combined) are identified and dropped. </p>
 <div class="boxborder">
-<pre><code class="language-python">categorical_features_to_be_dropped = []
-for feature in features_categorical:
-    predominant_value_count = train_test_features[feature].value_counts().max()
-    if predominant_value_count / train_test_features.shape[0] &amp;gt; 0.995:
-        categorical_features_to_be_dropped.append(feature)
-print(f'\nCategorical features to be dropped: {categorical_features_to_be_dropped}')
-train_test_features = train_test_features.drop(categorical_features_to_be_dropped, axis=1)
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">categorical_features_to_be_dropped <span style="color:#f92672">=</span> []
+<span style="color:#66d9ef">for</span> feature <span style="color:#f92672">in</span> features_categorical:
+    predominant_value_count <span style="color:#f92672">=</span> train_test_features[feature]<span style="color:#f92672">.</span>value_counts()<span style="color:#f92672">.</span>max()
+    <span style="color:#66d9ef">if</span> predominant_value_count <span style="color:#f92672">/</span> train_test_features<span style="color:#f92672">.</span>shape[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&amp;</span>gt; <span style="color:#ae81ff">0.995</span>:
+        categorical_features_to_be_dropped<span style="color:#f92672">.</span>append(feature)
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Categorical features to be dropped: {categorical_features_to_be_dropped}&#39;</span>)
+train_test_features <span style="color:#f92672">=</span> train_test_features<span style="color:#f92672">.</span>drop(categorical_features_to_be_dropped, axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+</code></pre></div></div>
 <h3>3.4.3. Feature encoding - Categorical ordinal</h3>
 <p>Categorical values must be quantified into numerical equivalents to be properly processed by machine learning algorithms. Mapped encoding is applied to categorical ordinal features, where feature values have a clear ranking nature among themselves. One hot encoding is applied to categorical nominal features, where there is no such evident ranking nature.</p>
 <div class="boxborder">
-<pre><code class="language-python">map1 = {'Ex': 5, 'Gd': 4, 'TA': 3, 'Fa': 2, 'Po': 1, 'None': 0}
-set1 = ['ExterQual', 'ExterCond', 'BsmtQual','BsmtCond', 'HeatingQC',
-        'KitchenQual', 'FireplaceQu', 'GarageQual', 'GarageCond']
-for feature in set1:
-    train_test_features[feature] = train_test_features[feature].replace(map1)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">map1 <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;Ex&#39;</span>: <span style="color:#ae81ff">5</span>, <span style="color:#e6db74">&#39;Gd&#39;</span>: <span style="color:#ae81ff">4</span>, <span style="color:#e6db74">&#39;TA&#39;</span>: <span style="color:#ae81ff">3</span>, <span style="color:#e6db74">&#39;Fa&#39;</span>: <span style="color:#ae81ff">2</span>, <span style="color:#e6db74">&#39;Po&#39;</span>: <span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;None&#39;</span>: <span style="color:#ae81ff">0</span>}
+set1 <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;ExterQual&#39;</span>, <span style="color:#e6db74">&#39;ExterCond&#39;</span>, <span style="color:#e6db74">&#39;BsmtQual&#39;</span>,<span style="color:#e6db74">&#39;BsmtCond&#39;</span>, <span style="color:#e6db74">&#39;HeatingQC&#39;</span>,
+        <span style="color:#e6db74">&#39;KitchenQual&#39;</span>, <span style="color:#e6db74">&#39;FireplaceQu&#39;</span>, <span style="color:#e6db74">&#39;GarageQual&#39;</span>, <span style="color:#e6db74">&#39;GarageCond&#39;</span>]
+<span style="color:#66d9ef">for</span> feature <span style="color:#f92672">in</span> set1:
+    train_test_features[feature] <span style="color:#f92672">=</span> train_test_features[feature]<span style="color:#f92672">.</span>replace(map1)
 
-map2 = {'Gd': 4, 'Av': 3, 'Mn': 2, 'No': 1, 'None': 0}
-train_test_features['BsmtExposure'] = train_test_features['BsmtExposure'].replace(map2)
+map2 <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;Gd&#39;</span>: <span style="color:#ae81ff">4</span>, <span style="color:#e6db74">&#39;Av&#39;</span>: <span style="color:#ae81ff">3</span>, <span style="color:#e6db74">&#39;Mn&#39;</span>: <span style="color:#ae81ff">2</span>, <span style="color:#e6db74">&#39;No&#39;</span>: <span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;None&#39;</span>: <span style="color:#ae81ff">0</span>}
+train_test_features[<span style="color:#e6db74">&#39;BsmtExposure&#39;</span>] <span style="color:#f92672">=</span> train_test_features[<span style="color:#e6db74">&#39;BsmtExposure&#39;</span>]<span style="color:#f92672">.</span>replace(map2)
 
-map3 = {'GLQ': 4,'ALQ': 3,'BLQ': 2,'Rec': 3,'LwQ': 2,'Unf': 1,'None': 0}
-set3 = ['BsmtFinType1', 'BsmtFinType2']
-for feature in set3:
-    train_test_features[feature] = train_test_features[feature].replace(map3)
+map3 <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;GLQ&#39;</span>: <span style="color:#ae81ff">4</span>,<span style="color:#e6db74">&#39;ALQ&#39;</span>: <span style="color:#ae81ff">3</span>,<span style="color:#e6db74">&#39;BLQ&#39;</span>: <span style="color:#ae81ff">2</span>,<span style="color:#e6db74">&#39;Rec&#39;</span>: <span style="color:#ae81ff">3</span>,<span style="color:#e6db74">&#39;LwQ&#39;</span>: <span style="color:#ae81ff">2</span>,<span style="color:#e6db74">&#39;Unf&#39;</span>: <span style="color:#ae81ff">1</span>,<span style="color:#e6db74">&#39;None&#39;</span>: <span style="color:#ae81ff">0</span>}
+set3 <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;BsmtFinType1&#39;</span>, <span style="color:#e6db74">&#39;BsmtFinType2&#39;</span>]
+<span style="color:#66d9ef">for</span> feature <span style="color:#f92672">in</span> set3:
+    train_test_features[feature] <span style="color:#f92672">=</span> train_test_features[feature]<span style="color:#f92672">.</span>replace(map3)
 
-map4 = {'Y': 1, 'N': 0}
-train_test_features['CentralAir'] = train_test_features['CentralAir'].replace(map4)
+map4 <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;Y&#39;</span>: <span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;N&#39;</span>: <span style="color:#ae81ff">0</span>}
+train_test_features[<span style="color:#e6db74">&#39;CentralAir&#39;</span>] <span style="color:#f92672">=</span> train_test_features[<span style="color:#e6db74">&#39;CentralAir&#39;</span>]<span style="color:#f92672">.</span>replace(map4)
 
-map5 = {'Typ': 3, 'Min1': 2.5, 'Min2': 2, 'Mod': 1.5, 'Maj1': 1, 'Maj2': 0.5, 'Sev': 0, 'Sal': 0}
-train_test_features['Functional'] = train_test_features['Functional'].replace(map5)
-</code></pre>
-</div>
+map5 <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;Typ&#39;</span>: <span style="color:#ae81ff">3</span>, <span style="color:#e6db74">&#39;Min1&#39;</span>: <span style="color:#ae81ff">2.5</span>, <span style="color:#e6db74">&#39;Min2&#39;</span>: <span style="color:#ae81ff">2</span>, <span style="color:#e6db74">&#39;Mod&#39;</span>: <span style="color:#ae81ff">1.5</span>, <span style="color:#e6db74">&#39;Maj1&#39;</span>: <span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;Maj2&#39;</span>: <span style="color:#ae81ff">0.5</span>, <span style="color:#e6db74">&#39;Sev&#39;</span>: <span style="color:#ae81ff">0</span>, <span style="color:#e6db74">&#39;Sal&#39;</span>: <span style="color:#ae81ff">0</span>}
+train_test_features[<span style="color:#e6db74">&#39;Functional&#39;</span>] <span style="color:#f92672">=</span> train_test_features[<span style="color:#e6db74">&#39;Functional&#39;</span>]<span style="color:#f92672">.</span>replace(map5)
+</code></pre></div></div>
 <h3>3.4.4. Creation of new features from coded categorical ordinal features</h3>
 <p>Similar to what was proposed for numerical features, additional features may be derived from recently coded categorical features to emphasize key aspects of the problem under analysis. Here two new features are proposed to enhance property quality aspects:</p>
 <ul>
@@ -1104,48 +1085,42 @@ train_test_features['Functional'] = train_test_features['Functional'].replace(ma
     <li>Total exterior quality, as the product of exterior quality and exterior conditions.</li>
 </ul>
 <div class="boxborder">
-<pre><code class="language-python">train_test_features[&quot;TotalGarageQual&quot;] = train_test_features[&quot;GarageQual&quot;] * train_test_features[&quot;GarageCond&quot;]
-train_test_features[&quot;TotalExteriorQual&quot;] = train_test_features[&quot;ExterQual&quot;] * train_test_features[&quot;ExterCond&quot;]
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">train_test_features[<span style="color:#e6db74">&#34;TotalGarageQual&#34;</span>] <span style="color:#f92672">=</span> train_test_features[<span style="color:#e6db74">&#34;GarageQual&#34;</span>] <span style="color:#f92672">*</span> train_test_features[<span style="color:#e6db74">&#34;GarageCond&#34;</span>]
+train_test_features[<span style="color:#e6db74">&#34;TotalExteriorQual&#34;</span>] <span style="color:#f92672">=</span> train_test_features[<span style="color:#e6db74">&#34;ExterQual&#34;</span>] <span style="color:#f92672">*</span> train_test_features[<span style="color:#e6db74">&#34;ExterCond&#34;</span>]
+</code></pre></div></div>
 <h3>3.4.5. Feature encoding - Categorical nominal</h3>
 <p>One hot encoding is applied to categorical nominal features, where there is no evident ranking nature among categories. Please note that the Pandas 'get_dummies' method is applied to the whole 'train_test_features' dataframe. Existing numerical features will not be affected by this operation and remain as they are. Only categorical features will be coded hereby.</p>
 <div class="boxborder">
-<pre><code class="language-python">train_test_features = pd.get_dummies(train_test_features).reset_index(drop=True)
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">train_test_features <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>get_dummies(train_test_features)<span style="color:#f92672">.</span>reset_index(drop<span style="color:#f92672">=</span>True)
+</code></pre></div></div>
 <h2>3.5. Dependent variable (SalePrice) treatment</h2>
 <p>The dependent variable is right skewed (i.e. lower value observations are predominant and higher value observations are dispersed over a longer right tail). Normalization of the dependent variable through log transformation is highly recommended and performed.</p>
 <div class="boxborder">
-<pre><code class="language-python">train_targets_skew = skew(train_targets)
-print(f'Dependent variable skew factor: {train_targets_skew:.2f}')
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">train_targets_skew <span style="color:#f92672">=</span> skew(train_targets)
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;Dependent variable skew factor: {train_targets_skew:.2f}&#39;</span>)
+</code></pre></div></div>
 <p class="codeoutput">Dependent variable skew factor: 1.88</p>
 <div class="boxborder">
-<pre><code class="language-python">y_train = np.log1p(train_targets)
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">y_train <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>log1p(train_targets)
+</code></pre></div></div>
 <p>The charts below illustrate the dependent variable distribution before and after log transformation.</p>
 <div class="boxborder">
-<pre><code class="language-python">fig, ax =plt.subplots(1, 2, figsize=(16,4))
-chart1 = sns.distplot(train_targets, ax=ax[0], color='b')
-chart1.set_xlabel('SalePrice',fontsize=12)
-chart2 = sns.distplot(y_train, ax=ax[1], color='g')
-chart2.set_xlabel('SalePrice',fontsize=12)
-fig.show()
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fig, ax <span style="color:#f92672">=</span>plt<span style="color:#f92672">.</span>subplots(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">16</span>,<span style="color:#ae81ff">4</span>))
+chart1 <span style="color:#f92672">=</span> sns<span style="color:#f92672">.</span>distplot(train_targets, ax<span style="color:#f92672">=</span>ax[<span style="color:#ae81ff">0</span>], color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;b&#39;</span>)
+chart1<span style="color:#f92672">.</span>set_xlabel(<span style="color:#e6db74">&#39;SalePrice&#39;</span>,fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">12</span>)
+chart2 <span style="color:#f92672">=</span> sns<span style="color:#f92672">.</span>distplot(y_train, ax<span style="color:#f92672">=</span>ax[<span style="color:#ae81ff">1</span>], color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;g&#39;</span>)
+chart2<span style="color:#f92672">.</span>set_xlabel(<span style="color:#e6db74">&#39;SalePrice&#39;</span>,fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">12</span>)
+fig<span style="color:#f92672">.</span>show()
+</code></pre></div></div>
 <div class='row'>
     <img class="imageboxcentered" src='/house-pricing/images/dependent.png' alt=''>
 </div>
 <h2>3.6. Segregating train and test features</h2>
 <div class="boxborder">
-<pre><code class="language-python">X_train = train_test_features.iloc[:len(train_targets), :]
-X_test = train_test_features.iloc[len(train_targets):, :]
-X_train_data = pd.concat([X_train, y_train], axis=1)
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">X_train <span style="color:#f92672">=</span> train_test_features<span style="color:#f92672">.</span>iloc[:len(train_targets), :]
+X_test <span style="color:#f92672">=</span> train_test_features<span style="color:#f92672">.</span>iloc[len(train_targets):, :]
+X_train_data <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>concat([X_train, y_train], axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+</code></pre></div></div>
 <h2>3.7. Optimizing the training set before regression</h2>
 <p>In preparation for machine learning regressions, a final optimization of the training set is recommended after train and test sets have been segregated. At this point, interest resides in two very important aspects:</p>
 <ul>
@@ -1155,20 +1130,19 @@ X_train_data = pd.concat([X_train, y_train], axis=1)
 <h3>3.7.1. Features with 'zero' as the predominant value</h3>
 <p>The accumulation of features with 'zero' as their predominant value (in particular those that may have been created over one hot encoding) may lead to potential overfitting. In other words, the regression models may attempt to fit (read "accommodate") to a very limited number of 'ones' present in such features and, as a consequence, their overall performance is negatively impacted. Eliminating features with a significant relative number of zeros is highly recommended. The same threshold (99.5%) adopted in Sections 3.3.4. and 3.4.2. is considered here.</p>
 <div class="boxborder">
-<pre><code class="language-python">features_to_be_dropped = []
-for feature in X_train.columns:
-    all_value_counts = X_train[feature].value_counts()
-    zero_value_counts = all_value_counts.iloc[0]
-    if zero_value_counts / len(X_train) &amp;gt; 0.995:
-        features_to_be_dropped.append(feature)
-print('\nFeatures with predominant zeroes:\n')
-print(features_to_be_dropped)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">features_to_be_dropped <span style="color:#f92672">=</span> []
+<span style="color:#66d9ef">for</span> feature <span style="color:#f92672">in</span> X_train<span style="color:#f92672">.</span>columns:
+    all_value_counts <span style="color:#f92672">=</span> X_train[feature]<span style="color:#f92672">.</span>value_counts()
+    zero_value_counts <span style="color:#f92672">=</span> all_value_counts<span style="color:#f92672">.</span>iloc[<span style="color:#ae81ff">0</span>]
+    <span style="color:#66d9ef">if</span> zero_value_counts <span style="color:#f92672">/</span> len(X_train) <span style="color:#f92672">&amp;</span>gt; <span style="color:#ae81ff">0.995</span>:
+        features_to_be_dropped<span style="color:#f92672">.</span>append(feature)
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Features with predominant zeroes:</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
+<span style="color:#66d9ef">print</span>(features_to_be_dropped)
 
-X_train = X_train.drop(features_to_be_dropped, axis=1).copy()
-X_test = X_test.drop(features_to_be_dropped, axis=1).copy()
-X_train_data = X_train_data.drop(features_to_be_dropped, axis=1).copy()
-</code></pre>
-</div>
+X_train <span style="color:#f92672">=</span> X_train<span style="color:#f92672">.</span>drop(features_to_be_dropped, axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>copy()
+X_test <span style="color:#f92672">=</span> X_test<span style="color:#f92672">.</span>drop(features_to_be_dropped, axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>copy()
+X_train_data <span style="color:#f92672">=</span> X_train_data<span style="color:#f92672">.</span>drop(features_to_be_dropped, axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>copy()
+</code></pre></div></div>
 <p class="codeoutput">Features with predominant zeroes:
 ['MSSubClass_150', 'MSSubClass_40', 'LotConfig_FR3', 'Neighborhood_Blueste', 'Condition1_RRNe', 'Condition1_RRNn', 'Condition2_Artery', 'Condition2_Feedr', 'Condition2_PosA', 'Condition2_PosN', 'Condition2_RRAe', 'Condition2_RRAn', 'Condition2_RRNn', 'RoofStyle_Mansard', 'RoofStyle_Shed', 'RoofMatl_ClyTile', 'RoofMatl_Membran', 'RoofMatl_Metal', 'RoofMatl_Roll', 'RoofMatl_WdShake', 'RoofMatl_WdShngl', 'Exterior1st_AsphShn', 'Exterior1st_BrkComm', 'Exterior1st_CBlock', 'Exterior1st_ImStucc', 'Exterior1st_Stone', 'Exterior2nd_AsphShn', 'Exterior2nd_Brk Cmn', 'Exterior2nd_CBlock', 'Exterior2nd_Other', 'Exterior2nd_Stone', 'Foundation_Stone', 'Foundation_Wood', 'Heating_Floor', 'Heating_Grav', 'Heating_OthW', 'Heating_Wall', 'Electrical_FuseP', 'Electrical_Mix', 'GarageType_2Types', 'MiscFeature_Gar2', 'MiscFeature_Othr', 'MiscFeature_TenC', 'SaleType_CWD', 'SaleType_Con', 'SaleType_ConLI', 'SaleType_ConLw', 'SaleType_Oth', 'SaleCondition_AdjLand']</p>
 <h3>3.7.2. Outliers</h3>
@@ -1179,41 +1153,39 @@ X_train_data = X_train_data.drop(features_to_be_dropped, axis=1).copy()
 <p>Please note that this step is time/resource consuming. Accordingly, the code provided in Section 3.8.1. is commented out and must be executed only once, allowing for proper outlier mapping. Graphical inspection may be performed with the code supplied in Section 3.8.2. The outliers identified in this exercise are listed in Section 3.8.3. and dropped prior to the subsequent regression program.</p>
 <h4>3.7.2.1. Identifying relevant outliers with regression assistance</h4>
 <div class="boxborder">
-<pre><code class="language-python"># lasso_alphas = [5e-5, 1e-4, 5e-4, 1e-3]
-# lasso_outliers = make_pipeline(RobustScaler(),
-#                       LassoCV(max_iter=1e7, alphas=lasso_alphas,
-#                               random_state=42, cv=4))
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># lasso_alphas = [5e-5, 1e-4, 5e-4, 1e-3]</span>
+<span style="color:#75715e"># lasso_outliers = make_pipeline(RobustScaler(),</span>
+<span style="color:#75715e">#                       LassoCV(max_iter=1e7, alphas=lasso_alphas,</span>
+<span style="color:#75715e">#                               random_state=42, cv=4))</span>
 
-# print(f'{&quot;Identifying relevant outliers with LassoCV&quot;}')
-# score = xval_rmse_scoring(lasso_outliers, X_train, y_train, 4)
-# print(f'{&quot;All obs&quot;:&amp;lt;10}{score.mean():&amp;gt;14.8f}{score.std():&amp;gt;14.8f}')
+<span style="color:#75715e"># print(f&#39;{&#34;Identifying relevant outliers with LassoCV&#34;}&#39;)</span>
+<span style="color:#75715e"># score = xval_rmse_scoring(lasso_outliers, X_train, y_train, 4)</span>
+<span style="color:#75715e"># print(f&#39;{&#34;All obs&#34;:&amp;lt;10}{score.mean():&amp;gt;14.8f}{score.std():&amp;gt;14.8f}&#39;)</span>
 
-# outlier_mean = []
-# outlier_stdev = []
+<span style="color:#75715e"># outlier_mean = []</span>
+<span style="color:#75715e"># outlier_stdev = []</span>
 
-# for i in range(len(X_train)):
-#     X_new = X_train.copy()
-#     y_new = y_train.copy()
-#     X_new = X_new.drop(X_new.index[i])
-#     y_new = y_new.drop(y_new.index[i])
-#     score = xval_rmse_scoring(lasso_outliers, X_new, y_new, 4)
-#     outlier_mean.append(score.mean())
-#     outlier_stdev.append(score.std())
-#     print(f'{&quot;Obs &quot;:4}{i:&amp;lt;6}{score.mean():&amp;gt;14.8f}{score.std():&amp;gt;14.8f}')
+<span style="color:#75715e"># for i in range(len(X_train)):</span>
+<span style="color:#75715e">#     X_new = X_train.copy()</span>
+<span style="color:#75715e">#     y_new = y_train.copy()</span>
+<span style="color:#75715e">#     X_new = X_new.drop(X_new.index[i])</span>
+<span style="color:#75715e">#     y_new = y_new.drop(y_new.index[i])</span>
+<span style="color:#75715e">#     score = xval_rmse_scoring(lasso_outliers, X_new, y_new, 4)</span>
+<span style="color:#75715e">#     outlier_mean.append(score.mean())</span>
+<span style="color:#75715e">#     outlier_stdev.append(score.std())</span>
+<span style="color:#75715e">#     print(f&#39;{&#34;Obs &#34;:4}{i:&amp;lt;6}{score.mean():&amp;gt;14.8f}{score.std():&amp;gt;14.8f}&#39;)</span>
 
-# outlier_impact = pd.DataFrame(list(zip(outlier_mean, outlier_stdev)), columns =['Mean', 'St Dev'])
-# outlier_lower_mean = outlier_impact.sort_values(by=['Mean'], ascending=True)
-# outlier_lower_stdev = outlier_impact.sort_values(by=['St Dev'], ascending=True)
-# outlier_impact.to_csv('outlier_impact.csv')
-</code></pre>
-</div>
+<span style="color:#75715e"># outlier_impact = pd.DataFrame(list(zip(outlier_mean, outlier_stdev)), columns =[&#39;Mean&#39;, &#39;St Dev&#39;])</span>
+<span style="color:#75715e"># outlier_lower_mean = outlier_impact.sort_values(by=[&#39;Mean&#39;], ascending=True)</span>
+<span style="color:#75715e"># outlier_lower_stdev = outlier_impact.sort_values(by=[&#39;St Dev&#39;], ascending=True)</span>
+<span style="color:#75715e"># outlier_impact.to_csv(&#39;outlier_impact.csv&#39;)</span>
+</code></pre></div></div>
 <h4>3.7.2.2. Outlier inspection</h4>
 <p>The example below highlights outliers identified for observations with IDs 523 and 1298. In both cases values for the feature 'GrLivArea' (red dots on the scatter charts at right) evidently diverge from the prevailing correlation pattern.</p>
 <div class="boxborder">
-<pre><code class="language-python">assessment(X_train_data, 'SalePrice', 'GrLivArea', 523)
-assessment(X_train_data, 'SalePrice', 'GrLivArea', 1298)
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">assessment(X_train_data, <span style="color:#e6db74">&#39;SalePrice&#39;</span>, <span style="color:#e6db74">&#39;GrLivArea&#39;</span>, <span style="color:#ae81ff">523</span>)
+assessment(X_train_data, <span style="color:#e6db74">&#39;SalePrice&#39;</span>, <span style="color:#e6db74">&#39;GrLivArea&#39;</span>, <span style="color:#ae81ff">1298</span>)
+</code></pre></div></div>
 <div class='row'>
     <img class="imageboxcentered" src='/house-pricing/images/outliers_1.png' alt=''>
 </div>
@@ -1222,11 +1194,10 @@ assessment(X_train_data, 'SalePrice', 'GrLivArea', 1298)
 </div>
 <h4>3.7.2.3. Outlier removal</h4>
 <div class="boxborder">
-<pre><code class="language-python">outliers = [1298, 523, 30, 462, 588, 632, 1324]
-X_train = X_train.drop(X_train.index[outliers])
-y_train = y_train.drop(y_train.index[outliers])
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">outliers <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1298</span>, <span style="color:#ae81ff">523</span>, <span style="color:#ae81ff">30</span>, <span style="color:#ae81ff">462</span>, <span style="color:#ae81ff">588</span>, <span style="color:#ae81ff">632</span>, <span style="color:#ae81ff">1324</span>]
+X_train <span style="color:#f92672">=</span> X_train<span style="color:#f92672">.</span>drop(X_train<span style="color:#f92672">.</span>index[outliers])
+y_train <span style="color:#f92672">=</span> y_train<span style="color:#f92672">.</span>drop(y_train<span style="color:#f92672">.</span>index[outliers])
+</code></pre></div></div>
 
     </div>
   
@@ -1293,9 +1264,8 @@ y_train = y_train.drop(y_train.index[outliers])
 <h2>4.1. Cross-validation setup</h2>
 <p>KFold has been elected as the cross-validation engine of choice in this exercise. The training set is splitted in 10 folds. One fold is iteratively used at a time as a validation set.</p>
 <div class="boxborder">
-<pre><code class="language-python">kfolds = KFold(n_splits=10, shuffle=True, random_state=42)
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">kfolds <span style="color:#f92672">=</span> KFold(n_splits<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>, shuffle<span style="color:#f92672">=</span>True, random_state<span style="color:#f92672">=</span><span style="color:#ae81ff">42</span>)
+</code></pre></div></div>
 <h2>4.2. Model definition</h2>
 <p>Six regression models (ElasticNetCV, LassoCV, RidgeCV, GradientBoostingRegressor, SVR and XGBoost), covering a variety of regression strategies, techniques, cross-validation capabilities and regularization features, have been elected in this exercise. Each of them has been individually tuned to minimize error metrics and best fit the training set. Referring to the each regressor documentation is highly recommended (clickable links provided in Section 2.1.). The parameters listed below are the best obtained from these individual fitting rounds.</p>
 <p>Two additional regressors have also been considered:</p>
@@ -1305,68 +1275,66 @@ y_train = y_train.drop(y_train.index[outliers])
 </ul>
 <p>StackingCV has been chosen as the stacking regressor. In summary, StackingCV collects predictions derived from the six primary regressors and, making use of one of them, denominated 'meta regressor' (XGBoost was chosen in this exercise), produces a combined ('stacked') prediction.</p>
 <div class="boxborder">
-<pre><code class="language-python">elasticnet_alphas = [5e-5, 1e-4, 5e-4, 1e-3]
-elasticnet_l1ratios = [0.8, 0.85, 0.9, 0.95, 1]
-elasticnet = make_pipeline(RobustScaler(),
-                           ElasticNetCV(max_iter=1e7, alphas=elasticnet_alphas,
-                                        cv=kfolds, l1_ratio=elasticnet_l1ratios))
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">elasticnet_alphas <span style="color:#f92672">=</span> [<span style="color:#ae81ff">5e-5</span>, <span style="color:#ae81ff">1e-4</span>, <span style="color:#ae81ff">5e-4</span>, <span style="color:#ae81ff">1e-3</span>]
+elasticnet_l1ratios <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0.8</span>, <span style="color:#ae81ff">0.85</span>, <span style="color:#ae81ff">0.9</span>, <span style="color:#ae81ff">0.95</span>, <span style="color:#ae81ff">1</span>]
+elasticnet <span style="color:#f92672">=</span> make_pipeline(RobustScaler(),
+                           ElasticNetCV(max_iter<span style="color:#f92672">=</span><span style="color:#ae81ff">1e7</span>, alphas<span style="color:#f92672">=</span>elasticnet_alphas,
+                                        cv<span style="color:#f92672">=</span>kfolds, l1_ratio<span style="color:#f92672">=</span>elasticnet_l1ratios))
 
-lasso_alphas = [5e-5, 1e-4, 5e-4, 1e-3]
-lasso = make_pipeline(RobustScaler(),
-                      LassoCV(max_iter=1e7, alphas=lasso_alphas,
-                              random_state=42, cv=kfolds))
+lasso_alphas <span style="color:#f92672">=</span> [<span style="color:#ae81ff">5e-5</span>, <span style="color:#ae81ff">1e-4</span>, <span style="color:#ae81ff">5e-4</span>, <span style="color:#ae81ff">1e-3</span>]
+lasso <span style="color:#f92672">=</span> make_pipeline(RobustScaler(),
+                      LassoCV(max_iter<span style="color:#f92672">=</span><span style="color:#ae81ff">1e7</span>, alphas<span style="color:#f92672">=</span>lasso_alphas,
+                              random_state<span style="color:#f92672">=</span><span style="color:#ae81ff">42</span>, cv<span style="color:#f92672">=</span>kfolds))
 
-ridge_alphas = [13.5, 14, 14.5, 15, 15.5]
-ridge = make_pipeline(RobustScaler(),
-                      RidgeCV(alphas=ridge_alphas, cv=kfolds))
+ridge_alphas <span style="color:#f92672">=</span> [<span style="color:#ae81ff">13.5</span>, <span style="color:#ae81ff">14</span>, <span style="color:#ae81ff">14.5</span>, <span style="color:#ae81ff">15</span>, <span style="color:#ae81ff">15.5</span>]
+ridge <span style="color:#f92672">=</span> make_pipeline(RobustScaler(),
+                      RidgeCV(alphas<span style="color:#f92672">=</span>ridge_alphas, cv<span style="color:#f92672">=</span>kfolds))
 
-gradb = GradientBoostingRegressor(n_estimators=6000, learning_rate=0.01,
-                                  max_depth=4, max_features='sqrt',
-                                  min_samples_leaf=15, min_samples_split=10,
-                                  loss='huber', random_state=42)
+gradb <span style="color:#f92672">=</span> GradientBoostingRegressor(n_estimators<span style="color:#f92672">=</span><span style="color:#ae81ff">6000</span>, learning_rate<span style="color:#f92672">=</span><span style="color:#ae81ff">0.01</span>,
+                                  max_depth<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>, max_features<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;sqrt&#39;</span>,
+                                  min_samples_leaf<span style="color:#f92672">=</span><span style="color:#ae81ff">15</span>, min_samples_split<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>,
+                                  loss<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;huber&#39;</span>, random_state<span style="color:#f92672">=</span><span style="color:#ae81ff">42</span>)
 
-svr = make_pipeline(RobustScaler(),
-                    SVR(C=20, epsilon=0.008, gamma=0.0003))
+svr <span style="color:#f92672">=</span> make_pipeline(RobustScaler(),
+                    SVR(C<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>, epsilon<span style="color:#f92672">=</span><span style="color:#ae81ff">0.008</span>, gamma<span style="color:#f92672">=</span><span style="color:#ae81ff">0.0003</span>))
 
-xgboost = XGBRegressor(learning_rate=0.01, n_estimators=6000,
-                       max_depth=3, min_child_weight=0,
-                       gamma=0, subsample=0.7,
-                       colsample_bytree=0.7,
-                       objective='reg:squarederror', nthread=-1,
-                       scale_pos_weight=1, seed=27,
-                       reg_alpha=0.00006, random_state=42)
+xgboost <span style="color:#f92672">=</span> XGBRegressor(learning_rate<span style="color:#f92672">=</span><span style="color:#ae81ff">0.01</span>, n_estimators<span style="color:#f92672">=</span><span style="color:#ae81ff">6000</span>,
+                       max_depth<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>, min_child_weight<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>,
+                       gamma<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, subsample<span style="color:#f92672">=</span><span style="color:#ae81ff">0.7</span>,
+                       colsample_bytree<span style="color:#f92672">=</span><span style="color:#ae81ff">0.7</span>,
+                       objective<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;reg:squarederror&#39;</span>, nthread<span style="color:#f92672">=-</span><span style="color:#ae81ff">1</span>,
+                       scale_pos_weight<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, seed<span style="color:#f92672">=</span><span style="color:#ae81ff">27</span>,
+                       reg_alpha<span style="color:#f92672">=</span><span style="color:#ae81ff">0.00006</span>, random_state<span style="color:#f92672">=</span><span style="color:#ae81ff">42</span>)
 
-stackcv = StackingCVRegressor(regressors=(elasticnet, gradb, lasso, 
+stackcv <span style="color:#f92672">=</span> StackingCVRegressor(regressors<span style="color:#f92672">=</span>(elasticnet, gradb, lasso, 
                                           ridge, svr, xgboost),
-                              meta_regressor=xgboost,
-                              use_features_in_secondary=True)
-</code></pre>
-</div>
+                              meta_regressor<span style="color:#f92672">=</span>xgboost,
+                              use_features_in_secondary<span style="color:#f92672">=</span>True)
+</code></pre></div></div>
 <h2>4.3. Individual model performance on cross-validation</h2>
 <p>Each of the six elected regression models is hereby submitted to scoring based on the Root Mean Squared Error (RMSE) metric (mean and standard deviation provided through cross-validation). This step offers a first glance at individual model performance and is intended to support and frame subsequent stacking and blending phases.</p>
 <div class="boxborder">
-<pre><code class="language-python">print('Individual model scoring on cross-validation\n')
-print(f'{&quot;Model&quot;:&lt;20}{&quot;RMSE mean&quot;:&gt;12}{&quot;RMSE stdev&quot;:&gt;12}\n')
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Individual model scoring on cross-validation</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;{&#34;Model&#34;:&lt;20}{&#34;RMSE mean&#34;:&gt;12}{&#34;RMSE stdev&#34;:&gt;12}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
 
-score = xval_rmse_scoring(elasticnet, X_train, y_train, kfolds)
-print(f'{&quot;1. ElasticNetCV&quot;:&lt;20}{score.mean():&gt;12.4f}{score.std():&gt;12.4f}')
+score <span style="color:#f92672">=</span> xval_rmse_scoring(elasticnet, X_train, y_train, kfolds)
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;{&#34;1. ElasticNetCV&#34;:&lt;20}{score.mean():&gt;12.4f}{score.std():&gt;12.4f}&#39;</span>)
 
-score = xval_rmse_scoring(lasso, X_train, y_train, kfolds)
-print(f'{&quot;2. LassoCV&quot;:&lt;20}{score.mean():&gt;12.4f}{score.std():&gt;12.4f}')
+score <span style="color:#f92672">=</span> xval_rmse_scoring(lasso, X_train, y_train, kfolds)
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;{&#34;2. LassoCV&#34;:&lt;20}{score.mean():&gt;12.4f}{score.std():&gt;12.4f}&#39;</span>)
 
-score = xval_rmse_scoring(ridge, X_train, y_train, kfolds)
-print(f'{&quot;3. RidgeCV&quot;:&lt;20}{score.mean():&gt;12.4f}{score.std():&gt;12.4f}')
+score <span style="color:#f92672">=</span> xval_rmse_scoring(ridge, X_train, y_train, kfolds)
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;{&#34;3. RidgeCV&#34;:&lt;20}{score.mean():&gt;12.4f}{score.std():&gt;12.4f}&#39;</span>)
 
-score = xval_rmse_scoring(gradb, X_train, y_train, kfolds)
-print(f'{&quot;4. GradientBoosting&quot;:&lt;20}{score.mean():&gt;12.4f}{score.std():&gt;12.4f}')
+score <span style="color:#f92672">=</span> xval_rmse_scoring(gradb, X_train, y_train, kfolds)
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;{&#34;4. GradientBoosting&#34;:&lt;20}{score.mean():&gt;12.4f}{score.std():&gt;12.4f}&#39;</span>)
 
-score = xval_rmse_scoring(svr, X_train, y_train, kfolds)
-print(f'{&quot;5. SVR&quot;:&lt;20}{score.mean():&gt;12.4f}{score.std():&gt;12.4f}')
+score <span style="color:#f92672">=</span> xval_rmse_scoring(svr, X_train, y_train, kfolds)
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;{&#34;5. SVR&#34;:&lt;20}{score.mean():&gt;12.4f}{score.std():&gt;12.4f}&#39;</span>)
 
-score = xval_rmse_scoring(xgboost, X_train, y_train, kfolds)
-print(f'{&quot;6. XGBoost&quot;:&lt;20}{score.mean():&gt;12.4f}{score.std():&gt;12.4f}')
-</code></pre>
-</div>
+score <span style="color:#f92672">=</span> xval_rmse_scoring(xgboost, X_train, y_train, kfolds)
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;{&#34;6. XGBoost&#34;:&lt;20}{score.mean():&gt;12.4f}{score.std():&gt;12.4f}&#39;</span>)
+</code></pre></div></div>
 <table style="width: 100%; margin-top: 0.5em;">
     <tbody class="codeoutput">
         <tr style="width: 50%;">
@@ -1414,25 +1382,24 @@ print(f'{&quot;6. XGBoost&quot;:&lt;20}{score.mean():&gt;12.4f}{score.std():&gt;
 <h2>4.4. Individual model fitting to the training set</h2>
 <p>Here the six primary regressors and the stacking regressor are fitted to the training set.</p>
 <div class="boxborder">
-<pre><code class="language-python">print('\nFitting individual models to the training set\n')
-print(f'{&quot;1. ElasticNetCV...&quot;:&lt;20}')
-elastic_fit = elasticnet.fit(X_train, y_train)
-print(f'{&quot;2. LassoCV...&quot;:&lt;20}')
-lasso_fit = lasso.fit(X_train, y_train)
-print(f'{&quot;3. RidgeCV...&quot;:&lt;20}')
-ridge_fit = ridge.fit(X_train, y_train)
-print(f'{&quot;4. GradientBoosting...&quot;:&lt;20}')
-gradb_fit = gradb.fit(X_train, y_train)
-print(f'{&quot;5. SVR...&quot;:&lt;20}')
-svr_fit = svr.fit(X_train, y_train)
-print(f'{&quot;6. XGBoost...&quot;:&lt;20}')
-xgb_fit = xgboost.fit(X_train, y_train)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Fitting individual models to the training set</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;{&#34;1. ElasticNetCV...&#34;:&lt;20}&#39;</span>)
+elastic_fit <span style="color:#f92672">=</span> elasticnet<span style="color:#f92672">.</span>fit(X_train, y_train)
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;{&#34;2. LassoCV...&#34;:&lt;20}&#39;</span>)
+lasso_fit <span style="color:#f92672">=</span> lasso<span style="color:#f92672">.</span>fit(X_train, y_train)
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;{&#34;3. RidgeCV...&#34;:&lt;20}&#39;</span>)
+ridge_fit <span style="color:#f92672">=</span> ridge<span style="color:#f92672">.</span>fit(X_train, y_train)
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;{&#34;4. GradientBoosting...&#34;:&lt;20}&#39;</span>)
+gradb_fit <span style="color:#f92672">=</span> gradb<span style="color:#f92672">.</span>fit(X_train, y_train)
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;{&#34;5. SVR...&#34;:&lt;20}&#39;</span>)
+svr_fit <span style="color:#f92672">=</span> svr<span style="color:#f92672">.</span>fit(X_train, y_train)
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;{&#34;6. XGBoost...&#34;:&lt;20}&#39;</span>)
+xgb_fit <span style="color:#f92672">=</span> xgboost<span style="color:#f92672">.</span>fit(X_train, y_train)
 
-print('\nFitting the stacking model to the training set\n')
-print(f'{&quot;StackingCV...&quot;:&lt;20}')
-stackcv_fit = stackcv.fit(np.array(X_train), np.array(y_train))
-</code></pre>
-</div>
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Fitting the stacking model to the training set</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;{&#34;StackingCV...&#34;:&lt;20}&#39;</span>)
+stackcv_fit <span style="color:#f92672">=</span> stackcv<span style="color:#f92672">.</span>fit(np<span style="color:#f92672">.</span>array(X_train), np<span style="color:#f92672">.</span>array(y_train))
+</code></pre></div></div>
 <p class="codeoutput">Fitting individual models to the training set<br />
 1. ElasticNetCV...<br />
 2. LassoCV...<br />
@@ -1447,21 +1414,19 @@ StackingCV...</p>
 <p>A manual, detailed (though time consuming...) weight adjustment program was executed. Starting from a set of uniformly distributed weights for each prediction, weights were manually redistributed with a 1% minimum granularity. In practical terms, the method consisted in manually decreasing the weight of one particular prediction in 1%, manually increasing the weight of another particular prediction in 1% and observing the impact of such changes on the error metrics. The procedure was repeated iteratively until no further improvement of error estimates was achieved.</p>
 <p>The list below reproduces the weights obtained after the optimization procedure described above.</p>
 <div class="boxborder">
-<pre><code class="language-python">blend_weights = [0.11, 0.05, 0.00, 0.14, 0.43, 0.00, 0.27]
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">blend_weights <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0.11</span>, <span style="color:#ae81ff">0.05</span>, <span style="color:#ae81ff">0.00</span>, <span style="color:#ae81ff">0.14</span>, <span style="color:#ae81ff">0.43</span>, <span style="color:#ae81ff">0.00</span>, <span style="color:#ae81ff">0.27</span>]
+</code></pre></div></div>
 <p>Interestingly, weights associated with individually best performing regressors have their weights reduced during the weight optimization process. SVR accounts for most of the contribution to improved results, while RidgeCV and XGBoost have their contributions (surprisingly?) eclipsed by other regressors. As expected, StackingCV performed well and ranks second as a contributor.</p>
 <div class="boxborder">
-<pre><code class="language-python">y_train = np.expm1(y_train)
-y_pred = np.expm1((blend_weights[0] * elastic_fit.predict(X_train)) +
-                  (blend_weights[1] * lasso_fit.predict(X_train)) +
-                  (blend_weights[2] * ridge_fit.predict(X_train)) +
-                  (blend_weights[3] * svr_fit.predict(X_train)) +
-                  (blend_weights[4] * gradb_fit.predict(X_train)) +
-                  (blend_weights[5] * xgb_fit.predict(X_train)) +
-                  (blend_weights[6] * stackcv_fit.predict(np.array(X_train))))
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">y_train <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>expm1(y_train)
+y_pred <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>expm1((blend_weights[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">*</span> elastic_fit<span style="color:#f92672">.</span>predict(X_train)) <span style="color:#f92672">+</span>
+                  (blend_weights[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">*</span> lasso_fit<span style="color:#f92672">.</span>predict(X_train)) <span style="color:#f92672">+</span>
+                  (blend_weights[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">*</span> ridge_fit<span style="color:#f92672">.</span>predict(X_train)) <span style="color:#f92672">+</span>
+                  (blend_weights[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">*</span> svr_fit<span style="color:#f92672">.</span>predict(X_train)) <span style="color:#f92672">+</span>
+                  (blend_weights[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">*</span> gradb_fit<span style="color:#f92672">.</span>predict(X_train)) <span style="color:#f92672">+</span>
+                  (blend_weights[<span style="color:#ae81ff">5</span>] <span style="color:#f92672">*</span> xgb_fit<span style="color:#f92672">.</span>predict(X_train)) <span style="color:#f92672">+</span>
+                  (blend_weights[<span style="color:#ae81ff">6</span>] <span style="color:#f92672">*</span> stackcv_fit<span style="color:#f92672">.</span>predict(np<span style="color:#f92672">.</span>array(X_train))))
+</code></pre></div></div>
 
     </div>
   
@@ -1520,18 +1485,17 @@ y_pred = np.expm1((blend_weights[0] * elastic_fit.predict(X_train)) +
       
       <h1>5. Results</h1>
 <div class="boxborder">
-<pre><code class="language-python">rmse = np.sqrt(mean_squared_error(y_train, y_pred))
-rmsle = np.sqrt(mean_squared_log_error(y_train, y_pred))
-mae = mean_absolute_error(y_train, y_pred)
-print('\nBlend model performance on the training set\n')
-print(f'{&quot;RMSE&quot;:&lt;7} {rmse:&gt;15.8f}')
-print(f'{&quot;RMSLE&quot;:&lt;7} {rmsle:&gt;15.8f}')
-print(f'{&quot;MAE&quot;:&lt;7} {mae:&gt;15.8f}')
-</code></pre>
-</div>
-<table style="width: 45%; margin-top: 0.5em;">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">rmse <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>sqrt(mean_squared_error(y_train, y_pred))
+rmsle <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>sqrt(mean_squared_log_error(y_train, y_pred))
+mae <span style="color:#f92672">=</span> mean_absolute_error(y_train, y_pred)
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Blend model performance on the training set</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;{&#34;RMSE&#34;:&lt;7} {rmse:&gt;15.8f}&#39;</span>)
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;{&#34;RMSLE&#34;:&lt;7} {rmsle:&gt;15.8f}&#39;</span>)
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;{&#34;MAE&#34;:&lt;7} {mae:&gt;15.8f}&#39;</span>)
+</code></pre></div></div>
+<table style="min-width: 45%; max-width: 100%; margin-top: 0.5em; margin-bottom: 0.5em;">
     <tbody class="codeoutput">
-        <tr style="width: 50%;">
+        <tr>
             <td style="width: 70%; border: 0; text-align: justify; padding-left: 0.5em;">Blend model performance on the training set</td>
             <td style="width: 30%; border: 0; text-align: justify; padding-left: 0.5em;"></td>
         </tr>
@@ -1551,25 +1515,24 @@ print(f'{&quot;MAE&quot;:&lt;7} {mae:&gt;15.8f}')
 </table>
 <p>The commented code below enables generating and saving a contribution to the competition.</p>
 <div class="boxborder">
-<pre><code class="language-python"># print('\nGenerating submission')
-# submission = pd.read_csv('submission.csv')
-# submission.iloc[:, 1] = np.round_(np.expm1((blend_weights[0] * elastic_fit.predict(X_test)) +
-#                                            (blend_weights[1] * lasso_fit.predict(X_test)) +
-#                                            (blend_weights[2] * ridge_fit.predict(X_test)) +
-#                                            (blend_weights[3] * svr_fit.predict(X_test)) +
-#                                            (blend_weights[4] * gradb_fit.predict(X_test)) +
-#                                            (blend_weights[5] * xgb_fit.predict(X_test)) +
-#                                            (blend_weights[6] * stackcv_fit.predict(np.array(X_test)))))
-# submission.to_csv('submission_new.csv', index=False)
-# print('Submission saved')
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># print(&#39;\nGenerating submission&#39;)</span>
+<span style="color:#75715e"># submission = pd.read_csv(&#39;submission.csv&#39;)</span>
+<span style="color:#75715e"># submission.iloc[:, 1] = np.round_(np.expm1((blend_weights[0] * elastic_fit.predict(X_test)) +</span>
+<span style="color:#75715e">#                                            (blend_weights[1] * lasso_fit.predict(X_test)) +</span>
+<span style="color:#75715e">#                                            (blend_weights[2] * ridge_fit.predict(X_test)) +</span>
+<span style="color:#75715e">#                                            (blend_weights[3] * svr_fit.predict(X_test)) +</span>
+<span style="color:#75715e">#                                            (blend_weights[4] * gradb_fit.predict(X_test)) +</span>
+<span style="color:#75715e">#                                            (blend_weights[5] * xgb_fit.predict(X_test)) +</span>
+<span style="color:#75715e">#                                            (blend_weights[6] * stackcv_fit.predict(np.array(X_test)))))</span>
+<span style="color:#75715e"># submission.to_csv(&#39;submission_new.csv&#39;, index=False)</span>
+<span style="color:#75715e"># print(&#39;Submission saved&#39;)</span>
 
-end_time = datetime.now()
+end_time <span style="color:#f92672">=</span> datetime<span style="color:#f92672">.</span>now()
 
-print('\nStart time', start_time)
-print('End time', end_time)
-print('Time elapsed', end_time - start_time)
-</code></pre>
-</div>
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Start time&#39;</span>, start_time)
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;End time&#39;</span>, end_time)
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Time elapsed&#39;</span>, end_time <span style="color:#f92672">-</span> start_time)
+</code></pre></div></div>
 
     </div>
   

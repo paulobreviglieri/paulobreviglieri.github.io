@@ -29,7 +29,7 @@
   <meta name="description" content="">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://pcbreviglieri.github.io/smart-grid-stability/">
+  <link rel="alternate" hreflang="en-us" href="https://paulobreviglieri.com/smart-grid-stability/">
 
   
 
@@ -228,7 +228,7 @@
   <link rel="icon" type="image/png" href="/images/icon_hue0b5dbdcd29e15f3bb2c3e480ec18a0b_14701_32x32_fill_lanczos_center_2.png">
   <link rel="apple-touch-icon" type="image/png" href="/images/icon_hue0b5dbdcd29e15f3bb2c3e480ec18a0b_14701_192x192_fill_lanczos_center_2.png">
 
-  <link rel="canonical" href="https://pcbreviglieri.github.io/smart-grid-stability/">
+  <link rel="canonical" href="https://paulobreviglieri.com/smart-grid-stability/">
 
   
   
@@ -247,10 +247,10 @@
   <meta property="twitter:creator" content="@pcbreviglieri">
   
   <meta property="og:site_name" content="Paulo Breviglieri">
-  <meta property="og:url" content="https://pcbreviglieri.github.io/smart-grid-stability/">
+  <meta property="og:url" content="https://paulobreviglieri.com/smart-grid-stability/">
   <meta property="og:title" content="Smart Grid Stability with Deep Learning | Paulo Breviglieri">
-  <meta property="og:description" content=""><meta property="og:image" content="https://pcbreviglieri.github.io/images/icon_hue0b5dbdcd29e15f3bb2c3e480ec18a0b_14701_512x512_fill_lanczos_center_2.png">
-  <meta property="twitter:image" content="https://pcbreviglieri.github.io/images/icon_hue0b5dbdcd29e15f3bb2c3e480ec18a0b_14701_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
+  <meta property="og:description" content=""><meta property="og:image" content="https://paulobreviglieri.com/images/icon_hue0b5dbdcd29e15f3bb2c3e480ec18a0b_14701_512x512_fill_lanczos_center_2.png">
+  <meta property="twitter:image" content="https://paulobreviglieri.com/images/icon_hue0b5dbdcd29e15f3bb2c3e480ec18a0b_14701_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
   
     
       <meta property="article:published_time" content="2020-01-01T00:00:00&#43;00:00">
@@ -632,7 +632,7 @@
 <p>Put simply, the objective is to understand and plan for both energy production and/or consumption disturbances and fluctuations introduced by system participants in a dynamic way, taking into consideration not only technical aspects but also how participants respond to changes in the associated economic aspects (energy price).</p>
 <p>The work of researchers cited in foreword focuses on <b>Decentral Smart Grid Control</b> (DSGC) systems, a methodology strictly tied to monitoring one particular property of the grid - its frequency.</p>
 <div class='row'>
-    <img class="imageboxcentered" style="width: 50%" src='/smart-grid-stability/images/smart_grid_4_node_star.png' alt=''>
+    <img class="imageboxcentered" src='/smart-grid-stability/images/smart_grid_4_node_star.png' alt=''>
 </div>
 <h2>1.3. Addressing simplifications in the model</h2>
 <p>So we have a mathematical model with which grid instability can be predicted! The need of a tool to predict grid instability would have been met, and the binary classification ("stable" versus "unstable") problem would be solved! However, the execution of this model relies on significant <b>simplifications</b>.</p>
@@ -841,106 +841,103 @@
 <h2>4.1. Importing required libraries</h2>
 <p>Along with traditional libraries imported for tensor manipulation, mathematical operations and graphics development, three scikit-learn modules (StandardScaler as a scaler, confusion_matrix as the model performance metric of choice and KFold as the cross validation engine) and two Keras deep learning objects (Sequential and Dense) are used in this exercise.</p>
 <div class="boxborder">
-<pre><code class="language-python">import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
-import pandas as pd
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
+<span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#f92672">as</span> plt
+<span style="color:#f92672">import</span> seaborn <span style="color:#f92672">as</span> sns
+<span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
 
-from sklearn.preprocessing import StandardScaler
-from sklearn.metrics import confusion_matrix
-from sklearn.model_selection import KFold
+<span style="color:#f92672">from</span> sklearn.preprocessing <span style="color:#f92672">import</span> StandardScaler
+<span style="color:#f92672">from</span> sklearn.metrics <span style="color:#f92672">import</span> confusion_matrix
+<span style="color:#f92672">from</span> sklearn.model_selection <span style="color:#f92672">import</span> KFold
 
-from keras.models import Sequential
-from keras.layers import Dense
+<span style="color:#f92672">from</span> keras.models <span style="color:#f92672">import</span> Sequential
+<span style="color:#f92672">from</span> keras.layers <span style="color:#f92672">import</span> Dense
 
-from datetime import datetime
-</code></pre>
-</div>
+<span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
+</code></pre></div></div>
 <h2>4.2. Customized functions</h2>
 <p>Functions were developed to assist with graphical analysis of specific dataset elements (features or observations) and mapping correlation. Please refer to the respective docstrings below for details. Note that all function variable names, by coding principle, start with the "f_" string, allowing for containerized processing within the function execution environment, not affecting global variables.</p>
 <div class="boxborder">
-<pre><code class="language-python">def assessment(f_data, f_y_feature, f_x_feature, f_index=-1):
-    &quot;&quot;&quot;
-    Develops and displays a histogram and a scatter plot for a dependent / independent variable pair from
-    a dataframe and, optionally, highlights a specific observation on the plot in a different color (red).
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">assessment</span>(f_data, f_y_feature, f_x_feature, f_index<span style="color:#f92672">=-</span><span style="color:#ae81ff">1</span>):
+    <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">    Develops and displays a histogram and a scatter plot for a dependent / independent variable pair from
+</span><span style="color:#e6db74">    a dataframe and, optionally, highlights a specific observation on the plot in a different color (red).
+</span><span style="color:#e6db74">    
+</span><span style="color:#e6db74">    Also optionally, if an independent feature is not informed, the scatterplot is not displayed.
+</span><span style="color:#e6db74">    
+</span><span style="color:#e6db74">    Keyword arguments:
+</span><span style="color:#e6db74">    
+</span><span style="color:#e6db74">    f_data      Tensor containing the dependent / independent variable pair.
+</span><span style="color:#e6db74">                Pandas dataframe
+</span><span style="color:#e6db74">    f_y_feature Dependent variable designation.
+</span><span style="color:#e6db74">                String
+</span><span style="color:#e6db74">    f_x_feature Independent variable designation.
+</span><span style="color:#e6db74">                String
+</span><span style="color:#e6db74">    f_index     If greater or equal to zero, the observation denoted by f_index will be plotted in red.
+</span><span style="color:#e6db74">                Integer
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+    <span style="color:#66d9ef">for</span> f_row <span style="color:#f92672">in</span> f_data:
+        <span style="color:#66d9ef">if</span> f_index <span style="color:#f92672">&amp;</span>gt;<span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>:
+            f_color <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>where(f_data[f_row]<span style="color:#f92672">.</span>index <span style="color:#f92672">==</span> f_index,<span style="color:#e6db74">&#39;r&#39;</span>,<span style="color:#e6db74">&#39;g&#39;</span>)
+            f_hue <span style="color:#f92672">=</span> None
+        <span style="color:#66d9ef">else</span>:
+            f_color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;b&#39;</span>
+            f_hue <span style="color:#f92672">=</span> None
     
-    Also optionally, if an independent feature is not informed, the scatterplot is not displayed.
+    f_fig, f_a <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">16</span>,<span style="color:#ae81ff">4</span>))
     
-    Keyword arguments:
+    f_chart1 <span style="color:#f92672">=</span> sns<span style="color:#f92672">.</span>distplot(f_data[f_x_feature], ax<span style="color:#f92672">=</span>f_a[<span style="color:#ae81ff">0</span>], kde<span style="color:#f92672">=</span>False, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;g&#39;</span>)
+    f_chart1<span style="color:#f92672">.</span>set_xlabel(f_x_feature,fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
     
-    f_data      Tensor containing the dependent / independent variable pair.
-                Pandas dataframe
-    f_y_feature Dependent variable designation.
-                String
-    f_x_feature Independent variable designation.
-                String
-    f_index     If greater or equal to zero, the observation denoted by f_index will be plotted in red.
-                Integer
-    &quot;&quot;&quot;
-    for f_row in f_data:
-        if f_index &amp;gt;= 0:
-            f_color = np.where(f_data[f_row].index == f_index,'r','g')
-            f_hue = None
-        else:
-            f_color = 'b'
-            f_hue = None
-    
-    f_fig, f_a = plt.subplots(1, 2, figsize=(16,4))
-    
-    f_chart1 = sns.distplot(f_data[f_x_feature], ax=f_a[0], kde=False, color='g')
-    f_chart1.set_xlabel(f_x_feature,fontsize=10)
-    
-    if f_index &amp;gt;= 0:
-        f_chart2 = plt.scatter(f_data[f_x_feature], f_data[f_y_feature], c=f_color, edgecolors='w')
-        f_chart2 = plt.xlabel(f_x_feature, fontsize=10)
-        f_chart2 = plt.ylabel(f_y_feature, fontsize=10)
-    else:
-        f_chart2 = sns.scatterplot(x=f_x_feature, y=f_y_feature, data=f_data, hue=f_hue, legend=False)
-        f_chart2.set_xlabel(f_x_feature,fontsize=10)
-        f_chart2.set_ylabel(f_y_feature,fontsize=10)
+    <span style="color:#66d9ef">if</span> f_index <span style="color:#f92672">&amp;</span>gt;<span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>:
+        f_chart2 <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>scatter(f_data[f_x_feature], f_data[f_y_feature], c<span style="color:#f92672">=</span>f_color, edgecolors<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;w&#39;</span>)
+        f_chart2 <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>xlabel(f_x_feature, fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
+        f_chart2 <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>ylabel(f_y_feature, fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
+    <span style="color:#66d9ef">else</span>:
+        f_chart2 <span style="color:#f92672">=</span> sns<span style="color:#f92672">.</span>scatterplot(x<span style="color:#f92672">=</span>f_x_feature, y<span style="color:#f92672">=</span>f_y_feature, data<span style="color:#f92672">=</span>f_data, hue<span style="color:#f92672">=</span>f_hue, legend<span style="color:#f92672">=</span>False)
+        f_chart2<span style="color:#f92672">.</span>set_xlabel(f_x_feature,fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
+        f_chart2<span style="color:#f92672">.</span>set_ylabel(f_y_feature,fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
 
-    plt.show()
+    plt<span style="color:#f92672">.</span>show()
 
     
-def correlation_map(f_data, f_feature, f_number):
-    &quot;&quot;&quot;
-    Develops and displays a heatmap plot referenced to a primary feature of a dataframe, highlighting
-    the correlation among the 'n' mostly correlated features of the dataframe.
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">correlation_map</span>(f_data, f_feature, f_number):
+    <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">    Develops and displays a heatmap plot referenced to a primary feature of a dataframe, highlighting
+</span><span style="color:#e6db74">    the correlation among the &#39;n&#39; mostly correlated features of the dataframe.
+</span><span style="color:#e6db74">    
+</span><span style="color:#e6db74">    Keyword arguments:
+</span><span style="color:#e6db74">    
+</span><span style="color:#e6db74">    f_data      Tensor containing all relevant features, including the primary.
+</span><span style="color:#e6db74">                Pandas dataframe
+</span><span style="color:#e6db74">    f_feature   The primary feature.
+</span><span style="color:#e6db74">                String
+</span><span style="color:#e6db74">    f_number    The number of features most correlated to the primary feature.
+</span><span style="color:#e6db74">                Integer
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+    f_most_correlated <span style="color:#f92672">=</span> f_data<span style="color:#f92672">.</span>corr()<span style="color:#f92672">.</span>nlargest(f_number,f_feature)[f_feature]<span style="color:#f92672">.</span>index
+    f_correlation <span style="color:#f92672">=</span> f_data[f_most_correlated]<span style="color:#f92672">.</span>corr()
     
-    Keyword arguments:
-    
-    f_data      Tensor containing all relevant features, including the primary.
-                Pandas dataframe
-    f_feature   The primary feature.
-                String
-    f_number    The number of features most correlated to the primary feature.
-                Integer
-    &quot;&quot;&quot;
-    f_most_correlated = f_data.corr().nlargest(f_number,f_feature)[f_feature].index
-    f_correlation = f_data[f_most_correlated].corr()
-    
-    f_mask = np.zeros_like(f_correlation)
-    f_mask[np.triu_indices_from(f_mask)] = True
-    with sns.axes_style(&quot;white&quot;):
-        f_fig, f_ax = plt.subplots(figsize=(20, 10))
-        sns.heatmap(f_correlation, mask=f_mask, vmin=-1, vmax=1, square=True,
-                    center=0, annot=True, annot_kws={&quot;size&quot;: 8}, cmap=&quot;PRGn&quot;)
-    plt.show()
-</code></pre>
-</div>
+    f_mask <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>zeros_like(f_correlation)
+    f_mask[np<span style="color:#f92672">.</span>triu_indices_from(f_mask)] <span style="color:#f92672">=</span> True
+    <span style="color:#66d9ef">with</span> sns<span style="color:#f92672">.</span>axes_style(<span style="color:#e6db74">&#34;white&#34;</span>):
+        f_fig, f_ax <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">10</span>))
+        sns<span style="color:#f92672">.</span>heatmap(f_correlation, mask<span style="color:#f92672">=</span>f_mask, vmin<span style="color:#f92672">=-</span><span style="color:#ae81ff">1</span>, vmax<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, square<span style="color:#f92672">=</span>True,
+                    center<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, annot<span style="color:#f92672">=</span>True, annot_kws<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;size&#34;</span>: <span style="color:#ae81ff">8</span>}, cmap<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;PRGn&#34;</span>)
+    plt<span style="color:#f92672">.</span>show()
+</code></pre></div></div>
 <h2>4.3. Importing required datasets into dataframes</h2>
 <p>The augmented dataset (60,000 observations) is imported. The dependent variable is map encoded ('stable' replaced with 1, 'unstable' with 0). At last, the 60,000 observations are shuffled.</p>
 <div class="boxborder">
-<pre><code class="language-python">start_time = datetime.now()
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">start_time <span style="color:#f92672">=</span> datetime<span style="color:#f92672">.</span>now()
 
-data = pd.read_csv('smart_grid_stability_augmented.csv')
+data <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_csv(<span style="color:#e6db74">&#39;smart_grid_stability_augmented.csv&#39;</span>)
 
-map1 = {'unstable': 0, 'stable': 1}
-data['stabf'] = data['stabf'].replace(map1)
+map1 <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;unstable&#39;</span>: <span style="color:#ae81ff">0</span>, <span style="color:#e6db74">&#39;stable&#39;</span>: <span style="color:#ae81ff">1</span>}
+data[<span style="color:#e6db74">&#39;stabf&#39;</span>] <span style="color:#f92672">=</span> data[<span style="color:#e6db74">&#39;stabf&#39;</span>]<span style="color:#f92672">.</span>replace(map1)
 
-data = data.sample(frac=1)
-</code></pre>
-</div>
+data <span style="color:#f92672">=</span> data<span style="color:#f92672">.</span>sample(frac<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+</code></pre></div></div>
 
     </div>
   
@@ -1003,22 +1000,19 @@ data = data.sample(frac=1)
 <p>Distribution patterns and the relationship with the 'stab' dependent variable is charted for each of the 12 dataset features.</p>
 <p>As this data comes from simulations with predetermined fixed ranges for all features, as described in Section 3, distributions are pretty much uniform across the board, with the exception of 'p1' (absolute sum of 'p2', 'p3' and 'p4'), which follows a normal distribution (as expected) with a very small skew factor of -0.013.</p>
 <div class="boxborder">
-<pre><code class="language-python">for column in data.columns:
-    assessment(data, 'stab', column, -1)
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">for</span> column <span style="color:#f92672">in</span> data<span style="color:#f92672">.</span>columns:
+    assessment(data, <span style="color:#e6db74">&#39;stab&#39;</span>, column, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+</code></pre></div></div>
 <p>INSERT SLIDER OR GALLERY</p>
 <div class="boxborder">
-<pre><code class="language-python">data.p1.skew()
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">data<span style="color:#f92672">.</span>p1<span style="color:#f92672">.</span>skew()
+</code></pre></div></div>
 <p class="codeoutput">-0.012688423269883486</p>
 <p>The proportion of observations related to 'unstable' and 'stable' scenarios is mapped.</p>
 <div class="boxborder">
-<pre><code class="language-python">print(f'Split of &quot;unstable&quot; (0) and &quot;stable&quot; (1) observations in the original dataset:')
-print(data['stabf'].value_counts(normalize=True))
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;Split of &#34;unstable&#34; (0) and &#34;stable&#34; (1) observations in the original dataset:&#39;</span>)
+<span style="color:#66d9ef">print</span>(data[<span style="color:#e6db74">&#39;stabf&#39;</span>]<span style="color:#f92672">.</span>value_counts(normalize<span style="color:#f92672">=</span>True))
+</code></pre></div></div>
 <p class="codeoutput">Split of "unstable" (0) and "stable" (1) observations in the original dataset:<br/>
 0 0.638<br/>
 1 0.362<br/>
@@ -1026,11 +1020,10 @@ Name: stabf, dtype: float64</p>
 <h2>5.2. Correlation</h2>
 <p>It is important to verify the correlation between each numerical feature and the dependent variable, as well as correlation among numerical features leading to potential undesired colinearity. The heatmap below provides an overview of correlation between the dependent variable ('stabf') and the 12 numerical features. Note that also the alternative dependent variable ('stab') has been included just to give an idea of how correlated it is with 'stabf'. Such correlation is significant (-0.83), as it should be, which reinforces the decision to drop it, anticipated in Section 3. Also, correlation between 'p1' and its components 'p2', 'p3' and 'p4' is above average, as expected, but not as high o justify any removal. </p>
 <div class="boxborder">
-<pre><code class="language-python">correlation_map(data, 'stabf', 14)
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">correlation_map(data, <span style="color:#e6db74">&#39;stabf&#39;</span>, <span style="color:#ae81ff">14</span>)
+</code></pre></div></div>
 <div class='row'>
-    <img class="imageboxcentered" style="width: 50%" src='/smart-grid-stability/images/correl.png' alt=''>
+    <img class="imageboxcentered" src='/smart-grid-stability/images/correl.png' alt=''>
 </div>
 <h2>5.3. Segregating train and test sets</h2>
 <p>As anticipated, the features dataset will contain all 12 original predictive features, while the label dataset will contain only 'stabf' ('stab' is dropped here).</p>
@@ -1038,20 +1031,19 @@ Name: stabf, dtype: float64</p>
 <p>Even considering that the dataset is large enough and well behaved, the percentage of 'stable' and 'unstable' observations is computed for both training and testing sets, just to make sure that the original dataset distribution is maintained after the split - which proved to be the case.</p>
 <p>After splitting, Pandas dataframes and series are transformed into Numpy arrays for the remainder of the exercise.</p>
 <div class="boxborder">
-<pre><code class="language-python">X = data.iloc[:, :12]
-y = data.iloc[:, 13]
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">X <span style="color:#f92672">=</span> data<span style="color:#f92672">.</span>iloc[:, :<span style="color:#ae81ff">12</span>]
+y <span style="color:#f92672">=</span> data<span style="color:#f92672">.</span>iloc[:, <span style="color:#ae81ff">13</span>]
 
-X_training = X.iloc[:54000, :]
-y_training = y.iloc[:54000]
+X_training <span style="color:#f92672">=</span> X<span style="color:#f92672">.</span>iloc[:<span style="color:#ae81ff">54000</span>, :]
+y_training <span style="color:#f92672">=</span> y<span style="color:#f92672">.</span>iloc[:<span style="color:#ae81ff">54000</span>]
 
-X_testing = X.iloc[54000:, :]
-y_testing = y.iloc[54000:]
+X_testing <span style="color:#f92672">=</span> X<span style="color:#f92672">.</span>iloc[<span style="color:#ae81ff">54000</span>:, :]
+y_testing <span style="color:#f92672">=</span> y<span style="color:#f92672">.</span>iloc[<span style="color:#ae81ff">54000</span>:]
 
-ratio_training = y_training.value_counts(normalize=True)
-ratio_testing = y_testing.value_counts(normalize=True)
+ratio_training <span style="color:#f92672">=</span> y_training<span style="color:#f92672">.</span>value_counts(normalize<span style="color:#f92672">=</span>True)
+ratio_testing <span style="color:#f92672">=</span> y_testing<span style="color:#f92672">.</span>value_counts(normalize<span style="color:#f92672">=</span>True)
 ratio_training, ratio_testing
-</code></pre>
-</div>
+</code></pre></div></div>
 <p class="codeoutput">(0 0.638407<br/>
 1 0.361593<br/>
 Name: stabf, dtype: float64,<br/>
@@ -1059,21 +1051,19 @@ Name: stabf, dtype: float64,<br/>
 1 0.365667<br/>
 Name: stabf, dtype: float64)</p>
 <div class="boxborder">
-<pre><code class="language-python">X_training = X_training.values
-y_training = y_training.values
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">X_training <span style="color:#f92672">=</span> X_training<span style="color:#f92672">.</span>values
+y_training <span style="color:#f92672">=</span> y_training<span style="color:#f92672">.</span>values
 
-X_testing = X_testing.values
-y_testing = y_testing.values
-</code></pre>
-</div>
+X_testing <span style="color:#f92672">=</span> X_testing<span style="color:#f92672">.</span>values
+y_testing <span style="color:#f92672">=</span> y_testing<span style="color:#f92672">.</span>values
+</code></pre></div></div>
 <h2>5.4. Feature scaling</h2>
 <p>In preparation for machine learning, scaling is performed based on (fitted to) the training set and applied (with the 'transform' method) to both training and testing sets.</p>
 <div class="boxborder">
-<pre><code class="language-python">scaler = StandardScaler()
-X_training = scaler.fit_transform(X_training)
-X_testing = scaler.transform(X_testing)
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">scaler <span style="color:#f92672">=</span> StandardScaler()
+X_training <span style="color:#f92672">=</span> scaler<span style="color:#f92672">.</span>fit_transform(X_training)
+X_testing <span style="color:#f92672">=</span> scaler<span style="color:#f92672">.</span>transform(X_testing)
+</code></pre></div></div>
 
     </div>
   
@@ -1142,41 +1132,39 @@ X_testing = scaler.transform(X_testing)
 <p>As features are numerical real numbers within ranges, the choice of 'relu' as the activation function for hidden layers seems straightforward. Similarly, as this is a logistic classification exercise, where the output is binary ('0' for 'unstable', '1' for 'stable', following the map coding used in Section 4.3), the choice of 'sigmoid' as activation for the output layers seems obvious.</p>
 <p>Compilation with 'adam' as optimizer and 'binary_crossentropy' as the loss function follow the same logic. The fitting performance will be assessed using 'accuracy' as the metric of choice.</p>
 <div class='row'>
-    <img class="imageboxcentered" style="width: 50%" src='/smart-grid-stability/images/ann.png' alt=''>
+    <img class="imageboxcentered" src='/smart-grid-stability/images/ann.png' alt=''>
 </div>
 <div class="boxborder">
-<pre><code class="language-python"># ANN initialization
-classifier = Sequential()
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># ANN initialization</span>
+classifier <span style="color:#f92672">=</span> Sequential()
 
-# Input layer and first hidden layer
-classifier.add(Dense(units = 24, kernel_initializer = 'uniform', activation = 'relu', input_dim = 12))
+<span style="color:#75715e"># Input layer and first hidden layer</span>
+classifier<span style="color:#f92672">.</span>add(Dense(units <span style="color:#f92672">=</span> <span style="color:#ae81ff">24</span>, kernel_initializer <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;uniform&#39;</span>, activation <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;relu&#39;</span>, input_dim <span style="color:#f92672">=</span> <span style="color:#ae81ff">12</span>))
 
-# Second hidden layer
-classifier.add(Dense(units = 24, kernel_initializer = 'uniform', activation = 'relu'))
+<span style="color:#75715e"># Second hidden layer</span>
+classifier<span style="color:#f92672">.</span>add(Dense(units <span style="color:#f92672">=</span> <span style="color:#ae81ff">24</span>, kernel_initializer <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;uniform&#39;</span>, activation <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;relu&#39;</span>))
 
-# Third hidden layer
-classifier.add(Dense(units = 12, kernel_initializer = 'uniform', activation = 'relu'))
+<span style="color:#75715e"># Third hidden layer</span>
+classifier<span style="color:#f92672">.</span>add(Dense(units <span style="color:#f92672">=</span> <span style="color:#ae81ff">12</span>, kernel_initializer <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;uniform&#39;</span>, activation <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;relu&#39;</span>))
 
-# Single-node output layer
-classifier.add(Dense(units = 1, kernel_initializer = 'uniform', activation = 'sigmoid'))
+<span style="color:#75715e"># Single-node output layer</span>
+classifier<span style="color:#f92672">.</span>add(Dense(units <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, kernel_initializer <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;uniform&#39;</span>, activation <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;sigmoid&#39;</span>))
 
-# ANN compilation
-classifier.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'])
-</code></pre>
-</div>
+<span style="color:#75715e"># ANN compilation</span>
+classifier<span style="color:#f92672">.</span>compile(optimizer <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;adam&#39;</span>, loss <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;binary_crossentropy&#39;</span>, metrics <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;accuracy&#39;</span>])
+</code></pre></div></div>
 <h2>6.2. Model fitting</h2>
 <p>Even considering that data is well behaved and in general uniformly distributed, a cross-validation based fitting is proposed. KFold is the cross-validation engine selected, and 10 different validation sets will be utilized.</p>
 <div class="boxborder">
-<pre><code class="language-python">cross_val_round = 1
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">cross_val_round <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
 
-for train_index, val_index in KFold(10, shuffle=True, random_state=10).split(X_training):
-    x_train, x_val = X_training[train_index], X_training[val_index]
-    y_train ,y_val = y_training[train_index], y_training[val_index]
-    classifier.fit(x_train, y_train, epochs=50)
-    print(f'\nModel evaluation - Round {cross_val_round}: {classifier.evaluate(x_val, y_val)}\n')
-    cross_val_round += 1
-</code></pre>
-</div>
+<span style="color:#66d9ef">for</span> train_index, val_index <span style="color:#f92672">in</span> KFold(<span style="color:#ae81ff">10</span>, shuffle<span style="color:#f92672">=</span>True, random_state<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)<span style="color:#f92672">.</span>split(X_training):
+    x_train, x_val <span style="color:#f92672">=</span> X_training[train_index], X_training[val_index]
+    y_train ,y_val <span style="color:#f92672">=</span> y_training[train_index], y_training[val_index]
+    classifier<span style="color:#f92672">.</span>fit(x_train, y_train, epochs<span style="color:#f92672">=</span><span style="color:#ae81ff">50</span>)
+    <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Model evaluation - Round {cross_val_round}: {classifier.evaluate(x_val, y_val)}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
+    cross_val_round <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</code></pre></div></div>
 <p class="codeoutput">Epoch 1/50<br/>
 48600/48600 [==============================] - 8s 159us/step - loss: 0.2928 - accuracy: 0.8658<br/>
 Epoch 2/50<br/>
@@ -1194,10 +1182,9 @@ Model evaluation - Round 10: [0.037231814745755404, 0.9851852059364319]</p>
 <h2>6.3. Predicting smart grid stability</h2>
 <p>After fitting the model to the training set, it is time to extract predictions for the testing set and segregate those above the 'threshold' of 0.5 ('unstable' cases below the threshold, 'stable' cases above it).</p>
 <div class="boxborder">
-<pre><code class="language-python">y_pred = classifier.predict(X_testing)
-y_pred[y_pred &amp;lt;= 0.5] = 0 y_pred[y_pred &amp;gt; 0.5] = 1
-</code></pre>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">y_pred <span style="color:#f92672">=</span> classifier<span style="color:#f92672">.</span>predict(X_testing)
+y_pred[y_pred <span style="color:#f92672">&amp;</span>lt;<span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> y_pred[y_pred <span style="color:#f92672">&amp;</span>gt; <span style="color:#ae81ff">0.5</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</code></pre></div></div>
 
     </div>
   
@@ -1258,36 +1245,29 @@ y_pred[y_pred &amp;lt;= 0.5] = 0 y_pred[y_pred &amp;gt; 0.5] = 1
 <h2>7.1. Classification performance - Confusion matrix</h2>
 <p>The segregation described in Section 6.3 allows for the construction of a confusion matrix.</p>
 <div class="boxborder">
-<pre><code class="language-python">print(confusion_matrix(y_testing, y_pred))
-</code></pre>
-</div>
-<p class="codeoutput">[[3712 71]<br/>
-[ 60 2157]]</p>
-<div class="boxborder">
-<pre><code class="language-python"># Confusion Matrix
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># Confusion Matrix</span>
 
-cm = pd.DataFrame(data=confusion_matrix(y_testing, y_pred, labels=[0, 1]),
-                  index=[&quot;Actual Unstable&quot;, &quot;Actual Stable&quot;],
-                  columns=[&quot;Predicted Unstable&quot;, &quot;Predicted Stable&quot;])
+cm <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame(data<span style="color:#f92672">=</span>confusion_matrix(y_testing, y_pred, labels<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>]),
+                  index<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;Actual Unstable&#34;</span>, <span style="color:#e6db74">&#34;Actual Stable&#34;</span>],
+                  columns<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;Predicted Unstable&#34;</span>, <span style="color:#e6db74">&#34;Predicted Stable&#34;</span>])
 cm
-</code></pre>
-</div>
+</code></pre></div></div>
 <table style="width: 40%; margin-top: 0.5em;">
     <tbody class="codeoutput">
-        <tr style="width: 50%;">
+        <tr>
             <td style="width: 34%; text-align: center; border: 0;""></td>
-            <td style="width: 33%; text-align: center; border: 0;"">Predicted Normal</td>
-            <td style="width: 33%; text-align: center; border: 0;"">Predicted Opacity</td>
+            <td style="width: 33%; text-align: center; border: 0;"">Predicted Unstable</td>
+            <td style="width: 33%; text-align: center; border: 0;"">Predicted Stable</td>
         </tr>
-        <tr style="width: 50%;">
-            <td style="width: 34%; text-align: center; border: 0;"">Actual Normal</td>
-            <td style="width: 33%; text-align: center; border: 0;"">195</td>
-            <td style="width: 33%; text-align: center; border: 0;"">39</td>
+        <tr>
+            <td style="width: 34%; text-align: center; border: 0;"">Actual Unstable</td>
+            <td style="width: 33%; text-align: center; border: 0;"">3712</td>
+            <td style="width: 33%; text-align: center; border: 0;"">71</td>
         </tr>
-        <tr style="width: 50%;">
-            <td style="width: 34%; text-align: center; border: 0;"">Actual Opacity</td>
-            <td style="width: 33%; text-align: center; border: 0;"">6</td>
-            <td style="width: 33%; text-align: center; border: 0;"">384</td>
+        <tr>
+            <td style="width: 34%; text-align: center; border: 0;"">Actual Stable</td>
+            <td style="width: 33%; text-align: center; border: 0;"">60</td>
+            <td style="width: 33%; text-align: center; border: 0;"">2157</td>
         </tr>
     </tbody>
 </table>
@@ -1365,13 +1345,12 @@ cm
 	<li>It must be noted that input parameters utilized in the original DSGC simulations fall within predetermined ranges. As a follow-up step in the validation of this learning machine, it would be interesting to assess its performance using a new test set with observations obtained from simulations with input parameter values residing in other alternative ranges.</li>
 </ol>
 <div class="boxborder">
-<pre><code class="language-python">end_time = datetime.now()
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">end_time <span style="color:#f92672">=</span> datetime<span style="color:#f92672">.</span>now()
 
-print('\nStart time', start_time)
-print('End time', end_time)
-print('Time elapsed', end_time - start_time)
-</code></pre>
-</div>
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Start time&#39;</span>, start_time)
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;End time&#39;</span>, end_time)
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Time elapsed&#39;</span>, end_time <span style="color:#f92672">-</span> start_time)
+</code></pre></div></div>
 
     </div>
   
