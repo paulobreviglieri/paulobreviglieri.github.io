@@ -616,7 +616,7 @@
       
       <h1>2. Initial setup</h1>
 <h2>2.1. Importing required libraries</h2>
-<p style="text-align: justify">Along with traditional libraries imported for tensor manipulation, mathematical operations and graphics development, specific machine learning modules are used in this exercise: regressors (<a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.ElasticNet.html" target="_blank">ElasticNet</a>, <a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LassoCV.html" target="_blank">LassoCV</a>, <a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.RidgeCV.html" target="_blank">RidgeCV</a>, <a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingRegressor.html" target="_blank">GradientBoostingRegressor</a>, <a href="https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html" target="_blank">SVR</a>, <a href="https://xgboost.readthedocs.io/en/latest/#" target="_blank">XGBoost</a>, <a href="http://rasbt.github.io/mlxtend/user_guide/regressor/StackingCVRegressor/" target="_blank">StackingCVRegressor</a>), cross validation engines, a scaler and metrics methods. Comments on the choice of regressors are provided in Section 4.</p>
+<p>Along with traditional libraries imported for tensor manipulation, mathematical operations and graphics development, specific machine learning modules are used in this exercise: regressors (<a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.ElasticNet.html" target="_blank">ElasticNet</a>, <a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LassoCV.html" target="_blank">LassoCV</a>, <a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.RidgeCV.html" target="_blank">RidgeCV</a>, <a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingRegressor.html" target="_blank">GradientBoostingRegressor</a>, <a href="https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html" target="_blank">SVR</a>, <a href="https://xgboost.readthedocs.io/en/latest/#" target="_blank">XGBoost</a>, <a href="http://rasbt.github.io/mlxtend/user_guide/regressor/StackingCVRegressor/" target="_blank">StackingCVRegressor</a>), cross validation engines, a scaler and metrics methods. Comments on the choice of regressors are provided in Section 4.</p>
 <div class="boxborder">
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
 <span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
@@ -641,7 +641,7 @@
 <span style="color:#f92672">import</span> warnings
 </code></pre></div></div>
 <h2>2.2. Customized functions</h2>
-<p style="text-align: justify">Functions were developed to assist with graphical analysis of specific dataset elements (features or observations) and with cross-validation scoring of regression strategies. Please refer to the respective docstrings below for details. Note that all function variable names, by coding principle, start with the "f_" string, allowing for containerized processing within the function execution environment, not affecting global variables.</p>
+<p>Functions were developed to assist with graphical analysis of specific dataset elements (features or observations) and with cross-validation scoring of regression strategies. Please refer to the respective docstrings below for details. Note that all function variable names, by coding principle, start with the "f_" string, allowing for containerized processing within the function execution environment, not affecting global variables.</p>
 <div class="boxborder">
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">assessment</span>(f_data, f_y_feature, f_x_feature, f_index<span style="color:#f92672">=-</span><span style="color:#ae81ff">1</span>):
     <span style="color:#e6db74">&#34;&#34;&#34;
@@ -662,7 +662,7 @@
 </span><span style="color:#e6db74">                Integer
 </span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
     <span style="color:#66d9ef">for</span> f_row <span style="color:#f92672">in</span> f_data:
-        <span style="color:#66d9ef">if</span> f_index <span style="color:#f92672">&amp;</span>gt;<span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>:
+        <span style="color:#66d9ef">if</span> f_index <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>:
             f_color <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>where(f_data[f_row]<span style="color:#f92672">.</span>index <span style="color:#f92672">==</span> f_index,<span style="color:#e6db74">&#39;r&#39;</span>,<span style="color:#e6db74">&#39;g&#39;</span>)
             f_hue <span style="color:#f92672">=</span> None
         <span style="color:#66d9ef">else</span>:
@@ -674,7 +674,7 @@
     f_chart1 <span style="color:#f92672">=</span> sns<span style="color:#f92672">.</span>distplot(f_data[f_x_feature], ax<span style="color:#f92672">=</span>f_a[<span style="color:#ae81ff">0</span>], kde<span style="color:#f92672">=</span>False, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;r&#39;</span>)
     f_chart1<span style="color:#f92672">.</span>set_xlabel(f_x_feature,fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
     
-    <span style="color:#66d9ef">if</span> f_index <span style="color:#f92672">&amp;</span>gt;<span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>:
+    <span style="color:#66d9ef">if</span> f_index <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>:
         f_chart2 <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>scatter(f_data[f_x_feature], f_data[f_y_feature], c<span style="color:#f92672">=</span>f_color, edgecolors<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;w&#39;</span>)
         f_chart2 <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>xlabel(f_x_feature, fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
         f_chart2 <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>ylabel(f_y_feature, fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
@@ -733,7 +733,7 @@
                                     cv<span style="color:#f92672">=</span>f_cv))
 </code></pre></div></div>
 <h2>2.3. Importing required datasets into dataframes</h2>
-<p style="text-align: justify">Variables starting with numbers are renamed properly for further calling as dataframe elements. The original 'Id' feature is dropped and incorporated as index for observations.</p>
+<p>Variables starting with numbers are renamed properly for further calling as dataframe elements. The original 'Id' feature is dropped and incorporated as index for observations.</p>
 <div class="boxborder">
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">warnings<span style="color:#f92672">.</span>filterwarnings(<span style="color:#e6db74">&#39;ignore&#39;</span>)
 sns<span style="color:#f92672">.</span>set()
@@ -753,7 +753,7 @@ train_targets <span style="color:#f92672">=</span> train<span style="color:#f926
 test_features <span style="color:#f92672">=</span> test
 </code></pre></div></div>
 <h2>2.4. Redefinition of specific feature types (numerical vs categorical)</h2>
-<p style="text-align: justify">Specific numerical features ('MSSubClass', 'MoSold' and 'YrSold') have a discrete nature. Transforming their numerical values into strings enables further treatment as categorical features along the code.</p>
+<p>Specific numerical features ('MSSubClass', 'MoSold' and 'YrSold') have a discrete nature. Transforming their numerical values into strings enables further treatment as categorical features along the code.</p>
 <div class="boxborder">
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">train_features[<span style="color:#e6db74">&#39;MSSubClass&#39;</span>] <span style="color:#f92672">=</span> train_features[<span style="color:#e6db74">&#39;MSSubClass&#39;</span>]<span style="color:#f92672">.</span>astype(str)
 train_features[<span style="color:#e6db74">&#39;MoSold&#39;</span>] <span style="color:#f92672">=</span> train_features[<span style="color:#e6db74">&#39;MoSold&#39;</span>]<span style="color:#f92672">.</span>astype(str)
@@ -763,7 +763,7 @@ test_features[<span style="color:#e6db74">&#39;MoSold&#39;</span>] <span style="
 test_features[<span style="color:#e6db74">&#39;YrSold&#39;</span>] <span style="color:#f92672">=</span> test_features[<span style="color:#e6db74">&#39;YrSold&#39;</span>]<span style="color:#f92672">.</span>astype(str)
 </code></pre></div></div>
 <h2>2.5. Segregation of numerical and categorical features</h2>
-<p style="text-align: justify">Numerical and categorical features are identified and segregated into two speficic lists. Later, the whole train and test dataframes have their features reordered (numerical followed by categorical).</p>
+<p>Numerical and categorical features are identified and segregated into two speficic lists. Later, the whole train and test dataframes have their features reordered (numerical followed by categorical).</p>
 <div class="boxborder">
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">features_numerical <span style="color:#f92672">=</span> []
 features_categorical <span style="color:#f92672">=</span> []
@@ -894,7 +894,7 @@ train_test_features[<span style="color:#e6db74">&#39;GarageCars&#39;</span>] <sp
 
 missing_numerical<span style="color:#f92672">.</span>clear()
 <span style="color:#66d9ef">for</span> feature <span style="color:#f92672">in</span> features_numerical:
-    <span style="color:#66d9ef">if</span> train_test_features<span style="color:#f92672">.</span>count()[feature] <span style="color:#f92672">&amp;</span>lt; train_test_features<span style="color:#f92672">.</span>shape[<span style="color:#ae81ff">0</span>]:
+    <span style="color:#66d9ef">if</span> train_test_features<span style="color:#f92672">.</span>count()[feature] <span style="color:#f92672">&lt;</span> train_test_features<span style="color:#f92672">.</span>shape[<span style="color:#ae81ff">0</span>]:
         missing_numerical<span style="color:#f92672">.</span>append(feature)
 <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Numerical features with missing values after treatment: {len(missing_numerical)}&#39;</span>)
 </code></pre></div></div>
@@ -930,19 +930,19 @@ train_test_features[<span style="color:#e6db74">&#39;LotDepth&#39;</span>] <span
 high_skew <span style="color:#f92672">=</span> skew_values[skew_values <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0.5</span>]
 skew_indices <span style="color:#f92672">=</span> high_skew<span style="color:#f92672">.</span>index
 </code></pre></div></div>
-<p>Visualization of distribution and correlation with the dependent variable BEFORE normalization (only 3 most skewed variables displayed with pictures):</p>
+<p>Visualization of distribution and correlation with the dependent variable BEFORE normalization (only 3 sample skewed variables displayed with pictures):</p>
 <div class="boxborder">
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">for</span> index <span style="color:#f92672">in</span> skew_indices:
     assessment(pd<span style="color:#f92672">.</span>concat([train_test_features<span style="color:#f92672">.</span>iloc[:len(train_targets), :], train_targets], axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>), <span style="color:#e6db74">&#39;SalePrice&#39;</span>, index, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
 </code></pre></div></div>
 <div class='row'>
-    <img class="imageboxcentered" src='/house-pricing/images/before_01.png' alt=''>
+    <img class="imageboxcentered" src='/house-pricing/images/before-01.png' alt='LotFrontage before normalization'>
 </div>
 <div class='row'>
-    <img class="imageboxcentered" src='/house-pricing/images/before_02.png' alt=''>
+    <img class="imageboxcentered" src='/house-pricing/images/before-02.png' alt='LotArea before normalization'>
 </div>
 <div class='row'>
-    <img class="imageboxcentered" src='/house-pricing/images/before_03.png' alt=''>
+    <img class="imageboxcentered" src='/house-pricing/images/before-12.png' alt='GrLivArea before normalization'>
 </div>
 <div class="boxborder">
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">for</span> index <span style="color:#f92672">in</span> skew_indices:
@@ -954,13 +954,13 @@ skew_indices <span style="color:#f92672">=</span> high_skew<span style="color:#f
     assessment(pd<span style="color:#f92672">.</span>concat([train_test_features<span style="color:#f92672">.</span>iloc[:len(train_targets), :], train_targets], axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>), <span style="color:#e6db74">&#39;SalePrice&#39;</span>, index, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
 </code></pre></div></div>
 <div class='row'>
-    <img class="imageboxcentered" src='/house-pricing/images/after_01.png' alt=''>
+    <img class="imageboxcentered" src='/house-pricing/images/after-01.png' alt='LotFrontage after normalization'>
 </div>
 <div class='row'>
-    <img class="imageboxcentered" src='/house-pricing/images/after_02.png' alt=''>
+    <img class="imageboxcentered" src='/house-pricing/images/after-02.png' alt='LotArea after normalization'>
 </div>
 <div class='row'>
-    <img class="imageboxcentered" src='/house-pricing/images/after_03.png' alt=''>
+    <img class="imageboxcentered" src='/house-pricing/images/after-12.png' alt='GrLivArea after normalization'>
 </div>
 <p>It is important to mention that in specific cases a skewed pattern remains even after normalization.</p>
 <h3>3.3.4. Identifying and dropping numerical features with predominant values</h3>
@@ -970,7 +970,7 @@ skew_indices <span style="color:#f92672">=</span> high_skew<span style="color:#f
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">numerical_features_to_be_dropped <span style="color:#f92672">=</span> []
 <span style="color:#66d9ef">for</span> feature <span style="color:#f92672">in</span> features_numerical:
     predominant_value_count <span style="color:#f92672">=</span> train_test_features[feature]<span style="color:#f92672">.</span>value_counts()<span style="color:#f92672">.</span>max()
-    <span style="color:#66d9ef">if</span> predominant_value_count <span style="color:#f92672">/</span> train_test_features<span style="color:#f92672">.</span>shape[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&amp;</span>gt; <span style="color:#ae81ff">0.995</span>:
+    <span style="color:#66d9ef">if</span> predominant_value_count <span style="color:#f92672">/</span> train_test_features<span style="color:#f92672">.</span>shape[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0.995</span>:
         numerical_features_to_be_dropped<span style="color:#f92672">.</span>append(feature)
 <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Numerical features to be dropped: {numerical_features_to_be_dropped}&#39;</span>)
 train_test_features <span style="color:#f92672">=</span> train_test_features<span style="color:#f92672">.</span>drop(numerical_features_to_be_dropped, axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
@@ -989,7 +989,7 @@ updated_train_set <span style="color:#f92672">=</span> pd<span style="color:#f92
 correlation_map(updated_train_set, <span style="color:#e6db74">&#39;SalePrice&#39;</span>, <span style="color:#ae81ff">15</span>)
 </code></pre></div></div>
 <div class='row'>
-    <img class="imageboxcentered" src='/house-pricing/images/correl.png' alt=''>
+    <img class="imageboxcentered" src='/house-pricing/images/correl.png' alt='Correlation map'>
 </div>
 <p>Not surprisingly, as anticipated, features related to quality, area, number of living units and age show up as the most correlated with sale prices. This reinforces the need to devote extra attention to them.</p>
 <p>Additionally, the heatmap also highlights specific correlations among pairs of features. This is the case of GarageArea and GarageCars - the rationale behind them is obvious, as larger garages accommodate a higher number of vehicles. The data scientist must therefore keep an eye on them and consider dropping one of the pair elements if signs of colinearity show up.</p>
@@ -999,7 +999,7 @@ correlation_map(updated_train_set, <span style="color:#e6db74">&#39;SalePrice&#3
 <div class="boxborder">
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">missing_categorical <span style="color:#f92672">=</span> []
 <span style="color:#66d9ef">for</span> feature <span style="color:#f92672">in</span> features_categorical:
-    <span style="color:#66d9ef">if</span> train_test_features<span style="color:#f92672">.</span>count()[feature] <span style="color:#f92672">&amp;</span>lt; train_test_features<span style="color:#f92672">.</span>shape[<span style="color:#ae81ff">0</span>]:
+    <span style="color:#66d9ef">if</span> train_test_features<span style="color:#f92672">.</span>count()[feature] <span style="color:#f92672">&lt;</span> train_test_features<span style="color:#f92672">.</span>shape[<span style="color:#ae81ff">0</span>]:
         missing_categorical<span style="color:#f92672">.</span>append(feature)
 <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Categorical features with missing values before treatment: {len(missing_categorical)}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
 <span style="color:#66d9ef">print</span>(missing_categorical)
@@ -1039,7 +1039,7 @@ train_test_features[<span style="color:#e6db74">&#39;SaleType&#39;</span>] <span
 
 missing_categorical<span style="color:#f92672">.</span>clear()
 <span style="color:#66d9ef">for</span> feature <span style="color:#f92672">in</span> features_categorical:
-    <span style="color:#66d9ef">if</span> train_test_features<span style="color:#f92672">.</span>count()[feature] <span style="color:#f92672">&amp;</span>lt; train_test_features<span style="color:#f92672">.</span>shape[<span style="color:#ae81ff">0</span>]:
+    <span style="color:#66d9ef">if</span> train_test_features<span style="color:#f92672">.</span>count()[feature] <span style="color:#f92672">&lt;</span> train_test_features<span style="color:#f92672">.</span>shape[<span style="color:#ae81ff">0</span>]:
         missing_categorical<span style="color:#f92672">.</span>append(feature)
 <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Categorical features with missing values after treatment: {len(missing_categorical)}&#39;</span>)
 </code></pre></div></div>
@@ -1050,7 +1050,7 @@ missing_categorical<span style="color:#f92672">.</span>clear()
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">categorical_features_to_be_dropped <span style="color:#f92672">=</span> []
 <span style="color:#66d9ef">for</span> feature <span style="color:#f92672">in</span> features_categorical:
     predominant_value_count <span style="color:#f92672">=</span> train_test_features[feature]<span style="color:#f92672">.</span>value_counts()<span style="color:#f92672">.</span>max()
-    <span style="color:#66d9ef">if</span> predominant_value_count <span style="color:#f92672">/</span> train_test_features<span style="color:#f92672">.</span>shape[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&amp;</span>gt; <span style="color:#ae81ff">0.995</span>:
+    <span style="color:#66d9ef">if</span> predominant_value_count <span style="color:#f92672">/</span> train_test_features<span style="color:#f92672">.</span>shape[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0.995</span>:
         categorical_features_to_be_dropped<span style="color:#f92672">.</span>append(feature)
 <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Categorical features to be dropped: {categorical_features_to_be_dropped}&#39;</span>)
 train_test_features <span style="color:#f92672">=</span> train_test_features<span style="color:#f92672">.</span>drop(categorical_features_to_be_dropped, axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
@@ -1113,7 +1113,7 @@ chart2<span style="color:#f92672">.</span>set_xlabel(<span style="color:#e6db74"
 fig<span style="color:#f92672">.</span>show()
 </code></pre></div></div>
 <div class='row'>
-    <img class="imageboxcentered" src='/house-pricing/images/dependent.png' alt=''>
+    <img class="imageboxcentered" src='/house-pricing/images/dependent.png' alt='Dependent variable normalization'>
 </div>
 <h2>3.6. Segregating train and test features</h2>
 <div class="boxborder">
@@ -1134,7 +1134,7 @@ X_train_data <span style="color:#f92672">=</span> pd<span style="color:#f92672">
 <span style="color:#66d9ef">for</span> feature <span style="color:#f92672">in</span> X_train<span style="color:#f92672">.</span>columns:
     all_value_counts <span style="color:#f92672">=</span> X_train[feature]<span style="color:#f92672">.</span>value_counts()
     zero_value_counts <span style="color:#f92672">=</span> all_value_counts<span style="color:#f92672">.</span>iloc[<span style="color:#ae81ff">0</span>]
-    <span style="color:#66d9ef">if</span> zero_value_counts <span style="color:#f92672">/</span> len(X_train) <span style="color:#f92672">&amp;</span>gt; <span style="color:#ae81ff">0.995</span>:
+    <span style="color:#66d9ef">if</span> zero_value_counts <span style="color:#f92672">/</span> len(X_train) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0.995</span>:
         features_to_be_dropped<span style="color:#f92672">.</span>append(feature)
 <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Features with predominant zeroes:</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
 <span style="color:#66d9ef">print</span>(features_to_be_dropped)
@@ -1160,7 +1160,7 @@ X_train_data <span style="color:#f92672">=</span> X_train_data<span style="color
 
 <span style="color:#75715e"># print(f&#39;{&#34;Identifying relevant outliers with LassoCV&#34;}&#39;)</span>
 <span style="color:#75715e"># score = xval_rmse_scoring(lasso_outliers, X_train, y_train, 4)</span>
-<span style="color:#75715e"># print(f&#39;{&#34;All obs&#34;:&amp;lt;10}{score.mean():&amp;gt;14.8f}{score.std():&amp;gt;14.8f}&#39;)</span>
+<span style="color:#75715e"># print(f&#39;{&#34;All obs&#34;:&lt;10}{score.mean():&gt;14.8f}{score.std():&gt;14.8f}&#39;)</span>
 
 <span style="color:#75715e"># outlier_mean = []</span>
 <span style="color:#75715e"># outlier_stdev = []</span>
@@ -1173,7 +1173,7 @@ X_train_data <span style="color:#f92672">=</span> X_train_data<span style="color
 <span style="color:#75715e">#     score = xval_rmse_scoring(lasso_outliers, X_new, y_new, 4)</span>
 <span style="color:#75715e">#     outlier_mean.append(score.mean())</span>
 <span style="color:#75715e">#     outlier_stdev.append(score.std())</span>
-<span style="color:#75715e">#     print(f&#39;{&#34;Obs &#34;:4}{i:&amp;lt;6}{score.mean():&amp;gt;14.8f}{score.std():&amp;gt;14.8f}&#39;)</span>
+<span style="color:#75715e">#     print(f&#39;{&#34;Obs &#34;:4}{i:&lt;6}{score.mean():&gt;14.8f}{score.std():&gt;14.8f}&#39;)</span>
 
 <span style="color:#75715e"># outlier_impact = pd.DataFrame(list(zip(outlier_mean, outlier_stdev)), columns =[&#39;Mean&#39;, &#39;St Dev&#39;])</span>
 <span style="color:#75715e"># outlier_lower_mean = outlier_impact.sort_values(by=[&#39;Mean&#39;], ascending=True)</span>
@@ -1187,10 +1187,10 @@ X_train_data <span style="color:#f92672">=</span> X_train_data<span style="color
 assessment(X_train_data, <span style="color:#e6db74">&#39;SalePrice&#39;</span>, <span style="color:#e6db74">&#39;GrLivArea&#39;</span>, <span style="color:#ae81ff">1298</span>)
 </code></pre></div></div>
 <div class='row'>
-    <img class="imageboxcentered" src='/house-pricing/images/outliers_1.png' alt=''>
+    <img class="imageboxcentered" src='/house-pricing/images/outliers-1.png' alt='Outlier 1'>
 </div>
 <div class='row'>
-    <img class="imageboxcentered" src='/house-pricing/images/outliers_2.png' alt=''>
+    <img class="imageboxcentered" src='/house-pricing/images/outliers-2.png' alt='Outlier 2'>
 </div>
 <h4>3.7.2.3. Outlier removal</h4>
 <div class="boxborder">
@@ -1271,7 +1271,7 @@ y_train <span style="color:#f92672">=</span> y_train<span style="color:#f92672">
 <p>Two additional regressors have also been considered:</p>
 <ul>
     <li>RandomForestRegressor did not provide any substantial improvement to performance metrics and was discarded;</li>
-    <li>CatBoostRegressor marginally contributed to performance metric improvements but was at last discarded due to its extremely long execution time (not even the recommendations provided <a href="https://catboost.ai/docs/concepts/speed-up-training.html">here</a> sufficed to reduce the execution time penalty).</li>
+    <li>CatBoostRegressor marginally contributed to performance metric improvements but was at last discarded due to its extremely long execution time (not even the recommendations provided <a href="https://catboost.ai/docs/concepts/speed-up-training.html" target="_blank">here</a> sufficed to reduce the execution time penalty).</li>
 </ul>
 <p>StackingCV has been chosen as the stacking regressor. In summary, StackingCV collects predictions derived from the six primary regressors and, making use of one of them, denominated 'meta regressor' (XGBoost was chosen in this exercise), produces a combined ('stacked') prediction.</p>
 <div class="boxborder">
@@ -1335,45 +1335,45 @@ score <span style="color:#f92672">=</span> xval_rmse_scoring(svr, X_train, y_tra
 score <span style="color:#f92672">=</span> xval_rmse_scoring(xgboost, X_train, y_train, kfolds)
 <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;{&#34;6. XGBoost&#34;:&lt;20}{score.mean():&gt;12.4f}{score.std():&gt;12.4f}&#39;</span>)
 </code></pre></div></div>
-<table style="width: 100%; margin-top: 0.5em;">
+<table>
     <tbody class="codeoutput">
-        <tr style="width: 50%;">
-            <td style="width: 50%; padding-left: 0.5em; border: 0;">Individual model scoring on cross-validation</td>
+        <tr>
+            <td style="width: 50%; border: 0;">Individual model scoring on cross-validation</td>
             <td style="width: 25%; border: 0;"></td>
             <td style="width: 25%; border: 0;"></td>
         </tr>
-        <tr style="width: 50%;">
-            <td style="width: 50%; padding-left: 0.5em; border: 0;">Model</td>
+        <tr>
+            <td style="width: 50%; border: 0;">Model</td>
             <td style="width: 25%; border: 0;">RMSE mean</td>
             <td style="width: 25%; border: 0;">RMSE stdev</td>
         </tr>
-        <tr style="width: 50%;">
-            <td style="width: 50%; padding-left: 0.5em; border: 0;">1. ElasticNetCV</td>
+        <tr>
+            <td style="width: 50%; border: 0;">1. ElasticNetCV</td>
             <td style="width: 25%; border: 0;">0.1002</td>
             <td style="width: 25%; border: 0;">0.0157</td>
         </tr>
-        <tr style="width: 50%;">
-            <td style="width: 50%; padding-left: 0.5em; border: 0;">2. LassoCV</td>
+        <tr>
+            <td style="width: 50%; border: 0;">2. LassoCV</td>
             <td style="width: 25%; border: 0;">0.1002</td>
             <td style="width: 25%; border: 0;">0.0158</td>
         </tr>
-        <tr style="width: 50%;">
-            <td style="width: 50%; padding-left: 0.5em; border: 0;">3. RidgeCV</td>
+        <tr>
+            <td style="width: 50%; border: 0;">3. RidgeCV</td>
             <td style="width: 25%; border: 0;">0.1012</td>
             <td style="width: 25%; border: 0;">0.0159</td>
         </tr>
-        <tr style="width: 50%;">
-            <td style="width: 50%; padding-left: 0.5em; border: 0;">4. GradientBoosting</td>
+        <tr>
+            <td style="width: 50%; border: 0;">4. GradientBoosting</td>
             <td style="width: 25%; border: 0;">0.1043</td>
             <td style="width: 25%; border: 0;">0.0191</td>
         </tr>
-        <tr style="width: 50%;">
-            <td style="width: 50%; padding-left: 0.5em; border: 0;">5. SVR</td>
+        <tr>
+            <td style="width: 50%; border: 0;">5. SVR</td>
             <td style="width: 25%; border: 0;">0.1020</td>
             <td style="width: 25%; border: 0;">0.0174</td>
         </tr>
-        <tr style="width: 50%;">
-            <td style="width: 50%; padding-left: 0.5em; border: 0;">6. XGBoost</td>
+        <tr>
+            <td style="width: 50%; border: 0;">6. XGBoost</td>
             <td style="width: 25%; border: 0;">0.1021</td>
             <td style="width: 25%; border: 0;">0.0156</td>
         </tr>
@@ -1493,23 +1493,23 @@ mae <span style="color:#f92672">=</span> mean_absolute_error(y_train, y_pred)
 <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;{&#34;RMSLE&#34;:&lt;7} {rmsle:&gt;15.8f}&#39;</span>)
 <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;{&#34;MAE&#34;:&lt;7} {mae:&gt;15.8f}&#39;</span>)
 </code></pre></div></div>
-<table style="min-width: 45%; max-width: 100%; margin-top: 0.5em; margin-bottom: 0.5em;">
+<table>
     <tbody class="codeoutput">
         <tr>
-            <td style="width: 70%; border: 0; text-align: justify; padding-left: 0.5em;">Blend model performance on the training set</td>
-            <td style="width: 30%; border: 0; text-align: justify; padding-left: 0.5em;"></td>
+            <td style="width: 70%; border: 0;">Blend model performance on the training set</td>
+            <td style="width: 30%; border: 0;"></td>
         </tr>
         <tr>
-            <td style="width: 70%; border: 0; text-align: justify; padding-left: 0.5em;">RMSE</td>
-            <td style="width: 30%; border: 0; text-align: justify; padding-left: 0.5em;">8968.79293271</td>
+            <td style="width: 70%; border: 0;">RMSE</td>
+            <td style="width: 30%; border: 0;">8968.79293271</td>
         </tr>
         <tr>
-            <td style="width: 70%; border: 0; text-align: justify; padding-left: 0.5em;">RMSLE</td>
-            <td style="width: 30%; border: 0; text-align: justify; padding-left: 0.5em;">0.05219165</td>
+            <td style="width: 70%; border: 0;">RMSLE</td>
+            <td style="width: 30%; border: 0;">0.05219165</td>
         </tr>
         <tr>
-            <td style="width: 70%; border: 0; text-align: justify; padding-left: 0.5em;">MAE</td>
-            <td style="width: 30%; border: 0; text-align: justify; padding-left: 0.5em;">5642.86255414</td>
+            <td style="width: 70%; border: 0;">MAE</td>
+            <td style="width: 30%; border: 0;">5642.86255414</td>
         </tr>
     </tbody>
 </table>

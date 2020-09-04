@@ -632,7 +632,7 @@
 <p>Put simply, the objective is to understand and plan for both energy production and/or consumption disturbances and fluctuations introduced by system participants in a dynamic way, taking into consideration not only technical aspects but also how participants respond to changes in the associated economic aspects (energy price).</p>
 <p>The work of researchers cited in foreword focuses on <b>Decentral Smart Grid Control</b> (DSGC) systems, a methodology strictly tied to monitoring one particular property of the grid - its frequency.</p>
 <div class='row'>
-    <img class="imageboxcentered" src='/smart-grid-stability/images/smart_grid_4_node_star.png' alt=''>
+    <img class="imageboxcentered" src='/smart-grid-stability/images/smart-grid-4-node-star.png' alt='Smart grid - 4-node star'>
 </div>
 <h2>1.3. Addressing simplifications in the model</h2>
 <p>So we have a mathematical model with which grid instability can be predicted! The need of a tool to predict grid instability would have been met, and the binary classification ("stable" versus "unstable") problem would be solved! However, the execution of this model relies on significant <b>simplifications</b>.</p>
@@ -704,10 +704,10 @@
       
       
       <h1>2. Objectives of this machine learning exercise</h1>
-<p style="text-align: justify">Considering the nature of the problem to be investigated and the dataset properties (as described in Section 3 below), two major objectives are proposed:</p>
+<p>Considering the nature of the problem to be investigated and the dataset properties (as described in Section 3 below), two major objectives are proposed:</p>
 <ol>
-    <li style="text-align: justify">Pursue improvements in predictions with <b>deep learning</b> (Keras' Sequential model);</li>
-    <li style="text-align: justify">Take the opportunity to assess the influence of deep learning architecture (number and size of hidden layers), number of epochs and the relevance of dataset augmentation.</li>
+    <li>Pursue improvements in predictions with <b>deep learning</b> (Keras' Sequential model);</li>
+    <li>Take the opportunity to assess the influence of deep learning architecture (number and size of hidden layers), number of epochs and the relevance of dataset augmentation.</li>
 </ol>
 
     </div>
@@ -877,7 +877,7 @@
 </span><span style="color:#e6db74">                Integer
 </span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
     <span style="color:#66d9ef">for</span> f_row <span style="color:#f92672">in</span> f_data:
-        <span style="color:#66d9ef">if</span> f_index <span style="color:#f92672">&amp;</span>gt;<span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>:
+        <span style="color:#66d9ef">if</span> f_index <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>:
             f_color <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>where(f_data[f_row]<span style="color:#f92672">.</span>index <span style="color:#f92672">==</span> f_index,<span style="color:#e6db74">&#39;r&#39;</span>,<span style="color:#e6db74">&#39;g&#39;</span>)
             f_hue <span style="color:#f92672">=</span> None
         <span style="color:#66d9ef">else</span>:
@@ -889,7 +889,7 @@
     f_chart1 <span style="color:#f92672">=</span> sns<span style="color:#f92672">.</span>distplot(f_data[f_x_feature], ax<span style="color:#f92672">=</span>f_a[<span style="color:#ae81ff">0</span>], kde<span style="color:#f92672">=</span>False, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;g&#39;</span>)
     f_chart1<span style="color:#f92672">.</span>set_xlabel(f_x_feature,fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
     
-    <span style="color:#66d9ef">if</span> f_index <span style="color:#f92672">&amp;</span>gt;<span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>:
+    <span style="color:#66d9ef">if</span> f_index <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>:
         f_chart2 <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>scatter(f_data[f_x_feature], f_data[f_y_feature], c<span style="color:#f92672">=</span>f_color, edgecolors<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;w&#39;</span>)
         f_chart2 <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>xlabel(f_x_feature, fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
         f_chart2 <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>ylabel(f_y_feature, fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
@@ -1003,7 +1003,23 @@ data <span style="color:#f92672">=</span> data<span style="color:#f92672">.</spa
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">for</span> column <span style="color:#f92672">in</span> data<span style="color:#f92672">.</span>columns:
     assessment(data, <span style="color:#e6db74">&#39;stab&#39;</span>, column, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
 </code></pre></div></div>
-<p>INSERT SLIDER OR GALLERY</p>
+<p style="text-align: center">Dependent variables 'stab' and 'stabf'</p>
+<div class='row'>
+    <img class="imageboxcentered" src='/smart-grid-stability/images/dependent-stab.png' alt='Dependent variable stab'>
+</div>
+<div class='row'>
+    <img class="imageboxcentered" src='/smart-grid-stability/images/dependent-stabf.png' alt='Dependent variable stabf'>
+</div>
+<p style="text-align: center">Independent variables 'tau1', 'p1' and 'g1'</p>
+<div class='row'>
+    <img class="imageboxcentered" src='/smart-grid-stability/images/feature-tau1.png' alt='Independent variable tau1'>
+</div>
+<div class='row'>
+    <img class="imageboxcentered" src='/smart-grid-stability/images/feature-p1.png' alt='Independent variable p1'>
+</div>
+<div class='row'>
+    <img class="imageboxcentered" src='/smart-grid-stability/images/feature-g1.png' alt='Independent variable g1'>
+</div>
 <div class="boxborder">
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">data<span style="color:#f92672">.</span>p1<span style="color:#f92672">.</span>skew()
 </code></pre></div></div>
@@ -1023,7 +1039,7 @@ Name: stabf, dtype: float64</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">correlation_map(data, <span style="color:#e6db74">&#39;stabf&#39;</span>, <span style="color:#ae81ff">14</span>)
 </code></pre></div></div>
 <div class='row'>
-    <img class="imageboxcentered" src='/smart-grid-stability/images/correl.png' alt=''>
+    <img class="imageboxcentered" src='/smart-grid-stability/images/correl.png' alt='Correlation map'>
 </div>
 <h2>5.3. Segregating train and test sets</h2>
 <p>As anticipated, the features dataset will contain all 12 original predictive features, while the label dataset will contain only 'stabf' ('stab' is dropped here).</p>
@@ -1132,7 +1148,7 @@ X_testing <span style="color:#f92672">=</span> scaler<span style="color:#f92672"
 <p>As features are numerical real numbers within ranges, the choice of 'relu' as the activation function for hidden layers seems straightforward. Similarly, as this is a logistic classification exercise, where the output is binary ('0' for 'unstable', '1' for 'stable', following the map coding used in Section 4.3), the choice of 'sigmoid' as activation for the output layers seems obvious.</p>
 <p>Compilation with 'adam' as optimizer and 'binary_crossentropy' as the loss function follow the same logic. The fitting performance will be assessed using 'accuracy' as the metric of choice.</p>
 <div class='row'>
-    <img class="imageboxcentered" src='/smart-grid-stability/images/ann.png' alt=''>
+    <img class="imageboxcentered" src='/smart-grid-stability/images/ann.png' alt='Artificial neural network'>
 </div>
 <div class="boxborder">
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># ANN initialization</span>
@@ -1183,7 +1199,7 @@ Model evaluation - Round 10: [0.037231814745755404, 0.9851852059364319]</p>
 <p>After fitting the model to the training set, it is time to extract predictions for the testing set and segregate those above the 'threshold' of 0.5 ('unstable' cases below the threshold, 'stable' cases above it).</p>
 <div class="boxborder">
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">y_pred <span style="color:#f92672">=</span> classifier<span style="color:#f92672">.</span>predict(X_testing)
-y_pred[y_pred <span style="color:#f92672">&amp;</span>lt;<span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> y_pred[y_pred <span style="color:#f92672">&amp;</span>gt; <span style="color:#ae81ff">0.5</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+y_pred[y_pred <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0.5</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> y_pred[y_pred <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0.5</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
 </code></pre></div></div>
 
     </div>
@@ -1252,22 +1268,22 @@ cm <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>Da
                   columns<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;Predicted Unstable&#34;</span>, <span style="color:#e6db74">&#34;Predicted Stable&#34;</span>])
 cm
 </code></pre></div></div>
-<table style="width: 40%; margin-top: 0.5em;">
+<table>
     <tbody class="codeoutput">
         <tr>
-            <td style="width: 34%; text-align: center; border: 0;""></td>
-            <td style="width: 33%; text-align: center; border: 0;"">Predicted Unstable</td>
-            <td style="width: 33%; text-align: center; border: 0;"">Predicted Stable</td>
+            <td style="width: 34%; border: 0;"></td>
+            <td style="width: 33%; border: 0;">Predicted Unstable</td>
+            <td style="width: 33%; border: 0;">Predicted Stable</td>
         </tr>
         <tr>
-            <td style="width: 34%; text-align: center; border: 0;"">Actual Unstable</td>
-            <td style="width: 33%; text-align: center; border: 0;"">3712</td>
-            <td style="width: 33%; text-align: center; border: 0;"">71</td>
+            <td style="width: 34%; border: 0;">Actual Unstable</td>
+            <td style="width: 33%; border: 0;">3712</td>
+            <td style="width: 33%; border: 0;">71</td>
         </tr>
         <tr>
-            <td style="width: 34%; text-align: center; border: 0;"">Actual Stable</td>
-            <td style="width: 33%; text-align: center; border: 0;"">60</td>
-            <td style="width: 33%; text-align: center; border: 0;"">2157</td>
+            <td style="width: 34%; border: 0;">Actual Stable</td>
+            <td style="width: 33%; border: 0;">60</td>
+            <td style="width: 33%; border: 0;">2157</td>
         </tr>
     </tbody>
 </table>
@@ -1277,7 +1293,7 @@ cm
 <p>In addition, several other combinations were evaluated for both the original dataset with 1,000 observations and the augmented dataset with 6,000 observations. It is important to emphasize that in this comparative assessment <b>no shuffling</b> of any type, at any part of the exercise, was performed, so that the very same testing set was exposed to model after fitting for performance assessment.</p>
 <p>The table below summarizes obtained results:</p>
 <div class='row'>
-    <img class="imageboxcentered" style="width: 80%" src='/smart-grid-stability/images/alternative_configurations.png' alt=''>
+    <img class="imageboxcentered" src='/smart-grid-stability/images/alternative-configurations.png' alt='ANN alternative configurations'>
 </div>
 
     </div>

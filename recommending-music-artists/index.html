@@ -621,58 +621,58 @@
       
       <h1>1. Introduction</h1>
 <h2>1.1. Unsupervised learning</h2>
-<p style="text-align: justify">Unlike supervised learning, where machines are typically fed with pairs of known inputs and corresponding outputs to direct the learning and self-adaptation processes, in unsupervised learning machines are supplied with unlabeled responses and are expected to learn probability distributions from inference, with minimum or no human guidance. As a result, unsupervised learning machines have distinct architectures and functional principles. Traditional concepts found in supervised learning, like feedforwarding and input / output layers, are not applicable - or have different interpretations - in unsupervised learning.</p>
+<p>Unlike supervised learning, where machines are typically fed with pairs of known inputs and corresponding outputs to direct the learning and self-adaptation processes, in unsupervised learning machines are supplied with unlabeled responses and are expected to learn probability distributions from inference, with minimum or no human guidance. As a result, unsupervised learning machines have distinct architectures and functional principles. Traditional concepts found in supervised learning, like feedforwarding and input / output layers, are not applicable - or have different interpretations - in unsupervised learning.</p>
 <h2>1.2. Boltzmann machines</h2>
-<p style="text-align: justify">Botzmann machines are unsupervised learning neural networks pertaining to a family of solutions not as wide and popularly explored as others: <b>energy based models</b>. Put simply, in energy based models the system under analysis will always self-adapt to changes in its constituent elements in pursuit of the lowest possible overall compounded energy state. This concept is central in several fields of Physics, from thermodynamycs to quantum mechanics.</p>
-<p style="text-align: justify">A traditional Boltzmann machine comprises a finite set of neurons interconnected with each other.</p>
-<p style="text-align: justify">Neurons- or <b>nodes</b> - are in turn subdivided into two specific sets: <b>visible</b> and <b>hidden</b>, as described in the picture below.</p>
+<p>Botzmann machines are unsupervised learning neural networks pertaining to a family of solutions not as wide and popularly explored as others: <b>energy based models</b>. Put simply, in energy based models the system under analysis will always self-adapt to changes in its constituent elements in pursuit of the lowest possible overall compounded energy state. This concept is central in several fields of Physics, from thermodynamycs to quantum mechanics.</p>
+<p>A traditional Boltzmann machine comprises a finite set of neurons interconnected with each other.</p>
+<p>Neurons- or <b>nodes</b> - are in turn subdivided into two specific sets: <b>visible</b> and <b>hidden</b>, as described in the picture below.</p>
 <div class='row'>
-    <img class="imageboxcentered" style="width: 50%; margin-bottom: 15px;" src='/recommending-music-artists/images/bm.png' alt=''>
+    <img class="imageboxcentered" src='/recommending-music-artists/images/bm.png' alt='Boltzmann machine'>
 </div>
-<p style="text-align: justify">In an analogy with the human body, the author likes to think of <b>visible nodes</b> as the neural terminations we have in our eyes, nose, tongue and skin to capture external stimulus such as images, sounds, smells, tastes and sensations like heat, cold and pain. Accordingly, <b>hidden nodes</b> might be interpreted as the set of neurons in our brains responsible to process the information received from the neural terminations and take action - always aiming at self-adapting and conducting the organism to the most appropriate state - the 'lowest energy' state - for a given set of external circumstances.</p>
-<p style="text-align: justify">A pictorial example: if the neurons located in the optic nerves on and behind our eyes' retina (the 'visible nodes') experience a sudden increase in external light intensity, this information is quickly delivered to the neurons located in the brain's occipital lobe (the 'hidden nodes') who, in turn, process this information and 'instruct' the eye muscles to constrict pupils, so that the amount of light  reaching the retina is reduced and retina cells are preserved. The overall organism optical network is thus taken to a new optimal 'state' that will last until the environment perceived by the visible nodes change again.</p>
-<p style="text-align: justify">In a Boltzmann machine, all nodes are connected to each other. However, the adoption of such architecture in practical implementations demands higher processing and memory assigment capabilities, reason why a simplified version of Boltzmann machines - so called <b>Restricted Boltzmann Machines</b> (RBMs) - gained traction and became widely used. In RBMs, connections between visible nodes and hidden nodes are maintained, while connections among visible nodes and connections among hidden nodes are eliminated, as illustrated below.</p>
+<p>In an analogy with the human body, the author likes to think of <b>visible nodes</b> as the neural terminations we have in our eyes, nose, tongue and skin to capture external stimulus such as images, sounds, smells, tastes and sensations like heat, cold and pain. Accordingly, <b>hidden nodes</b> might be interpreted as the set of neurons in our brains responsible to process the information received from the neural terminations and take action - always aiming at self-adapting and conducting the organism to the most appropriate state - the 'lowest energy' state - for a given set of external circumstances.</p>
+<p>A pictorial example: if the neurons located in the optic nerves on and behind our eyes' retina (the 'visible nodes') experience a sudden increase in external light intensity, this information is quickly delivered to the neurons located in the brain's occipital lobe (the 'hidden nodes') who, in turn, process this information and 'instruct' the eye muscles to constrict pupils, so that the amount of light  reaching the retina is reduced and retina cells are preserved. The overall organism optical network is thus taken to a new optimal 'state' that will last until the environment perceived by the visible nodes change again.</p>
+<p>In a Boltzmann machine, all nodes are connected to each other. However, the adoption of such architecture in practical implementations demands higher processing and memory assigment capabilities, reason why a simplified version of Boltzmann machines - so called <b>Restricted Boltzmann Machines</b> (RBMs) - gained traction and became widely used. In RBMs, connections between visible nodes and hidden nodes are maintained, while connections among visible nodes and connections among hidden nodes are eliminated, as illustrated below.</p>
 <div class='row'>
-    <img class="imageboxcentered" style="width: 50%; margin-bottom: 15px;" src='/recommending-music-artists/images/rbm.png' alt=''>
+    <img class="imageboxcentered" src='/recommending-music-artists/images/rbm.png' alt='Restricted Boltzmann machine'>
 </div>
-<p style="text-align: justify">The relationship between visible and hidden nodes is governed by the weights of the corresponding connections. In addition, biases are assigned to both hidden ('a') and visible ('b') nodes.</p>
+<p>The relationship between visible and hidden nodes is governed by the weights of the corresponding connections. In addition, biases are assigned to both hidden ('a') and visible ('b') nodes.</p>
 <div class='row'>
-    <img class="imageboxcentered" style="width: 50%; margin-bottom: 15px;" src='/recommending-music-artists/images/rbm-weights-biases.png' alt=''>
+    <img class="imageboxcentered" src='/recommending-music-artists/images/rbm-weights-biases.png' alt='Weights and biases'>
 </div>
-<p style="text-align: justify">As energy based models in which the objective will always be to self-adapt pursuing the lowest scalar energy state possible, RBMs are governed by one fundamental equation describing the total 'energy' of the network in terms of the values ('states') of visible (v) and hidden (h) nodes along with weights (w) and biases (a, b), all expressed as tensors:</p>
-<p>$$\large E(v,h) = - \sum \limits _{i} a_{i} v_{i} - \sum \limits _{j} b_{j} h_{j} - \sum \limits _{i,j} v_{i} h_{j} w_{ij}$$</p>
-<p style="text-align: justify">Over training, the RBM weights and biases will be adjusted in order to minimize the overall network energy.</p>
-<p style="text-align: justify">Another relevant aspects of RBMs is their nature: RBMs are probabilistic models. Remember that at any moment the RBM will be in a particular state given by the values stored in visible and hidden nodes (neurons), linked by weights and biases. The model will operate based on the probability that a certain state of v and h can be observed. In mathematical terms, such probability will be governed by a joint  distribution - the Boltzmann Distribution, after which this type of learning machines is named:</p>
-<p>$$\large p(v,h) = \frac{1}{Z} e^{-E(v,h)}$$</p>
+<p>As energy based models in which the objective will always be to self-adapt pursuing the lowest scalar energy state possible, RBMs are governed by one fundamental equation describing the total 'energy' of the network in terms of the values ('states') of visible (v) and hidden (h) nodes along with weights (w) and biases (a, b), all expressed as tensors:</p>
+<p>$$ E(v,h) = - \sum \limits _{i} a_{i} v_{i} - \sum \limits _{j} b_{j} h_{j} - \sum \limits _{i,j} v_{i} h_{j} w_{ij}$$</p>
+<p>Over training, the RBM weights and biases will be adjusted in order to minimize the overall network energy.</p>
+<p>Another relevant aspects of RBMs is their nature: RBMs are probabilistic models. Remember that at any moment the RBM will be in a particular state given by the values stored in visible and hidden nodes (neurons), linked by weights and biases. The model will operate based on the probability that a certain state of v and h can be observed. In mathematical terms, such probability will be governed by a joint  distribution - the Boltzmann Distribution, after which this type of learning machines is named:</p>
+<p>$$ p(v,h) = \frac{1}{Z} e^{-E(v,h)}$$</p>
 <p style="text-align: center">where Z, the 'partition function', is given by:</p>
-<p>$$\large Z = \sum \limits _{v,h}  e^{-E(v,h)}$$</p>
-<p style="text-align: justify"> In Physics, the Boltzmann distribution furnishes the probability of a particle being observed in a given state with energy E. In a RBM, we are interested in the probability to observe a state of v and h based on the overall model energy. As the calculation of the joint Boltzmann probability would be complex in networks with a large numbers of combinations of visible and hidden node values (v and h), the analysis focuses instead on the calculation of the conditional probabilities of hidden nodes being in a particular state <b>given</b> the state of the visible nodes, denoted as <b>p(h|v)</b>, and also the conditional probabilities of visible nodes being in a particular state <b>given</b> the state of the hidden nodes, denoted as <b>p(v|h)</b>:</p>
-<p>$$\large p (h | v) = \prod  \limits _{i} {p (h _{i} | v)}$$</p>
-<p>$$\large p (v | h) = \prod  \limits _{i} {p (v _{i} | h)}$$</p>
-<p style="text-align: justify">In RBMs the values assigned to neurons (node) are <b>binary</b>. In other words, in RBMs we deal with 'activated' and 'non activated' states for both visible and hidden nodes.</p>
-<p style="text-align: justify">This fact allows us to derive the conditional probabilities above for the cases of hidden nodes assuming a value equal to 1 (given visible nodes at certain states) and also the conditional probabilities for the cases of visible nodes assuming a value equal to 1 (given hidden nodes at certain states). After applying the Bayes rule to conditional probabilities, we obtain:</p>
-<p>$$\large p (h_{j}=1 | v) = \frac {1}{1 + e^{(- (b_{j} + W_{j} v_{i}))}} = \sigma (b_{j} + \sum \limits _{i} v_{i} w_{ij})$$</p>
-<p>$$\large p (v_{i}=1 | h) = \frac {1}{1 + e^{(- (a_{i} + W_{i} h_{j}))}} = \sigma (a_{i} + \sum \limits _{j} h_{j} w_{ij})$$</p>
-<p style="text-align: justify">where $\large \sigma$ is our well known sigmoid function!</p>
+<p>$$ Z = \sum \limits _{v,h}  e^{-E(v,h)}$$</p>
+<p> In Physics, the Boltzmann distribution furnishes the probability of a particle being observed in a given state with energy E. In a RBM, we are interested in the probability to observe a state of v and h based on the overall model energy. As the calculation of the joint Boltzmann probability would be complex in networks with a large numbers of combinations of visible and hidden node values (v and h), the analysis focuses instead on the calculation of the conditional probabilities of hidden nodes being in a particular state <b>given</b> the state of the visible nodes, denoted as <b>p(h|v)</b>, and also the conditional probabilities of visible nodes being in a particular state <b>given</b> the state of the hidden nodes, denoted as <b>p(v|h)</b>:</p>
+<p>$$ p (h | v) = \prod  \limits _{i} {p (h _{i} | v)}$$</p>
+<p>$$ p (v | h) = \prod  \limits _{i} {p (v _{i} | h)}$$</p>
+<p>In RBMs the values assigned to neurons (node) are <b>binary</b>. In other words, in RBMs we deal with 'activated' and 'non activated' states for both visible and hidden nodes.</p>
+<p>This fact allows us to derive the conditional probabilities above for the cases of hidden nodes assuming a value equal to 1 (given visible nodes at certain states) and also the conditional probabilities for the cases of visible nodes assuming a value equal to 1 (given hidden nodes at certain states). After applying the Bayes rule to conditional probabilities, we obtain:</p>
+<p>$$ p (h_{j}=1 | v) = \frac {1}{1 + e^{(- (b_{j} + W_{j} v_{i}))}} = \sigma (b_{j} + \sum \limits _{i} v_{i} w_{ij})$$</p>
+<p>$$ p (v_{i}=1 | h) = \frac {1}{1 + e^{(- (a_{i} + W_{i} h_{j}))}} = \sigma (a_{i} + \sum \limits _{j} h_{j} w_{ij})$$</p>
+<p>where $ \sigma$ is our well known sigmoid function!</p>
 <h2>1.3. Training Boltzmann machines</h2>
-<p style="text-align: justify">RBMs are trained in a very unique, two-step approach.  Details may be found in "<em><b>A fast learning algorithm for deep belief nets</b></em>" (G.E. Hinton, S. Osindero, Department of Computer Science, University of Toronto, YW. Teh, Department of Computer Science, National University of Singapore), in which Dr. Hinton and his co-authors describe the use of 'complementary priors' to "derive a fast, greedy algorithm that can learn deep, directed belief networks".</p>
+<p>RBMs are trained in a very unique, two-step approach.  Details may be found in "<em><b>A fast learning algorithm for deep belief nets</b></em>" (G.E. Hinton, S. Osindero, Department of Computer Science, University of Toronto, YW. Teh, Department of Computer Science, National University of Singapore), in which Dr. Hinton and his co-authors describe the use of 'complementary priors' to "derive a fast, greedy algorithm that can learn deep, directed belief networks".</p>
 <h3>1.3.1. Gibbs sampling</h3>
-<p style="text-align: justify">This is an interactive process comprising the following steps, as pictured below:</p>
+<p>This is an interactive process comprising the following steps, as pictured below:</p>
 <ul>
-    <li style="text-align: justify">An input tensor $\large v_{0}$ containing binary constituent elements (1's and 0's) of a given observation is fed into visible nodes;</li>
-    <li style="text-align: justify">The activation of hidden nodes, given this input tensor, is predicted via $\large p(h|v_{0})$</li>
-    <li style="text-align: justify">A new activation of visible nodes, given the previous activation of hidden nodes, is predicted via $\large p(v|h)$</li>
-    <li style="text-align: justify">The two last steps are repeated k times until a last activation of visible nodes $\large v_{k}$ is predicted.</li>
+    <li>An input tensor $ v_{0}$ containing binary constituent elements (1's and 0's) of a given observation is fed into visible nodes;</li>
+    <li>The activation of hidden nodes, given this input tensor, is predicted via $ p(h|v_{0})$</li>
+    <li>A new activation of visible nodes, given the previous activation of hidden nodes, is predicted via $ p(v|h)$</li>
+    <li>The two last steps are repeated k times until a last activation of visible nodes $ v_{k}$ is predicted.</li>
 </ul>
 <div class='row'>
-    <img class="imageboxcentered" style="width: 50%; margin-bottom: 15px;" src='/recommending-music-artists/images/rbm-contrastive-divergence.png' alt=''>
+    <img class="imageboxcentered" src='/recommending-music-artists/images/rbm-contrastive-divergence.png' alt='Contrastive divergence'>
 </div>
 <h3>1.3.2. Contrastive divergence</h3>
-<p style="text-align: justify">Updating weights (and biases) is the primary objective of any neural network training program.</p>
-<p style="text-align: justify">In the case of RBMs, the weight tensor is updated through a method called Contrastive Divergence. In a summarized fashion, the activation probabilities of hidden node tensors $\large h_{0}$ and $\large h_{k}$ are calculated from visible node tensors $\large v_{0}$ and $\large v_{k}$. The difference between the <b>outer products</b> of such activation probabilities with input tensors $\large v_{0}$ and $\large v_{k}$ will lead to an updated version of the weight tensor:</p>
-<p>$$\large \Delta W = v_{0} \otimes {p (h_{0} | v_{0})} - v_{k} \otimes {p (h_{k} | v_{k})}$$</p>
-<p style="text-align: justify">At last, a new set of updated weights at step 'm' can be estimated with gradient ascent:</p>
-<p>$$\large W_{m} = W_{m-1} + \Delta W$$</p>
+<p>Updating weights (and biases) is the primary objective of any neural network training program.</p>
+<p>In the case of RBMs, the weight tensor is updated through a method called Contrastive Divergence. In a summarized fashion, the activation probabilities of hidden node tensors $ h_{0}$ and $ h_{k}$ are calculated from visible node tensors $ v_{0}$ and $ v_{k}$. The difference between the <b>outer products</b> of such activation probabilities with input tensors $ v_{0}$ and $ v_{k}$ will lead to an updated version of the weight tensor:</p>
+<p>$$ \Delta W = v_{0} \otimes {p (h_{0} | v_{0})} - v_{k} \otimes {p (h_{k} | v_{k})}$$</p>
+<p>At last, a new set of updated weights at step 'm' can be estimated with gradient ascent:</p>
+<p>$$ W_{m} = W_{m-1} + \Delta W$$</p>
 
     </div>
   
@@ -755,7 +755,7 @@
 <p>The traditional approach (i.e. assigning 1 to 'scrobbled' artists and '0' to 'not scrobbled' artists) would not bring to the analysis how popular a given artist is for a given user. An artist with 1 scrobble would be given the same weight as an artist with, let's say, 1,000 scrobbles. Let's see how the machine performs under these assumptions.</p>
 <p>The selected approach is portrayed below.</p>
 <div class='row'>
-    <img class="imageboxcentered" style="width: 45%; margin-bottom: 15px;" src='/recommending-music-artists/images/rbm-feeding.png' alt=''>
+    <img class="imageboxcentered" src='/recommending-music-artists/images/rbm-feeding.png' alt='RBM feeding'>
 </div>
 
     </div>
@@ -814,7 +814,7 @@
       
       
       <h1>3. The dataset</h1>
-<p>The dataset utilized in this deep learning exercise is a summarized, sanitized subset of the one released at <b>The 2nd International Workshop on Information Heterogeneity and Fusion in Recommender Systems</b> (HetRec 2011), currently hosted at the GroupLens website (<a href="https://grouplens.org/datasets/hetrec-2011/">here</a>).</p>
+<p>The dataset utilized in this deep learning exercise is a summarized, sanitized subset of the one released at <b>The 2nd International Workshop on Information Heterogeneity and Fusion in Recommender Systems</b> (HetRec 2011), currently hosted at the GroupLens website (<a href="https://grouplens.org/datasets/hetrec-2011/" target="_blank">here</a>).</p>
 <p>Sanitization included: (a) artist name mispelling correction and standardization; (b) reassignment of artists referenced with two or more artist id's; (c) removal of artists listed as 'unknown' or through their website addresses.</p>
 <p>The original dataset contains a larger number of files, including tag-related information, in addition to users, artists and scrobble counts. last.fm was contacted by the author and asked for some recent version of this content, in similar format, with no return until June 15th, 2020.</p>
 <p>Two dataset files were selected and preprocessed for use in this work:</p>
@@ -826,43 +826,43 @@
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">scrobbles <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_csv(<span style="color:#e6db74">&#39;/home/pb/Development/Projects/Jupyter/Music Artist Recommendations/lastfm_user_scrobbles.csv&#39;</span>, header <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>)
 scrobbles<span style="color:#f92672">.</span>head()
 </code></pre></div></div>
-<table style="width: 40%; margin-top: 0.5em;">
+<table>
     <tbody class="codeoutput">
-        <tr style="width: 50%;">
-            <td style="width: 10%; text-align: center; border: 0;""></td>
-            <td style="width: 30%; text-align: center; border: 0;"">user_id</td>
-            <td style="width: 30%; text-align: center; border: 0;"">artist_id</td>
-            <td style="width: 30%; text-align: center; border: 0;"">scrobbles</td>
+        <tr>
+            <td style="width: 10%; border: 0;"></td>
+            <td style="width: 30%; border: 0;">user_id</td>
+            <td style="width: 30%; border: 0;">artist_id</td>
+            <td style="width: 30%; border: 0;">scrobbles</td>
         </tr>
-        <tr style="width: 50%;">
-            <td style="width: 10%; text-align: center; border: 0;"">0</td>
-            <td style="width: 30%; text-align: center; border: 0;"">1</td>
-            <td style="width: 30%; text-align: center; border: 0;"">4562</td>
-            <td style="width: 30%; text-align: center; border: 0;"">13883</td>
+        <tr>
+            <td style="width: 10%; border: 0;">0</td>
+            <td style="width: 30%; border: 0;">1</td>
+            <td style="width: 30%; border: 0;">4562</td>
+            <td style="width: 30%; border: 0;">13883</td>
         </tr>
-        <tr style="width: 50%;">
-            <td style="width: 10%; text-align: center; border: 0;"">1</td>
-            <td style="width: 30%; text-align: center; border: 0;"">1</td>
-            <td style="width: 30%; text-align: center; border: 0;"">10191</td>
-            <td style="width: 30%; text-align: center; border: 0;"">11690</td>
+        <tr>
+            <td style="width: 10%; border: 0;">1</td>
+            <td style="width: 30%; border: 0;">1</td>
+            <td style="width: 30%; border: 0;">10191</td>
+            <td style="width: 30%; border: 0;">11690</td>
         </tr>
-        <tr style="width: 50%;">
-            <td style="width: 10%; text-align: center; border: 0;"">2</td>
-            <td style="width: 30%; text-align: center; border: 0;"">1</td>
-            <td style="width: 30%; text-align: center; border: 0;"">494</td>
-            <td style="width: 30%; text-align: center; border: 0;"">11351</td>
+        <tr>
+            <td style="width: 10%; border: 0;">2</td>
+            <td style="width: 30%; border: 0;">1</td>
+            <td style="width: 30%; border: 0;">494</td>
+            <td style="width: 30%; border: 0;">11351</td>
         </tr>
-        <tr style="width: 50%;">
-            <td style="width: 10%; text-align: center; border: 0;"">3</td>
-            <td style="width: 30%; text-align: center; border: 0;"">1</td>
-            <td style="width: 30%; text-align: center; border: 0;"">6673</td>
-            <td style="width: 30%; text-align: center; border: 0;"">10300</td>
+        <tr>
+            <td style="width: 10%; border: 0;">3</td>
+            <td style="width: 30%; border: 0;">1</td>
+            <td style="width: 30%; border: 0;">6673</td>
+            <td style="width: 30%; border: 0;">10300</td>
         </tr>
-        <tr style="width: 50%;">
-            <td style="width: 10%; text-align: center; border: 0;"">4</td>
-            <td style="width: 30%; text-align: center; border: 0;"">1</td>
-            <td style="width: 30%; text-align: center; border: 0;"">8402</td>
-            <td style="width: 30%; text-align: center; border: 0;"">8983</td>
+        <tr>
+            <td style="width: 10%; border: 0;">4</td>
+            <td style="width: 30%; border: 0;">1</td>
+            <td style="width: 30%; border: 0;">8402</td>
+            <td style="width: 30%; border: 0;">8983</td>
         </tr>
     </tbody>
 </table>
@@ -872,43 +872,43 @@ scrobbles<span style="color:#f92672">.</span>head()
 scrobbles[<span style="color:#e6db74">&#39;scrobbles&#39;</span>] <span style="color:#f92672">=</span> scrobbles[<span style="color:#e6db74">&#39;scrobbles&#39;</span>]<span style="color:#f92672">.</span>fillna(<span style="color:#ae81ff">0.5</span>)
 scrobbles<span style="color:#f92672">.</span>head()
 </code></pre></div></div>
-<table style="width: 40%; margin-top: 0.5em;">
+<table>
     <tbody class="codeoutput">
-        <tr style="width: 50%;">
-            <td style="width: 10%; text-align: center; border: 0;""></td>
-            <td style="width: 30%; text-align: center; border: 0;"">user_id</td>
-            <td style="width: 30%; text-align: center; border: 0;"">artist_id</td>
-            <td style="width: 30%; text-align: center; border: 0;"">scrobbles</td>
+        <tr>
+            <td style="width: 10%; border: 0;"></td>
+            <td style="width: 30%; border: 0;">user_id</td>
+            <td style="width: 30%; border: 0;">artist_id</td>
+            <td style="width: 30%; border: 0;">scrobbles</td>
         </tr>
-        <tr style="width: 50%;">
-            <td style="width: 10%; text-align: center; border: 0;"">0</td>
-            <td style="width: 30%; text-align: center; border: 0;"">1</td>
-            <td style="width: 30%; text-align: center; border: 0;"">4562</td>
-            <td style="width: 30%; text-align: center; border: 0;"">1.000000</td>
+        <tr>
+            <td style="width: 10%; border: 0;">0</td>
+            <td style="width: 30%; border: 0;">1</td>
+            <td style="width: 30%; border: 0;">4562</td>
+            <td style="width: 30%; border: 0;">1.000000</td>
         </tr>
-        <tr style="width: 50%;">
-            <td style="width: 10%; text-align: center; border: 0;"">1</td>
-            <td style="width: 30%; text-align: center; border: 0;"">1</td>
-            <td style="width: 30%; text-align: center; border: 0;"">10191</td>
-            <td style="width: 30%; text-align: center; border: 0;"">0.825509</td>
+        <tr>
+            <td style="width: 10%; border: 0;">1</td>
+            <td style="width: 30%; border: 0;">1</td>
+            <td style="width: 30%; border: 0;">10191</td>
+            <td style="width: 30%; border: 0;">0.825509</td>
         </tr>
-        <tr style="width: 50%;">
-            <td style="width: 10%; text-align: center; border: 0;"">2</td>
-            <td style="width: 30%; text-align: center; border: 0;"">1</td>
-            <td style="width: 30%; text-align: center; border: 0;"">494</td>
-            <td style="width: 30%; text-align: center; border: 0;"">0.798536</td>
+        <tr>
+            <td style="width: 10%; border: 0;">2</td>
+            <td style="width: 30%; border: 0;">1</td>
+            <td style="width: 30%; border: 0;">494</td>
+            <td style="width: 30%; border: 0;">0.798536</td>
         </tr>
-        <tr style="width: 50%;">
-            <td style="width: 10%; text-align: center; border: 0;"">3</td>
-            <td style="width: 30%; text-align: center; border: 0;"">1</td>
-            <td style="width: 30%; text-align: center; border: 0;"">6673</td>
-            <td style="width: 30%; text-align: center; border: 0;"">0.714911</td>
+        <tr>
+            <td style="width: 10%; border: 0;">3</td>
+            <td style="width: 30%; border: 0;">1</td>
+            <td style="width: 30%; border: 0;">6673</td>
+            <td style="width: 30%; border: 0;">0.714911</td>
         </tr>
-        <tr style="width: 50%;">
-            <td style="width: 10%; text-align: center; border: 0;"">4</td>
-            <td style="width: 30%; text-align: center; border: 0;"">1</td>
-            <td style="width: 30%; text-align: center; border: 0;"">8402</td>
-            <td style="width: 30%; text-align: center; border: 0;"">0.610121</td>
+        <tr>
+            <td style="width: 10%; border: 0;">4</td>
+            <td style="width: 30%; border: 0;">1</td>
+            <td style="width: 30%; border: 0;">8402</td>
+            <td style="width: 30%; border: 0;">0.610121</td>
         </tr>
     </tbody>
 </table>
@@ -970,7 +970,7 @@ scrobbles<span style="color:#f92672">.</span>head()
       
       <h1>4. Initial setup</h1>
 <h2>4.1. Importing required libraries</h2>
-<p>Along with traditional libraries imported for tensor manipulation and mathematical operations, <a href="https://pytorch.org/">PyTorch</a> is used in this exercise.</p>
+<p>Along with traditional libraries imported for tensor manipulation and mathematical operations, <a href="https://pytorch.org/" target="_blank">PyTorch</a> is used in this exercise.</p>
 <div class="boxborder">
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
 <span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
@@ -1058,7 +1058,7 @@ start_time <span style="color:#f92672">=</span> datetime<span style="color:#f926
                 <span style="color:#66d9ef">for</span> c_k <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">10</span>):
                     _,c_hk <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>sample_h(c_vk)
                     _,c_vk <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>sample_v(c_hk)
-                    c_vk[c_v0<span style="color:#f92672">&amp;</span>lt;<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> c_v0[c_v0<span style="color:#f92672">&amp;</span>lt;<span style="color:#ae81ff">0</span>]
+                    c_vk[c_v0<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> c_v0[c_v0<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">0</span>]
                 c_phk,_ <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>sample_h(c_vk)
                 self<span style="color:#f92672">.</span>W <span style="color:#f92672">+=</span> (torch<span style="color:#f92672">.</span>mm(c_v0<span style="color:#f92672">.</span>t(), c_ph0) <span style="color:#f92672">-</span> torch<span style="color:#f92672">.</span>mm(c_vk<span style="color:#f92672">.</span>t(), c_phk))<span style="color:#f92672">.</span>t()
                 self<span style="color:#f92672">.</span>b <span style="color:#f92672">+=</span> torch<span style="color:#f92672">.</span>sum((c_v0 <span style="color:#f92672">-</span> c_vk), <span style="color:#ae81ff">0</span>)
@@ -1144,7 +1144,7 @@ start_time <span style="color:#f92672">=</span> datetime<span style="color:#f926
 </span><span style="color:#e6db74">        f_user_id - The user for which preferred artists will be assessed and recommendations will be provided
 </span><span style="color:#e6db74">        f_top - Number of most preferred and most recommended music artists for user &#39;f_user_id&#39;
 </span><span style="color:#e6db74">        &#34;&#34;&#34;</span>
-        <span style="color:#66d9ef">if</span> f_user_id <span style="color:#f92672">&amp;</span>lt; <span style="color:#ae81ff">1515</span>:
+        <span style="color:#66d9ef">if</span> f_user_id <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">1515</span>:
             f_user_sample <span style="color:#f92672">=</span> f_train_set[f_user_id <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>:f_user_id]
         <span style="color:#66d9ef">else</span>:
             f_user_sample <span style="color:#f92672">=</span> f_test_set[f_user_id <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>:f_user_id]
@@ -1163,7 +1163,7 @@ start_time <span style="color:#f92672">=</span> datetime<span style="color:#f926
         <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">User {f_user_id} may be interested in...</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
         f_nb_recommendations <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
         f_i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-        <span style="color:#66d9ef">while</span> f_nb_recommendations <span style="color:#f92672">&amp;</span>lt; f_top:
+        <span style="color:#66d9ef">while</span> f_nb_recommendations <span style="color:#f92672">&lt;</span> f_top:
             f_pred_artist <span style="color:#f92672">=</span> f_prediction_list[f_i]
             <span style="color:#66d9ef">if</span> f_pred_artist <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> f_fan_list:
                 <span style="color:#66d9ef">print</span>(f_artist_list[f_artist_list<span style="color:#f92672">.</span>artist_id <span style="color:#f92672">==</span> f_pred_artist <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>iloc[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">1</span>])
@@ -1358,7 +1358,7 @@ Test loss (MAbsE): 0.00022517</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">artist_list <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_csv(<span style="color:#e6db74">&#39;/home/pb/Development/Projects/Jupyter/Music Artist Recommendations/lastfm_artist_list.csv&#39;</span>, header <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>)
 </code></pre></div></div>
 <div class='row'>
-    <img class="imageboxcentered" style="width: 60%" src='/recommending-music-artists/images/user-1-preferences.png' alt=''>
+    <img class="imageboxcentered" src='/recommending-music-artists/images/user-1-preferences.png' alt='User 1515 preferences'>
 </div>
 <div class="boxborder">
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">preferred_recommended(artist_list, training_set, test_set, model, <span style="color:#ae81ff">1515</span>, <span style="color:#ae81ff">10</span>)
@@ -1386,7 +1386,7 @@ Hilary Duff<br/>
 Anahi<br/>
 Miley Cyrus</p>
 <div class='row'>
-    <img class="imageboxcentered" style="width: 60%" src='/recommending-music-artists/images/user-2-preferences.png' alt=''>
+    <img class="imageboxcentered" src='/recommending-music-artists/images/user-2-preferences.png' alt='User 1789 preferences'>
 </div>
 <div class="boxborder">
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">preferred_recommended(artist_list, training_set, test_set, model, <span style="color:#ae81ff">1789</span>, <span style="color:#ae81ff">10</span>)

@@ -620,7 +620,7 @@
 <p>COVID-19 is contagious in humans. SARS-CoV-2 primarily spreads among individuals through physical contact and via respiratory droplets originated from coughing or sneezing. The virus seizes human cells by binding to the angiotensin receptor converting enzyme 2 (ACE2).</p>
 <p>In humans, corona viruses are known to cause respiratory infections ranging from a common cold to more severe diseases such as the Middle East Respiratory Syndrome (MERS) and Severe Acute Respiratory Syndrome (SARS). In the case of COVID-19, usual symptoms include fever, cough, fatigue, shortness of breath, smell and taste disturbs.</p>
 <div class='row'>
-    <img class="imageboxcentered" style="width: 25%; margin-bottom: 15px;" src='/detecting-pneumonia/images/SARS-CoV-2.png' alt=''>
+    <img class="imageboxcentered" src='/detecting-pneumonia/images/SARS-CoV-2.png' alt='SARS-CoV-2'>
 </div>
 <p style="text-align: center">Illustration of a SARS-CoV-2 virion <a href="https://en.wikipedia.org/wiki/Severe_acute_respiratory_syndrome_coronavirus_2" target="_blank">(<em>Wikipedia</em>)</a></p>
 <p>SARS-CoV-2 may spread through respiratory airways reaching the lungs, where it may lead to the development of severe viral pneumonia, identified as the final death cause in most lethal cases of COVID-19. Lung monitoring for pneumonia has gained greater importance over the COVID-19 outbreak.</p>
@@ -629,7 +629,7 @@
 <p style="text-align: center; padding-left: 5em; padding-right: 5em">"<em><b>Pneumonia</b> is an inflammatory condition of the lung affecting primarily the small air sacs known as alveoli. Symptoms typically include some combination of productive or dry cough, chest pain, fever and difficulty breathing. (...) Pneumonia is usually caused by infection with viruses or bacteria and less commonly by other microorganisms, certain medications or conditions such as autoimmune diseases. Risk factors include cystic fibrosis, chronic obstructive pulmonary disease (COPD), sickle cell disease, asthma, diabetes, heart failure, a history of smoking, a poor ability to cough such as following a stroke and a weak immune system. Diagnosis is often based on symptoms and physical examination. <b>Chest X-ray</b>, blood tests, and culture of the sputum may help confirm the diagnosis. (...) Each year, pneumonia affects about 450 million people globally (7% of the population) and results in about 4 million deaths.</em>"</p>
 <p>Along with physical examination, <b>imaging diagnosis</b> plays a central role in the detection of pneumonia. <b>Chest radiographs</b> are frequently used in diagnosis procedures and represent a fast, cost-effective alternative to map the nature, features and extension of lung inflammations. X-ray radiograph image <b>opacity areas</b> are commonly correlated to pneumonia affected regions.</p>
 <div class='row'>
-    <img class="imageboxcentered" style="width: 60%; margin-bottom: 15px;" src='/detecting-pneumonia/images/pneumonia-normal-abnormal.png' alt=''>
+    <img class="imageboxcentered" src='/detecting-pneumonia/images/pneumonia-normal-abnormal.png' alt='Normal and abnormal chest radiographs'>
 </div>
 <p style="text-align: center">Normal (left) and abnormal (right) chest radiographs - Increased opacity suggests a pneumonia occurrence</p>
 <p>The identification of opacities in chest x-ray images is sometimes challenging, even for experienced practitioners. Artificial intelligence and computer vision techniques have been extensively used over the past few years as ancillary tools in pneumonia diagnosis.</p>
@@ -921,7 +921,7 @@ hyper_mode <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39
     <li>A <b>full connection pair of layers</b> with 64 and 1 neuron, respectively, responsible to perform binary classification ('normal' or 'pneumonia').</li>
 </ol>
 <div class='row'>
-    <img class="imageboxcentered" style="width: 75%" src='/detecting-pneumonia/images/cnn.png' alt=''>
+    <img class="imageboxcentered" src='/detecting-pneumonia/images/cnn.png' alt='convolutional neural network'>
 </div>
 <p>The model is compiled using '<a href="https://keras.io/api/optimizers/adam/" target="_blank">adam</a>' (stochastic gradient descent method based on adaptive estimation of first-order and second-order moments) as the <b>optimization function</b>. Since this is a classification problem ('normal' versus 'pneumonia' cases), '<a href="https://keras.io/api/losses/probabilistic_losses/#binary_crossentropy-function" target="_blank">binary_crossentropy</a>' is elected as the loss function. Performance will be assessed via the '<b>accuracy</b>' metric.</p>
 <div class="boxborder">
@@ -1034,7 +1034,7 @@ plt<span style="color:#f92672">.</span>tight_layout()
 plt<span style="color:#f92672">.</span>show()
 </code></pre></div></div>
 <div class='row'>
-    <img class="imageboxcentered" style="width: 80%" src='/detecting-pneumonia/images/pneumonia-first-batch.png' alt=''>
+    <img class="imageboxcentered" src='/detecting-pneumonia/images/pneumonia-first-batch.png' alt='First batch'>
 </div>
 <h2>5.4. Fitting the model</h2>
 <p>As we are dealing with a relatively large dataset and augmentation has been implemented, '<b>fit_generator</b>' is our method of choice for fitting purposes. (<b>Note</b>: 'fit' also supports data augmentation from TensorFlow 2.2.0, so it could also be used in this exercise. As the code may be forked by coders not equipped with TF 2.2.0, the original method, 'fit_generator', has been maintained herein.)</p>
@@ -1095,7 +1095,7 @@ test_set <span style="color:#f92672">=</span> test_gen<span style="color:#f92672
 <span style="color:#75715e"># Making Predictions</span>
 
 predictions <span style="color:#f92672">=</span> classifier<span style="color:#f92672">.</span>predict_generator(test_set)
-predictions[predictions <span style="color:#f92672">&amp;</span>lt;<span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> predictions[predictions <span style="color:#f92672">&amp;</span>gt; <span style="color:#ae81ff">0.5</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+predictions[predictions <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0.5</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> predictions[predictions <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0.5</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
 </code></pre></div></div>
 
     </div>
@@ -1164,22 +1164,22 @@ cm <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>Da
                   columns<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;Predicted Normal&#34;</span>, <span style="color:#e6db74">&#34;Predicted Pneumonia&#34;</span>])
 cm
 </code></pre></div></div>
-<table style="width: 40%; margin-top: 0.5em;">
+<table>
     <tbody class="codeoutput">
-        <tr style="width: 50%;">
-            <td style="width: 34%; text-align: center; border: 0;"></td>
-            <td style="width: 33%; text-align: center; border: 0;">Predicted Normal</td>
-            <td style="width: 33%; text-align: center; border: 0;">Predicted Opacity</td>
+        <tr>
+            <td style="width: 28%; border: 0;"></td>
+            <td style="width: 36%; border: 0;">Predicted Normal</td>
+            <td style="width: 36%; border: 0;">Predicted Opacity</td>
         </tr>
-        <tr style="width: 50%;">
-            <td style="width: 34%; text-align: center; border: 0;">Actual Normal</td>
-            <td style="width: 33%; text-align: center; border: 0;">195</td>
-            <td style="width: 33%; text-align: center; border: 0;">39</td>
+        <tr>
+            <td style="width: 28%; border: 0;">Actual Normal</td>
+            <td style="width: 36%; border: 0;">195</td>
+            <td style="width: 36%; border: 0;">39</td>
         </tr>
-        <tr style="width: 50%;">
-            <td style="width: 34%; text-align: center; border: 0;">Actual Stable</td>
-            <td style="width: 33%; text-align: center; border: 0;">6</td>
-            <td style="width: 33%; text-align: center; border: 0;">384</td>
+        <tr>
+            <td style="width: 28%; border: 0;">Actual Stable</td>
+            <td style="width: 36%; border: 0;">6</td>
+            <td style="width: 36%; border: 0;">384</td>
         </tr>
     </tbody>
 </table>

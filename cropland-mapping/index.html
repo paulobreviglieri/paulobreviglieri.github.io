@@ -554,12 +554,12 @@
       <h1 style="text-align: center; font-size: 30px; color: #ff3000;">Cropland Mapping with Random Forests and Neural Networks</h1>
 <p>July 6, 2020 - By Paulo Breviglieri</p>
 <h1>Foreword</h1>
-<p>This case study is based on the "<b>Crop mapping using fused optical-radar dataset</b>", created by <a href="http://i-khosravi.ir/">Dr. Iman Khosravi</a> (Department of Remote Sensing & GIS, Faculty of Geography, University of Tehran, Iran) and donated to the <b>University of California, Irvine (UCI) Machine Learning Repository</b> (<a href="https://archive.ics.uci.edu/ml/datasets/Crop+mapping+using+fused+optical-radar+data+set">here</a>), where it is currently hosted.</p>
+<p>This case study is based on the "<b>Crop mapping using fused optical-radar dataset</b>", created by <a href="http://i-khosravi.ir/">Dr. Iman Khosravi</a> (Department of Remote Sensing & GIS, Faculty of Geography, University of Tehran, Iran) and donated to the <b>University of California, Irvine (UCI) Machine Learning Repository</b> (<a href="https://archive.ics.uci.edu/ml/datasets/Crop+mapping+using+fused+optical-radar+data+set" target="_blank">here</a>), where it is currently hosted.</p>
 <p>Dr. Khosravi's co-authored papers mentioned in the dataset repository provide the background information supporting this machine learning exercise:</p>
 <ol>
-    <li>"<em><b><a href="http://i-khosravi.ir/_sources/tres2019.pdf">A random forest-based framework for crop mapping using temporal, spectral, textural and polarimetric observations</a></b></em>" (Khosravi, I., & Alavipanah, S. K., International Journal of Remote Sensing, 2019, 40(18), 7221-7251), in which the overall strategy to combine both radar and optical-based information is described;</li>
+    <li>"<em><b><a href="http://i-khosravi.ir/_sources/tres2019.pdf" target="_blank">A random forest-based framework for crop mapping using temporal, spectral, textural and polarimetric observations</a></b></em>" (Khosravi, I., & Alavipanah, S. K., International Journal of Remote Sensing, 2019, 40(18), 7221-7251), in which the overall strategy to combine both radar and optical-based information is described;</li>
     <p></p>
-    <li>"<em><b><a href="http://i-khosravi.ir/_sources/tres2018b.pdf">MSMD: maximum separability and minimum dependency feature selection for cropland classification from optical and radar data</a></b></em>" (Khosravi, I., et al., International Journal of Remote Sensing, 2018, 39(8), 2159-2176), in which a feature selection procedure aiming at reducing data dimensionality and improving cropland classification accuracy, in light of high feature intercorrelation, is described.</li>
+    <li>"<em><b><a href="http://i-khosravi.ir/_sources/tres2018b.pdf" target="_blank">MSMD: maximum separability and minimum dependency feature selection for cropland classification from optical and radar data</a></b></em>" (Khosravi, I., et al., International Journal of Remote Sensing, 2018, 39(8), 2159-2176), in which a feature selection procedure aiming at reducing data dimensionality and improving cropland classification accuracy, in light of high feature intercorrelation, is described.</li>
 </ol>
 <p>The author is particularly thankful for Dr. Khosravi's interest and comments on the overall dataset origin and structure, as well as on objectives and results achieved in previous studies.</p>
 <p>Logic enhancement and code forking are always welcome and encouraged provided that this work is properly cited. Latest code version may be found in the author's <a href="https://github.com/pcbreviglieri" target="_blank">GitHub</a> repository. Thank you.</p>
@@ -632,7 +632,7 @@
 </ul>
 <p>As the amount and complexity of data gathered from such different sources over several time spans is inherently huge, <b>machine learning</b> plays a central role when it comes to the final classification purpose. The literature is vast and describes inumerous approaches and techniques to manipulate such information. The researchers cited in foreword have themselves assessed several solutions, stacked random forests in particular, with overall accuracies ranging from 90 to 96% for different stacking strategies. It has been noted though that some of the references are outdated, which suggests that the use of state-of-the-art classification engines - random forest and neural network classifiers - may lead to further metric improvements.</p>
 <div class='row'>
-    <img class="imageboxcentered" style="width: 40%; margin-bottom: 15px;" src='/cropland-mapping/images/remote-sensing.png' alt=''>
+    <img class="imageboxcentered" src='/cropland-mapping/images/remote-sensing.png' alt='Remote sensing'>
 </div>
 
     </div>
@@ -765,7 +765,7 @@
     <li>Broadleaf</li>
 </ol>
 <div class='row'>
-    <img class="imageboxcentered" style="width: 50%; margin-bottom: 15px;" src='/cropland-mapping/images/crop-types.png' alt=''>
+    <img class="imageboxcentered" src='/cropland-mapping/images/crop-types.png' alt='Crop types'>
 </div>
 <p>The dataset has 325,834 observations, each containing 175 attributes structured the following way:</p>
 <p><b>Dependent variable</b>:</p>
@@ -838,7 +838,7 @@
       
       <h1>4. Initial setup</h1>
 <h2>4.1. Importing required libraries</h2>
-<p>Along with traditional libraries imported for tensor manipulation, mathematical operations and graphics development, specific scikit-learn modules (<a href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html">StandardScaler</a> for dataset scaling, <a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.accuracy_score.html">accuracy_score</a>, <a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_score.html">precision_score</a>, <a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.recall_score.html">recall_score</a> and <a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_recall_fscore_support.html">precision_recall_fscore_support</a> as performance metric estimators) were selected. The random forest is implemented with and instantiation of scikit-learn's <a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html">RandomForestClassifier</a> class. The artificial neural network (ANN) is implemented instantiating a Keras <a href="https://keras.io/api/models/sequential/">Sequential</a> model including <a href="https://keras.io/api/layers/core_layers/dense/">Dense</a> and <a href="https://keras.io/api/layers/regularization_layers/dropout/">Dropout</a> layers. <a href="https://keras.io/api/optimizers/adam/">Adam</a> has been elected as the optimization function of choice for this multiclass classification exercise.</p>
+<p>Along with traditional libraries imported for tensor manipulation, mathematical operations and graphics development, specific scikit-learn modules (<a href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html" target="_blank">StandardScaler</a> for dataset scaling, <a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.accuracy_score.html" target="_blank">accuracy_score</a>, <a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_score.html" target="_blank">precision_score</a>, <a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.recall_score.html" target="_blank">recall_score</a> and <a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_recall_fscore_support.html" target="_blank">precision_recall_fscore_support</a> as performance metric estimators) were selected. The random forest is implemented with and instantiation of scikit-learn's <a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html" target="_blank">RandomForestClassifier</a> class. The artificial neural network (ANN) is implemented instantiating a Keras <a href="https://keras.io/api/models/sequential/" target="_blank">Sequential</a> model including <a href="https://keras.io/api/layers/core_layers/dense/" target="_blank">Dense</a> and <a href="https://keras.io/api/layers/regularization_layers/dropout/" target="_blank">Dropout</a> layers. <a href="https://keras.io/api/optimizers/adam/" target="_blank">Adam</a> has been elected as the optimization function of choice for this multiclass classification exercise.</p>
 <div class="boxborder">
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
 <span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
@@ -883,7 +883,7 @@ start_time <span style="color:#f92672">=</span> datetime<span style="color:#f926
 </span><span style="color:#e6db74">                Integer
 </span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
     <span style="color:#66d9ef">for</span> f_row <span style="color:#f92672">in</span> f_data:
-        <span style="color:#66d9ef">if</span> f_index <span style="color:#f92672">&amp;</span>gt;<span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>:
+        <span style="color:#66d9ef">if</span> f_index <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>:
             f_color <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>where(f_data[f_row]<span style="color:#f92672">.</span>index <span style="color:#f92672">==</span> f_index,<span style="color:#e6db74">&#39;r&#39;</span>,<span style="color:#e6db74">&#39;g&#39;</span>)
             f_hue <span style="color:#f92672">=</span> None
         <span style="color:#66d9ef">else</span>:
@@ -895,7 +895,7 @@ start_time <span style="color:#f92672">=</span> datetime<span style="color:#f926
     f_chart1 <span style="color:#f92672">=</span> sns<span style="color:#f92672">.</span>distplot(f_data[f_x_feature], ax<span style="color:#f92672">=</span>f_a[<span style="color:#ae81ff">0</span>], kde<span style="color:#f92672">=</span>False, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;orangered&#39;</span>)
     f_chart1<span style="color:#f92672">.</span>set_xlabel(f_x_feature,fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
     
-    <span style="color:#66d9ef">if</span> f_index <span style="color:#f92672">&amp;</span>gt;<span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>:
+    <span style="color:#66d9ef">if</span> f_index <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>:
         f_chart2 <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>scatter(f_data[f_x_feature], f_data[f_y_feature], c<span style="color:#f92672">=</span>f_color, edgecolors<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;w&#39;</span>)
         f_chart2 <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>xlabel(f_x_feature, fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
         f_chart2 <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>ylabel(f_y_feature, fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
@@ -1001,61 +1001,61 @@ dataset <span style="color:#f92672">=</span> dataset<span style="color:#f92672">
 <div class="boxborder">
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">dataset<span style="color:#f92672">.</span>head()
 </code></pre></div></div>
-<table style="width: 70%; margin-top: 0.5em;">
+<table>
     <tbody class="codeoutput">
-        <tr style="width: 50%;">
-            <td style="width: 10%; text-align: center; border: 0;"></td>
-            <td style="width: 10%; text-align: center; border: 0;">label</td>
-            <td style="width: 10%; text-align: center; border: 0;">f1</td>
-            <td style="width: 10%; text-align: center; border: 0;">f2</td>
-            <td style="width: 10%; text-align: center; border: 0;">...</td>
-            <td style="width: 10%; text-align: center; border: 0;">f173</td>
-            <td style="width: 10%; text-align: center; border: 0;">f174</td>
+        <tr>
+            <td style="width: 10%; border: 0;"></td>
+            <td style="width: 10%; border: 0;">label</td>
+            <td style="width: 10%; border: 0;">f1</td>
+            <td style="width: 10%; border: 0;">f2</td>
+            <td style="width: 10%; border: 0;">...</td>
+            <td style="width: 10%; border: 0;">f173</td>
+            <td style="width: 10%; border: 0;">f174</td>
         </tr>
         <tr>
-            <td style="width: 10%; text-align: center; border: 0;">72705</td>
-            <td style="width: 10%; text-align: center; border: 0;">3</td>
-            <td style="width: 10%; text-align: center; border: 0;">-9.9885</td>
-            <td style="width: 10%; text-align: center; border: 0;">-17.714</td>
-            <td style="width: 10%; text-align: center; border: 0;">...</td>
-            <td style="width: 10%; text-align: center; border: 0;">0.43210</td>
-            <td style="width: 10%; text-align: center; border: 0;">0.39528</td>
+            <td style="width: 10%; border: 0;">72705</td>
+            <td style="width: 10%; border: 0;">3</td>
+            <td style="width: 10%; border: 0;">-9.9885</td>
+            <td style="width: 10%; border: 0;">-17.714</td>
+            <td style="width: 10%; border: 0;">...</td>
+            <td style="width: 10%; border: 0;">0.43210</td>
+            <td style="width: 10%; border: 0;">0.39528</td>
         </tr>
         <tr>
-            <td style="width: 10%; text-align: center; border: 0;">29621</td>
-            <td style="width: 10%; text-align: center; border: 0;">1</td>
-            <td style="width: 10%; text-align: center; border: 0;">-9.3725</td>
-            <td style="width: 10%; text-align: center; border: 0;">-18.335</td>
-            <td style="width: 10%; text-align: center; border: 0;">...</td>
-            <td style="width: 10%; text-align: center; border: 0;">1.00000</td>
-            <td style="width: 10%; text-align: center; border: 0;">1.00000</td>
+            <td style="width: 10%; border: 0;">29621</td>
+            <td style="width: 10%; border: 0;">1</td>
+            <td style="width: 10%; border: 0;">-9.3725</td>
+            <td style="width: 10%; border: 0;">-18.335</td>
+            <td style="width: 10%; border: 0;">...</td>
+            <td style="width: 10%; border: 0;">1.00000</td>
+            <td style="width: 10%; border: 0;">1.00000</td>
         </tr>
         <tr>
-            <td style="width: 10%; text-align: center; border: 0;">43356</td>
-            <td style="width: 10%; text-align: center; border: 0;">3</td>
-            <td style="width: 10%; text-align: center; border: 0;">-12.0820</td>
-            <td style="width: 10%; text-align: center; border: 0;">-21.182</td>
-            <td style="width: 10%; text-align: center; border: 0;">...</td>
-            <td style="width: 10%; text-align: center; border: 0;">1.00000</td>
-            <td style="width: 10%; text-align: center; border: 0;">1.00000</td>
+            <td style="width: 10%; border: 0;">43356</td>
+            <td style="width: 10%; border: 0;">3</td>
+            <td style="width: 10%; border: 0;">-12.0820</td>
+            <td style="width: 10%; border: 0;">-21.182</td>
+            <td style="width: 10%; border: 0;">...</td>
+            <td style="width: 10%; border: 0;">1.00000</td>
+            <td style="width: 10%; border: 0;">1.00000</td>
         </tr>
         <tr>
-            <td style="width: 10%; text-align: center; border: 0;">322243</td>
-            <td style="width: 10%; text-align: center; border: 0;">6</td>
-            <td style="width: 10%; text-align: center; border: 0;">-15.7940</td>
-            <td style="width: 10%; text-align: center; border: 0;">-25.821</td>
-            <td style="width: 10%; text-align: center; border: 0;">...</td>
-            <td style="width: 10%; text-align: center; border: 0;">0.43210</td>
-            <td style="width: 10%; text-align: center; border: 0;">0.39528</td>
+            <td style="width: 10%; border: 0;">322243</td>
+            <td style="width: 10%; border: 0;">6</td>
+            <td style="width: 10%; border: 0;">-15.7940</td>
+            <td style="width: 10%; border: 0;">-25.821</td>
+            <td style="width: 10%; border: 0;">...</td>
+            <td style="width: 10%; border: 0;">0.43210</td>
+            <td style="width: 10%; border: 0;">0.39528</td>
         </tr>
         <tr>
-            <td style="width: 10%; text-align: center; border: 0;">49433</td>
-            <td style="width: 10%; text-align: center; border: 0;">3</td>
-            <td style="width: 10%; text-align: center; border: 0;">-13.6820</td>
-            <td style="width: 10%; text-align: center; border: 0;">-23.080</td>
-            <td style="width: 10%; text-align: center; border: 0;">...</td>
-            <td style="width: 10%; text-align: center; border: 0;">0.80247</td>
-            <td style="width: 10%; text-align: center; border: 0;">1.00000</td>
+            <td style="width: 10%; border: 0;">49433</td>
+            <td style="width: 10%; border: 0;">3</td>
+            <td style="width: 10%; border: 0;">-13.6820</td>
+            <td style="width: 10%; border: 0;">-23.080</td>
+            <td style="width: 10%; border: 0;">...</td>
+            <td style="width: 10%; border: 0;">0.80247</td>
+            <td style="width: 10%; border: 0;">1.00000</td>
         </tr>
     </tbody>
 </table>
@@ -1082,7 +1082,7 @@ plt<span style="color:#f92672">.</span>xlabel(<span style="color:#e6db74">&#39;C
 plt<span style="color:#f92672">.</span>ylabel(<span style="color:#e6db74">&#39;Share (%)&#39;</span>, fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">14</span>)
 </code></pre></div></div>
 <div class='row'>
-    <img class="imageboxcentered" style="width: 40%; margin-bottom: 15px;" src='/cropland-mapping/images/cropland-class.png' alt=''>
+    <img class="imageboxcentered" src='/cropland-mapping/images/cropland-class.png' alt='Cropland class share'>
 </div>
 <h2>5.1. Correlation</h2>
 <p>The correlation between each feature and the dependent variable, as well as the correlation among features (intercorrelation), provide elements to tackle potential undesired colinearity.</p>
@@ -1095,7 +1095,7 @@ correlation_matrix <span style="color:#f92672">=</span> dataset<span style="colo
 upper_matrix <span style="color:#f92672">=</span> correlation_matrix<span style="color:#f92672">.</span>where(np<span style="color:#f92672">.</span>triu(np<span style="color:#f92672">.</span>ones(correlation_matrix<span style="color:#f92672">.</span>shape), k<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>astype(np<span style="color:#f92672">.</span>bool))
 <span style="color:#66d9ef">for</span> row <span style="color:#f92672">in</span> range(upper_matrix<span style="color:#f92672">.</span>shape[<span style="color:#ae81ff">0</span>]):
     <span style="color:#66d9ef">for</span> column <span style="color:#f92672">in</span> range(upper_matrix<span style="color:#f92672">.</span>shape[<span style="color:#ae81ff">1</span>]):
-        <span style="color:#66d9ef">if</span> upper_matrix<span style="color:#f92672">.</span>iloc[row, column] <span style="color:#f92672">&amp;</span>gt; <span style="color:#ae81ff">0.95</span>:
+        <span style="color:#66d9ef">if</span> upper_matrix<span style="color:#f92672">.</span>iloc[row, column] <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0.95</span>:
             highly_correlated_feature_pairs<span style="color:#f92672">.</span>append([row, column, upper_matrix<span style="color:#f92672">.</span>iloc[row, column]])
             
 <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;Number of highly intercorrelated feature pairs: {len(highly_correlated_feature_pairs)}&#39;</span>)
@@ -1108,79 +1108,79 @@ upper_matrix <span style="color:#f92672">=</span> correlation_matrix<span style=
 highly_correlated_feature_pairs<span style="color:#f92672">.</span>columns <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;feature_1&#39;</span>, <span style="color:#e6db74">&#39;feature_2&#39;</span>, <span style="color:#e6db74">&#39;correl&#39;</span>]
 highly_correlated_feature_pairs<span style="color:#f92672">.</span>head(<span style="color:#ae81ff">10</span>)
 </code></pre></div></div>
-<table style="width: 40%; margin-top: 0.5em;">
+<table>
     <tbody class="codeoutput">
         <tr>
-            <td style="width: 16%; text-align: center; border: 0;"></td>
-            <td style="width: 28%; text-align: center; border: 0;">feature_1</td>
-            <td style="width: 28%; text-align: center; border: 0;">feature_2</td>
-            <td style="width: 28%; text-align: center; border: 0;">correl</td>
+            <td style="width: 16%; border: 0;"></td>
+            <td style="width: 28%; border: 0;">feature_1</td>
+            <td style="width: 28%; border: 0;">feature_2</td>
+            <td style="width: 28%; border: 0;">correl</td>
         </tr>
         <tr>
-            <td style="width: 16%; text-align: center; border: 0;">4</td>
-            <td style="width: 28%; text-align: center; border: 0;">2</td>
-            <td style="width: 28%; text-align: center; border: 0;">39</td>
-            <td style="width: 28%; text-align: center; border: 0;">1.000000</td>
+            <td style="width: 16%; border: 0;">4</td>
+            <td style="width: 28%; border: 0;">2</td>
+            <td style="width: 28%; border: 0;">39</td>
+            <td style="width: 28%; border: 0;">1.000000</td>
         </tr>
         <tr>
-            <td style="width: 16%; text-align: center; border: 0;">38</td>
-            <td style="width: 28%; text-align: center; border: 0;">51</td>
-            <td style="width: 28%; text-align: center; border: 0;">88</td>
-            <td style="width: 28%; text-align: center; border: 0;">1.000000</td>
+            <td style="width: 16%; border: 0;">38</td>
+            <td style="width: 28%; border: 0;">51</td>
+            <td style="width: 28%; border: 0;">88</td>
+            <td style="width: 28%; border: 0;">1.000000</td>
         </tr>
         <tr>
-            <td style="width: 16%; text-align: center; border: 0;">109</td>
-            <td style="width: 28%; text-align: center; border: 0;">151</td>
-            <td style="width: 28%; text-align: center; border: 0;">153</td>
-            <td style="width: 28%; text-align: center; border: 0;">1.000000</td>
+            <td style="width: 16%; border: 0;">109</td>
+            <td style="width: 28%; border: 0;">151</td>
+            <td style="width: 28%; border: 0;">153</td>
+            <td style="width: 28%; border: 0;">1.000000</td>
         </tr>
         <tr>
-            <td style="width: 16%; text-align: center; border: 0;">45</td>
-            <td style="width: 28%; text-align: center; border: 0;">54</td>
-            <td style="width: 28%; text-align: center; border: 0;">86</td>
-            <td style="width: 28%; text-align: center; border: 0;">1.000000</td>
+            <td style="width: 16%; border: 0;">45</td>
+            <td style="width: 28%; border: 0;">54</td>
+            <td style="width: 28%; border: 0;">86</td>
+            <td style="width: 28%; border: 0;">1.000000</td>
         </tr>
         <tr>
-            <td style="width: 16%; text-align: center; border: 0;">8</td>
-            <td style="width: 28%; text-align: center; border: 0;">5</td>
-            <td style="width: 28%; text-align: center; border: 0;">37</td>
-            <td style="width: 28%; text-align: center; border: 0;">1.000000</td>
+            <td style="width: 16%; border: 0;">8</td>
+            <td style="width: 28%; border: 0;">5</td>
+            <td style="width: 28%; border: 0;">37</td>
+            <td style="width: 28%; border: 0;">1.000000</td>
         </tr>
         <tr>
-            <td style="width: 16%; text-align: center; border: 0;">102</td>
-            <td style="width: 28%; text-align: center; border: 0;">142</td>
-            <td style="width: 28%; text-align: center; border: 0;">147</td>
-            <td style="width: 28%; text-align: center; border: 0;">1.000000</td>
+            <td style="width: 16%; border: 0;">102</td>
+            <td style="width: 28%; border: 0;">142</td>
+            <td style="width: 28%; border: 0;">147</td>
+            <td style="width: 28%; border: 0;">1.000000</td>
         </tr>
         <tr>
-            <td style="width: 16%; text-align: center; border: 0;">113</td>
-            <td style="width: 28%; text-align: center; border: 0;">156</td>
-            <td style="width: 28%; text-align: center; border: 0;">157</td>
-            <td style="width: 28%; text-align: center; border: 0;">0.998716</td>
+            <td style="width: 16%; border: 0;">113</td>
+            <td style="width: 28%; border: 0;">156</td>
+            <td style="width: 28%; border: 0;">157</td>
+            <td style="width: 28%; border: 0;">0.998716</td>
         </tr>
         <tr>
-            <td style="width: 16%; text-align: center; border: 0;">13</td>
-            <td style="width: 28%; text-align: center; border: 0;">7</td>
-            <td style="width: 28%; text-align: center; border: 0;">15</td>
-            <td style="width: 28%; text-align: center; border: 0;">0.995524</td>
+            <td style="width: 16%; border: 0;">13</td>
+            <td style="width: 28%; border: 0;">7</td>
+            <td style="width: 28%; border: 0;">15</td>
+            <td style="width: 28%; border: 0;">0.995524</td>
         </tr>
         <tr>
-            <td style="width: 16%; text-align: center; border: 0;">10</td>
-            <td style="width: 28%; text-align: center; border: 0;">6</td>
-            <td style="width: 28%; text-align: center; border: 0;">38</td>
-            <td style="width: 28%; text-align: center; border: 0;">0.995455</td>
+            <td style="width: 16%; border: 0;">10</td>
+            <td style="width: 28%; border: 0;">6</td>
+            <td style="width: 28%; border: 0;">38</td>
+            <td style="width: 28%; border: 0;">0.995455</td>
         </tr>
         <tr>
-            <td style="width: 16%; text-align: center; border: 0;">60</td>
-            <td style="width: 28%; text-align: center; border: 0;">62</td>
-            <td style="width: 28%; text-align: center; border: 0;">79</td>
-            <td style="width: 28%; text-align: center; border: 0;">0.995254</td>
+            <td style="width: 16%; border: 0;">60</td>
+            <td style="width: 28%; border: 0;">62</td>
+            <td style="width: 28%; border: 0;">79</td>
+            <td style="width: 28%; border: 0;">0.995254</td>
         </tr>
     </tbody>
 </table>
 <p>Features to be dropped are pinned on a correlation map and removed from the dataset.</p>
 <div class="boxborder">
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">highly_correlated_features_to_drop <span style="color:#f92672">=</span> [column <span style="color:#66d9ef">for</span> column <span style="color:#f92672">in</span> upper_matrix<span style="color:#f92672">.</span>columns <span style="color:#66d9ef">if</span> any(upper_matrix[column] <span style="color:#f92672">&amp;</span>gt; <span style="color:#ae81ff">0.95</span>)]
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">highly_correlated_features_to_drop <span style="color:#f92672">=</span> [column <span style="color:#66d9ef">for</span> column <span style="color:#f92672">in</span> upper_matrix<span style="color:#f92672">.</span>columns <span style="color:#66d9ef">if</span> any(upper_matrix[column] <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0.95</span>)]
 dataset <span style="color:#f92672">=</span> dataset<span style="color:#f92672">.</span>drop(dataset[highly_correlated_features_to_drop], axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
 </code></pre></div></div>
 <div class="boxborder">
@@ -1194,7 +1194,7 @@ dataset <span style="color:#f92672">=</span> dataset<span style="color:#f92672">
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">correlation_map(dataset, <span style="color:#e6db74">&#39;label&#39;</span>, nr_features)
 </code></pre></div></div>
 <div class='row'>
-    <img class="imageboxcentered" style="width: 90%; margin-bottom: 15px;" src='/cropland-mapping/images/correlation-map.png' alt=''>
+    <img class="imageboxcentered" src='/cropland-mapping/images/correlation-map.png' alt='Correlation map'>
 </div>
 <h2>5.2. Feature assessment</h2>
 <p>Invoking the 'assessment' custom function allows for plotting feature distribution patterns and their relationship with the 'label' dependent variable. This is done for the 10 features most correlated with the dependent variable 'label', just to provide a first glimpse of data behavior:</p>
@@ -1205,34 +1205,34 @@ dataset <span style="color:#f92672">=</span> dataset<span style="color:#f92672">
     assessment(dataset, <span style="color:#e6db74">&#39;label&#39;</span>, column, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
 </code></pre></div></div>
 <div class='row'>
-    <img class="imageboxcentered" style="width: 70%; margin-bottom: 15px;" src='/cropland-mapping/images/assessment-01.png' alt=''>
+    <img class="imageboxcentered" src='/cropland-mapping/images/assessment-01.png' alt='Feature assessment'>
 </div>
 <div class='row'>
-    <img class="imageboxcentered" style="width: 70%; margin-bottom: 15px;" src='/cropland-mapping/images/assessment-02.png' alt=''>
+    <img class="imageboxcentered" src='/cropland-mapping/images/assessment-02.png' alt='Feature assessment'>
 </div>
 <div class='row'>
-    <img class="imageboxcentered" style="width: 70%; margin-bottom: 15px;" src='/cropland-mapping/images/assessment-03.png' alt=''>
+    <img class="imageboxcentered" src='/cropland-mapping/images/assessment-03.png' alt='Feature assessment'>
 </div>
 <div class='row'>
-    <img class="imageboxcentered" style="width: 70%; margin-bottom: 15px;" src='/cropland-mapping/images/assessment-04.png' alt=''>
+    <img class="imageboxcentered" src='/cropland-mapping/images/assessment-04.png' alt='Feature assessment'>
 </div>
 <div class='row'>
-    <img class="imageboxcentered" style="width: 70%; margin-bottom: 15px;" src='/cropland-mapping/images/assessment-05.png' alt=''>
+    <img class="imageboxcentered" src='/cropland-mapping/images/assessment-05.png' alt='Feature assessment'>
 </div>
 <div class='row'>
-    <img class="imageboxcentered" style="width: 70%; margin-bottom: 15px;" src='/cropland-mapping/images/assessment-06.png' alt=''>
+    <img class="imageboxcentered" src='/cropland-mapping/images/assessment-06.png' alt='Feature assessment'>
 </div>
 <div class='row'>
-    <img class="imageboxcentered" style="width: 70%; margin-bottom: 15px;" src='/cropland-mapping/images/assessment-07.png' alt=''>
+    <img class="imageboxcentered" src='/cropland-mapping/images/assessment-07.png' alt='Feature assessment'>
 </div>
 <div class='row'>
-    <img class="imageboxcentered" style="width: 70%; margin-bottom: 15px;" src='/cropland-mapping/images/assessment-08.png' alt=''>
+    <img class="imageboxcentered" src='/cropland-mapping/images/assessment-08.png' alt='Feature assessment'>
 </div>
 <div class='row'>
-    <img class="imageboxcentered" style="width: 70%; margin-bottom: 15px;" src='/cropland-mapping/images/assessment-09.png' alt=''>
+    <img class="imageboxcentered" src='/cropland-mapping/images/assessment-09.png' alt='Feature assessment'>
 </div>
 <div class='row'>
-    <img class="imageboxcentered" style="width: 70%; margin-bottom: 15px;" src='/cropland-mapping/images/assessment-10.png' alt=''>
+    <img class="imageboxcentered" src='/cropland-mapping/images/assessment-10.png' alt='Feature assessment'>
 </div>
 <p>The analysis shows that some variables are indeed skewed. However, no transformation will be performed <em>a priori</em>. This decision may be revisited later in light of the overall performance of trained classifiers.</p>
 <h2>5.3. Segregating train and test sets</h2>
@@ -1392,7 +1392,7 @@ Actual class: 4</p>
 <p>As features are standardized real numbers, '<b>relu</b>' is elected as the activation function of choice for hidden layers. In addition, as this is a multiclass classification exercise, where the output is intended to be binary ('1' for the identified class, '0' for all other classes), the choice of '<b>softmax</b>' as the activation function for the output layer seems adequate.</p>
 <p>'<b>Adam</b>' has been elected as the optimizer, and its constituent parameters expanded to give some flexibility to play, in particular, with the learning rate. As this is a multiclass classification exercise, '<b>categorical_crossentropy</b>' is selected as the loss function. The fitting performance will be assessed using '<b>accuracy</b>' as the metric of choice.</p>
 <div class='row' style="margin-bottom: 25px;">
-    <img class="imageboxcentered" style="width: 55%;" src='/cropland-mapping/images/ann-cropland.png' alt=''>
+    <img class="imageboxcentered" src='/cropland-mapping/images/ann-cropland.png' alt='Artificial neural network'>
 </div>
 <div class="boxborder">
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># ANN</span>
@@ -1442,7 +1442,7 @@ ax2<span style="color:#f92672">.</span>grid(False)
 plt<span style="color:#f92672">.</span>show()
 </code></pre></div></div>
 <div class='row'>
-    <img class="imageboxcentered" style="width: 45%;" src='/cropland-mapping/images/ann-fitting.png' alt=''>
+    <img class="imageboxcentered" src='/cropland-mapping/images/ann-fitting.png' alt='Artificial neural network fitting'>
 </div>
 <h3>6.2.3. Predictions</h3>
 <p>After fitting the model to the training set, predictions are generated for the testing set. As a reminder, each prediction will correspond to an array with seven elements, each of them referring to one particular crop class. The final array is '<b>binarized</b>': the array element with the highest value will be converted to '1' while all other array elements will be converted to '0'.</p>
@@ -1547,87 +1547,87 @@ rf_cmatrix <span style="color:#f92672">=</span> pd<span style="color:#f92672">.<
                           columns <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;Corn&#39;</span>, <span style="color:#e6db74">&#39;Pea&#39;</span>, <span style="color:#e6db74">&#39;Canola&#39;</span>, <span style="color:#e6db74">&#39;Soy&#39;</span>, <span style="color:#e6db74">&#39;Oat&#39;</span>, <span style="color:#e6db74">&#39;Wheat&#39;</span>, <span style="color:#e6db74">&#39;Broadleaf&#39;</span>])
 rf_cmatrix
 </code></pre></div></div>
-<table style="width: 80%; margin-top: 0.5em;">
+<table>
     <tbody class="codeoutput">
         <tr>
-            <td style="width: 12.5%; border: 0; text-align: center;"></td>
-            <td style="width: 12.5%; border: 0; text-align: center;">Corn</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">Pea</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">Canola</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">Soy</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">Oat</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">Wheat</td>
-            <td style="width: 12/5%; border: 0; text-align: center;">Broadleaf</td>
+            <td style="width: 12.5%; border: 0;"></td>
+            <td style="width: 12.5%; border: 0;">Corn</td>
+            <td style="width: 12.5%; border: 0;">Pea</td>
+            <td style="width: 12.5%; border: 0;">Canola</td>
+            <td style="width: 12.5%; border: 0;">Soy</td>
+            <td style="width: 12.5%; border: 0;">Oat</td>
+            <td style="width: 12.5%; border: 0;">Wheat</td>
+            <td style="width: 12/5%; border: 0;">Broadleaf</td>
         </tr>
         <tr>
-            <td style="width: 12.5%; border: 0; text-align: center;">Corn</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">7882</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">0</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">10</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">20</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">0</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">3</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">2</td>
+            <td style="width: 12.5%; border: 0;">Corn</td>
+            <td style="width: 12.5%; border: 0;">7882</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">10</td>
+            <td style="width: 12.5%; border: 0;">20</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">3</td>
+            <td style="width: 12.5%; border: 0;">2</td>
         </tr>
         <tr>
-            <td style="width: 12.5%; border: 0; text-align: center;">Pea</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">0</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">712</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">0</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">0</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">0</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">0</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">0</td>
+            <td style="width: 12.5%; border: 0;">Pea</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">712</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">0</td>
         </tr>
         <tr>
-            <td style="width: 12.5%; border: 0; text-align: center;">Canola</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">0</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">2</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">15278</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">3</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">2</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">4</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">0</td>
+            <td style="width: 12.5%; border: 0;">Canola</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">2</td>
+            <td style="width: 12.5%; border: 0;">15278</td>
+            <td style="width: 12.5%; border: 0;">3</td>
+            <td style="width: 12.5%; border: 0;">2</td>
+            <td style="width: 12.5%; border: 0;">4</td>
+            <td style="width: 12.5%; border: 0;">0</td>
         </tr>
         <tr>
-            <td style="width: 12.5%; border: 0; text-align: center;">Soy</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">6</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">0</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">7</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">14560</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">19</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">11</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">0</td>
+            <td style="width: 12.5%; border: 0;">Soy</td>
+            <td style="width: 12.5%; border: 0;">6</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">7</td>
+            <td style="width: 12.5%; border: 0;">14560</td>
+            <td style="width: 12.5%; border: 0;">19</td>
+            <td style="width: 12.5%; border: 0;">11</td>
+            <td style="width: 12.5%; border: 0;">0</td>
         </tr>
         <tr>
-            <td style="width: 12.5%; border: 0; text-align: center;">Oat</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">6</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">0</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">13</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">15</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">9331</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">71</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">4</td>
+            <td style="width: 12.5%; border: 0;">Oat</td>
+            <td style="width: 12.5%; border: 0;">6</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">13</td>
+            <td style="width: 12.5%; border: 0;">15</td>
+            <td style="width: 12.5%; border: 0;">9331</td>
+            <td style="width: 12.5%; border: 0;">71</td>
+            <td style="width: 12.5%; border: 0;">4</td>
         </tr>
         <tr>
-            <td style="width: 12.5%; border: 0; text-align: center;">Wheat</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">2</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">0</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">7</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">19</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">33</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">16895</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">2</td>
+            <td style="width: 12.5%; border: 0;">Wheat</td>
+            <td style="width: 12.5%; border: 0;">2</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">7</td>
+            <td style="width: 12.5%; border: 0;">19</td>
+            <td style="width: 12.5%; border: 0;">33</td>
+            <td style="width: 12.5%; border: 0;">16895</td>
+            <td style="width: 12.5%; border: 0;">2</td>
         </tr>
         <tr>
-            <td style="width: 12.5%; border: 0; text-align: center;">Broadleaf</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">4</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">0</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">1</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">0</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">1</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">0</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">242</td>
+            <td style="width: 12.5%; border: 0;">Broadleaf</td>
+            <td style="width: 12.5%; border: 0;">4</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">1</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">1</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">242</td>
         </tr>
     </tbody>
 </table>
@@ -1664,7 +1664,7 @@ Broadleaf: 96.80 %</p>
 ann_pred_correct <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
 ann_pred_incorrect <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
 <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(y_test_ann)):
-    <span style="color:#66d9ef">if</span> y_pred_ann[i]<span style="color:#f92672">.</span>sum() <span style="color:#f92672">&amp;</span>gt; <span style="color:#ae81ff">0</span>:
+    <span style="color:#66d9ef">if</span> y_pred_ann[i]<span style="color:#f92672">.</span>sum() <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>:
         ann_index_test <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>where(y_test_ann[i] <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>)[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>]
         ann_index_pred <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>where(y_pred_ann[i] <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>)[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>]
         ann_cm[ann_index_test][ann_index_pred] <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
@@ -1678,87 +1678,87 @@ ann_cmatrix <span style="color:#f92672">=</span> pd<span style="color:#f92672">.
                            columns <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;Corn&#39;</span>, <span style="color:#e6db74">&#39;Pea&#39;</span>, <span style="color:#e6db74">&#39;Canola&#39;</span>, <span style="color:#e6db74">&#39;Soy&#39;</span>, <span style="color:#e6db74">&#39;Oat&#39;</span>, <span style="color:#e6db74">&#39;Wheat&#39;</span>, <span style="color:#e6db74">&#39;Broadleaf&#39;</span>])
 ann_cmatrix
 </code></pre></div></div>
-<table style="width: 80%; margin-top: 0.5em;">
+<table>
     <tbody class="codeoutput">
         <tr>
-            <td style="width: 12.5%; border: 0; text-align: center;"></td>
-            <td style="width: 12.5%; border: 0; text-align: center;">Corn</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">Pea</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">Canola</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">Soy</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">Oat</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">Wheat</td>
-            <td style="width: 12/5%; border: 0; text-align: center;">Broadleaf</td>
+            <td style="width: 12.5%; border: 0;"></td>
+            <td style="width: 12.5%; border: 0;">Corn</td>
+            <td style="width: 12.5%; border: 0;">Pea</td>
+            <td style="width: 12.5%; border: 0;">Canola</td>
+            <td style="width: 12.5%; border: 0;">Soy</td>
+            <td style="width: 12.5%; border: 0;">Oat</td>
+            <td style="width: 12.5%; border: 0;">Wheat</td>
+            <td style="width: 12/5%; border: 0;">Broadleaf</td>
         </tr>
         <tr>
-            <td style="width: 12.5%; border: 0; text-align: center;">Corn</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">7906</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">0</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">3</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">4</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">1</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">0</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">3</td>
+            <td style="width: 12.5%; border: 0;">Corn</td>
+            <td style="width: 12.5%; border: 0;">7906</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">3</td>
+            <td style="width: 12.5%; border: 0;">4</td>
+            <td style="width: 12.5%; border: 0;">1</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">3</td>
         </tr>
         <tr>
-            <td style="width: 12.5%; border: 0; text-align: center;">Pea</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">0</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">712</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">0</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">0</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">0</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">0</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">0</td>
+            <td style="width: 12.5%; border: 0;">Pea</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">712</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">0</td>
         </tr>
         <tr>
-            <td style="width: 12.5%; border: 0; text-align: center;">Canola</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">0</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">0</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">15278</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">4</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">3</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">4</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">0</td>
+            <td style="width: 12.5%; border: 0;">Canola</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">15278</td>
+            <td style="width: 12.5%; border: 0;">4</td>
+            <td style="width: 12.5%; border: 0;">3</td>
+            <td style="width: 12.5%; border: 0;">4</td>
+            <td style="width: 12.5%; border: 0;">0</td>
         </tr>
         <tr>
-            <td style="width: 12.5%; border: 0; text-align: center;">Soy</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">2</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">0</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">3</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">14594</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">4</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">0</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">0</td>
+            <td style="width: 12.5%; border: 0;">Soy</td>
+            <td style="width: 12.5%; border: 0;">2</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">3</td>
+            <td style="width: 12.5%; border: 0;">14594</td>
+            <td style="width: 12.5%; border: 0;">4</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">0</td>
         </tr>
         <tr>
-            <td style="width: 12.5%; border: 0; text-align: center;">Oat</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">1</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">0</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">2</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">6</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">9412</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">18</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">1</td>
+            <td style="width: 12.5%; border: 0;">Oat</td>
+            <td style="width: 12.5%; border: 0;">1</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">2</td>
+            <td style="width: 12.5%; border: 0;">6</td>
+            <td style="width: 12.5%; border: 0;">9412</td>
+            <td style="width: 12.5%; border: 0;">18</td>
+            <td style="width: 12.5%; border: 0;">1</td>
         </tr>
         <tr>
-            <td style="width: 12.5%; border: 0; text-align: center;">Wheat</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">0</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">0</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">5</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">5</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">22</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">16924</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">2</td>
+            <td style="width: 12.5%; border: 0;">Wheat</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">5</td>
+            <td style="width: 12.5%; border: 0;">5</td>
+            <td style="width: 12.5%; border: 0;">22</td>
+            <td style="width: 12.5%; border: 0;">16924</td>
+            <td style="width: 12.5%; border: 0;">2</td>
         </tr>
         <tr>
-            <td style="width: 12.5%; border: 0; text-align: center;">Broadleaf</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">1</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">0</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">0</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">0</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">0</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">1</td>
-            <td style="width: 12.5%; border: 0; text-align: center;">246</td>
+            <td style="width: 12.5%; border: 0;">Broadleaf</td>
+            <td style="width: 12.5%; border: 0;">1</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">1</td>
+            <td style="width: 12.5%; border: 0;">246</td>
         </tr>
     </tbody>
 </table>
