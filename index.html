@@ -262,7 +262,13 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebSite","url": "https://paulobreviglieri.com"
+  "@type": "WebSite",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://paulobreviglieri.com?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "url": "https://paulobreviglieri.com"
 }
 </script>
 
@@ -301,7 +307,8 @@
 
       <div id="search-box">
         
-        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control">
         
       </div>
 
@@ -413,6 +420,10 @@
     </div>
 
     <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
       
 
       
@@ -733,7 +744,7 @@
 
   
 
-  <section id="section-02-welcome-message" class="home-section wg-blank   " style="padding: 0 0 0 0;" >
+  <section id="section-02-ds-ml" class="home-section wg-blank   " style="padding: 0 0 0 0;" >
     <div class="container">
       
 
@@ -743,8 +754,8 @@
     <div class="col-lg-12">
       
       
-      <h1 style="text-align: center; color: #159999;">A Welcome Message</h1>
-<p>Data science & machine learning are exciting (and very addicting!) fields. Witnessing complex problems being accurately solved with the help of algorithms that learn and adapt by themselves is always a rewarding achievement. The author hopes this work may be of value and wishes all page visitors an insightful experience and a prosperous, flourishing journey in data science & machine learning!</p>
+      <h1 style="text-align: center; color: #000080; padding-bottom: 0px;">Data Science & Machine Learning</h1>
+<h2 style="text-align: center; color: #ff3000; padding-top: 0px;">Extracting useful insights from data with advanced computing logic</h2>
 
     </div>
   
@@ -791,7 +802,7 @@
 
   
 
-  <section id="section-03-ds-ml" class="home-section wg-blank   " style="padding: 0 0 0 0;" >
+  <section id="section-03-welcome" class="home-section wg-blank   " style="padding: 0 0 0 0;" >
     <div class="container">
       
 
@@ -801,8 +812,8 @@
     <div class="col-lg-12">
       
       
-      <h1 style="text-align: center; color: #000080; padding-bottom: 0px;">Data Science & Machine Learning</h1>
-<h2 style="text-align: center; color: #ff3000; padding-top: 0px;">Extracting useful insights from data with advanced computing logic</h2>
+      <h2 style="text-align: center; color: #000080;">Welcome!</h2>
+<p>Data science & machine learning are exciting (and very addicting!) fields. Witnessing complex problems being accurately solved with the help of algorithms that learn and adapt by themselves is always a rewarding achievement. The author hopes this work may be of value and wishes all page visitors an insightful experience and a prosperous, flourishing journey in data science & machine learning!</p>
 
     </div>
   
@@ -997,8 +1008,8 @@
     <div class="col-lg-12">
       
       
-      <h1 style="text-align: center; color: #000080; padding-bottom: 0px;">My Data Science & Machine Learning Project Portfolio</h1>
-<h2 style="text-align: center; color: #ff3000; padding-top: 0px;">What to find and how to benefit from this personal page</h2>
+      <h2 style="text-align: center; color: #000080; padding-bottom: 0px;">My Data Science & Machine Learning Project Portfolio</h2>
+<h3 style="text-align: center; color: #ff3000; padding-top: 0px; margin-top: 18px;">What to find and how to benefit from this personal page</h3>
 
     </div>
   
@@ -1253,11 +1264,47 @@ a <span style="color:#f92672">+=</span> <span style="color:#ae81ff">100</span>
     
 
     
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"No results found","placeholder":"Search...","results":"results found"};
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks",
+        'slides' : "Slides"
+        };
+    </script>
+    
 
     
     
 
     
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
 
     
     
@@ -1270,7 +1317,6 @@ a <span style="color:#f92672">+=</span> <span style="color:#ae81ff">100</span>
 
     
     
-
     
     
     
@@ -1278,12 +1324,12 @@ a <span style="color:#f92672">+=</span> <span style="color:#ae81ff">100</span>
     
     
     
+      
     
     
     
     
-    
-    <script src="/js/academic.min.7c0855509a679f5c89322b27a9552a2f.js"></script>
+    <script src="/js/academic.min.3b2b658c61ebd725bd5fc606c89fe44c.js"></script>
 
     
 
