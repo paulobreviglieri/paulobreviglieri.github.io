@@ -1,0 +1,2087 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.8.0">
+
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+  
+  
+    
+  
+  <meta name="description" content="">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://paulobreviglieri.com/cropland-mapping/">
+
+  
+
+
+  
+  
+  
+  <meta name="theme-color" content="#000080">
+  
+
+  
+  
+  
+  <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/atom-one-light.min.css" crossorigin="anonymous" title="hl-light">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/atom-one-light.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.css" integrity="sha256-SHMGCYmST46SoyGgo4YR/9AlK1vf3ff84Aq9yK4hdqM=" crossorigin="anonymous">
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.1.2/lazysizes.min.js" integrity="sha256-Md1qLToewPeKjfAHU1zyPwOutccPAm5tahnaw7Osw0A=" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+    
+      
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oxygen:300light,400,700bold%7COxygen+Mono&display=swap">
+    
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.css">
+
+  
+
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-165357798-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url, target) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           if (target !== '_blank') {
+             document.location = url;
+           }
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target, event.target.getAttribute('target'));  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'UA-165357798-1', {});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
+  
+
+
+  
+  
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/images/icon_hue0b5dbdcd29e15f3bb2c3e480ec18a0b_14701_32x32_fill_lanczos_center_2.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hue0b5dbdcd29e15f3bb2c3e480ec18a0b_14701_192x192_fill_lanczos_center_2.png">
+
+  <link rel="canonical" href="https://paulobreviglieri.com/cropland-mapping/">
+
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="twitter:site" content="@pcbreviglieri">
+  <meta property="twitter:creator" content="@pcbreviglieri">
+  
+  <meta property="og:site_name" content="Paulo Breviglieri • Data Science &amp; Machine Learning">
+  <meta property="og:url" content="https://paulobreviglieri.com/cropland-mapping/">
+  <meta property="og:title" content="Cropland Mapping with Random Forests and Neural Networks | Paulo Breviglieri • Data Science &amp; Machine Learning">
+  <meta property="og:description" content=""><meta property="og:image" content="https://paulobreviglieri.com/images/logo.svg">
+  <meta property="twitter:image" content="https://paulobreviglieri.com/images/logo.svg"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2020-01-01T00:00:00&#43;00:00">
+    
+    <meta property="article:modified_time" content="2020-01-01T00:00:00&#43;00:00">
+  
+
+  
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  <title>Cropland Mapping with Random Forests and Neural Networks | Paulo Breviglieri • Data Science &amp; Machine Learning</title>
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#navbar-main" class=" ">
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/"><img src="/images/logo.svg" alt="Paulo Breviglieri • Data Science &amp; Machine Learning"></a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/"><img src="/images/logo.svg" alt="Paulo Breviglieri • Data Science &amp; Machine Learning"></a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-end" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/portfolio"><span>Portfolio</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/about"><span>About</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+
+        
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="https://linkedin.com/in/pcbreviglieri" target="_blank" rel="noopener"><span><i class="icon-new-icon-linkedin-color" style="font-size: 1rem; line-height: 1"></i></span></a>
+        </li>
+
+        
+
+        
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="https://kaggle.com/pcbreviglieri" target="_blank" rel="noopener"><span><i class="icon-new-icon-kaggle-color" style="font-size: 1rem; line-height: 1"></i></span></a>
+        </li>
+
+        
+
+        
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/pcbreviglieri" target="_blank" rel="noopener"><span><i class="icon-new-icon-github-color" style="font-size: 1rem; line-height: 1"></i></span></a>
+        </li>
+
+        
+
+        
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="https://gitlab.com/pcbreviglieri" target="_blank" rel="noopener"><span><i class="icon-new-icon-gitlab-color" style="font-size: 1rem; line-height: 1"></i></span></a>
+        </li>
+
+        
+
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/mailto:info@paulobreviglieri.com"><span><i class="icon-new-icon-email-color" style="font-size: 1rem; line-height: 1"></i></span></a>
+        </li>
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+
+  
+<span class="js-widget-page d-none"></span>
+
+
+
+
+
+  
+  
+  
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+
+  
+
+  <section id="section-foreword" class="home-section wg-blank   " style="padding: 0 0 0 0;" >
+    <div class="container">
+      
+
+
+<div class="row">
+  
+    <div class="col-lg-12">
+      
+      
+      <h1 style="text-align: center; font-size: 30px; color: #ff3000;">Cropland Mapping with Random Forests and Neural Networks</h1>
+<p>July 6, 2020 - By Paulo Breviglieri</p>
+<h1>Foreword</h1>
+<p>This case study is based on the "<b>Crop mapping using fused optical-radar dataset</b>", created by <a href="http://i-khosravi.ir/">Dr. Iman Khosravi</a> (Department of Remote Sensing & GIS, Faculty of Geography, University of Tehran, Iran) and donated to the <b>University of California, Irvine (UCI) Machine Learning Repository</b> (<a href="https://archive.ics.uci.edu/ml/datasets/Crop+mapping+using+fused+optical-radar+data+set" target="_blank">here</a>), where it is currently hosted.</p>
+<p>Dr. Khosravi's co-authored papers mentioned in the dataset repository provide the background information supporting this machine learning exercise:</p>
+<ol>
+    <li>"<em><b><a href="http://i-khosravi.ir/_sources/tres2019.pdf" target="_blank">A random forest-based framework for crop mapping using temporal, spectral, textural and polarimetric observations</a></b></em>" (Khosravi, I., & Alavipanah, S. K., International Journal of Remote Sensing, 2019, 40(18), 7221-7251), in which the overall strategy to combine both radar and optical-based information is described;</li>
+    <p></p>
+    <li>"<em><b><a href="http://i-khosravi.ir/_sources/tres2018b.pdf" target="_blank">MSMD: maximum separability and minimum dependency feature selection for cropland classification from optical and radar data</a></b></em>" (Khosravi, I., et al., International Journal of Remote Sensing, 2018, 39(8), 2159-2176), in which a feature selection procedure aiming at reducing data dimensionality and improving cropland classification accuracy, in light of high feature intercorrelation, is described.</li>
+</ol>
+<p>The author is particularly thankful for Dr. Khosravi's interest and comments on the overall dataset origin and structure, as well as on objectives and results achieved in previous studies.</p>
+<p>Logic enhancement and code forking are always welcome and encouraged provided that this work is properly cited. Latest code version may be found in the author's <a href="https://github.com/pcbreviglieri" target="_blank">GitHub</a> repository. Thank you.</p>
+
+    </div>
+  
+</div>
+
+    </div>
+  </section>
+
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+
+  
+
+  <section id="section-01-introduction" class="home-section wg-blank   " style="padding: 0 0 0 0;" >
+    <div class="container">
+      
+
+
+<div class="row">
+  
+    <div class="col-lg-12">
+      
+      
+      <h1>1. Introduction</h1>
+<h2>1.1. Cropland mapping</h2>
+<p>In a global scenario still affected by severe income distribution imbalances and chronic famine in several communities, the accurate classification of cropland pieces is of utmost strategic and economic importance. As described in [1], crop maps play "<em>an important role in various applications such as crop inventories, crop insurance, yield estimation and the enforcement of quota limits</em>".</p>
+<p>Remote sensing and geographic information systems (GIS) have been reliable tools in remote crop mapping. Remote sensors like radiometers and radars positioned in unmanned aerial vehicles and satellites enable a continuous, high quality, relatively reduced cost monitoring of the Earth surface use by agriculture, addressing specific issues inherent to the problem, like for example the dynamic changes of crop characteristics and growing stages over time. As the evaluation of such technologies is not a purpose of this work, readers are encouraged to consult the brilliant references cited for a high quality education on the subject.</p>
+<h2>1.2. Combining and processing optical and radar-based data for cropland classification</h2>
+<p>Among remote sensing solutions, <b>optical</b> and <b>radar-based</b> sensing techniques demand special consideration when it comes to cropland classification. Furthermore, a combination of both has consistently led to high accuracy identification of crops of varied nature and in different development stages.</p>
+<p>The dataset serving as the basis for this machine learning study, described in detail in Section 3, contains a large set of numerical features derived from remote sensing information assembled by two primary sources:</p>
+<ul>
+    <li>Optical information (actual images) was collected by RapidEye satellites;</li>
+    <li>Radar-based information was collected by an Unihnabitated Aerial Vehicle Synthetic Aperture Radar (UAVSAR) system.</li>
+</ul>
+<p>As the amount and complexity of data gathered from such different sources over several time spans is inherently huge, <b>machine learning</b> plays a central role when it comes to the final classification purpose. The literature is vast and describes inumerous approaches and techniques to manipulate such information. The researchers cited in foreword have themselves assessed several solutions, stacked random forests in particular, with overall accuracies ranging from 90 to 96% for different stacking strategies. It has been noted though that some of the references are outdated, which suggests that the use of state-of-the-art classification engines - random forest and neural network classifiers - may lead to further metric improvements.</p>
+<div class='row'>
+    <img class="imageboxcentered" src='/cropland-mapping/images/remote-sensing.png' alt='Remote sensing'>
+</div>
+
+    </div>
+  
+</div>
+
+    </div>
+  </section>
+
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+
+  
+
+  <section id="section-02-objectives" class="home-section wg-blank   " style="padding: 0 0 0 0;" >
+    <div class="container">
+      
+
+
+<div class="row">
+  
+    <div class="col-lg-12">
+      
+      
+      <h1>2. Objectives of this machine learning exercise</h1>
+<p>Two major objectives are proposed for this study:</p>
+<ol>
+    <li>Assess the performance of scikit-learn's Random Forest Classifier;</li>
+    <li>Investigate potential performance improvements that may be offered by an Artificial Neural Network (ANN).</li>
+</ol>
+<p>A third objective would enhance even more this exercise: the processing of actual RapidEye satellite images with computer vision learning engines - a convolutional neural network (CNN), for example - and the corresponding performance assessment. Future revisions of this work may incorporate such analysis, if and when such images are made available by the respective sources.</p>
+
+    </div>
+  
+</div>
+
+    </div>
+  </section>
+
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+
+  
+
+  <section id="section-03-the-dataset" class="home-section wg-blank   " style="padding: 0 0 0 0;" >
+    <div class="container">
+      
+
+
+<div class="row">
+  
+    <div class="col-lg-12">
+      
+      
+      <h1>3. The dataset</h1>
+<p>The dataset chosen for this machine learning exercise contains fused, bi-temporal optical-radar data for cropland classification, in tabular form, derived from images collected by RapidEye satellites (optical) and polarimetric radar information collected by Unmanned Aerial Vehicle Synthetic Aperture Radars (UAVSAR) over an agricultural region near <b>Winnipeg, Canada</b> on <b>July 5th and July 14th, 2012</b>. In this area, seven different crop cultures existed at the time of collection:</p>
+<ol>
+    <li>Corn</li>
+    <li>Pea</li>
+    <li>Canola</li>
+    <li>Soy</li>
+    <li>Oat</li>
+    <li>Wheat</li>
+    <li>Broadleaf</li>
+</ol>
+<div class='row'>
+    <img class="imageboxcentered" src='/cropland-mapping/images/crop-types.png' alt='Crop types'>
+</div>
+<p>The dataset has 325,834 observations, each containing 175 attributes structured the following way:</p>
+<p><b>Dependent variable</b>:</p>
+<ul>
+    <li>Crop class, as described above ('label', integer value ranging from 1 to 7);</li>
+</ul>
+<p><b>Predictive features</b>:</p>
+<ul>
+    <li>Polarimetric radar features (49) collected on July 5th, 2012 ('f1' to 'f49', real values);</li>
+    <li>Polarimetric radar features (49) collected on July 14th, 2012 ('f50' to 'f98', real values);</li>
+    <li>Optical features (38) collected on July 5th, 2012 ('f99' to 'f136', real values);</li>
+    <li>Optical features (38) collected on July 14th, 2012 ('f137' to 'f174', real values).</li>
+</ul>
+<p>There are no missing values.</p>
+
+    </div>
+  
+</div>
+
+    </div>
+  </section>
+
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+
+  
+
+  <section id="section-04-initial-setup" class="home-section wg-blank   " style="padding: 0 0 0 0;" >
+    <div class="container">
+      
+
+
+<div class="row">
+  
+    <div class="col-lg-12">
+      
+      
+      <h1>4. Initial setup</h1>
+<h2>4.1. Importing required libraries</h2>
+<p>Along with traditional libraries imported for tensor manipulation, mathematical operations and graphics development, specific scikit-learn modules (<a href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html" target="_blank">StandardScaler</a> for dataset scaling, <a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.accuracy_score.html" target="_blank">accuracy_score</a>, <a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_score.html" target="_blank">precision_score</a>, <a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.recall_score.html" target="_blank">recall_score</a> and <a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_recall_fscore_support.html" target="_blank">precision_recall_fscore_support</a> as performance metric estimators) were selected. The random forest is implemented with and instantiation of scikit-learn's <a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html" target="_blank">RandomForestClassifier</a> class. The artificial neural network (ANN) is implemented instantiating a Keras <a href="https://keras.io/api/models/sequential/" target="_blank">Sequential</a> model including <a href="https://keras.io/api/layers/core_layers/dense/" target="_blank">Dense</a> and <a href="https://keras.io/api/layers/regularization_layers/dropout/" target="_blank">Dropout</a> layers. <a href="https://keras.io/api/optimizers/adam/" target="_blank">Adam</a> has been elected as the optimization function of choice for this multiclass classification exercise.</p>
+<div class="boxborder">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
+<span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
+<span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#f92672">as</span> plt
+<span style="color:#f92672">import</span> seaborn <span style="color:#f92672">as</span> sns
+<span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
+
+<span style="color:#f92672">from</span> sklearn.preprocessing <span style="color:#f92672">import</span> StandardScaler
+<span style="color:#f92672">from</span> sklearn.ensemble <span style="color:#f92672">import</span> RandomForestClassifier
+<span style="color:#f92672">from</span> sklearn.metrics <span style="color:#f92672">import</span> accuracy_score, precision_score, recall_score, precision_recall_fscore_support
+
+<span style="color:#f92672">from</span> keras.models <span style="color:#f92672">import</span> Sequential
+<span style="color:#f92672">from</span> keras.layers <span style="color:#f92672">import</span> Dense, Dropout
+<span style="color:#f92672">from</span> keras.optimizers <span style="color:#f92672">import</span> Adam
+
+<span style="color:#f92672">import</span> warnings
+</code></pre></div></div>
+<div class="boxborder">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">warnings<span style="color:#f92672">.</span>filterwarnings(<span style="color:#e6db74">&#39;ignore&#39;</span>)
+sns<span style="color:#f92672">.</span>set()
+start_time <span style="color:#f92672">=</span> datetime<span style="color:#f92672">.</span>now()
+</code></pre></div></div>
+<h2>4.2. Customized functions</h2>
+<p>Custom functions were developed to assist with graphical analysis of specific dataset elements (features or observations) and mapping correlation. Please refer to the respective docstrings for further insight. All function variable names, by coding principle, start with the "f_" string, allowing for containerized processing within the function execution environment, not affecting or interacting with global variables.</p>
+<div class="boxborder">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">assessment</span>(f_data, f_y_feature, f_x_feature, f_index<span style="color:#f92672">=-</span><span style="color:#ae81ff">1</span>):
+    <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">    Develops and displays a histogram and a scatter plot for a dependent / independent variable pair from
+</span><span style="color:#e6db74">    a dataframe and, optionally, highlights a specific observation on the plot in a different color (red).
+</span><span style="color:#e6db74">    
+</span><span style="color:#e6db74">    Also optionally, if an independent feature is not informed, the scatterplot is not displayed.
+</span><span style="color:#e6db74">    
+</span><span style="color:#e6db74">    Keyword arguments:
+</span><span style="color:#e6db74">    
+</span><span style="color:#e6db74">    f_data      Tensor containing the dependent / independent variable pair.
+</span><span style="color:#e6db74">                Pandas dataframe
+</span><span style="color:#e6db74">    f_y_feature Dependent variable designation.
+</span><span style="color:#e6db74">                String
+</span><span style="color:#e6db74">    f_x_feature Independent variable designation.
+</span><span style="color:#e6db74">                String
+</span><span style="color:#e6db74">    f_index     If greater or equal to zero, the observation denoted by f_index will be plotted in red.
+</span><span style="color:#e6db74">                Integer
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+    <span style="color:#66d9ef">for</span> f_row <span style="color:#f92672">in</span> f_data:
+        <span style="color:#66d9ef">if</span> f_index <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>:
+            f_color <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>where(f_data[f_row]<span style="color:#f92672">.</span>index <span style="color:#f92672">==</span> f_index,<span style="color:#e6db74">&#39;r&#39;</span>,<span style="color:#e6db74">&#39;g&#39;</span>)
+            f_hue <span style="color:#f92672">=</span> None
+        <span style="color:#66d9ef">else</span>:
+            f_color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;b&#39;</span>
+            f_hue <span style="color:#f92672">=</span> None
+    
+    f_fig, f_a <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">16</span>,<span style="color:#ae81ff">4</span>))
+    
+    f_chart1 <span style="color:#f92672">=</span> sns<span style="color:#f92672">.</span>distplot(f_data[f_x_feature], ax<span style="color:#f92672">=</span>f_a[<span style="color:#ae81ff">0</span>], kde<span style="color:#f92672">=</span>False, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;orangered&#39;</span>)
+    f_chart1<span style="color:#f92672">.</span>set_xlabel(f_x_feature,fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
+    
+    <span style="color:#66d9ef">if</span> f_index <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>:
+        f_chart2 <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>scatter(f_data[f_x_feature], f_data[f_y_feature], c<span style="color:#f92672">=</span>f_color, edgecolors<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;w&#39;</span>)
+        f_chart2 <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>xlabel(f_x_feature, fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
+        f_chart2 <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>ylabel(f_y_feature, fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
+    <span style="color:#66d9ef">else</span>:
+        f_chart2 <span style="color:#f92672">=</span> sns<span style="color:#f92672">.</span>scatterplot(x<span style="color:#f92672">=</span>f_x_feature, y<span style="color:#f92672">=</span>f_y_feature, data<span style="color:#f92672">=</span>f_data, hue<span style="color:#f92672">=</span>f_hue, legend<span style="color:#f92672">=</span>False)
+        f_chart2<span style="color:#f92672">.</span>set_xlabel(f_x_feature,fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
+        f_chart2<span style="color:#f92672">.</span>set_ylabel(f_y_feature,fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
+
+    plt<span style="color:#f92672">.</span>show()
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">correlation_map</span>(f_data, f_feature, f_number):
+    <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">    Develops and displays a heatmap plot referenced to a primary feature of a dataframe, highlighting
+</span><span style="color:#e6db74">    the correlation among the &#39;n&#39; mostly correlated features of the dataframe.
+</span><span style="color:#e6db74">    
+</span><span style="color:#e6db74">    Keyword arguments:
+</span><span style="color:#e6db74">    
+</span><span style="color:#e6db74">    f_data      Tensor containing all relevant features, including the primary.
+</span><span style="color:#e6db74">                Pandas dataframe
+</span><span style="color:#e6db74">    f_feature   The primary feature.
+</span><span style="color:#e6db74">                String
+</span><span style="color:#e6db74">    f_number    The number of features most correlated to the primary feature.
+</span><span style="color:#e6db74">                Integer
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+    f_most_correlated <span style="color:#f92672">=</span> f_data<span style="color:#f92672">.</span>corr()<span style="color:#f92672">.</span>nlargest(f_number,f_feature)[f_feature]<span style="color:#f92672">.</span>index
+    f_correlation <span style="color:#f92672">=</span> f_data[f_most_correlated]<span style="color:#f92672">.</span>corr()
+    
+    f_mask <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>zeros_like(f_correlation)
+    f_mask[np<span style="color:#f92672">.</span>triu_indices_from(f_mask)] <span style="color:#f92672">=</span> True
+    
+    <span style="color:#66d9ef">with</span> sns<span style="color:#f92672">.</span>axes_style(<span style="color:#e6db74">&#34;white&#34;</span>):
+        f_fig, f_ax <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">40</span>, <span style="color:#ae81ff">20</span>))
+        f_map <span style="color:#f92672">=</span> sns<span style="color:#f92672">.</span>heatmap(f_correlation, mask<span style="color:#f92672">=</span>f_mask, vmin<span style="color:#f92672">=-</span><span style="color:#ae81ff">1</span>, vmax<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, square<span style="color:#f92672">=</span>True,
+                            center<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, cmap<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;RdYlBu&#34;</span>)
+    plt<span style="color:#f92672">.</span>show()
+</code></pre></div></div>
+<h2>4.3. Importing the dataset</h2>
+<p>The dataset containing 325,834 observations is imported and shuffled.</p>
+<div class="boxborder">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># Importing the dataset</span>
+dataset <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_csv(<span style="color:#e6db74">&#39;/cropland-mapping/WinnipegDataset.txt&#39;</span>)
+dataset <span style="color:#f92672">=</span> dataset<span style="color:#f92672">.</span>sample(frac<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+</code></pre></div></div>
+
+    </div>
+  
+</div>
+
+    </div>
+  </section>
+
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+
+  
+
+  <section id="section-05-eda-preprocessing" class="home-section wg-blank   " style="padding: 0 0 0 0;" >
+    <div class="container">
+      
+
+
+<div class="row">
+  
+    <div class="col-lg-12">
+      
+      
+      <h1>5. Exploratory data analysis and preprocessing</h1>
+<p>A glimpse at the dataset structure confirms observation shuffling.</p>
+<div class="boxborder">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">dataset<span style="color:#f92672">.</span>head()
+</code></pre></div></div>
+<table>
+    <tbody class="codeoutput">
+        <tr>
+            <td style="width: 10%; border: 0;"></td>
+            <td style="width: 10%; border: 0;">label</td>
+            <td style="width: 10%; border: 0;">f1</td>
+            <td style="width: 10%; border: 0;">f2</td>
+            <td style="width: 10%; border: 0;">...</td>
+            <td style="width: 10%; border: 0;">f173</td>
+            <td style="width: 10%; border: 0;">f174</td>
+        </tr>
+        <tr>
+            <td style="width: 10%; border: 0;">72705</td>
+            <td style="width: 10%; border: 0;">3</td>
+            <td style="width: 10%; border: 0;">-9.9885</td>
+            <td style="width: 10%; border: 0;">-17.714</td>
+            <td style="width: 10%; border: 0;">...</td>
+            <td style="width: 10%; border: 0;">0.43210</td>
+            <td style="width: 10%; border: 0;">0.39528</td>
+        </tr>
+        <tr>
+            <td style="width: 10%; border: 0;">29621</td>
+            <td style="width: 10%; border: 0;">1</td>
+            <td style="width: 10%; border: 0;">-9.3725</td>
+            <td style="width: 10%; border: 0;">-18.335</td>
+            <td style="width: 10%; border: 0;">...</td>
+            <td style="width: 10%; border: 0;">1.00000</td>
+            <td style="width: 10%; border: 0;">1.00000</td>
+        </tr>
+        <tr>
+            <td style="width: 10%; border: 0;">43356</td>
+            <td style="width: 10%; border: 0;">3</td>
+            <td style="width: 10%; border: 0;">-12.0820</td>
+            <td style="width: 10%; border: 0;">-21.182</td>
+            <td style="width: 10%; border: 0;">...</td>
+            <td style="width: 10%; border: 0;">1.00000</td>
+            <td style="width: 10%; border: 0;">1.00000</td>
+        </tr>
+        <tr>
+            <td style="width: 10%; border: 0;">322243</td>
+            <td style="width: 10%; border: 0;">6</td>
+            <td style="width: 10%; border: 0;">-15.7940</td>
+            <td style="width: 10%; border: 0;">-25.821</td>
+            <td style="width: 10%; border: 0;">...</td>
+            <td style="width: 10%; border: 0;">0.43210</td>
+            <td style="width: 10%; border: 0;">0.39528</td>
+        </tr>
+        <tr>
+            <td style="width: 10%; border: 0;">49433</td>
+            <td style="width: 10%; border: 0;">3</td>
+            <td style="width: 10%; border: 0;">-13.6820</td>
+            <td style="width: 10%; border: 0;">-23.080</td>
+            <td style="width: 10%; border: 0;">...</td>
+            <td style="width: 10%; border: 0;">0.80247</td>
+            <td style="width: 10%; border: 0;">1.00000</td>
+        </tr>
+    </tbody>
+</table>
+<p>In addition, the analysis of unique labels shows a somehow balanced distribution (class share percentages mapped and charted below), with the exception of '<b>broadleaf</b>' and '<b>pea</b>'. Watchful eyes will be on these two classes along the exercise.</p>
+<div class="boxborder">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">class_share <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>Series(<span style="color:#ae81ff">100</span> <span style="color:#f92672">*</span> dataset<span style="color:#f92672">.</span>label<span style="color:#f92672">.</span>value_counts(normalize<span style="color:#f92672">=</span>True))<span style="color:#f92672">.</span>sort_index()
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Class share</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">7</span>):
+    <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;Class {class_share.index[i]}: {class_share.iloc[i]:.2f} %&#39;</span>)
+</code></pre></div></div>
+<p class="codeoutput">Class share<br/>
+Class 1: 12.02 %<br/>
+Class 2: 1.10 %<br/>
+Class 3: 23.22 %<br/>
+Class 4: 22.73 %<br/>
+Class 5: 14.46 %<br/>
+Class 6: 26.11 %<br/>
+Class 7: 0.35 %</p>
+<div class="boxborder">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fig, ax <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">5</span>))
+sns<span style="color:#f92672">.</span>barplot(ax<span style="color:#f92672">=</span>ax, x <span style="color:#f92672">=</span> class_share<span style="color:#f92672">.</span>index, y <span style="color:#f92672">=</span> class_share, palette<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Greens_d&#39;</span>)
+plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;Cropland Class Share&#39;</span>, fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">18</span>)
+plt<span style="color:#f92672">.</span>xlabel(<span style="color:#e6db74">&#39;Cropland Class&#39;</span>, fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">14</span>)
+plt<span style="color:#f92672">.</span>ylabel(<span style="color:#e6db74">&#39;Share (%)&#39;</span>, fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">14</span>)
+</code></pre></div></div>
+<div class='row'>
+    <img class="imageboxcentered" src='/cropland-mapping/images/cropland-class.png' alt='Cropland class share'>
+</div>
+<h2>5.1. Correlation</h2>
+<p>The correlation between each feature and the dependent variable, as well as the correlation among features (intercorrelation), provide elements to tackle potential undesired colinearity.</p>
+<p>The code below assists in identifying and sorting high feature intercorrelation cases based on the corresponding correlation coefficients (in descending order). A threshold of 0.95 has been arbitrarily defined for filtering highly intercorrelated features.</p>
+<div class="boxborder">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">highly_correlated_feature_pairs <span style="color:#f92672">=</span> []
+highly_correlated_features_to_drop <span style="color:#f92672">=</span> []
+
+correlation_matrix <span style="color:#f92672">=</span> dataset<span style="color:#f92672">.</span>corr()<span style="color:#f92672">.</span>abs()
+upper_matrix <span style="color:#f92672">=</span> correlation_matrix<span style="color:#f92672">.</span>where(np<span style="color:#f92672">.</span>triu(np<span style="color:#f92672">.</span>ones(correlation_matrix<span style="color:#f92672">.</span>shape), k<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>astype(np<span style="color:#f92672">.</span>bool))
+<span style="color:#66d9ef">for</span> row <span style="color:#f92672">in</span> range(upper_matrix<span style="color:#f92672">.</span>shape[<span style="color:#ae81ff">0</span>]):
+    <span style="color:#66d9ef">for</span> column <span style="color:#f92672">in</span> range(upper_matrix<span style="color:#f92672">.</span>shape[<span style="color:#ae81ff">1</span>]):
+        <span style="color:#66d9ef">if</span> upper_matrix<span style="color:#f92672">.</span>iloc[row, column] <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0.95</span>:
+            highly_correlated_feature_pairs<span style="color:#f92672">.</span>append([row, column, upper_matrix<span style="color:#f92672">.</span>iloc[row, column]])
+            
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;Number of highly intercorrelated feature pairs: {len(highly_correlated_feature_pairs)}&#39;</span>)
+</code></pre></div></div>
+<p class="codeoutput">Number of highly intercorrelated feature pairs: 117</p>
+<p>As the articles cited in foreword anticipate in deep detail, there is indeed a set of features strongly intercorrelated.</p>
+<p>For information only, the 10 most intercorrelated feature pairs are identified below along with their corresponding correlation coefficients. Readers must note that <b>six pairs of features</b> (!) are perfectly correlated (coefficient equals 1). This problem must always be addressed in data preprocessing.</p>
+<div class="boxborder">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">highly_correlated_feature_pairs <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame(highly_correlated_feature_pairs)<span style="color:#f92672">.</span>sort_values(by<span style="color:#f92672">=</span>[<span style="color:#ae81ff">2</span>], ascending<span style="color:#f92672">=</span>False)
+highly_correlated_feature_pairs<span style="color:#f92672">.</span>columns <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;feature_1&#39;</span>, <span style="color:#e6db74">&#39;feature_2&#39;</span>, <span style="color:#e6db74">&#39;correl&#39;</span>]
+highly_correlated_feature_pairs<span style="color:#f92672">.</span>head(<span style="color:#ae81ff">10</span>)
+</code></pre></div></div>
+<table>
+    <tbody class="codeoutput">
+        <tr>
+            <td style="width: 16%; border: 0;"></td>
+            <td style="width: 28%; border: 0;">feature_1</td>
+            <td style="width: 28%; border: 0;">feature_2</td>
+            <td style="width: 28%; border: 0;">correl</td>
+        </tr>
+        <tr>
+            <td style="width: 16%; border: 0;">4</td>
+            <td style="width: 28%; border: 0;">2</td>
+            <td style="width: 28%; border: 0;">39</td>
+            <td style="width: 28%; border: 0;">1.000000</td>
+        </tr>
+        <tr>
+            <td style="width: 16%; border: 0;">38</td>
+            <td style="width: 28%; border: 0;">51</td>
+            <td style="width: 28%; border: 0;">88</td>
+            <td style="width: 28%; border: 0;">1.000000</td>
+        </tr>
+        <tr>
+            <td style="width: 16%; border: 0;">109</td>
+            <td style="width: 28%; border: 0;">151</td>
+            <td style="width: 28%; border: 0;">153</td>
+            <td style="width: 28%; border: 0;">1.000000</td>
+        </tr>
+        <tr>
+            <td style="width: 16%; border: 0;">45</td>
+            <td style="width: 28%; border: 0;">54</td>
+            <td style="width: 28%; border: 0;">86</td>
+            <td style="width: 28%; border: 0;">1.000000</td>
+        </tr>
+        <tr>
+            <td style="width: 16%; border: 0;">8</td>
+            <td style="width: 28%; border: 0;">5</td>
+            <td style="width: 28%; border: 0;">37</td>
+            <td style="width: 28%; border: 0;">1.000000</td>
+        </tr>
+        <tr>
+            <td style="width: 16%; border: 0;">102</td>
+            <td style="width: 28%; border: 0;">142</td>
+            <td style="width: 28%; border: 0;">147</td>
+            <td style="width: 28%; border: 0;">1.000000</td>
+        </tr>
+        <tr>
+            <td style="width: 16%; border: 0;">113</td>
+            <td style="width: 28%; border: 0;">156</td>
+            <td style="width: 28%; border: 0;">157</td>
+            <td style="width: 28%; border: 0;">0.998716</td>
+        </tr>
+        <tr>
+            <td style="width: 16%; border: 0;">13</td>
+            <td style="width: 28%; border: 0;">7</td>
+            <td style="width: 28%; border: 0;">15</td>
+            <td style="width: 28%; border: 0;">0.995524</td>
+        </tr>
+        <tr>
+            <td style="width: 16%; border: 0;">10</td>
+            <td style="width: 28%; border: 0;">6</td>
+            <td style="width: 28%; border: 0;">38</td>
+            <td style="width: 28%; border: 0;">0.995455</td>
+        </tr>
+        <tr>
+            <td style="width: 16%; border: 0;">60</td>
+            <td style="width: 28%; border: 0;">62</td>
+            <td style="width: 28%; border: 0;">79</td>
+            <td style="width: 28%; border: 0;">0.995254</td>
+        </tr>
+    </tbody>
+</table>
+<p>Features to be dropped are pinned on a correlation map and removed from the dataset.</p>
+<div class="boxborder">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">highly_correlated_features_to_drop <span style="color:#f92672">=</span> [column <span style="color:#66d9ef">for</span> column <span style="color:#f92672">in</span> upper_matrix<span style="color:#f92672">.</span>columns <span style="color:#66d9ef">if</span> any(upper_matrix[column] <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0.95</span>)]
+dataset <span style="color:#f92672">=</span> dataset<span style="color:#f92672">.</span>drop(dataset[highly_correlated_features_to_drop], axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+</code></pre></div></div>
+<div class="boxborder">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">nr_features <span style="color:#f92672">=</span> dataset<span style="color:#f92672">.</span>shape[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;Optimized number of features: {nr_features}&#39;</span>)
+</code></pre></div></div>
+<p class="codeoutput">Optimized number of features: 102</p>
+<p>After dropping, the number of features was substantially reduced from 174 down to 102 (a 41.4 % decrease). Such dimensionality optimization not only assists in mitigating colinearity but also allows for the creation of streamlined machines and faster learning with lower processing and memory requirements.</p>
+<p>A final correlation map including the dependent variable ('label') and the remaining feature set is charted below.</p>
+<div class="boxborder">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">correlation_map(dataset, <span style="color:#e6db74">&#39;label&#39;</span>, nr_features)
+</code></pre></div></div>
+<div class='row'>
+    <img class="imageboxcentered" src='/cropland-mapping/images/correlation-map.png' alt='Correlation map'>
+</div>
+<h2>5.2. Feature assessment</h2>
+<p>Invoking the 'assessment' custom function allows for plotting feature distribution patterns and their relationship with the 'label' dependent variable. This is done for the 10 features most correlated with the dependent variable 'label', just to provide a first glimpse of data behavior:</p>
+<div class="boxborder">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">most_correlated_features <span style="color:#f92672">=</span> dataset<span style="color:#f92672">.</span>corr()<span style="color:#f92672">.</span>nlargest(<span style="color:#ae81ff">10</span>,<span style="color:#e6db74">&#39;label&#39;</span>)[<span style="color:#e6db74">&#39;label&#39;</span>]<span style="color:#f92672">.</span>index
+
+<span style="color:#66d9ef">for</span> column <span style="color:#f92672">in</span> most_correlated_features:
+    assessment(dataset, <span style="color:#e6db74">&#39;label&#39;</span>, column, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+</code></pre></div></div>
+<div class='row'>
+    <img class="imageboxcentered" src='/cropland-mapping/images/assessment-01.png' alt='Feature assessment'>
+</div>
+<div class='row'>
+    <img class="imageboxcentered" src='/cropland-mapping/images/assessment-02.png' alt='Feature assessment'>
+</div>
+<div class='row'>
+    <img class="imageboxcentered" src='/cropland-mapping/images/assessment-03.png' alt='Feature assessment'>
+</div>
+<div class='row'>
+    <img class="imageboxcentered" src='/cropland-mapping/images/assessment-04.png' alt='Feature assessment'>
+</div>
+<div class='row'>
+    <img class="imageboxcentered" src='/cropland-mapping/images/assessment-05.png' alt='Feature assessment'>
+</div>
+<div class='row'>
+    <img class="imageboxcentered" src='/cropland-mapping/images/assessment-06.png' alt='Feature assessment'>
+</div>
+<div class='row'>
+    <img class="imageboxcentered" src='/cropland-mapping/images/assessment-07.png' alt='Feature assessment'>
+</div>
+<div class='row'>
+    <img class="imageboxcentered" src='/cropland-mapping/images/assessment-08.png' alt='Feature assessment'>
+</div>
+<div class='row'>
+    <img class="imageboxcentered" src='/cropland-mapping/images/assessment-09.png' alt='Feature assessment'>
+</div>
+<div class='row'>
+    <img class="imageboxcentered" src='/cropland-mapping/images/assessment-10.png' alt='Feature assessment'>
+</div>
+<p>The analysis shows that some variables are indeed skewed. However, no transformation will be performed <em>a priori</em>. This decision may be revisited later in light of the overall performance of trained classifiers.</p>
+<h2>5.3. Segregating train and test sets</h2>
+<p>As both classical (random forests) and deep (neural networks) machine learning solutions will be compared, two different sets of tensors will be developed, allowing for their use in each learning exercise.</p>
+<p>After the elimination of highly intercorrelated features, our dataset now contains 325,834 observations with:</p>
+<ul>
+    <li>One column for labels (integers ranging from 1 to 7);</li>
+    <li>102 columns for features.</li> 
+</ul>
+<p>The <b>features tensor</b> will be unique, serving both exercises.</p>
+<p>Two <b>label tensors</b> will be constructed:</p>
+<ul>
+    <li>For the <b>random forest</b> classification, original labels (integers ranging from 1 to 7) will be preserved and accommodated into one unidimensional array;</li>
+    <li>For the <b>neural network</b> classification, the label column will be one-hot enconded with the help of Pandas' get_dummies method. Therefore, labels will now consist of arrays with seven binary elements, each of them referring to a specific crop class, allowing for the final class identification based on the array element with the highest predicted value.</li>
+</ul>
+<p>The unique features tensor and the two label tensors are subsequently split into training and testing sets. The training set will host 80% of observations, while the testing set will accommodate the remaining 20%. Such proportions were arbitrarily chosen by the author.</p>
+<div class="boxborder">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">X <span style="color:#f92672">=</span> dataset<span style="color:#f92672">.</span>iloc[:, <span style="color:#ae81ff">1</span>:]
+y <span style="color:#f92672">=</span> dataset<span style="color:#f92672">.</span>iloc[:, <span style="color:#ae81ff">0</span>:<span style="color:#ae81ff">1</span>]
+
+train_size <span style="color:#f92672">=</span> round(<span style="color:#ae81ff">0.8</span> <span style="color:#f92672">*</span> len(X))
+
+X_train <span style="color:#f92672">=</span> X<span style="color:#f92672">.</span>iloc[:train_size, :]<span style="color:#f92672">.</span>values
+y_train <span style="color:#f92672">=</span> y<span style="color:#f92672">.</span>iloc[:train_size]
+
+X_test <span style="color:#f92672">=</span> X<span style="color:#f92672">.</span>iloc[train_size:, :]<span style="color:#f92672">.</span>values
+y_test <span style="color:#f92672">=</span> y<span style="color:#f92672">.</span>iloc[train_size:]
+</code></pre></div></div>
+<p>In preparation for testing at the end of this exercise, mapping class counts in the set of testing labels is important:</p>
+<div class="boxborder">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">class_count <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>Series(y_test<span style="color:#f92672">.</span>label<span style="color:#f92672">.</span>value_counts())<span style="color:#f92672">.</span>sort_index()
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Class count - Test labels</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">7</span>):
+    <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;Class {class_count.index[i]}: {class_count.iloc[i]}&#39;</span>)
+</code></pre></div></div>
+<p class="codeoutput">Class count - Test labels<br/>
+Class 1: 7917<br/>
+Class 2: 712<br/>
+Class 3: 15289<br/>
+Class 4: 14603<br/>
+Class 5: 9440<br/>
+Class 6: 16958<br/>
+Class 7: 248</p>
+<p>Finally, label tensors (numpy arrays) are created for each separate exercise (random forest and neural network).</p>
+<div class="boxborder">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">y_train_rf <span style="color:#f92672">=</span> y_train<span style="color:#f92672">.</span>label<span style="color:#f92672">.</span>values
+y_test_rf <span style="color:#f92672">=</span> y_test<span style="color:#f92672">.</span>label<span style="color:#f92672">.</span>values
+
+y_train_ann <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>get_dummies(y_train<span style="color:#f92672">.</span>label)<span style="color:#f92672">.</span>values
+y_test_ann <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>get_dummies(y_test<span style="color:#f92672">.</span>label)<span style="color:#f92672">.</span>values
+</code></pre></div></div>
+<h2>5.4. Feature scaling</h2>
+<p>Scaling is performed on the training feature set only and applied to both training and testing feature sets (with the 'fit_transform' and 'transform' methods, respectively).</p>
+<div class="boxborder">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># Scaling</span>
+scaler <span style="color:#f92672">=</span> StandardScaler()
+X_train <span style="color:#f92672">=</span> scaler<span style="color:#f92672">.</span>fit_transform(X_train)
+X_test <span style="color:#f92672">=</span> scaler<span style="color:#f92672">.</span>transform(X_test)
+</code></pre></div></div>
+
+    </div>
+  
+</div>
+
+    </div>
+  </section>
+
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+
+  
+
+  <section id="section-06-machine-learning" class="home-section wg-blank   " style="padding: 0 0 0 0;" >
+    <div class="container">
+      
+
+
+<div class="row">
+  
+    <div class="col-lg-12">
+      
+      
+      <h1>6. Machine learning</h1>
+<h2>6.1. Part I - Random Forest</h2>
+<h3>6.1.1. Model definition</h3>
+<p>In the first part of this exercise a random forest-based classifying machine will be trained and tested in order to validate previous results achieved by researchers cited in foreword.</p>
+<p>Such random forest-based engine will be implemented with scikit-learn's RandomForestClassifier. Initially, the default set of parameters will be used, with few exceptions outlined below. No parameter optimization will be performed in advance. This decision may also be reassessed based on performance metrics achieved in testing.</p>
+<p>Some relevant parameters and default values for the RandomForestClassifier are listed below:</p>
+<ul>
+    <li>'n_estimators'- Number of trees in the forest (default 10);</li>
+    <li>'max_depth' - Maximum tree depth (default None). Per the documentation, if 'None', "<em>nodes are expanded until all leaves are pure or until all leaves contain less than min_samples_split</em> (see below)";</li>
+    <li>'min_samples_split' - Minimum number of samples required to split an internal node, tree specific (default 2);</li>
+    <li>'min_samples_leaf' - Minimum number of samples in newly created leaves (default 1);</li>
+    <li>'n_jobs' - Number of jobs to run in parallel for both fitting and predicting (default 1). Per the documentation, "<em>if -1, then the number of jobs is set to the number of cores</em>".</li>
+</ul>
+<h3>6.1.2. Model fitting</h3>
+<p>The classifier will be instantiated with n_estimators = 100 (i.e. the forest will comprise 100 decision trees) and n_jobs = 4 (allowing for the use of 4 processing cores).</p>
+<p>The author selected a number of trees relatively close to the final number of features (102) for a first shot. However, a more robust optimization of relevant hyperparameters is recommended, e.g. through the use of <b>validation curves</b>. Readers are welcome to experiment.</p>
+<div class="boxborder">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">random_forest_classifier <span style="color:#f92672">=</span> RandomForestClassifier(n_estimators<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>, n_jobs<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>)
+random_forest_classifier<span style="color:#f92672">.</span>fit(X_train, y_train_rf)
+</code></pre></div></div>
+<p class="codeoutput">RandomForestClassifier(n_jobs=4)</p>
+<h3>6.1.3. Predictions</h3>
+<p>After fitting the model to the training set, predictions are generated for the testing set. As a reminder, predictions for each observation will be scalars ranging from 1 to 7, referring to one particular crop class:</p>
+<div class="boxborder">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">y_pred_rf <span style="color:#f92672">=</span> random_forest_classifier<span style="color:#f92672">.</span>predict(X_test)
+</code></pre></div></div>
+<p>For information only (a first sanity check), the first prediction in the 'y_pred_rf' array matches the actual class for the corresponding test set observation hosted in the 'y_test_rf' array. So far, so good...</p>
+<div class="boxborder">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;Predicted class: {y_pred_rf[0]}&#39;</span>)
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;Actual class: {y_test_rf[0]}&#39;</span>)
+</code></pre></div></div>
+<p class="codeoutput">Predicted class: 4<br/>
+Actual class: 4</p>
+<h2>6.2. Part II - Deep learning (Artificial Neural Network)</h2>
+<h3>6.2.1. Model definition</h3>
+<p>The artificial neural network (ANN) architecture comprises a sequential structure with:</p>
+<ul>
+    <li>one input layer (102 input nodes);</li>
+    <li>three hidden layers (204, 204 and 102 nodes, respectively);</li>
+    <li>one seven-node output layer.</li>
+</ul>
+<p>As features are standardized real numbers, '<b>relu</b>' is elected as the activation function of choice for hidden layers. In addition, as this is a multiclass classification exercise, where the output is intended to be binary ('1' for the identified class, '0' for all other classes), the choice of '<b>softmax</b>' as the activation function for the output layer seems adequate.</p>
+<p>'<b>Adam</b>' has been elected as the optimizer, and its constituent parameters expanded to give some flexibility to play, in particular, with the learning rate. As this is a multiclass classification exercise, '<b>categorical_crossentropy</b>' is selected as the loss function. The fitting performance will be assessed using '<b>accuracy</b>' as the metric of choice.</p>
+<div class='row' style="margin-bottom: 25px;">
+    <img class="imageboxcentered" src='/cropland-mapping/images/ann-cropland.png' alt='Artificial neural network'>
+</div>
+<div class="boxborder">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># ANN</span>
+ann_classifier <span style="color:#f92672">=</span> Sequential()
+
+<span style="color:#75715e"># Input layer and first dense layer</span>
+ann_classifier<span style="color:#f92672">.</span>add(Dense(units <span style="color:#f92672">=</span> <span style="color:#ae81ff">204</span>, kernel_initializer <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;uniform&#39;</span>, activation <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;relu&#39;</span>, input_dim <span style="color:#f92672">=</span> <span style="color:#ae81ff">102</span>))
+ann_classifier<span style="color:#f92672">.</span>add(Dropout(<span style="color:#ae81ff">0.1</span>))
+
+<span style="color:#75715e"># Second dense layer</span>
+ann_classifier<span style="color:#f92672">.</span>add(Dense(units <span style="color:#f92672">=</span> <span style="color:#ae81ff">204</span>, kernel_initializer <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;uniform&#39;</span>, activation <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;relu&#39;</span>))
+ann_classifier<span style="color:#f92672">.</span>add(Dropout(<span style="color:#ae81ff">0.1</span>))
+
+<span style="color:#75715e"># Third dense layer</span>
+ann_classifier<span style="color:#f92672">.</span>add(Dense(units <span style="color:#f92672">=</span> <span style="color:#ae81ff">102</span>, kernel_initializer <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;uniform&#39;</span>, activation <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;relu&#39;</span>))
+ann_classifier<span style="color:#f92672">.</span>add(Dropout(<span style="color:#ae81ff">0.1</span>))
+
+<span style="color:#75715e"># Output layer</span>
+ann_classifier<span style="color:#f92672">.</span>add(Dense(units <span style="color:#f92672">=</span> <span style="color:#ae81ff">7</span>, kernel_initializer <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;uniform&#39;</span>, activation <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;softmax&#39;</span>))
+
+<span style="color:#75715e"># Model compilation</span>
+
+optim <span style="color:#f92672">=</span> Adam(learning_rate<span style="color:#f92672">=</span><span style="color:#ae81ff">0.0005</span>)
+
+ann_classifier<span style="color:#f92672">.</span>compile(optimizer <span style="color:#f92672">=</span> optim, loss <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;categorical_crossentropy&#39;</span>, metrics <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;accuracy&#39;</span>])
+</code></pre></div></div>
+<h3>6.2.2. Model fitting</h3>
+<p>As the number of observations is huge, no cross-validation mechanism will be implemented <em>a priori</em>, another decision subject to later revision, if necessary.</p>
+<div class="boxborder">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">ann_train_history <span style="color:#f92672">=</span> ann_classifier<span style="color:#f92672">.</span>fit(X_train, y_train_ann, batch_size <span style="color:#f92672">=</span> <span style="color:#ae81ff">64</span>, epochs <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>, verbose<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
+</code></pre></div></div>
+<p>Training accuracy and loss per training epoch are charted below.</p>
+<p>As we are dealing with hundreds of thousands of observations, it is not unusual to see a neural network model converging fast. In this case, batches contain 64 observations. In every epoch the model will be exposed to more than 5,000 different batches. Few epochs may suffice to lead to high accuracy, low loss levels already in the beggining of the training session.</p>
+<p>In this exercise 100 epochs were scheduled, as the author was interested in investigating potential overfitting. In a final implementation, a shorter training might be considered.</p>
+<div class="boxborder">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fig, ax1 <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">6</span>))
+sns<span style="color:#f92672">.</span>set_style(<span style="color:#e6db74">&#34;darkgrid&#34;</span>)
+ax2 <span style="color:#f92672">=</span> ax1<span style="color:#f92672">.</span>twinx()
+ax1<span style="color:#f92672">.</span>plot(ann_train_history<span style="color:#f92672">.</span>history[<span style="color:#e6db74">&#39;accuracy&#39;</span>], color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;blue&#39;</span>)
+ax2<span style="color:#f92672">.</span>plot(ann_train_history<span style="color:#f92672">.</span>history[<span style="color:#e6db74">&#39;loss&#39;</span>], color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;red&#39;</span>)
+ax1<span style="color:#f92672">.</span>set_xlabel(<span style="color:#e6db74">&#39;Epochs&#39;</span>)
+ax1<span style="color:#f92672">.</span>set_ylabel(<span style="color:#e6db74">&#39;Accuracy&#39;</span>)
+ax1<span style="color:#f92672">.</span>tick_params(axis<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;y&#39;</span>, colors<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;blue&#39;</span>)
+ax2<span style="color:#f92672">.</span>set_ylabel(<span style="color:#e6db74">&#39;Loss&#39;</span>)
+ax2<span style="color:#f92672">.</span>tick_params(axis<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;y&#39;</span>, colors<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;red&#39;</span>)
+ax2<span style="color:#f92672">.</span>grid(False)
+plt<span style="color:#f92672">.</span>show()
+</code></pre></div></div>
+<div class='row'>
+    <img class="imageboxcentered" src='/cropland-mapping/images/ann-fitting.png' alt='Artificial neural network fitting'>
+</div>
+<h3>6.2.3. Predictions</h3>
+<p>After fitting the model to the training set, predictions are generated for the testing set. As a reminder, each prediction will correspond to an array with seven elements, each of them referring to one particular crop class. The final array is '<b>binarized</b>': the array element with the highest value will be converted to '1' while all other array elements will be converted to '0'.</p>
+<div class="boxborder">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">y_pred_ann <span style="color:#f92672">=</span> ann_classifier<span style="color:#f92672">.</span>predict(X_test)
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(y_pred_ann)):
+    <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">7</span>):
+        <span style="color:#66d9ef">if</span> y_pred_ann[i][j] <span style="color:#f92672">==</span> y_pred_ann[i]<span style="color:#f92672">.</span>max():
+            y_pred_ann[i][j] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">else</span>:
+            y_pred_ann[i][j] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+y_pred_ann <span style="color:#f92672">=</span> y_pred_ann<span style="color:#f92672">.</span>astype(int)
+</code></pre></div></div>
+<p>A new sanity check reveals that the first prediction in the 'y_pred_ann' tensor matches the array generated for the first test set label - the class has been correctly predicted for this particular observation with our neural network.</p>
+<div class="boxborder">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;Predicted: {y_pred_ann[0]}&#39;</span>)
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;Actual: {y_test_ann[0]}&#39;</span>)
+</code></pre></div></div>
+<p class="codeoutput">Predicted: [0 0 0 1 0 0 0]<br/>
+Actual: [0 0 0 1 0 0 0]</p>
+
+    </div>
+  
+</div>
+
+    </div>
+  </section>
+
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+
+  
+
+  <section id="section-07-classification-performance" class="home-section wg-blank   " style="padding: 0 0 0 0;" >
+    <div class="container">
+      
+
+
+<div class="row">
+  
+    <div class="col-lg-12">
+      
+      
+      <h1>7. Classification performance</h1>
+<p>In classification problems the overall model performance can be measured in more than one way. Along with the traditional calculation of statistical performance metrics directly from the 'predicted' and 'actual' testing tensors, <b>confusion matrices</b> provide a visual, quantitative assessment of the model performance on both overall and 'per class' basis.</p>
+<p>Performance is herein evaluated with both statistical metrics and confusion matrices for the two models introduced in Sections 7.1 (Random Forest) and 7.2 (Neural Network). As a reminder, in confusion matrices:</p>
+<ul>
+    <li>Columns correspond to <b>predicted</b> classes;</li>
+    <li>Rows correspond to <b>actual</b> classes.</li>
+</ul>
+<p>The outstanding results achieved in each case are discussed in detail in Section 8.</p>
+<h2>7.1. Random Forest</h2>
+<div class="boxborder">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">rf_cm <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>zeros((<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">7</span>))
+
+rf_pred_correct <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+rf_pred_incorrect <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(y_test)):
+    rf_index_test <span style="color:#f92672">=</span> y_test_rf[i] <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>
+    rf_index_pred <span style="color:#f92672">=</span> y_pred_rf[i] <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>
+    rf_cm[rf_index_test][rf_index_pred] <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+    <span style="color:#66d9ef">if</span> rf_index_test <span style="color:#f92672">==</span> rf_index_pred:
+        rf_pred_correct <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+    <span style="color:#66d9ef">else</span>:
+        rf_pred_incorrect <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+
+rf_cmatrix <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame(rf_cm<span style="color:#f92672">.</span>astype(int),
+                          index <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;Corn&#39;</span>, <span style="color:#e6db74">&#39;Pea&#39;</span>, <span style="color:#e6db74">&#39;Canola&#39;</span>, <span style="color:#e6db74">&#39;Soy&#39;</span>, <span style="color:#e6db74">&#39;Oat&#39;</span>, <span style="color:#e6db74">&#39;Wheat&#39;</span>, <span style="color:#e6db74">&#39;Broadleaf&#39;</span>],
+                          columns <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;Corn&#39;</span>, <span style="color:#e6db74">&#39;Pea&#39;</span>, <span style="color:#e6db74">&#39;Canola&#39;</span>, <span style="color:#e6db74">&#39;Soy&#39;</span>, <span style="color:#e6db74">&#39;Oat&#39;</span>, <span style="color:#e6db74">&#39;Wheat&#39;</span>, <span style="color:#e6db74">&#39;Broadleaf&#39;</span>])
+rf_cmatrix
+</code></pre></div></div>
+<table>
+    <tbody class="codeoutput">
+        <tr>
+            <td style="width: 12.5%; border: 0;"></td>
+            <td style="width: 12.5%; border: 0;">Corn</td>
+            <td style="width: 12.5%; border: 0;">Pea</td>
+            <td style="width: 12.5%; border: 0;">Canola</td>
+            <td style="width: 12.5%; border: 0;">Soy</td>
+            <td style="width: 12.5%; border: 0;">Oat</td>
+            <td style="width: 12.5%; border: 0;">Wheat</td>
+            <td style="width: 12/5%; border: 0;">Broadleaf</td>
+        </tr>
+        <tr>
+            <td style="width: 12.5%; border: 0;">Corn</td>
+            <td style="width: 12.5%; border: 0;">7882</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">10</td>
+            <td style="width: 12.5%; border: 0;">20</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">3</td>
+            <td style="width: 12.5%; border: 0;">2</td>
+        </tr>
+        <tr>
+            <td style="width: 12.5%; border: 0;">Pea</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">712</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+        </tr>
+        <tr>
+            <td style="width: 12.5%; border: 0;">Canola</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">2</td>
+            <td style="width: 12.5%; border: 0;">15278</td>
+            <td style="width: 12.5%; border: 0;">3</td>
+            <td style="width: 12.5%; border: 0;">2</td>
+            <td style="width: 12.5%; border: 0;">4</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+        </tr>
+        <tr>
+            <td style="width: 12.5%; border: 0;">Soy</td>
+            <td style="width: 12.5%; border: 0;">6</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">7</td>
+            <td style="width: 12.5%; border: 0;">14560</td>
+            <td style="width: 12.5%; border: 0;">19</td>
+            <td style="width: 12.5%; border: 0;">11</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+        </tr>
+        <tr>
+            <td style="width: 12.5%; border: 0;">Oat</td>
+            <td style="width: 12.5%; border: 0;">6</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">13</td>
+            <td style="width: 12.5%; border: 0;">15</td>
+            <td style="width: 12.5%; border: 0;">9331</td>
+            <td style="width: 12.5%; border: 0;">71</td>
+            <td style="width: 12.5%; border: 0;">4</td>
+        </tr>
+        <tr>
+            <td style="width: 12.5%; border: 0;">Wheat</td>
+            <td style="width: 12.5%; border: 0;">2</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">7</td>
+            <td style="width: 12.5%; border: 0;">19</td>
+            <td style="width: 12.5%; border: 0;">33</td>
+            <td style="width: 12.5%; border: 0;">16895</td>
+            <td style="width: 12.5%; border: 0;">2</td>
+        </tr>
+        <tr>
+            <td style="width: 12.5%; border: 0;">Broadleaf</td>
+            <td style="width: 12.5%; border: 0;">4</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">1</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">1</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">242</td>
+        </tr>
+    </tbody>
+</table>
+<div class="boxborder">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">rf_accuracy <span style="color:#f92672">=</span> accuracy_score(y_test_rf, y_pred_rf)
+rf_precision, rf_recall, rf_f_score, rf_support <span style="color:#f92672">=</span> precision_recall_fscore_support(y_test_rf, y_pred_rf, average<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;macro&#39;</span>)
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;Accuracy: {rf_accuracy * 100:.2f} %&#39;</span>)
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;Precision: {rf_precision * 100:.2f} %&#39;</span>)
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;Recall: {rf_recall * 100:.2f} %&#39;</span>)
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;F-Score: {rf_f_score * 100:.2f} %&#39;</span>)
+</code></pre></div></div>
+<p class="codeoutput">Accuracy: 99.59 %<br/>
+Precision: 99.22 %<br/>
+Recall: 99.32 %<br/>
+F-Score: 99.27 %</p>
+<div class="boxborder">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Accuracy per class</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(rf_cmatrix)):
+    class_accuracy <span style="color:#f92672">=</span> rf_cmatrix<span style="color:#f92672">.</span>iloc[i,i] <span style="color:#f92672">/</span> rf_cmatrix<span style="color:#f92672">.</span>sum(axis<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)[i]
+    <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;{rf_cmatrix.columns[i]}: {class_accuracy*100:.2f} %&#39;</span>)
+</code></pre></div></div>
+<p class="codeoutput">Accuracy per class<br/>
+Corn: 99.77 %<br/>
+Pea: 99.72 %<br/>
+Canola: 99.75 %<br/>
+Soy: 99.61 %<br/>
+Oat: 99.41 %<br/>
+Wheat: 99.48 %<br/>
+Broadleaf: 96.80 %</p>
+<h2>7.2. Deep learning (Artificial Neural Network)</h2>
+<div class="boxborder">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">ann_cm <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>zeros((<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">7</span>))
+
+ann_pred_correct <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+ann_pred_incorrect <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(y_test_ann)):
+    <span style="color:#66d9ef">if</span> y_pred_ann[i]<span style="color:#f92672">.</span>sum() <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>:
+        ann_index_test <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>where(y_test_ann[i] <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>)[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>]
+        ann_index_pred <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>where(y_pred_ann[i] <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>)[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>]
+        ann_cm[ann_index_test][ann_index_pred] <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">if</span> ann_index_test <span style="color:#f92672">==</span> ann_index_pred:
+            ann_pred_correct <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">else</span>:
+            ann_pred_incorrect <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+
+ann_cmatrix <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame(ann_cm<span style="color:#f92672">.</span>astype(int),
+                           index <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;Corn&#39;</span>, <span style="color:#e6db74">&#39;Pea&#39;</span>, <span style="color:#e6db74">&#39;Canola&#39;</span>, <span style="color:#e6db74">&#39;Soy&#39;</span>, <span style="color:#e6db74">&#39;Oat&#39;</span>, <span style="color:#e6db74">&#39;Wheat&#39;</span>, <span style="color:#e6db74">&#39;Broadleaf&#39;</span>],
+                           columns <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;Corn&#39;</span>, <span style="color:#e6db74">&#39;Pea&#39;</span>, <span style="color:#e6db74">&#39;Canola&#39;</span>, <span style="color:#e6db74">&#39;Soy&#39;</span>, <span style="color:#e6db74">&#39;Oat&#39;</span>, <span style="color:#e6db74">&#39;Wheat&#39;</span>, <span style="color:#e6db74">&#39;Broadleaf&#39;</span>])
+ann_cmatrix
+</code></pre></div></div>
+<table>
+    <tbody class="codeoutput">
+        <tr>
+            <td style="width: 12.5%; border: 0;"></td>
+            <td style="width: 12.5%; border: 0;">Corn</td>
+            <td style="width: 12.5%; border: 0;">Pea</td>
+            <td style="width: 12.5%; border: 0;">Canola</td>
+            <td style="width: 12.5%; border: 0;">Soy</td>
+            <td style="width: 12.5%; border: 0;">Oat</td>
+            <td style="width: 12.5%; border: 0;">Wheat</td>
+            <td style="width: 12/5%; border: 0;">Broadleaf</td>
+        </tr>
+        <tr>
+            <td style="width: 12.5%; border: 0;">Corn</td>
+            <td style="width: 12.5%; border: 0;">7906</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">3</td>
+            <td style="width: 12.5%; border: 0;">4</td>
+            <td style="width: 12.5%; border: 0;">1</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">3</td>
+        </tr>
+        <tr>
+            <td style="width: 12.5%; border: 0;">Pea</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">712</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+        </tr>
+        <tr>
+            <td style="width: 12.5%; border: 0;">Canola</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">15278</td>
+            <td style="width: 12.5%; border: 0;">4</td>
+            <td style="width: 12.5%; border: 0;">3</td>
+            <td style="width: 12.5%; border: 0;">4</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+        </tr>
+        <tr>
+            <td style="width: 12.5%; border: 0;">Soy</td>
+            <td style="width: 12.5%; border: 0;">2</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">3</td>
+            <td style="width: 12.5%; border: 0;">14594</td>
+            <td style="width: 12.5%; border: 0;">4</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+        </tr>
+        <tr>
+            <td style="width: 12.5%; border: 0;">Oat</td>
+            <td style="width: 12.5%; border: 0;">1</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">2</td>
+            <td style="width: 12.5%; border: 0;">6</td>
+            <td style="width: 12.5%; border: 0;">9412</td>
+            <td style="width: 12.5%; border: 0;">18</td>
+            <td style="width: 12.5%; border: 0;">1</td>
+        </tr>
+        <tr>
+            <td style="width: 12.5%; border: 0;">Wheat</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">5</td>
+            <td style="width: 12.5%; border: 0;">5</td>
+            <td style="width: 12.5%; border: 0;">22</td>
+            <td style="width: 12.5%; border: 0;">16924</td>
+            <td style="width: 12.5%; border: 0;">2</td>
+        </tr>
+        <tr>
+            <td style="width: 12.5%; border: 0;">Broadleaf</td>
+            <td style="width: 12.5%; border: 0;">1</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">0</td>
+            <td style="width: 12.5%; border: 0;">1</td>
+            <td style="width: 12.5%; border: 0;">246</td>
+        </tr>
+    </tbody>
+</table>
+<div class="boxborder">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">ann_accuracy <span style="color:#f92672">=</span> accuracy_score(y_test_ann, y_pred_ann)
+ann_precision, ann_recall, ann_f_score, ann_support <span style="color:#f92672">=</span> precision_recall_fscore_support(y_test_ann, y_pred_ann, average<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;macro&#39;</span>)
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;Accuracy: {ann_accuracy * 100:.2f} %&#39;</span>)
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;Precision: {ann_precision * 100:.2f} %&#39;</span>)
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;Recall: {ann_recall * 100:.2f} %&#39;</span>)
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;F-Score: {ann_f_score * 100:.2f} %&#39;</span>)
+</code></pre></div></div>
+<p class="codeoutput">Accuracy: 99.85 %<br/>
+Precision: 99.56 %<br/>
+Recall: 99.77 %<br/>
+F-Score: 99.67 %</p>
+<div class="boxborder">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Accuracy per class</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(ann_cmatrix)):
+    class_accuracy <span style="color:#f92672">=</span> ann_cmatrix<span style="color:#f92672">.</span>iloc[i,i] <span style="color:#f92672">/</span> ann_cmatrix<span style="color:#f92672">.</span>sum(axis<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)[i]
+    <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;{ann_cmatrix.columns[i]}: {class_accuracy*100:.2f} %&#39;</span>)
+</code></pre></div></div>
+<p class="codeoutput">Accuracy per class<br/>
+Corn: 99.95 %<br/>
+Pea: 100.00 %<br/>
+Canola: 99.91 %<br/>
+Soy: 99.87 %<br/>
+Oat: 99.68 %<br/>
+Wheat: 99.86 %<br/>
+Broadleaf: 97.62 %</p>
+
+    </div>
+  
+</div>
+
+    </div>
+  </section>
+
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+
+  
+
+  <section id="section-08-discussion-and-final-remarks" class="home-section wg-blank   " style="padding: 0 0 0 0;" >
+    <div class="container">
+      
+
+
+<div class="row">
+  
+    <div class="col-lg-12">
+      
+      
+      <h1>8. Discussion and final remarks</h1>
+<p>This 'dual' machine learning exercise was of particular interest from a data science educational perspective. Comments:</p>
+<ol>
+    <li>First and foremost, results confirm that the combination of optical and radar-based information leads to very accurate remote cropland mapping;</li>
+    <li>Once again the importance of proper data preprocessing was revealed. This particular dataset - which proved at the end to be very robust and representative - was originally affected by <b>severe feature intercorrelation</b>. Indeed, one of the articles co-authored by Dr. Khosravi was entirely dedicated to a method to reduce the dataset dimensionality. Dropping redundant estimators is a healthy measure to mitigate colinearity and optimize machine architectures - and so was done;</li>
+    <li>Nice results were obtained with one of the most classic random forest classifiers available. It is though important to mention that the selection of a proper number of trees and depth parameters may affect results significantly. The author experimented with both smaller numbers of trees and lower depth architectures, and some deterioration was observed, as expected. If properly manipulated, random forests are great predictive tools and their performance pretty much matches those of more complex, sophisticated algorithms;</li>
+    <li>The neural network performed slightly better than the random forest. As discussed above, also here the adequate architecture and hyperparameter selection is key;</li>
+    <li>Some potential improvements were left aside (treatment of skewed features, cross-validation and hyperparameter optimization) to be revisited after the final performance was known. As both machines performed outstandingly, such potential improvements were not pursued. Readers are though invited to experiment;</li>
+    <li>At last, the inspection of both confusion matrices indicates that:</li>
+    <ul>
+        <li>More 'confusion' is experienced between '<b>wheat</b>' and '<b>oat</b>' crop cultures, which account for the highest numbers of incorrect predictions;</li>
+        <li>In general terms, accuracies per crop class did not differ much - all above 99%. The exception was the '<b>broadleaf</b>' class, where accuracies were relatively lower. This should be expected, as this is the most misrepresented class (smallest number of observations);</li>
+        <li>Focusing now on the '<b>broadleaf</b>' class, deep learning was evidently superior in predicting such crops, suggesting that it might be a better alternative to tackle misrepresented classes in general.</li>
+    </ul>
+</ol>
+<div class="boxborder">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">end_time <span style="color:#f92672">=</span> datetime<span style="color:#f92672">.</span>now()
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Start time&#39;</span>, start_time)
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;End time&#39;</span>, end_time)
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Time elapsed&#39;</span>, end_time <span style="color:#f92672">-</span> start_time)
+</code></pre></div></div>
+
+    </div>
+  
+</div>
+
+    </div>
+  </section>
+
+
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js" integrity="sha512-7t8APmYpzEsZP7CYoA7RfMPV9Bb+PJHa9x2WiUnDXZx3XHveuyWUtvNOexhkierl5flZ3tr92dP1mMS+SGlD+A==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/python.min.js"></script>
+        
+      
+
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.js" integrity="sha256-EErZamuLefUnbMBQbsEqu1USa+btR2oIlCpBJbyD4/g=" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+    
+    <script>const isSiteThemeDark = false;</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"No results found","placeholder":"Search...","results":"results found"};
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks",
+        'slides' : "Slides"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.3b2b658c61ebd725bd5fc606c89fe44c.js"></script>
+
+    
+
+
+
+
+
+
+  
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+  <p class="powered-by">
+    
+      <a href="/privacy/">Privacy Policy</a>
+    
+    
+       &middot; 
+      <a href="/terms/">Terms of Service</a>
+    
+  </p>
+  
+
+  <p class="powered-by">
+    © 2020 Paulo Breviglieri - All rights reserved
+  </p>
+
+</footer>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
