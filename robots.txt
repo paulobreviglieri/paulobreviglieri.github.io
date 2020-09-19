@@ -1,9 +1,0 @@
-User-agent: *
-Disallow: /pages/privacy/
-Disallow: /pages/terms/
-Disallow: /pages/authors/
-Disallow: /pages/categories/
-Disallow: /pages/home/
-Disallow: /pages/publication_types/
-Disallow: /pages/tags/
-Disallow: /pages/sitemap.xml
