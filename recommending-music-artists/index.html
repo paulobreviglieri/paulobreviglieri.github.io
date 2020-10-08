@@ -1389,13 +1389,13 @@ model <span style="color:#f92672">=</span> RestrictedBoltzmannMachine(nv, nh)
 model<span style="color:#f92672">.</span>test(nr_users, training_set, test_set, metric)
 </code></pre></div></div>
 <p class="codeoutput">Training...<br/>
-Epoch 1 of 50 - Loss (MAbsE): 0.00223006 (62.52 seconds)<br/>
-Epoch 2 of 50 - Loss (MAbsE): 0.00063980 (70.48 seconds)<br/>
+Epoch 1 of 50 - Loss (MAbsE): 0.00230584 (25.75 seconds)<br/>
+Epoch 2 of 50 - Loss (MAbsE): 0.00065137 (26.69 seconds)<br/>
 ...<br/>
-Epoch 49 of 50 - Loss (MAbsE): 0.00053761 (56.29 seconds)<br/>
-Epoch 50 of 50 - Loss (MAbsE): 0.00053674 (62.81 seconds)<br/>
+Epoch 49 of 50 - Loss (MAbsE): 0.00055724 (26.39 seconds)<br/>
+Epoch 50 of 50 - Loss (MAbsE): 0.00055479 (27.19 seconds)<br/>
 Testing...<br/>
-Test loss (MAbsE): 0.00022517</p>
+Test loss (MAbsE): 0.00023650</p>
 <h2>6.3. Providing recommendations</h2>
 <p>In addition to the traditional error metric-based performance assessment, it is of absolute importance to test the model through the generation of real recommendations for specific users. In order to do it wisely, two different users with evidently different music preferences were identified in the test set:</p>
 <ul>
@@ -1413,6 +1413,7 @@ Test loss (MAbsE): 0.00022517</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">preferred_recommended(artist_list, training_set, test_set, model, <span style="color:#ae81ff">1515</span>, <span style="color:#ae81ff">10</span>)
 </code></pre></div></div>
 <p class="codeoutput">User 1515 is a fan of...<br/>
+<br/>
 Glee Cast<br/>
 Britney Spears<br/>
 Lady Gaga<br/>
@@ -1423,17 +1424,19 @@ Nx Zero<br/>
 Avril Lavigne<br/>
 Katy Perry<br/>
 Rihanna<br/>
+<br/>
 User 1515 may be interested in...<br/>
-Demi Lovato<br/>
-Elvis Presley<br/>
-P!Nk<br/>
-Ashlee Simpson<br/>
-Alexander Rybak<br/>
-Taylor Swift<br/>
-The Kooks<br/>
-Hilary Duff<br/>
+<br/>
+Nicole Scherzinger<br/>
+Madonna<br/>
+Shakira<br/>
+Ke$Ha<br/>
+Ashley Tisdale<br/>
+Zемфира<br/>
+Miley Cyrus<br/>
+Dido<br/>
 Anahi<br/>
-Miley Cyrus</p>
+The Kooks</p>
 <div class='row'>
     <img class="imageboxcentered" src='/recommending-music-artists/images/user-2-preferences.png' alt='User 1789 preferences'>
 </div>
@@ -1441,6 +1444,7 @@ Miley Cyrus</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">preferred_recommended(artist_list, training_set, test_set, model, <span style="color:#ae81ff">1789</span>, <span style="color:#ae81ff">10</span>)
 </code></pre></div></div>
 <p class="codeoutput">User 1789 is a fan of...<br/>
+<br/>
 Iron Maiden<br/>
 Megadeth<br/>
 Tuatha De Danann<br/>
@@ -1451,17 +1455,19 @@ Ac/Dc<br/>
 Ozzy Osbourne<br/>
 Matanza<br/>
 Avenged Sevenfold<br/>
+<br/>
 User 1789 may be interested in...<br/>
-Guns N' Roses<br/>
-The Rolling Stones<br/>
-Testament<br/>
-Arch Enemy<br/>
-Queen<br/>
-Motörhead<br/>
+<br/>
+Metallica<br/>
+Black Sabbath<br/>
 Deep Purple<br/>
-Whitesnake<br/>
-Blackfield<br/>
-Meshuggah</p>
+Judas Priest<br/>
+Jimi Hendrix<br/>
+The Doors<br/>
+Nirvana<br/>
+Syd Barrett<br/>
+Ayreon<br/>
+The Rolling Stones</p>
 
     </div>
   
