@@ -930,8 +930,12 @@
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
 <span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
 <span style="color:#f92672">import</span> torch
+</code></pre></div></div>
+<div class="boxborder">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> warnings
 <span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
 
+warnings<span style="color:#f92672">.</span>filterwarnings(<span style="color:#e6db74">&#39;ignore&#39;</span>)
 start_time <span style="color:#f92672">=</span> datetime<span style="color:#f92672">.</span>now()
 </code></pre></div></div>
 <h2>4.2. Hard coding a Boltzmann machine</h2>
