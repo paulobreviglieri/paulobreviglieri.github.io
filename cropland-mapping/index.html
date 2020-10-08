@@ -675,7 +675,7 @@
     <li>Optical information (actual images) was collected by RapidEye satellites;</li>
     <li>Radar-based information was collected by an Unihnabitated Aerial Vehicle Synthetic Aperture Radar (UAVSAR) system.</li>
 </ul>
-<p>As the amount and complexity of data gathered from such different sources over several time spans is inherently huge, <b>machine learning</b> plays a central role when it comes to the final classification purpose. The literature is vast and describes inumerous approaches and techniques to manipulate such information. The researchers cited in foreword have themselves assessed several solutions, stacked random forests in particular, with overall accuracies ranging from 90 to 96% for different stacking strategies. It has been noted though that some of the references are outdated, which suggests that the use of state-of-the-art classification engines - random forest and neural network classifiers - may lead to further metric improvements.</p>
+<p>As the amount and complexity of data gathered from such different sources over several time spans is inherently huge, <b>machine learning</b> plays a central role when it comes to the final classification purpose. The literature is vast and describes several approaches and techniques to manipulate such information. The researchers cited in foreword have themselves assessed several solutions, stacked random forests in particular, with overall accuracies ranging from 90 to 96% for different stacking strategies. It has been noted though that some of the references are outdated, which suggests that the use of state-of-the-art classification engines - random forest and neural network classifiers - may lead to further metric improvements.</p>
 <div class='row'>
     <img class="imageboxcentered" src='/cropland-mapping/images/remote-sensing.png' alt='Remote sensing'>
 </div>
@@ -1130,7 +1130,7 @@ plt<span style="color:#f92672">.</span>ylabel(<span style="color:#e6db74">&#39;S
     <img class="imageboxcentered" src='/cropland-mapping/images/cropland-class.png' alt='Cropland class share'>
 </div>
 <h2>5.1. Correlation</h2>
-<p>The correlation between each feature and the dependent variable, as well as the correlation among features (intercorrelation), provide elements to tackle potential undesired colinearity.</p>
+<p>The correlation between each feature and the dependent variable, as well as the correlation among features (intercorrelation), provide elements to tackle potential undesired collinearity.</p>
 <p>The code below assists in identifying and sorting high feature intercorrelation cases based on the corresponding correlation coefficients (in descending order). A threshold of 0.95 has been arbitrarily defined for filtering highly intercorrelated features.</p>
 <div class="boxborder">
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">highly_correlated_feature_pairs <span style="color:#f92672">=</span> []
@@ -1233,7 +1233,7 @@ dataset <span style="color:#f92672">=</span> dataset<span style="color:#f92672">
 <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;Optimized number of features: {nr_features}&#39;</span>)
 </code></pre></div></div>
 <p class="codeoutput">Optimized number of features: 102</p>
-<p>After dropping, the number of features was substantially reduced from 174 down to 102 (a 41.4 % decrease). Such dimensionality optimization not only assists in mitigating colinearity but also allows for the creation of streamlined machines and faster learning with lower processing and memory requirements.</p>
+<p>After dropping, the number of features was substantially reduced from 174 down to 102 (a 41.4 % decrease). Such dimensionality optimization not only assists in mitigating collinearity but also allows for the creation of streamlined machines and faster learning with lower processing and memory requirements.</p>
 <p>A final correlation map including the dependent variable ('label') and the remaining feature set is charted below.</p>
 <div class="boxborder">
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">correlation_map(dataset, <span style="color:#e6db74">&#39;label&#39;</span>, nr_features)
@@ -1291,7 +1291,7 @@ dataset <span style="color:#f92672">=</span> dataset<span style="color:#f92672">
 <p>Two <b>label tensors</b> will be constructed:</p>
 <ul>
     <li>For the <b>random forest</b> classification, original labels (integers ranging from 1 to 7) will be preserved and accommodated into one unidimensional array;</li>
-    <li>For the <b>neural network</b> classification, the label column will be one-hot enconded with the help of Pandas' get_dummies method. Therefore, labels will now consist of arrays with seven binary elements, each of them referring to a specific crop class, allowing for the final class identification based on the array element with the highest predicted value.</li>
+    <li>For the <b>neural network</b> classification, the label column will be one-hot encoded with the help of Pandas' get_dummies method. Therefore, labels will now consist of arrays with seven binary elements, each of them referring to a specific crop class, allowing for the final class identification based on the array element with the highest predicted value.</li>
 </ul>
 <p>The unique features tensor and the two label tensors are subsequently split into training and testing sets. The training set will host 80% of observations, while the testing set will accommodate the remaining 20%. Such proportions were arbitrarily chosen by the author.</p>
 <div class="boxborder">
@@ -1470,7 +1470,7 @@ ann_classifier<span style="color:#f92672">.</span>compile(optimizer <span style=
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">ann_train_history <span style="color:#f92672">=</span> ann_classifier<span style="color:#f92672">.</span>fit(X_train, y_train_ann, batch_size <span style="color:#f92672">=</span> <span style="color:#ae81ff">64</span>, epochs <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>, verbose<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
 </code></pre></div></div>
 <p>Training accuracy and loss per training epoch are charted below.</p>
-<p>As we are dealing with hundreds of thousands of observations, it is not unusual to see a neural network model converging fast. In this case, batches contain 64 observations. In every epoch the model will be exposed to more than 5,000 different batches. Few epochs may suffice to lead to high accuracy, low loss levels already in the beggining of the training session.</p>
+<p>As we are dealing with hundreds of thousands of observations, it is not unusual to see a neural network model converging fast. In this case, batches contain 64 observations. In every epoch the model will be exposed to more than 5,000 different batches. Few epochs may suffice to lead to high accuracy, low loss levels already in the beginning of the training session.</p>
 <p>In this exercise 100 epochs were scheduled, as the author was interested in investigating potential overfitting. In a final implementation, a shorter training might be considered.</p>
 <div class="boxborder">
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fig, ax1 <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">6</span>))
@@ -1893,7 +1893,7 @@ Broadleaf: 97.62 %</p>
 <p>This 'dual' machine learning exercise was of particular interest from a data science educational perspective. Comments:</p>
 <ol>
     <li>First and foremost, results confirm that the combination of optical and radar-based information leads to very accurate remote cropland mapping;</li>
-    <li>Once again the importance of proper data preprocessing was revealed. This particular dataset - which proved at the end to be very robust and representative - was originally affected by <b>severe feature intercorrelation</b>. Indeed, one of the articles co-authored by Dr. Khosravi was entirely dedicated to a method to reduce the dataset dimensionality. Dropping redundant estimators is a healthy measure to mitigate colinearity and optimize machine architectures - and so was done;</li>
+    <li>Once again the importance of proper data preprocessing was revealed. This particular dataset - which proved at the end to be very robust and representative - was originally affected by <b>severe feature intercorrelation</b>. Indeed, one of the articles co-authored by Dr. Khosravi was entirely dedicated to a method to reduce the dataset dimensionality. Dropping redundant estimators is a healthy measure to mitigate collinearity and optimize machine architectures - and so was done;</li>
     <li>Nice results were obtained with one of the most classic random forest classifiers available. It is though important to mention that the selection of a proper number of trees and depth parameters may affect results significantly. The author experimented with both smaller numbers of trees and lower depth architectures, and some deterioration was observed, as expected. If properly manipulated, random forests are great predictive tools and their performance pretty much matches those of more complex, sophisticated algorithms;</li>
     <li>The neural network performed slightly better than the random forest. As discussed above, also here the adequate architecture and hyperparameter selection is key;</li>
     <li>Some potential improvements were left aside (treatment of skewed features, cross-validation and hyperparameter optimization) to be revisited after the final performance was known. As both machines performed outstandingly, such potential improvements were not pursued. Readers are though invited to experiment;</li>

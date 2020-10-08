@@ -599,7 +599,7 @@
       <h1 style="text-align: center; font-size: 30px; color: #ff3000;">Detecting Pneumonia with Convolutional Neural Networks</h1>
 <p>May 20, 2020 - By Paulo Breviglieri</p>
 <h1>Foreword</h1>
-<p>The 2020 COVID-19 outbreak has prompted for increased research on several aspects of the disease. The <b>diagnosis of pneumonia</b> (one of the primary complications resulting from COVID-19) through imaging techniques and the particular use of artificial intelligence as an ancilary tool has gained special traction as the disease progresses.</p>
+<p>The 2020 COVID-19 outbreak has prompted for increased research on several aspects of the disease. The <b>diagnosis of pneumonia</b> (one of the primary complications resulting from COVID-19) through imaging techniques and the particular use of artificial intelligence as an ancillary tool has gained special traction as the disease progresses.</p>
 <p>This study is inspired by the current gravity of the COVID-19 pandemic. It is though not intended to serve as a medical reference in any sense. Instead, the main purpose of this exercise is to revisit traditional machine learning-based image processing and explore the level of confidence obtained in chest x-ray analysis as a pneumonia diagnosis instrument.</p>
 <p><b>Warning</b>: computer vision machine learning exercises are time and resource consuming. This work was indeed developed in GPU-based runtime environments provided by Kaggle and Google Colab for code execution. Unless you have a very powerful machine to execute your code on a local host, consider a similar cloud-based approach.</p>
 <p>Logic enhancement and code forking are welcome and encouraged provided that proper referencing to this work is made. Latest code version may be found in the author's <a href="https://github.com/pcbreviglieri" target="_blank">GitHub</a> and <a href="https://gitlab.com/pcbreviglieri" target="_blank">GitLab</a> repositories. Thank you.</p>
@@ -962,7 +962,7 @@ hyper_mode <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39
 <p>In this exercise a traditional convolutional neural network aimed at image processing and interpretation is adopted. The architecture, a Keras sequential model graphically depicted below, comprises:</p>
 <ol>
     <li><b>Three pairs of convolution / pooling layers</b>: first and second produce 32 feature maps processed by subsequent 2x2 pooling engines generating 32 pooled maps, while the third produces 64 feature maps also processed by a subsequent 2x2 pooling engine generating a 64 pooled map. Convolution is performed with 3x3xk kernels, where k = 1 for grayscale images and k = 3 for RGB images. The input shape is a 500x500 pixels image (1 or 3 channels, as described above). 'ReLU' (Rectifier Linear Unit) is the activation function of choice;</li>
-    <li>A <b>flattening layer</b>, responsible to provide the subsequent artificial neural network (ANN) with an flaattened, unidimensional tensor with the output of the last pooling layer;</li>
+    <li>A <b>flattening layer</b>, responsible to provide the subsequent artificial neural network (ANN) with an flattened, unidimensional tensor with the output of the last pooling layer;</li>
     <li>A <b>full connection pair of layers</b> with 64 and 1 neuron, respectively, responsible to perform binary classification ('normal' or 'pneumonia').</li>
 </ol>
 <div class='row'>
@@ -1016,7 +1016,7 @@ classifier<span style="color:#f92672">.</span>compile(optimizer <span style="col
     <li>'<b>train_gen</b>' will be utilized to generate the training set. As the original images stored in folders (more ahead) correspond to 500x500 pixel matrices of real values ranging from 0 to 255, rescaling is performed through the 'rescale' parameter. Also, augmentation is achieved with some image shearing, zooming and vertical flips.</li>
     <li>'<b>val_gen</b>' will be utilized to generate the validation set. Only rescaling is performed in this case, as we intend to validate the learning process making use of pure images with no manipulation.</li>
 </ul>
-<p>The '<a href="https://keras.io/api/preprocessing/image/#flowfromdirectory-method" target="_blank">flow_from_directory</a>' method allows for pulling from specific folders images for training and validation, resizing them, grouping them in batches and specifying the machine objective (a binary classification, in this case) and the color mode of choice. The use of 'flow_from_directory' assumes that the data is properly stored in appropriate folders with a pre-determined structure:</p>
+<p>The '<a href="https://keras.io/api/preprocessing/image/#flowfromdirectory-method" target="_blank">flow_from_directory</a>' method allows for pulling from specific folders images for training and validation, resizing them, grouping them in batches and specifying the machine objective (a binary classification, in this case) and the color mode of choice. The use of 'flow_from_directory' assumes that the data is properly stored in appropriate folders with a predetermined structure:</p>
 <ul>
     <li>train</li>
     <ul>
@@ -1060,7 +1060,7 @@ Found 1040 images belonging to 2 classes.</p>
 <p>Understanding the structure of the training and validation sets is important to manipulate them. Let's take the training set as an example.</p>
 <ul>
     <li>'<b>train_set [0]</b>' corresponds to the first set of image batches flowed from the source folder;</li>
-    <li>'<b>train_set [0] [0]</b>' coresponds to the first batch of 16 images included in the first set of batches;</li>
+    <li>'<b>train_set [0] [0]</b>' corresponds to the first batch of 16 images included in the first set of batches;</li>
     <li>Each of the 16 images in this first batch can be accessed via the 'array_to_img' method and properly plotted.</li>
 </ul>
 <p>The analysis of the first batch in the training set shows that augmentation has been successfully performed. Some images have been slightly shared, zoomed in and/or flipped vertically. Also, it is evident that we are now dealing with grayscale images, as expected.</p>
@@ -1285,17 +1285,17 @@ cm
       
       
       <h1>7. Discussion and final remarks</h1>
-<p>Results show that very <b>low losses</b> and <b>accuracies of 96.8%</b> (validation) and <b>92.8%</b> (testing) are obtained with a traditional CNN approach, without any refinement based, for example, on the use of pre-trained image classification models.</p>
-<p>In addition, when we deal with medical diagnosis, a false positive (i.e. prediciting illness when the patient is healthy) is <b>less critical</b> than a false negative (predicting healthiness when the patient is sick). The number of false negatives obtained with the CNN presented here is extremely low (<b>only 6 cases</b>, or <b>0.96%</b> of the total number of predictions), which positions the machine developed here as a reliable ancillary tool for pneumonia detection.</p>
+<p>Results show that very <b>low losses</b> and <b>accuracies of 96.8%</b> (validation) and <b>92.8%</b> (testing) are obtained with a traditional CNN approach, without any refinement based, for example, on the use of pretrained image classification models.</p>
+<p>In addition, when we deal with medical diagnosis, a false positive (i.e. predicting illness when the patient is healthy) is <b>less critical</b> than a false negative (predicting healthiness when the patient is sick). The number of false negatives obtained with the CNN presented here is extremely low (<b>only 6 cases</b>, or <b>0.96%</b> of the total number of predictions), which positions the machine developed here as a reliable ancillary tool for pneumonia detection.</p>
 <p>Specific considerations on the model and the hyperparameters must be made:</p>
 <ol>
-    <li>As mentioned above, the approach presented here is very traditional. The CNN architecture adopted here follows those Yann LeCun (recognized as founding father of convolutional networks and their use in computer vision) promoted in the 1990s for image classification. <b>No pre-trained model</b> was used here, and their employment could be taken as a suggestion for further improvements;</li>
+    <li>As mentioned above, the approach presented here is very traditional. The CNN architecture adopted here follows those Yann LeCun (recognized as founding father of convolutional networks and their use in computer vision) promoted in the 1990s for image classification. <b>No pretrained model</b> was used here, and their employment could be taken as a suggestion for further improvements;</li>
     <li>The model was trained several times with a <b>variety of hyperparameter combinations</b>. The final version depicted here was the one through which the best results were obtained. On hyperparameters:</li>
     <ul>
         <li>Tested numbers of epochs were 10, 25, 50 and 100. Reasonable results (low losses and high accuracy on both validation AND testing) were achieved only with <b>50 or 100 epochs</b>. The final training was performed over 100 epochs;</li>
         <li>The model was fed with 400x400, 500x500 and 600x600 pixels images. Best performance was achieved with <b>500x500</b> resized input images;</li>
-        <li>Batches of <b>16 images</b> proved to be the best choice over 8, 32 and 64 image alternatives. It must be emphasized though that much faster runtimes could be achieved with the use of TPUs, case in which larger batches would be more appropriate. There is an ongoing discussion on how TPUs handle floating scalars and how large batches should be to extract from TPUs their maximum performance. As this exercise made use of GPUs only, this topic was not explored.</li>
-        <li>Finally, the model was trained with both 3-channel (RBG) and 1-channel (grayscale) versions of input images (which are originally 3-channel samples). As a higher number of channels carries in theory a larger amount of information, it was initially expected that 3-channel image trainings would lead to better machines. However, this was not observed - <b>grayscale</b>-based exercises led to hiher accuracies and lower losses. Further investigation could be made, but in a first assessment of such results, considering that in pneumonia detection cases we look for <b>opacities</b> in the lungs, those might be more evidenced in grayscale samples than in colored ones. For now this is just an assumption demanding further analysis.</li>
+        <li>Batches of <b>16 images</b> proved to be the best choice over 8, 32 and 64 image alternatives. It must be emphasized though that much faster runtime could be achieved with the use of TPUs, case in which larger batches would be more appropriate. There is an ongoing discussion on how TPUs handle floating scalars and how large batches should be to extract from TPUs their maximum performance. As this exercise made use of GPUs only, this topic was not explored.</li>
+        <li>Finally, the model was trained with both 3-channel (RBG) and 1-channel (grayscale) versions of input images (which are originally 3-channel samples). As a higher number of channels carries in theory a larger amount of information, it was initially expected that 3-channel image trainings would lead to better machines. However, this was not observed - <b>grayscale</b>-based exercises led to higher accuracies and lower losses. Further investigation could be made, but in a first assessment of such results, considering that in pneumonia detection cases we look for <b>opacities</b> in the lungs, those might be more evidenced in grayscale samples than in colored ones. For now this is just an assumption demanding further analysis.</li>
     </ul>
 </ol>
 <div class="boxborder">

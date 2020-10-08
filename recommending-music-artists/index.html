@@ -606,7 +606,7 @@
     <li>Instead of being built upon existing machine learning frameworks, the Boltzmann machine is <b>hard coded as a Python class</b>;</li>
     <li>In addition to the traditional performance assessment based on accuracy and loss metrics, a <b>subjective test</b> is performed at the end to verify the appropriateness of actual music artist recommendations delivered by the Boltzmann machine to two specific users with different music gender preferences.</li>
 </ul>
-<p>Section 1 includes a summarized, brief mathematical description of Boltzmann machines, not intented to be exhaustive and comprehensive at all. Readers interested only in the practical implementation may skip it.</p>
+<p>Section 1 includes a summarized, brief mathematical description of Boltzmann machines, not intended to be exhaustive and comprehensive at all. Readers interested only in the practical implementation may skip it.</p>
 <p>The latest code release may be found in the author's <a href="https://github.com/pcbreviglieri" target="_blank">GitHub</a> and <a href="https://gitlab.com/pcbreviglieri" target="_blank">GitLab</a> repositories. Logic enhancement and code forking are welcome and encouraged by the author, provided that this work is properly referenced. Thank you.</p>
 
     </div>
@@ -666,9 +666,9 @@
       
       <h1>1. Introduction</h1>
 <h2>1.1. Unsupervised learning</h2>
-<p>Unlike supervised learning, where machines are typically fed with pairs of known inputs and corresponding outputs to direct the learning and self-adaptation processes, in unsupervised learning machines are supplied with unlabeled responses and are expected to learn probability distributions from inference, with minimum or no human guidance. As a result, unsupervised learning machines have distinct architectures and functional principles. Traditional concepts found in supervised learning, like feedforwarding and input / output layers, are not applicable - or have different interpretations - in unsupervised learning.</p>
+<p>Unlike supervised learning, where machines are typically fed with pairs of known inputs and corresponding outputs to direct the learning and self-adaptation processes, in unsupervised learning machines are supplied with unlabeled responses and are expected to learn probability distributions from inference, with minimum or no human guidance. As a result, unsupervised learning machines have distinct architectures and functional principles. Traditional concepts found in supervised learning, like forwardfeeding and input / output layers, are not applicable - or have different interpretations - in unsupervised learning.</p>
 <h2>1.2. Boltzmann machines</h2>
-<p>Botzmann machines are unsupervised learning neural networks pertaining to a family of solutions not as wide and popularly explored as others: <b>energy based models</b>. Put simply, in energy based models the system under analysis will always self-adapt to changes in its constituent elements in pursuit of the lowest possible overall compounded energy state. This concept is central in several fields of Physics, from thermodynamycs to quantum mechanics.</p>
+<p>Botzmann machines are unsupervised learning neural networks pertaining to a family of solutions not as wide and popularly explored as others: <b>energy based models</b>. Put simply, in energy based models the system under analysis will always self-adapt to changes in its constituent elements in pursuit of the lowest possible overall compounded energy state. This concept is central in several fields of Physics, from thermodynamics to quantum mechanics.</p>
 <p>A traditional Boltzmann machine comprises a finite set of neurons interconnected with each other.</p>
 <p>Neurons- or <b>nodes</b> - are in turn subdivided into two specific sets: <b>visible</b> and <b>hidden</b>, as described in the picture below.</p>
 <div class='row'>
@@ -676,7 +676,7 @@
 </div>
 <p>In an analogy with the human body, the author likes to think of <b>visible nodes</b> as the neural terminations we have in our eyes, nose, tongue and skin to capture external stimulus such as images, sounds, smells, tastes and sensations like heat, cold and pain. Accordingly, <b>hidden nodes</b> might be interpreted as the set of neurons in our brains responsible to process the information received from the neural terminations and take action - always aiming at self-adapting and conducting the organism to the most appropriate state - the 'lowest energy' state - for a given set of external circumstances.</p>
 <p>A pictorial example: if the neurons located in the optic nerves on and behind our eyes' retina (the 'visible nodes') experience a sudden increase in external light intensity, this information is quickly delivered to the neurons located in the brain's occipital lobe (the 'hidden nodes') who, in turn, process this information and 'instruct' the eye muscles to constrict pupils, so that the amount of light  reaching the retina is reduced and retina cells are preserved. The overall organism optical network is thus taken to a new optimal 'state' that will last until the environment perceived by the visible nodes change again.</p>
-<p>In a Boltzmann machine, all nodes are connected to each other. However, the adoption of such architecture in practical implementations demands higher processing and memory assigment capabilities, reason why a simplified version of Boltzmann machines - so called <b>Restricted Boltzmann Machines</b> (RBMs) - gained traction and became widely used. In RBMs, connections between visible nodes and hidden nodes are maintained, while connections among visible nodes and connections among hidden nodes are eliminated, as illustrated below.</p>
+<p>In a Boltzmann machine, all nodes are connected to each other. However, the adoption of such architecture in practical implementations demands higher processing and memory assignment capabilities, reason why a simplified version of Boltzmann machines - so called <b>Restricted Boltzmann Machines</b> (RBMs) - gained traction and became widely used. In RBMs, connections between visible nodes and hidden nodes are maintained, while connections among visible nodes and connections among hidden nodes are eliminated, as illustrated below.</p>
 <div class='row'>
     <img class="imageboxcentered" src='/recommending-music-artists/images/rbm.png' alt='Restricted Boltzmann machine'>
 </div>
@@ -860,7 +860,7 @@
       
       <h1>3. The dataset</h1>
 <p>The dataset utilized in this deep learning exercise is a summarized, sanitized subset of the one released at <b>The 2nd International Workshop on Information Heterogeneity and Fusion in Recommender Systems</b> (HetRec 2011), currently hosted at the GroupLens website (<a href="https://grouplens.org/datasets/hetrec-2011/" target="_blank">here</a>).</p>
-<p>Sanitization included: (a) artist name mispelling correction and standardization; (b) reassignment of artists referenced with two or more artist id's; (c) removal of artists listed as 'unknown' or through their website addresses.</p>
+<p>Sanitization included: (a) artist name misspelling correction and standardization; (b) reassignment of artists referenced with two or more artist id's; (c) removal of artists listed as 'unknown' or through their website addresses.</p>
 <p>The original dataset contains a larger number of files, including tag-related information, in addition to users, artists and scrobble counts. last.fm was contacted by the author and asked for some recent version of this content, in similar format, with no return until June 15th, 2020.</p>
 <p>Two dataset files were selected and preprocessed for use in this work:</p>
 <ol>
@@ -1083,7 +1083,7 @@ start_time <span style="color:#f92672">=</span> datetime<span style="color:#f926
     
     <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">train</span>(self, c_nr_observations, c_nr_epoch, c_batch_size, c_train_tensor, c_metric):
         <span style="color:#e6db74">&#34;&#34;&#34;
-</span><span style="color:#e6db74">        Method through which constrative divergence-based training is performed.
+</span><span style="color:#e6db74">        Method through which contrastive divergence-based training is performed.
 </span><span style="color:#e6db74">        c_nr_observations - Number of observations used for training
 </span><span style="color:#e6db74">        c_nr_epoch - Number of training epochs
 </span><span style="color:#e6db74">        c_batch_size - Batch size
@@ -1272,7 +1272,7 @@ start_time <span style="color:#f92672">=</span> datetime<span style="color:#f926
       
       
       <h1>5. Generating 'user versus ratings' tensors for training and testing</h1>
-<p>The scrobbles dataset is originally sorted based on ascending user ids. As generating recommendations for specific users is the ultimate objective of this exercise, it is necessary to maintain user scrobbles grouped. In addition, as roughly 20% of user scrobbles wil be segregated in a test set:</p>
+<p>The scrobbles dataset is originally sorted based on ascending user ids. As generating recommendations for specific users is the ultimate objective of this exercise, it is necessary to maintain user scrobbles grouped. In addition, as roughly 20% of user scrobbles will be segregated in a test set:</p>
 <ul>
     <li>The training set will include the first 74,254 scrobbles, corresponding to users with 'user_id' ranging from 1 to 1,514;</li>
     <li>The test set will include the remaining 18,538 scrobbles, corresponding to users with 'user_id' ranging from 1,515 to 1,892.</li>

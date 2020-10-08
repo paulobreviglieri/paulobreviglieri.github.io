@@ -808,7 +808,7 @@ test_features[<span style="color:#e6db74">&#39;MoSold&#39;</span>] <span style="
 test_features[<span style="color:#e6db74">&#39;YrSold&#39;</span>] <span style="color:#f92672">=</span> test_features[<span style="color:#e6db74">&#39;YrSold&#39;</span>]<span style="color:#f92672">.</span>astype(str)
 </code></pre></div></div>
 <h2>2.5. Segregation of numerical and categorical features</h2>
-<p>Numerical and categorical features are identified and segregated into two speficic lists. Later, the whole train and test dataframes have their features reordered (numerical followed by categorical).</p>
+<p>Numerical and categorical features are identified and segregated into two specific lists. Later, the whole train and test dataframes have their features reordered (numerical followed by categorical).</p>
 <div class="boxborder">
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">features_numerical <span style="color:#f92672">=</span> []
 features_categorical <span style="color:#f92672">=</span> []
@@ -920,9 +920,9 @@ test_features <span style="color:#f92672">=</span> test_features[new_order]
 <ol>
     <li>LotFrontage - Nulls replaced with the median of lot frontage values of properties in the same neighborhood, as those may be framed by the local zoning regulation.</li>
     <li>MasVnrArea - Inspection shows that nulls occur for cases where MasVnrType is also null. Replaced with zeros.</li>
-    <li>BsmtFinSF1, BsmtFinSF2, BsmtUnfSF and TotalBsmtSF - Nulls correpond to cases where the property does not have a basement. Replaced with zeros.</li>
-    <li>BsmtFullBath, BsmtHalfBath - Nulls correpond to cases where the property does not have a basement (see item 3 above). Replaced with zeros.</li>
-    <li>GarageYrBlt, GarageArea, GarageCars - Nulls correpond to cases where the property does not have a garage. Replaced with zeros.</li>
+    <li>BsmtFinSF1, BsmtFinSF2, BsmtUnfSF and TotalBsmtSF - Nulls correspond to cases where the property does not have a basement. Replaced with zeros.</li>
+    <li>BsmtFullBath, BsmtHalfBath - Nulls correspond to cases where the property does not have a basement (see item 3 above). Replaced with zeros.</li>
+    <li>GarageYrBlt, GarageArea, GarageCars - Nulls correspond to cases where the property does not have a garage. Replaced with zeros.</li>
 </ol>
 <div class="boxborder">
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">train_test_features[<span style="color:#e6db74">&#39;LotFrontage&#39;</span>] <span style="color:#f92672">=</span> train_test_features<span style="color:#f92672">.</span>groupby(<span style="color:#e6db74">&#39;Neighborhood&#39;</span>)[<span style="color:#e6db74">&#39;LotFrontage&#39;</span>]<span style="color:#f92672">.</span>transform(<span style="color:#66d9ef">lambda</span> x: x<span style="color:#f92672">.</span>fillna(x<span style="color:#f92672">.</span>median()))
@@ -949,7 +949,7 @@ missing_numerical<span style="color:#f92672">.</span>clear()
 <p>In this sense, the following additional features are proposed:</p>
 <ul>
     <li>Time elapsed since property was originally built (measured at sales year);</li>
-    <li>Time elapsed since property was last remodelled (also measured at sales year);</li>
+    <li>Time elapsed since property was last remodeled (also measured at sales year);</li>
     <li>Total walled area, total porch area and total occupied area (the sum of walled and porch areas);</li>
     <li>Other rooms, equaling the number of total rooms excluding bedroom(s) and kitchen(s);</li>
     <li>Total bathrooms, with different weights for full (1.0) and half (0.5) bathrooms;</li>
@@ -1022,7 +1022,7 @@ train_test_features <span style="color:#f92672">=</span> train_test_features<spa
 </code></pre></div></div>
 <p class="codeoutput">Numerical features to be dropped: ['PoolArea']</p>
 <h3>3.3.5. Correlation</h3>
-<p>Once all numerical features have been preprocessed, it is important to verify the correlation between each numerical feature and the dependent variable, as well as correlation among numerical features leading to undesired colinearity. The heatmap below provides an overview of correlation between the dependent variable ('SalePrice') and the top 15 features mostly correlated with it, as well as correlation among them.</p>
+<p>Once all numerical features have been preprocessed, it is important to verify the correlation between each numerical feature and the dependent variable, as well as correlation among numerical features leading to undesired collinearity. The heatmap below provides an overview of correlation between the dependent variable ('SalePrice') and the top 15 features mostly correlated with it, as well as correlation among them.</p>
 <div class="boxborder">
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">features_numerical <span style="color:#f92672">=</span> []
 <span style="color:#66d9ef">for</span> column <span style="color:#f92672">in</span> train_features<span style="color:#f92672">.</span>columns:
@@ -1037,7 +1037,7 @@ correlation_map(updated_train_set, <span style="color:#e6db74">&#39;SalePrice&#3
     <img class="imageboxcentered" src='/house-pricing/images/correl.png' alt='Correlation map'>
 </div>
 <p>Not surprisingly, as anticipated, features related to quality, area, number of living units and age show up as the most correlated with sale prices. This reinforces the need to devote extra attention to them.</p>
-<p>Additionally, the heatmap also highlights specific correlations among pairs of features. This is the case of GarageArea and GarageCars - the rationale behind them is obvious, as larger garages accommodate a higher number of vehicles. The data scientist must therefore keep an eye on them and consider dropping one of the pair elements if signs of colinearity show up.</p>
+<p>Additionally, the heatmap also highlights specific correlations among pairs of features. This is the case of GarageArea and GarageCars - the rationale behind them is obvious, as larger garages accommodate a higher number of vehicles. The data scientist must therefore keep an eye on them and consider dropping one of the pair elements if signs of collinearity show up.</p>
 <h2>3.4. Categorical features</h2>
 <h3>3.4.1. Missing values</h3>
 <p>Categorical features with missing values are identified. Their names are included in a specific list and displayed.</p>
@@ -1307,7 +1307,7 @@ y_train <span style="color:#f92672">=</span> y_train<span style="color:#f92672">
     <li>Generation of a final prediction through a blending mechanism combining weighed predictions from each of the 'n' predictions obtained in (1) plus the prediction of the stacking model obtained in (2).</li>
 </ol>
 <h2>4.1. Cross-validation setup</h2>
-<p>KFold has been elected as the cross-validation engine of choice in this exercise. The training set is splitted in 10 folds. One fold is iteratively used at a time as a validation set.</p>
+<p>KFold has been elected as the cross-validation engine of choice in this exercise. The training set is split in 10 folds. One fold is iteratively used at a time as a validation set.</p>
 <div class="boxborder">
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">kfolds <span style="color:#f92672">=</span> KFold(n_splits<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>, shuffle<span style="color:#f92672">=</span>True, random_state<span style="color:#f92672">=</span><span style="color:#ae81ff">42</span>)
 </code></pre></div></div>
@@ -1455,7 +1455,7 @@ stackcv_fit <span style="color:#f92672">=</span> stackcv<span style="color:#f926
 Fitting the stacking model to the training set<br />
 StackingCV...</p>
 <h2>4.5. Blend model construction</h2>
-<p>Blending proved extremely helpful on the enhancement of error metrics in this exercise. A slight modification in weights attributed to individual regression inputs (predictions on the training set) led to either awesome improvements or awful deteriorations of error metrics.</p>
+<p>Blending proved extremely helpful on the enhancement of error metrics in this exercise. A slight modification in weights attributed to individual regression inputs (predictions on the training set) led to either awesome improvements or awful deterioration of error metrics.</p>
 <p>A manual, detailed (though time consuming...) weight adjustment program was executed. Starting from a set of uniformly distributed weights for each prediction, weights were manually redistributed with a 1% minimum granularity. In practical terms, the method consisted in manually decreasing the weight of one particular prediction in 1%, manually increasing the weight of another particular prediction in 1% and observing the impact of such changes on the error metrics. The procedure was repeated iteratively until no further improvement of error estimates was achieved.</p>
 <p>The list below reproduces the weights obtained after the optimization procedure described above.</p>
 <div class="boxborder">
@@ -1638,7 +1638,7 @@ end_time <span style="color:#f92672">=</span> datetime<span style="color:#f92672
 <p>Few specific aspects of this exercise demand special consideration:</p>
 <ol>
     <li>A significant amount of time was spent on preprocessing (as it should). In particular, different missing value replacement strategies and alternative categoric feature coding mechanisms were investigated. As an example, the mapped encoding proposed in Section 3.4.3. was replaced with one hot encoding and, as expected, did not did not lead to better predictions. Also, the role of additional features created in Sections 3.3.2. and 3.4.4. contributed positively to enhance results.</li>
-    <li>A special attention to the selection of outliers is strongly recommended.  The experience in this exercise showed that the maintenance or removal of each top impacting outlier mapped with regression assistance had a major impact on the final error estimates, confirming that they indeed add up to compounded error metrics, negatively afftecting the overall regression performance.</li>
+    <li>A special attention to the selection of outliers is strongly recommended.  The experience in this exercise showed that the maintenance or removal of each top impacting outlier mapped with regression assistance had a major impact on the final error estimates, confirming that they indeed add up to compounded error metrics, negatively affecting the overall regression performance.</li>
     <li>Substantially better error metrics were achieved through the proposed 'stack and blend' strategy. Individual regressors alone did not perform as well as the blended model. An automated weight adjustment code is an enhancement considered for further releases of this exercise.</li>
 </ol>
 <p>The mean absolute error obtained in Section 5 (for the training set - always important to mention!) serves as an indication of what might be obtained with the testing set and with new data the algorithm may be confronted with. In fact, the predictions submitted to Kaggle's competition achieved a MAE score of 11,847.22 (12th position in the ranking on April 25th, 2020), about twice the metric obtained with the training set. This might be an indication of overfitting on the training set as a result of aggressive optimization of the blend model weights. In order to test this hypothesis, two other submissions obtained from more conservative blend regressions were presented with no improvement observed on the test set.</p>
