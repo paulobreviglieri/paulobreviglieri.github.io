@@ -667,7 +667,6 @@
 <span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
 <span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#f92672">as</span> plt
 <span style="color:#f92672">import</span> seaborn <span style="color:#f92672">as</span> sns
-<span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
 
 <span style="color:#f92672">from</span> scipy.stats <span style="color:#f92672">import</span> skew
 <span style="color:#f92672">from</span> scipy.special <span style="color:#f92672">import</span> boxcox1p
@@ -683,7 +682,14 @@
 <span style="color:#f92672">from</span> mlxtend.regressor <span style="color:#f92672">import</span> StackingCVRegressor
 <span style="color:#f92672">from</span> xgboost <span style="color:#f92672">import</span> XGBRegressor
 
-<span style="color:#f92672">import</span> warnings
+sns<span style="color:#f92672">.</span>set()
+</code></pre></div></div>
+<div class="boxborder">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> warnings
+<span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
+
+warnings<span style="color:#f92672">.</span>filterwarnings(<span style="color:#e6db74">&#39;ignore&#39;</span>)
+start_time <span style="color:#f92672">=</span> datetime<span style="color:#f92672">.</span>now()
 </code></pre></div></div>
 <h2>2.2. Customized functions</h2>
 <p>Functions were developed to assist with graphical analysis of specific dataset elements (features or observations) and with cross-validation scoring of regression strategies. Please refer to the respective docstrings below for details. Note that all function variable names, by coding principle, start with the "f_" string, allowing for containerized processing within the function execution environment, not affecting global variables.</p>
@@ -1419,7 +1425,7 @@ score <span style="color:#f92672">=</span> xval_rmse_scoring(xgboost, X_train, y
         </tr>
         <tr>
             <td style="width: 50%; border: 0;">6. XGBoost</td>
-            <td style="width: 25%; border: 0;">0.1021</td>
+            <td style="width: 25%; border: 0;">0.1022</td>
             <td style="width: 25%; border: 0;">0.0156</td>
         </tr>
     </tbody>
@@ -1546,15 +1552,15 @@ mae <span style="color:#f92672">=</span> mean_absolute_error(y_train, y_pred)
         </tr>
         <tr>
             <td style="width: 70%; border: 0;">RMSE</td>
-            <td style="width: 30%; border: 0;">8799.53254393</td>
+            <td style="width: 30%; border: 0;">8856.93081161</td>
         </tr>
         <tr>
             <td style="width: 70%; border: 0;">RMSLE</td>
-            <td style="width: 30%; border: 0;">0.0508289</td>
+            <td style="width: 30%; border: 0;">0.05154781</td>
         </tr>
         <tr>
             <td style="width: 70%; border: 0;">MAE</td>
-            <td style="width: 30%; border: 0;">5555.86064551</td>
+            <td style="width: 30%; border: 0;">5583.27665388</td>
         </tr>
     </tbody>
 </table>
@@ -1571,12 +1577,6 @@ mae <span style="color:#f92672">=</span> mean_absolute_error(y_train, y_pred)
 <span style="color:#75715e">#                                            (blend_weights[6] * stackcv_fit.predict(np.array(X_test)))))</span>
 <span style="color:#75715e"># submission.to_csv(&#39;submission_new.csv&#39;, index=False)</span>
 <span style="color:#75715e"># print(&#39;Submission saved&#39;)</span>
-
-end_time <span style="color:#f92672">=</span> datetime<span style="color:#f92672">.</span>now()
-
-<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Start time&#39;</span>, start_time)
-<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;End time&#39;</span>, end_time)
-<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Time elapsed&#39;</span>, end_time <span style="color:#f92672">-</span> start_time)
 </code></pre></div></div>
 
     </div>
@@ -1643,6 +1643,13 @@ end_time <span style="color:#f92672">=</span> datetime<span style="color:#f92672
 </ol>
 <p>The mean absolute error obtained in Section 5 (for the training set - always important to mention!) serves as an indication of what might be obtained with the testing set and with new data the algorithm may be confronted with. In fact, the predictions submitted to Kaggle's competition achieved a MAE score of 11,847.22 (12th position in the ranking on April 25th, 2020), about twice the metric obtained with the training set. This might be an indication of overfitting on the training set as a result of aggressive optimization of the blend model weights. In order to test this hypothesis, two other submissions obtained from more conservative blend regressions were presented with no improvement observed on the test set.</p>
 <p>Machine learning aims primarily at enabling predictions. However, the error metric itself - an average error - may also serve other practical purposes. As an example, a MAE between USD 5k-6k like the one obtained with the training set might be used by a seller as a price margin to be considered when the property is listed and further negotiated with a potential buyer, although in relative terms such margin may be more or less representative (a USD 5-6k margin weighs more on a USD 40k property than on a USD 200k estate).</p>
+<div class="boxborder">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">end_time <span style="color:#f92672">=</span> datetime<span style="color:#f92672">.</span>now()
+
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Start time&#39;</span>, start_time)
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;End time&#39;</span>, end_time)
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Time elapsed&#39;</span>, end_time <span style="color:#f92672">-</span> start_time)
+</code></pre></div></div>
 
     </div>
   
