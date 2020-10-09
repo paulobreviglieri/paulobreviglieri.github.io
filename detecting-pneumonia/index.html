@@ -877,9 +877,12 @@
 <span style="color:#f92672">from</span> keras.preprocessing.image <span style="color:#f92672">import</span> ImageDataGenerator, array_to_img
 <span style="color:#f92672">from</span> keras.models <span style="color:#f92672">import</span> Sequential
 <span style="color:#f92672">from</span> keras.layers <span style="color:#f92672">import</span> Conv2D, MaxPooling2D, Flatten, Dense
-
+</code></pre></div></div>
+<div class="boxborder">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> warnings
 <span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
 
+warnings<span style="color:#f92672">.</span>filterwarnings(<span style="color:#e6db74">&#39;ignore&#39;</span>)
 start_time <span style="color:#f92672">=</span> datetime<span style="color:#f92672">.</span>now()
 </code></pre></div></div>
 <p class="codeoutput">Using TensorFlow backend.</p>
@@ -1094,18 +1097,18 @@ results <span style="color:#f92672">=</span> classifier<span style="color:#f9267
                                    validation_steps <span style="color:#f92672">=</span> len(val_set))
 </code></pre></div></div>
 <p class="codeoutput">Epoch 1/100<br/>
-262/262 [==============================] - 223s 852ms/step - loss: 0.4320 - accuracy: 0.8030 - val_loss: 0.0853 - val_accuracy: 0.8846<br/>
+262/262 [==============================] - 225s 860ms/step - loss: 0.3998 - accuracy: 0.8292 - val_loss: 0.2235 - val_accuracy: 0.9144<br/>
 Epoch 2/100<br/>
-262/262 [==============================] - 207s 792ms/step - loss: 0.2575 - accuracy: 0.8941 - val_loss: 0.0297 - val_accuracy: 0.9135<br/>
+262/262 [==============================] - 197s 752ms/step - loss: 0.2256 - accuracy: 0.9115 - val_loss: 0.2355 - val_accuracy: 0.9298<br/>
 Epoch 3/100<br/>
-262/262 [==============================] - 208s 793ms/step - loss: 0.2130 - accuracy: 0.9077 - val_loss: 0.1284 - val_accuracy: 0.9288<br/>
+262/262 [==============================] - 199s 760ms/step - loss: 0.2021 - accuracy: 0.9220 - val_loss: 0.1959 - val_accuracy: 0.9471<br/>
 ......<br/>
 Epoch 98/100<br/>
-262/262 [==============================] - 181s 689ms/step - loss: 0.0365 - accuracy: 0.9883 - val_loss: 8.8554e-05 - val_accuracy:<br/> 0.9712
+262/262 [==============================] - 189s 722ms/step - loss: 0.0411 - accuracy: 0.9857 - val_loss: 9.8334e-04 - val_accuracy: 0.9615<br/>
 Epoch 99/100<br/>
-262/262 [==============================] - 183s 697ms/step - loss: 0.0410 - accuracy: 0.9847 - val_loss: 0.1523 - val_accuracy: 0.9702<br/>
+262/262 [==============================] - 190s 724ms/step - loss: 0.0392 - accuracy: 0.9859 - val_loss: 0.0019 - val_accuracy: 0.9644<br/>
 Epoch 100/100<br/>
-262/262 [==============================] - 181s 692ms/step - loss: 0.0245 - accuracy: 0.9890 - val_loss: 0.0027 - val_accuracy: 0.9683</p>
+262/262 [==============================] - 190s 725ms/step - loss: 0.0414 - accuracy: 0.9854 - val_loss: 0.0816 - val_accuracy: 0.9635</p>
 <h2>5.5. Saving the model and its weights</h2>
 <p>Fitting a CNN is time and resource consuming. Once the model has been properly fitted, saving it along with its weights is interesting, so that the model can be loaded further without the need of fitting again. The model itself is saved in a .json file, while weights are stored in .h5 format.</p>
 <div class="boxborder">
@@ -1218,13 +1221,13 @@ cm
         </tr>
         <tr>
             <td style="width: 28%; border: 0;">Actual Normal</td>
-            <td style="width: 36%; border: 0;">195</td>
-            <td style="width: 36%; border: 0;">39</td>
+            <td style="width: 36%; border: 0;">188</td>
+            <td style="width: 36%; border: 0;">46</td>
         </tr>
         <tr>
             <td style="width: 28%; border: 0;">Actual Stable</td>
-            <td style="width: 36%; border: 0;">6</td>
-            <td style="width: 36%; border: 0;">384</td>
+            <td style="width: 36%; border: 0;">5</td>
+            <td style="width: 36%; border: 0;">385</td>
         </tr>
     </tbody>
 </table>
@@ -1285,8 +1288,8 @@ cm
       
       
       <h1>7. Discussion and final remarks</h1>
-<p>Results show that very <b>low losses</b> and <b>accuracies of 96.8%</b> (validation) and <b>92.8%</b> (testing) are obtained with a traditional CNN approach, without any refinement based, for example, on the use of pretrained image classification models.</p>
-<p>In addition, when we deal with medical diagnosis, a false positive (i.e. predicting illness when the patient is healthy) is <b>less critical</b> than a false negative (predicting healthiness when the patient is sick). The number of false negatives obtained with the CNN presented here is extremely low (<b>only 6 cases</b>, or <b>0.96%</b> of the total number of predictions), which positions the machine developed here as a reliable ancillary tool for pneumonia detection.</p>
+<p>Results show that very <b>low losses</b> and <b>accuracies of 96.4%</b> (validation) and <b>91.8%</b> (testing) are obtained with a traditional CNN approach, without any refinement based, for example, on the use of pretrained image classification models.</p>
+<p>In addition, when we deal with medical diagnosis, a false positive (i.e. predicting illness when the patient is healthy) is <b>less critical</b> than a false negative (predicting healthiness when the patient is sick). The number of false negatives obtained with the CNN presented here is extremely low (<b>only 5 cases</b>, or <b>0.80%</b> of the total number of predictions), which positions the machine developed here as a reliable ancillary tool for pneumonia detection.</p>
 <p>Specific considerations on the model and the hyperparameters must be made:</p>
 <ol>
     <li>As mentioned above, the approach presented here is very traditional. The CNN architecture adopted here follows those Yann LeCun (recognized as founding father of convolutional networks and their use in computer vision) promoted in the 1990s for image classification. <b>No pretrained model</b> was used here, and their employment could be taken as a suggestion for further improvements;</li>
@@ -1300,6 +1303,7 @@ cm
 </ol>
 <div class="boxborder">
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">end_time <span style="color:#f92672">=</span> datetime<span style="color:#f92672">.</span>now()
+
 <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Start time&#39;</span>, start_time)
 <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;End time&#39;</span>, end_time)
 <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Time elapsed&#39;</span>, end_time <span style="color:#f92672">-</span> start_time)
